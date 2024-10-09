@@ -15,19 +15,38 @@
  */
 
 export type {
+  _Record,
   Compressed,
   CreateStreamingDatasetRequest,
+  CreateStreamRequest,
+  CreateStreamRequestStreamSchema,
+  CreateStreamRequestStreamSchemaChangeDataCaptureConfiguration,
+  CreateStreamRequestStreamSchemaChangeDataCaptureConfigurationFullRowChangeDataCaptureConfiguration,
   Dataset,
   PartitionsCount,
+  PublishRecordsToStreamRequest,
+  PublishRecordToStreamRequest,
+  ResetStreamRequest,
   Stream,
   StreamType,
   ViewRid,
 } from "./_components.js";
 export type {
   CannotCreateStreamingDatasetInUserFolder,
+  CannotWriteToOutdatedView,
+  CannotWriteToTrashedStream,
   CreateStreamingDatasetPermissionDenied,
+  CreateStreamPermissionDenied,
+  InvalidStreamNoSchema,
   InvalidStreamType,
+  PublishBinaryRecordToStreamPermissionDenied,
+  PublishRecordsToStreamPermissionDenied,
+  PublishRecordToStreamPermissionDenied,
+  RecordDoesNotMatchStreamSchema,
+  RecordTooLarge,
+  ResetStreamPermissionDenied,
   StreamNotFound,
+  ViewNotFound,
 } from "./_errors.js";
 export * as Datasets from "./public/Dataset.js";
 export * as Streams from "./public/Stream.js";
