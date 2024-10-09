@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/palantir/osdk-ts.git"
+    "url": "https://github.com/palantir/foundry-platform-typescript.git"
   },
   "dependencies": {
     "@cspell/cspell-types": "^8.11.0",
