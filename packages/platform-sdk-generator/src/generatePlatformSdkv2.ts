@@ -247,7 +247,7 @@ const BASE_PACKAGE_JSON = {
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/palantir/osdk-ts.git",
+    "url": "https://github.com/palantir/foundry-platform-typescript.git",
   },
   "exports": {
     ".": {
