@@ -56,9 +56,6 @@ importers:
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
         version: link:packages/monorepo.tsconfig
-      '@osdk/monorepo.tsup':
-        specifier: workspace:~
-        version: link:packages/monorepo.tsup
       '@types/lint-staged':
         specifier: ^13.3.0
         version: 13.3.0
@@ -174,15 +171,9 @@ importers:
         specifier: ~0.3.0
         version: 0.3.1
     devDependencies:
-      '@osdk/monorepo.api-extractor':
-        specifier: workspace:~
-        version: link:../monorepo.api-extractor
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
         version: link:../monorepo.tsconfig
-      '@osdk/monorepo.tsup':
-        specifier: workspace:~
-        version: link:../monorepo.tsup
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
@@ -199,15 +190,9 @@ importers:
         specifier: ~0.3.0
         version: 0.3.1
     devDependencies:
-      '@osdk/monorepo.api-extractor':
-        specifier: workspace:~
-        version: link:../monorepo.api-extractor
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
         version: link:../monorepo.tsconfig
-      '@osdk/monorepo.tsup':
-        specifier: workspace:~
-        version: link:../monorepo.tsup
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
@@ -221,15 +206,9 @@ importers:
         specifier: ~0.3.0
         version: 0.3.1
     devDependencies:
-      '@osdk/monorepo.api-extractor':
-        specifier: workspace:~
-        version: link:../monorepo.api-extractor
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
         version: link:../monorepo.tsconfig
-      '@osdk/monorepo.tsup':
-        specifier: workspace:~
-        version: link:../monorepo.tsup
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
@@ -249,15 +228,9 @@ importers:
         specifier: ~0.3.0
         version: 0.3.1
     devDependencies:
-      '@osdk/monorepo.api-extractor':
-        specifier: workspace:~
-        version: link:../monorepo.api-extractor
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
         version: link:../monorepo.tsconfig
-      '@osdk/monorepo.tsup':
-        specifier: workspace:~
-        version: link:../monorepo.tsup
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
@@ -274,15 +247,9 @@ importers:
         specifier: ~0.3.0
         version: 0.3.1
     devDependencies:
-      '@osdk/monorepo.api-extractor':
-        specifier: workspace:~
-        version: link:../monorepo.api-extractor
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
         version: link:../monorepo.tsconfig
-      '@osdk/monorepo.tsup':
-        specifier: workspace:~
-        version: link:../monorepo.tsup
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
@@ -299,15 +266,9 @@ importers:
         specifier: ~0.3.0
         version: 0.3.1
     devDependencies:
-      '@osdk/monorepo.api-extractor':
-        specifier: workspace:~
-        version: link:../monorepo.api-extractor
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
         version: link:../monorepo.tsconfig
-      '@osdk/monorepo.tsup':
-        specifier: workspace:~
-        version: link:../monorepo.tsup
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
@@ -321,15 +282,9 @@ importers:
         specifier: ~0.3.0
         version: 0.3.1
     devDependencies:
-      '@osdk/monorepo.api-extractor':
-        specifier: workspace:~
-        version: link:../monorepo.api-extractor
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
         version: link:../monorepo.tsconfig
-      '@osdk/monorepo.tsup':
-        specifier: workspace:~
-        version: link:../monorepo.tsup
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
@@ -352,15 +307,9 @@ importers:
         specifier: ~0.3.0
         version: 0.3.1
     devDependencies:
-      '@osdk/monorepo.api-extractor':
-        specifier: workspace:~
-        version: link:../monorepo.api-extractor
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
         version: link:../monorepo.tsconfig
-      '@osdk/monorepo.tsup':
-        specifier: workspace:~
-        version: link:../monorepo.tsup
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
@@ -377,15 +326,9 @@ importers:
         specifier: ~0.3.0
         version: 0.3.1
     devDependencies:
-      '@osdk/monorepo.api-extractor':
-        specifier: workspace:~
-        version: link:../monorepo.api-extractor
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
         version: link:../monorepo.tsconfig
-      '@osdk/monorepo.tsup':
-        specifier: workspace:~
-        version: link:../monorepo.tsup
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
@@ -408,15 +351,9 @@ importers:
         specifier: ~0.3.0
         version: 0.3.1
     devDependencies:
-      '@osdk/monorepo.api-extractor':
-        specifier: workspace:~
-        version: link:../monorepo.api-extractor
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
         version: link:../monorepo.tsconfig
-      '@osdk/monorepo.tsup':
-        specifier: workspace:~
-        version: link:../monorepo.tsup
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
@@ -433,15 +370,9 @@ importers:
         specifier: ~0.3.0
         version: 0.3.1
     devDependencies:
-      '@osdk/monorepo.api-extractor':
-        specifier: workspace:~
-        version: link:../monorepo.api-extractor
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
         version: link:../monorepo.tsconfig
-      '@osdk/monorepo.tsup':
-        specifier: workspace:~
-        version: link:../monorepo.tsup
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
@@ -470,15 +401,9 @@ importers:
         specifier: ~0.3.0
         version: 0.3.1
     devDependencies:
-      '@osdk/monorepo.api-extractor':
-        specifier: workspace:~
-        version: link:../monorepo.api-extractor
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
         version: link:../monorepo.tsconfig
-      '@osdk/monorepo.tsup':
-        specifier: workspace:~
-        version: link:../monorepo.tsup
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
@@ -495,15 +420,9 @@ importers:
         specifier: ~0.3.0
         version: 0.3.1
     devDependencies:
-      '@osdk/monorepo.api-extractor':
-        specifier: workspace:~
-        version: link:../monorepo.api-extractor
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
         version: link:../monorepo.tsconfig
-      '@osdk/monorepo.tsup':
-        specifier: workspace:~
-        version: link:../monorepo.tsup
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
@@ -520,15 +439,9 @@ importers:
         specifier: ~0.3.0
         version: 0.3.1
     devDependencies:
-      '@osdk/monorepo.api-extractor':
-        specifier: workspace:~
-        version: link:../monorepo.api-extractor
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
         version: link:../monorepo.tsconfig
-      '@osdk/monorepo.tsup':
-        specifier: workspace:~
-        version: link:../monorepo.tsup
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
@@ -542,15 +455,9 @@ importers:
         specifier: ~0.3.0
         version: 0.3.1
     devDependencies:
-      '@osdk/monorepo.api-extractor':
-        specifier: workspace:~
-        version: link:../monorepo.api-extractor
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
         version: link:../monorepo.tsconfig
-      '@osdk/monorepo.tsup':
-        specifier: workspace:~
-        version: link:../monorepo.tsup
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
@@ -567,15 +474,9 @@ importers:
         specifier: ~0.3.0
         version: 0.3.1
     devDependencies:
-      '@osdk/monorepo.api-extractor':
-        specifier: workspace:~
-        version: link:../monorepo.api-extractor
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
         version: link:../monorepo.tsconfig
-      '@osdk/monorepo.tsup':
-        specifier: workspace:~
-        version: link:../monorepo.tsup
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
@@ -592,15 +493,9 @@ importers:
         specifier: ~0.3.0
         version: 0.3.1
     devDependencies:
-      '@osdk/monorepo.api-extractor':
-        specifier: workspace:~
-        version: link:../monorepo.api-extractor
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
         version: link:../monorepo.tsconfig
-      '@osdk/monorepo.tsup':
-        specifier: workspace:~
-        version: link:../monorepo.tsup
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
@@ -661,15 +556,9 @@ importers:
         specifier: ^17.7.2
         version: 17.7.2
     devDependencies:
-      '@osdk/monorepo.api-extractor':
-        specifier: workspace:~
-        version: link:../monorepo.api-extractor
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
         version: link:../monorepo.tsconfig
-      '@osdk/monorepo.tsup':
-        specifier: workspace:~
-        version: link:../monorepo.tsup
       '@types/mdast':
         specifier: ^4.0.4
         version: 4.0.4
@@ -764,15 +653,9 @@ importers:
       '@changesets/types':
         specifier: ^6.0.0
         version: 6.0.0
-      '@osdk/monorepo.api-extractor':
-        specifier: workspace:~
-        version: link:../monorepo.api-extractor
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
         version: link:../monorepo.tsconfig
-      '@osdk/monorepo.tsup':
-        specifier: workspace:~
-        version: link:../monorepo.tsup
       '@types/mdast':
         specifier: 4.0.4
         version: 4.0.4
