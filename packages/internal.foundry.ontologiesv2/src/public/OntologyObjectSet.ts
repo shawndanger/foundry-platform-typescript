@@ -119,6 +119,51 @@ export function load(
   return $foundryPlatformFetch($ctx, _load, ...args);
 }
 
+const _loadBaseObjects: $FoundryPlatformMethod<
+  (
+    ontology: _Core.OntologyIdentifier,
+    $body: _Core.LoadObjectSetV2BaseObjectsRequest,
+    $queryParams?: {
+      artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
+      packageName?: _Core.SdkPackageName | undefined;
+    },
+  ) => Promise<_Core.LoadObjectSetV2BaseObjectsResponse>
+> = [1, "/v2/ontologies/{0}/objectSets/loadBaseObjects", 3];
+
+/**
+ * Load the ontology objects present in the `ObjectSet` from the provided object set definition. The resulting
+ * objects may be scoped to an object type, in which all the selected properties on the object type are returned, or scoped
+ * to an interface, in which only the object type properties that implement the properties of any interfaces in its
+ * scope are returned. For objects that are scoped to an interface in the result, a mapping from interface to
+ * object implementation is returned in order to interpret the objects as the interfaces that they implement.
+ *
+ * For Object Storage V1 backed objects, this endpoint returns a maximum of 10,000 objects. After 10,000 objects have been returned and if more objects
+ * are available, attempting to load another page will result in an `ObjectsExceededLimit` error being returned. There is no limit on Object Storage V2 backed objects.
+ *
+ * Note that null value properties will not be returned. In addition, property metadata (rid, apiName, and primaryKey)
+ * will be prefixed with '$' instead of '\_\_' as is the case in `loadObjects`.
+ *
+ * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:ontologies-read]
+ * URL: /v2/ontologies/{ontology}/objectSets/loadBaseObjects
+ */
+export function loadBaseObjects(
+  $ctx: $Client | $ClientContext,
+  ...args: [
+    ontology: _Core.OntologyIdentifier,
+    $body: _Core.LoadObjectSetV2BaseObjectsRequest,
+    $queryParams?: {
+      artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
+      packageName?: _Core.SdkPackageName | undefined;
+    },
+  ]
+): Promise<_Core.LoadObjectSetV2BaseObjectsResponse> {
+  return $foundryPlatformFetch($ctx, _loadBaseObjects, ...args);
+}
+
 const _aggregate: $FoundryPlatformMethod<
   (
     ontology: _Core.OntologyIdentifier,

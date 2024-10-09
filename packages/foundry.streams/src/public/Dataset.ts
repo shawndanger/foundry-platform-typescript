@@ -39,7 +39,7 @@ const _create: $FoundryPlatformMethod<
  *
  * @alpha
  *
- * Required Scopes: [api:datasets-write, api:streams-write]
+ * Required Scopes: [api:streams-write]
  * URL: /v2/streams/datasets/create
  */
 export function create(

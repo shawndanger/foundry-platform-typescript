@@ -34,35 +34,6 @@ export interface BatchRequestSizeExceededLimit {
 }
 
 /**
-   * The requested folder could not be found, or the client token does not have access to it.
-
-   *
-   * Log Safety: SAFE
-   */
-export interface FolderNotFound {
-  errorCode: "NOT_FOUND";
-  errorName: "FolderNotFound";
-  errorInstanceId: string;
-  parameters: {
-    folderRid: unknown;
-  };
-}
-
-/**
- * Getting a hidden resource is not supported.
- *
- * Log Safety: UNSAFE
- */
-export interface GetHiddenResourceNotSupported {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "GetHiddenResourceNotSupported";
-  errorInstanceId: string;
-  parameters: {
-    resourceRid: unknown;
-  };
-}
-
-/**
  * Getting the root folder as a resource is not supported.
  *
  * Log Safety: SAFE
@@ -72,20 +43,6 @@ export interface GetRootFolderNotSupported {
   errorName: "GetRootFolderNotSupported";
   errorInstanceId: string;
   parameters: {};
-}
-
-/**
- * Getting a service is not supported.
- *
- * Log Safety: UNSAFE
- */
-export interface GetServiceResourceNotSupported {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "GetServiceResourceNotSupported";
-  errorInstanceId: string;
-  parameters: {
-    resourceRid: unknown;
-  };
 }
 
 /**
@@ -99,6 +56,33 @@ export interface GetSpaceResourceNotSupported {
   errorInstanceId: string;
   parameters: {
     spaceRid: unknown;
+  };
+}
+
+/**
+ * The change data capture configuration is invalid.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidChangeDataCaptureConfiguration {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidChangeDataCaptureConfiguration";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * The field schema failed validations
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidFieldSchema {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidFieldSchema";
+  errorInstanceId: string;
+  parameters: {
+    fieldName: unknown;
+    message: unknown;
   };
 }
 
@@ -147,6 +131,21 @@ export interface InvalidParameterCombination {
 }
 
 /**
+ * The schema failed validations
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidSchema {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidSchema";
+  errorInstanceId: string;
+  parameters: {
+    errorType: unknown;
+    message: unknown;
+  };
+}
+
+/**
  * The time zone is invalid.
  *
  * Log Safety: SAFE
@@ -184,6 +183,18 @@ export interface ResourceNameAlreadyExists {
   errorInstanceId: string;
   parameters: {
     parentFolderRid: unknown;
-    resourceName: unknown;
+    displayName: unknown;
   };
+}
+
+/**
+ * The requested schema could not be converted into a stream schema.
+ *
+ * Log Safety: SAFE
+ */
+export interface SchemaIsNotStreamSchema {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "SchemaIsNotStreamSchema";
+  errorInstanceId: string;
+  parameters: {};
 }

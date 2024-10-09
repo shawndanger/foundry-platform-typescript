@@ -15,6 +15,8 @@
  */
 
 export * as Admin from "@osdk/foundry.admin";
+export * as AipAgents from "@osdk/foundry.aipagents";
+export * as Connectivity from "@osdk/foundry.connectivity";
 export * as Core from "@osdk/foundry.core";
 export * as Datasets from "@osdk/foundry.datasets";
 export * as Filesystem from "@osdk/foundry.filesystem";
