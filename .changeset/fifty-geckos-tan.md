@@ -16,7 +16,6 @@
 "@osdk/foundry.streams": patch
 "@osdk/foundry.admin": patch
 "@osdk/foundry.core": patch
-"@osdk/shared.test": patch
 "@osdk/foundry": patch
 ---
 
