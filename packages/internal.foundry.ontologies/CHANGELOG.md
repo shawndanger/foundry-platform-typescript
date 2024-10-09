@@ -1,5 +1,16 @@
 # @osdk/internal.foundry.ontologies
 
+## 0.3.0-beta.0
+
+### Minor Changes
+
+- 02fc65d: Fix codegen for new APIs.
+
+### Patch Changes
+
+- Updated dependencies [02fc65d]
+  - @osdk/internal.foundry.core@0.3.0-beta.0
+
 ## 0.2.0
 
 ### Minor Changes
