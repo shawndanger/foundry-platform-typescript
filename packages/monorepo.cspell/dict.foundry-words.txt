@@ -1,0 +1,6 @@
+geopoint
+geoshape
+gtsr
+bellaso
+fforms
+mediaReference
