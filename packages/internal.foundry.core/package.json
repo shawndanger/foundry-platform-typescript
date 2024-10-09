@@ -27,7 +27,7 @@
   "dependencies": {
     "@osdk/internal.foundry.geo": "workspace:*",
     "@osdk/shared.client": "^1.0.1",
-    "@osdk/shared.net.platformapi": "workspace:~"
+    "@osdk/shared.net.platformapi": "~0.3.0"
   },
   "devDependencies": {
     "@osdk/monorepo.api-extractor": "workspace:~",
