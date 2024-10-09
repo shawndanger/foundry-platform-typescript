@@ -1,5 +1,11 @@
 # @osdk/internal.foundry.geo
 
+## 0.3.0-beta.0
+
+### Minor Changes
+
+- 02fc65d: Fix codegen for new APIs.
+
 ## 0.1.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @osdk/foundry.ontologies
 
+## 2.2.0-beta.0
+
+### Minor Changes
+
+- 02fc65d: Fix codegen for new APIs.
+
 ## 2.1.0
 
 ### Minor Changes
