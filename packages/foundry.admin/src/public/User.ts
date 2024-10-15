@@ -16,6 +16,10 @@
 
 import type * as _Core from "@osdk/foundry.core";
 import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
   SharedClient as $Client,
   SharedClientContext as $ClientContext,
 } from "@osdk/shared.client2";
@@ -41,7 +45,7 @@ const _deleteUser: $FoundryPlatformMethod<
  * URL: /v2/admin/users/{userId}
  */
 export function deleteUser(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     userId: _Core.PrincipalId,
 
@@ -70,7 +74,7 @@ const _list: $FoundryPlatformMethod<
  * URL: /v2/admin/users
  */
 export function list(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
@@ -98,7 +102,7 @@ const _get: $FoundryPlatformMethod<
  * URL: /v2/admin/users/{userId}
  */
 export function get(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     userId: _Core.PrincipalId,
 
@@ -126,7 +130,7 @@ const _getBatch: $FoundryPlatformMethod<
  * URL: /v2/admin/users/getBatch
  */
 export function getBatch(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     $body: Array<_Admin.GetUsersBatchRequestElement>,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
@@ -148,7 +152,7 @@ const _getCurrent: $FoundryPlatformMethod<
  * URL: /v2/admin/users/getCurrent
  */
 export function getCurrent(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [$queryParams?: { preview?: _Core.PreviewMode | undefined }]
 ): Promise<_Admin.User> {
   return $foundryPlatformFetch($ctx, _getCurrent, ...args);
@@ -170,7 +174,7 @@ const _getMarkings: $FoundryPlatformMethod<
  * URL: /v2/admin/users/{userId}/getMarkings
  */
 export function getMarkings(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     userId: _Core.PrincipalId,
 
@@ -194,7 +198,7 @@ const _profilePicture: $FoundryPlatformMethod<
  * URL: /v2/admin/users/{userId}/profilePicture
  */
 export function profilePicture(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     userId: _Core.PrincipalId,
 
@@ -218,7 +222,7 @@ const _search: $FoundryPlatformMethod<
  * URL: /v2/admin/users/search
  */
 export function search(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     $body: _Admin.SearchUsersRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },

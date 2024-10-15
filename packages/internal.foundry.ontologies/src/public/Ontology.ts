@@ -16,6 +16,10 @@
 
 import type * as _Core from "@osdk/internal.foundry.core";
 import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
   SharedClient as $Client,
   SharedClientContext as $ClientContext,
 } from "@osdk/shared.client2";
@@ -39,7 +43,7 @@ const _list: $FoundryPlatformMethod<
  * URL: /v1/ontologies
  */
 export function list(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: []
 ): Promise<_Core.ListOntologiesResponse> {
   return $foundryPlatformFetch($ctx, _list, ...args);
@@ -60,7 +64,7 @@ const _get: $FoundryPlatformMethod<
  * URL: /v1/ontologies/{ontologyRid}
  */
 export function get(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [ontologyRid: _Core.OntologyRid]
 ): Promise<_Core.Ontology> {
   return $foundryPlatformFetch($ctx, _get, ...args);

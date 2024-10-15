@@ -16,6 +16,10 @@
 
 import type * as _Core from "@osdk/internal.foundry.core";
 import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
   SharedClient as $Client,
   SharedClientContext as $ClientContext,
 } from "@osdk/shared.client2";
@@ -43,7 +47,7 @@ const _execute: $FoundryPlatformMethod<
  * URL: /v1/ontologies/{ontologyRid}/queries/{queryApiName}/execute
  */
 export function execute(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontologyRid: _Core.OntologyRid,
     queryApiName: _Core.QueryApiName,

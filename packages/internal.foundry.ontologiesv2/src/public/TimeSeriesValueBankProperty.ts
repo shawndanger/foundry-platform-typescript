@@ -16,6 +16,10 @@
 
 import type * as _Core from "@osdk/internal.foundry.core";
 import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
   SharedClient as $Client,
   SharedClientContext as $ClientContext,
 } from "@osdk/shared.client2";
@@ -49,7 +53,7 @@ const _getLatestValue: $FoundryPlatformMethod<
  * URL: /v2/ontologies/{ontology}/objects/{objectType}/{primaryKey}/timeseries/{propertyName}/latestValue
  */
 export function getLatestValue(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontology: _Core.OntologyIdentifier,
     objectType: _Core.ObjectTypeApiName,
@@ -97,7 +101,7 @@ const _streamValues: $FoundryPlatformMethod<
  * URL: /v2/ontologies/{ontology}/objects/{objectType}/{primaryKey}/timeseries/{property}/streamValues
  */
 export function streamValues(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontology: _Core.OntologyIdentifier,
     objectType: _Core.ObjectTypeApiName,

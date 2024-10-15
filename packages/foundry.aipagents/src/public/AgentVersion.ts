@@ -16,6 +16,10 @@
 
 import type * as _Core from "@osdk/foundry.core";
 import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
   SharedClient as $Client,
   SharedClientContext as $ClientContext,
 } from "@osdk/shared.client2";
@@ -46,7 +50,7 @@ const _list: $FoundryPlatformMethod<
  * URL: /v2/aipAgents/agents/{agentRid}/agentVersions
  */
 export function list(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     agentRid: _AipAgents.AgentRid,
 
@@ -77,7 +81,7 @@ const _get: $FoundryPlatformMethod<
  * URL: /v2/aipAgents/agents/{agentRid}/agentVersions/{agentVersionString}
  */
 export function get(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     agentRid: _AipAgents.AgentRid,
     agentVersionString: _AipAgents.AgentVersionString,

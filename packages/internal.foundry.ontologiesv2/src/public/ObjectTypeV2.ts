@@ -16,6 +16,10 @@
 
 import type * as _Core from "@osdk/internal.foundry.core";
 import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
   SharedClient as $Client,
   SharedClientContext as $ClientContext,
 } from "@osdk/shared.client2";
@@ -49,7 +53,7 @@ const _list: $FoundryPlatformMethod<
  * URL: /v2/ontologies/{ontology}/objectTypes
  */
 export function list(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontology: _Core.OntologyIdentifier,
 
@@ -80,7 +84,7 @@ const _get: $FoundryPlatformMethod<
  * URL: /v2/ontologies/{ontology}/objectTypes/{objectType}
  */
 export function get(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontology: _Core.OntologyIdentifier,
     objectType: _Core.ObjectTypeApiName,
@@ -108,7 +112,7 @@ const _getFullMetadata: $FoundryPlatformMethod<
  * URL: /v2/ontologies/{ontology}/objectTypes/{objectType}/fullMetadata
  */
 export function getFullMetadata(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontology: _Core.OntologyIdentifier,
     objectType: _Core.ObjectTypeApiName,
@@ -142,7 +146,7 @@ const _listOutgoingLinkTypes: $FoundryPlatformMethod<
  * URL: /v2/ontologies/{ontology}/objectTypes/{objectType}/outgoingLinkTypes
  */
 export function listOutgoingLinkTypes(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontology: _Core.OntologyIdentifier,
     objectType: _Core.ObjectTypeApiName,
@@ -176,7 +180,7 @@ const _getOutgoingLinkType: $FoundryPlatformMethod<
  * URL: /v2/ontologies/{ontology}/objectTypes/{objectType}/outgoingLinkTypes/{linkType}
  */
 export function getOutgoingLinkType(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontology: _Core.OntologyIdentifier,
     objectType: _Core.ObjectTypeApiName,

@@ -16,6 +16,10 @@
 
 import type * as _Core from "@osdk/internal.foundry.core";
 import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
   SharedClient as $Client,
   SharedClientContext as $ClientContext,
 } from "@osdk/shared.client2";
@@ -39,7 +43,7 @@ const _list: $FoundryPlatformMethod<
  * URL: /v2/ontologies
  */
 export function list(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: []
 ): Promise<_Core.ListOntologiesV2Response> {
   return $foundryPlatformFetch($ctx, _list, ...args);
@@ -60,7 +64,7 @@ const _get: $FoundryPlatformMethod<
  * URL: /v2/ontologies/{ontology}
  */
 export function get(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [ontology: _Core.OntologyIdentifier]
 ): Promise<_Core.OntologyV2> {
   return $foundryPlatformFetch($ctx, _get, ...args);
@@ -79,7 +83,7 @@ const _getFullMetadata: $FoundryPlatformMethod<
  * URL: /v2/ontologies/{ontology}/fullMetadata
  */
 export function getFullMetadata(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [ontology: _Core.OntologyIdentifier]
 ): Promise<_Core.OntologyFullMetadata> {
   return $foundryPlatformFetch($ctx, _getFullMetadata, ...args);

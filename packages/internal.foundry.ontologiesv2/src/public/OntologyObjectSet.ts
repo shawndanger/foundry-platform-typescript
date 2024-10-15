@@ -16,6 +16,10 @@
 
 import type * as _Core from "@osdk/internal.foundry.core";
 import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
   SharedClient as $Client,
   SharedClientContext as $ClientContext,
 } from "@osdk/shared.client2";
@@ -43,7 +47,7 @@ const _createTemporary: $FoundryPlatformMethod<
  * URL: /v2/ontologies/{ontology}/objectSets/createTemporary
  */
 export function createTemporary(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontology: _Core.OntologyIdentifier,
     $body: _Core.CreateTemporaryObjectSetRequestV2,
@@ -70,7 +74,7 @@ const _get: $FoundryPlatformMethod<
  * URL: /v2/ontologies/{ontology}/objectSets/{objectSetRid}
  */
 export function get(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontology: _Core.OntologyIdentifier,
     objectSetRid: _Core.ObjectSetRid,
@@ -106,7 +110,7 @@ const _load: $FoundryPlatformMethod<
  * URL: /v2/ontologies/{ontology}/objectSets/loadObjects
  */
 export function load(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontology: _Core.OntologyIdentifier,
     $body: _Core.LoadObjectSetRequestV2,
@@ -151,7 +155,7 @@ const _loadBaseObjects: $FoundryPlatformMethod<
  * URL: /v2/ontologies/{ontology}/objectSets/loadBaseObjects
  */
 export function loadBaseObjects(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontology: _Core.OntologyIdentifier,
     $body: _Core.LoadObjectSetV2BaseObjectsRequest,
@@ -186,7 +190,7 @@ const _aggregate: $FoundryPlatformMethod<
  * URL: /v2/ontologies/{ontology}/objectSets/aggregate
  */
 export function aggregate(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontology: _Core.OntologyIdentifier,
     $body: _Core.AggregateObjectSetRequestV2,

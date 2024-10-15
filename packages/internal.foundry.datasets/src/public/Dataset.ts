@@ -16,6 +16,10 @@
 
 import type * as _Core from "@osdk/internal.foundry.core";
 import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
   SharedClient as $Client,
   SharedClientContext as $ClientContext,
 } from "@osdk/shared.client2";
@@ -40,7 +44,7 @@ const _create: $FoundryPlatformMethod<
  * URL: /v1/datasets
  */
 export function create(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [$body: _Datasets.CreateDatasetRequest]
 ): Promise<_Datasets.Dataset> {
   return $foundryPlatformFetch($ctx, _create, ...args);
@@ -61,7 +65,7 @@ const _get: $FoundryPlatformMethod<
  * URL: /v1/datasets/{datasetRid}
  */
 export function get(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [datasetRid: _Datasets.DatasetRid]
 ): Promise<_Datasets.Dataset> {
   return $foundryPlatformFetch($ctx, _get, ...args);
@@ -94,7 +98,7 @@ const _read: $FoundryPlatformMethod<
  * URL: /v1/datasets/{datasetRid}/readTable
  */
 export function read(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     datasetRid: _Datasets.DatasetRid,
 
@@ -131,7 +135,7 @@ const _replaceSchema: $FoundryPlatformMethod<
  * URL: /v1/datasets/{datasetRid}/schema
  */
 export function replaceSchema(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     datasetRid: _Datasets.DatasetRid,
     $body: any,
@@ -164,7 +168,7 @@ const _getSchema: $FoundryPlatformMethod<
  * URL: /v1/datasets/{datasetRid}/schema
  */
 export function getSchema(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     datasetRid: _Datasets.DatasetRid,
 
@@ -198,7 +202,7 @@ const _deleteSchema: $FoundryPlatformMethod<
  * URL: /v1/datasets/{datasetRid}/schema
  */
 export function deleteSchema(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     datasetRid: _Datasets.DatasetRid,
 

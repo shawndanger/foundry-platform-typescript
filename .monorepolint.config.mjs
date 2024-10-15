@@ -70,10 +70,10 @@ const disallowWorkspaceCaret = createRuleFactory({
       const deps = packageJson[d] ?? {};
 
       for (const [dep, version] of Object.entries(deps)) {
-        if (dep === "@osdk/shared.client") {
-          // for shared client we need the symbol to work almost always so we are permissive
-          if (version !== "workspace:^" && version !== "^1.0.1") {
-            const message = `${dep} may only have 'workspace:^'`;
+        if (dep === "@osdk/shared.client2") {
+          const expected = "^1.0.0";
+          if (version !== expected) {
+            const message = `${dep} may only have '${expected}'`;
             context.addError({
               message,
               longMessage: message,
@@ -85,7 +85,7 @@ const disallowWorkspaceCaret = createRuleFactory({
                   packageJson[d] = Object.assign(
                     {},
                     packageJson[d],
-                    { [dep]: "workspace:^" },
+                    { [dep]: expected },
                   );
 
                   context.host.writeJson(
@@ -97,7 +97,7 @@ const disallowWorkspaceCaret = createRuleFactory({
             });
           }
         } else if (version === "workspace:^") {
-          if (dep === "@osdk/shared.client") continue;
+          if (dep === "@osdk/shared.client2") continue;
           const message = `'workspace:^' not allowed (${d}['${dep}']).`;
           context.addError({
             message,

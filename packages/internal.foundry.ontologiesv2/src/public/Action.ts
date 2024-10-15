@@ -16,6 +16,10 @@
 
 import type * as _Core from "@osdk/internal.foundry.core";
 import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
   SharedClient as $Client,
   SharedClientContext as $ClientContext,
 } from "@osdk/shared.client2";
@@ -53,7 +57,7 @@ const _apply: $FoundryPlatformMethod<
  * URL: /v2/ontologies/{ontology}/actions/{action}/apply
  */
 export function apply(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontology: _Core.OntologyIdentifier,
     action: _Core.ActionTypeApiName,
@@ -96,7 +100,7 @@ const _applyAsync: $FoundryPlatformMethod<
  * URL: /v2/ontologies/{ontology}/actions/{action}/applyAsync
  */
 export function applyAsync(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontology: _Core.OntologyIdentifier,
     action: _Core.ActionTypeApiName,
@@ -140,7 +144,7 @@ const _applyBatch: $FoundryPlatformMethod<
  * URL: /v2/ontologies/{ontology}/actions/{action}/applyBatch
  */
 export function applyBatch(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontology: _Core.OntologyIdentifier,
     action: _Core.ActionTypeApiName,

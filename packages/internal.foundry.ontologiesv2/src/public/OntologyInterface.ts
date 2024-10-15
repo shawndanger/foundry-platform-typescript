@@ -16,6 +16,10 @@
 
 import type * as _Core from "@osdk/internal.foundry.core";
 import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
   SharedClient as $Client,
   SharedClientContext as $ClientContext,
 } from "@osdk/shared.client2";
@@ -54,7 +58,7 @@ const _list: $FoundryPlatformMethod<
  * URL: /v2/ontologies/{ontology}/interfaceTypes
  */
 export function list(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontology: _Core.OntologyIdentifier,
 
@@ -92,7 +96,7 @@ const _get: $FoundryPlatformMethod<
  * URL: /v2/ontologies/{ontology}/interfaceTypes/{interfaceType}
  */
 export function get(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontology: _Core.OntologyIdentifier,
     interfaceType: _Core.InterfaceTypeApiName,
@@ -153,7 +157,7 @@ const _search: $FoundryPlatformMethod<
  * URL: /v2/ontologies/{ontology}/interfaces/{interfaceType}/search
  */
 export function search(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontology: _Core.OntologyIdentifier,
     interfaceType: _Core.InterfaceTypeApiName,
@@ -194,7 +198,7 @@ const _aggregate: $FoundryPlatformMethod<
  * URL: /v2/ontologies/{ontology}/interfaces/{interfaceType}/aggregate
  */
 export function aggregate(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontology: _Core.OntologyIdentifier,
     interfaceType: _Core.InterfaceTypeApiName,

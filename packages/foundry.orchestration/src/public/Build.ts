@@ -16,6 +16,10 @@
 
 import type * as _Core from "@osdk/foundry.core";
 import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
   SharedClient as $Client,
   SharedClientContext as $ClientContext,
 } from "@osdk/shared.client2";
@@ -41,7 +45,7 @@ const _get: $FoundryPlatformMethod<
  * URL: /v2/orchestration/builds/{buildRid}
  */
 export function get(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     buildRid: _Orchestration.BuildRid,
 
@@ -65,7 +69,7 @@ const _create: $FoundryPlatformMethod<
  * URL: /v2/orchestration/builds/create
  */
 export function create(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     $body: _Orchestration.CreateBuildsRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },

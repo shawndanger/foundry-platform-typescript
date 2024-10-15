@@ -175,7 +175,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -197,7 +197,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -219,7 +219,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -253,7 +253,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -278,7 +278,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -303,7 +303,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -325,7 +325,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -366,7 +366,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -394,7 +394,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -416,7 +416,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -444,7 +444,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -466,7 +466,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -500,7 +500,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -522,7 +522,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -544,7 +544,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -563,7 +563,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -585,7 +585,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -607,7 +607,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2

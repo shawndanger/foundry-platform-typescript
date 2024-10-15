@@ -16,6 +16,10 @@
 
 import type * as _Core from "@osdk/foundry.core";
 import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
   SharedClient as $Client,
   SharedClientContext as $ClientContext,
 } from "@osdk/shared.client2";
@@ -42,7 +46,7 @@ const _deleteVersion: $FoundryPlatformMethod<
  * URL: /v2/thirdPartyApplications/{thirdPartyApplicationRid}/website/versions/{versionVersion}
  */
 export function deleteVersion(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     thirdPartyApplicationRid: _ThirdPartyApplications.ThirdPartyApplicationRid,
     versionVersion: _ThirdPartyApplications.VersionVersion,
@@ -75,7 +79,7 @@ const _list: $FoundryPlatformMethod<
  * URL: /v2/thirdPartyApplications/{thirdPartyApplicationRid}/website/versions
  */
 export function list(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     thirdPartyApplicationRid: _ThirdPartyApplications.ThirdPartyApplicationRid,
 
@@ -106,7 +110,7 @@ const _get: $FoundryPlatformMethod<
  * URL: /v2/thirdPartyApplications/{thirdPartyApplicationRid}/website/versions/{versionVersion}
  */
 export function get(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     thirdPartyApplicationRid: _ThirdPartyApplications.ThirdPartyApplicationRid,
     versionVersion: _ThirdPartyApplications.VersionVersion,
@@ -142,7 +146,7 @@ const _upload: $FoundryPlatformMethod<
  * URL: /v2/thirdPartyApplications/{thirdPartyApplicationRid}/website/versions/upload
  */
 export function upload(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     thirdPartyApplicationRid: _ThirdPartyApplications.ThirdPartyApplicationRid,
     $body: Blob,

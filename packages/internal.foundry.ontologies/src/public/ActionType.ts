@@ -16,6 +16,10 @@
 
 import type * as _Core from "@osdk/internal.foundry.core";
 import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
   SharedClient as $Client,
   SharedClientContext as $ClientContext,
 } from "@osdk/shared.client2";
@@ -48,7 +52,7 @@ const _list: $FoundryPlatformMethod<
  * URL: /v1/ontologies/{ontologyRid}/actionTypes
  */
 export function list(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontologyRid: _Core.OntologyRid,
 
@@ -79,7 +83,7 @@ const _get: $FoundryPlatformMethod<
  * URL: /v1/ontologies/{ontologyRid}/actionTypes/{actionTypeApiName}
  */
 export function get(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontologyRid: _Core.OntologyRid,
     actionTypeApiName: _Core.ActionTypeApiName,

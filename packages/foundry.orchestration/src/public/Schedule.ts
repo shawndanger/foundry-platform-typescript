@@ -16,6 +16,10 @@
 
 import type * as _Core from "@osdk/foundry.core";
 import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
   SharedClient as $Client,
   SharedClientContext as $ClientContext,
 } from "@osdk/shared.client2";
@@ -41,7 +45,7 @@ const _create: $FoundryPlatformMethod<
  * URL: /v2/orchestration/schedules
  */
 export function create(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     $body: _Orchestration.CreateScheduleRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
@@ -66,7 +70,7 @@ const _deleteSchedule: $FoundryPlatformMethod<
  * URL: /v2/orchestration/schedules/{scheduleRid}
  */
 export function deleteSchedule(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     scheduleRid: _Orchestration.ScheduleRid,
 
@@ -92,7 +96,7 @@ const _get: $FoundryPlatformMethod<
  * URL: /v2/orchestration/schedules/{scheduleRid}
  */
 export function get(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     scheduleRid: _Orchestration.ScheduleRid,
 
@@ -119,7 +123,7 @@ const _replace: $FoundryPlatformMethod<
  * URL: /v2/orchestration/schedules/{scheduleRid}
  */
 export function replace(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     scheduleRid: _Orchestration.ScheduleRid,
     $body: _Orchestration.ReplaceScheduleRequest,
@@ -143,7 +147,7 @@ const _run: $FoundryPlatformMethod<
  * URL: /v2/orchestration/schedules/{scheduleRid}/run
  */
 export function run(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     scheduleRid: _Orchestration.ScheduleRid,
 
@@ -167,7 +171,7 @@ const _pause: $FoundryPlatformMethod<
  * URL: /v2/orchestration/schedules/{scheduleRid}/pause
  */
 export function pause(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     scheduleRid: _Orchestration.ScheduleRid,
 
@@ -191,7 +195,7 @@ const _unpause: $FoundryPlatformMethod<
  * URL: /v2/orchestration/schedules/{scheduleRid}/unpause
  */
 export function unpause(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     scheduleRid: _Orchestration.ScheduleRid,
 

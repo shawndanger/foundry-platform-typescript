@@ -17,6 +17,10 @@
 import type * as _Core from "@osdk/foundry.core";
 import type * as _Datasets from "@osdk/foundry.datasets";
 import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
   SharedClient as $Client,
   SharedClientContext as $ClientContext,
 } from "@osdk/shared.client2";
@@ -43,7 +47,7 @@ const _create: $FoundryPlatformMethod<
  * URL: /v2/streams/datasets/{datasetRid}/streams
  */
 export function create(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     datasetRid: _Datasets.DatasetRid,
     $body: _Streams.CreateStreamRequest,
@@ -71,7 +75,7 @@ const _get: $FoundryPlatformMethod<
  * URL: /v2/streams/datasets/{datasetRid}/streams/{streamBranchName}
  */
 export function get(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     datasetRid: _Datasets.DatasetRid,
     streamBranchName: _Datasets.BranchName,
@@ -101,7 +105,7 @@ const _publishRecord: $FoundryPlatformMethod<
  * URL: /v2/highScale/streams/datasets/{datasetRid}/streams/{streamBranchName}/publishRecord
  */
 export function publishRecord(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     datasetRid: _Datasets.DatasetRid,
     streamBranchName: _Datasets.BranchName,
@@ -131,7 +135,7 @@ const _publishRecords: $FoundryPlatformMethod<
  * URL: /v2/highScale/streams/datasets/{datasetRid}/streams/{streamBranchName}/publishRecords
  */
 export function publishRecords(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     datasetRid: _Datasets.DatasetRid,
     streamBranchName: _Datasets.BranchName,
@@ -168,7 +172,7 @@ const _publishBinaryRecord: $FoundryPlatformMethod<
  * URL: /v2/highScale/streams/datasets/{datasetRid}/streams/{streamBranchName}/publishBinaryRecord
  */
 export function publishBinaryRecord(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     datasetRid: _Datasets.DatasetRid,
     streamBranchName: _Datasets.BranchName,
@@ -206,7 +210,7 @@ const _reset: $FoundryPlatformMethod<
  * URL: /v2/streams/datasets/{datasetRid}/streams/{streamBranchName}/reset
  */
 export function reset(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     datasetRid: _Datasets.DatasetRid,
     streamBranchName: _Datasets.BranchName,

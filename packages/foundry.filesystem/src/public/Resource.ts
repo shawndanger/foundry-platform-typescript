@@ -16,6 +16,10 @@
 
 import type * as _Core from "@osdk/foundry.core";
 import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
   SharedClient as $Client,
   SharedClientContext as $ClientContext,
 } from "@osdk/shared.client2";
@@ -42,7 +46,7 @@ const _deleteResource: $FoundryPlatformMethod<
  * URL: /v2/filesystem/resources/{resourceRid}
  */
 export function deleteResource(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     resourceRid: _Filesystem.ResourceRid,
 
@@ -68,7 +72,7 @@ const _get: $FoundryPlatformMethod<
  * URL: /v2/filesystem/resources/{resourceRid}
  */
 export function get(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     resourceRid: _Filesystem.ResourceRid,
 
@@ -95,7 +99,7 @@ const _restore: $FoundryPlatformMethod<
  * URL: /v2/filesystem/resources/{resourceRid}/restore
  */
 export function restore(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     resourceRid: _Filesystem.ResourceRid,
 
@@ -122,7 +126,7 @@ const _permanentlyDelete: $FoundryPlatformMethod<
  * URL: /v2/filesystem/resources/{resourceRid}/permanentlyDelete
  */
 export function permanentlyDelete(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     resourceRid: _Filesystem.ResourceRid,
 
