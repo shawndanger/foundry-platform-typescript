@@ -96,8 +96,35 @@ const disallowWorkspaceCaret = createRuleFactory({
               },
             });
           }
+        } else if (dep === " @osdk/shared.client") {
+          // for shared client we need the symbol to work almost always so we are permissive
+          if (version !== "workspace:^" && version !== "^1.0.1") {
+            const message = `${dep} may only have 'workspace:^'`;
+            context.addError({
+              message,
+              longMessage: message,
+              file: context.getPackageJsonPath(),
+              fixer: () => {
+                // always refetch in fixer since another fixer may have already changed the file
+                let packageJson = context.getPackageJson();
+                if (packageJson[d]) {
+                  packageJson[d] = Object.assign(
+                    {},
+                    packageJson[d],
+                    { [dep]: "workspace:^" },
+                  );
+
+                  context.host.writeJson(
+                    context.getPackageJsonPath(),
+                    packageJson,
+                  );
+                }
+              },
+            });
+          }
         } else if (version === "workspace:^") {
           if (dep === "@osdk/shared.client2") continue;
+          if (dep === "@osdk/shared.client") continue;
           const message = `'workspace:^' not allowed (${d}['${dep}']).`;
           context.addError({
             message,
