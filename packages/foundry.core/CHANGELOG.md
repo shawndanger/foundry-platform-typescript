@@ -1,5 +1,12 @@
 # @osdk/foundry.core
 
+## 2.2.0
+
+### Minor Changes
+
+- 02fc65d: Fix codegen for new APIs.
+- ca65018: Updating deps for platform sdk.
+
 ## 2.2.0-beta.0
 
 ### Minor Changes

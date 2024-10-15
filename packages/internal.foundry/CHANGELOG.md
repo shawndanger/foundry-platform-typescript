@@ -1,5 +1,22 @@
 # @osdk/foundry
 
+## 2.2.0
+
+### Minor Changes
+
+- 02fc65d: Fix codegen for new APIs.
+- ca65018: Updating deps for platform sdk.
+
+### Patch Changes
+
+- Updated dependencies [02fc65d]
+- Updated dependencies [ca65018]
+  - @osdk/internal.foundry.ontologiesv2@2.2.0
+  - @osdk/internal.foundry.ontologies@2.2.0
+  - @osdk/internal.foundry.datasets@2.2.0
+  - @osdk/internal.foundry.core@2.2.0
+  - @osdk/internal.foundry.geo@2.2.0
+
 ## 0.6.0-beta.0
 
 ### Minor Changes

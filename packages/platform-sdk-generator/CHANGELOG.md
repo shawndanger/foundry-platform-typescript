@@ -1,5 +1,13 @@
 # @osdk/platform-sdk-generator
 
+## 0.6.0
+
+### Minor Changes
+
+- 02fc65d: Fix codegen for new APIs.
+- bd00a28: Fix deps issue.
+- ca65018: Updating deps for platform sdk.
+
 ## 0.6.0-beta.0
 
 ### Minor Changes
