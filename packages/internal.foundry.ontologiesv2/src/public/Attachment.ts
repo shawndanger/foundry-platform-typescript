@@ -16,9 +16,13 @@
 
 import type * as _Core from "@osdk/internal.foundry.core";
 import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
   SharedClient as $Client,
   SharedClientContext as $ClientContext,
-} from "@osdk/shared.client";
+} from "@osdk/shared.client2";
 import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
 import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
 
@@ -48,7 +52,7 @@ const _upload: $FoundryPlatformMethod<
  * URL: /v2/ontologies/attachments/upload
  */
 export function upload(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     $body: Blob,
     $queryParams: { filename: _Core.Filename },
@@ -80,7 +84,7 @@ const _read: $FoundryPlatformMethod<
  * URL: /v2/ontologies/attachments/{attachmentRid}/content
  */
 export function read(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [attachmentRid: _Core.AttachmentRid]
 ): Promise<Blob> {
   return $foundryPlatformFetch($ctx, _read, ...args);
@@ -102,7 +106,7 @@ const _get: $FoundryPlatformMethod<
  * URL: /v2/ontologies/attachments/{attachmentRid}
  */
 export function get(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [attachmentRid: _Core.AttachmentRid]
 ): Promise<_Core.AttachmentV2> {
   return $foundryPlatformFetch($ctx, _get, ...args);

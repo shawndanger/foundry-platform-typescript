@@ -16,9 +16,13 @@
 
 import type * as _Core from "@osdk/internal.foundry.core";
 import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
   SharedClient as $Client,
   SharedClientContext as $ClientContext,
-} from "@osdk/shared.client";
+} from "@osdk/shared.client2";
 import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
 import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
 
@@ -49,7 +53,7 @@ const _list: $FoundryPlatformMethod<
  * URL: /v1/ontologies/{ontologyRid}/objectTypes
  */
 export function list(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontologyRid: _Core.OntologyRid,
 
@@ -80,7 +84,7 @@ const _get: $FoundryPlatformMethod<
  * URL: /v1/ontologies/{ontologyRid}/objectTypes/{objectType}
  */
 export function get(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [ontologyRid: _Core.OntologyRid, objectType: _Core.ObjectTypeApiName]
 ): Promise<_Core.ObjectType> {
   return $foundryPlatformFetch($ctx, _get, ...args);
@@ -109,7 +113,7 @@ const _listOutgoingLinkTypes: $FoundryPlatformMethod<
  * URL: /v1/ontologies/{ontologyRid}/objectTypes/{objectType}/outgoingLinkTypes
  */
 export function listOutgoingLinkTypes(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontologyRid: _Core.OntologyRid,
     objectType: _Core.ObjectTypeApiName,
@@ -143,7 +147,7 @@ const _getOutgoingLinkType: $FoundryPlatformMethod<
  * URL: /v1/ontologies/{ontologyRid}/objectTypes/{objectType}/outgoingLinkTypes/{linkType}
  */
 export function getOutgoingLinkType(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontologyRid: _Core.OntologyRid,
     objectType: _Core.ObjectTypeApiName,

@@ -17,9 +17,13 @@
 import type * as _Core from "@osdk/foundry.core";
 import type * as _Orchestration from "@osdk/foundry.orchestration";
 import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
   SharedClient as $Client,
   SharedClientContext as $ClientContext,
-} from "@osdk/shared.client";
+} from "@osdk/shared.client2";
 import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
 import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
 import type * as _Connectivity from "../_components.js";
@@ -44,7 +48,7 @@ const _deleteFileImport: $FoundryPlatformMethod<
  * URL: /v2/connectivity/fileImports/{fileImportRid}
  */
 export function deleteFileImport(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     fileImportRid: _Connectivity.FileImportRid,
 
@@ -70,7 +74,7 @@ const _get: $FoundryPlatformMethod<
  * URL: /v2/connectivity/fileImports/{fileImportRid}
  */
 export function get(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     fileImportRid: _Connectivity.FileImportRid,
 
@@ -97,7 +101,7 @@ const _execute: $FoundryPlatformMethod<
  * URL: /v2/connectivity/fileImports/{fileImportRid}/execute
  */
 export function execute(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     fileImportRid: _Connectivity.FileImportRid,
 

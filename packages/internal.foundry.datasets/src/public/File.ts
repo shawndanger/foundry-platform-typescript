@@ -16,9 +16,13 @@
 
 import type * as _Core from "@osdk/internal.foundry.core";
 import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
   SharedClient as $Client,
   SharedClientContext as $ClientContext,
-} from "@osdk/shared.client";
+} from "@osdk/shared.client2";
 import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
 import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
 import type * as _Datasets from "../_components.js";
@@ -72,7 +76,7 @@ const _list: $FoundryPlatformMethod<
  * URL: /v1/datasets/{datasetRid}/files
  */
 export function list(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     datasetRid: _Datasets.DatasetRid,
 
@@ -129,7 +133,7 @@ const _upload: $FoundryPlatformMethod<
  * URL: /v1/datasets/{datasetRid}/files:upload
  */
 export function upload(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     datasetRid: _Datasets.DatasetRid,
     $body: Blob,
@@ -188,7 +192,7 @@ const _get: $FoundryPlatformMethod<
  * URL: /v1/datasets/{datasetRid}/files/{filePath}
  */
 export function get(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     datasetRid: _Datasets.DatasetRid,
     filePath: _Core.FilePath,
@@ -238,7 +242,7 @@ const _deleteFile: $FoundryPlatformMethod<
  * URL: /v1/datasets/{datasetRid}/files/{filePath}
  */
 export function deleteFile(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     datasetRid: _Datasets.DatasetRid,
     filePath: _Core.FilePath,
@@ -297,7 +301,7 @@ const _read: $FoundryPlatformMethod<
  * URL: /v1/datasets/{datasetRid}/files/{filePath}/content
  */
 export function read(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     datasetRid: _Datasets.DatasetRid,
     filePath: _Core.FilePath,

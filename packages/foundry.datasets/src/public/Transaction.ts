@@ -16,9 +16,13 @@
 
 import type * as _Core from "@osdk/foundry.core";
 import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
   SharedClient as $Client,
   SharedClientContext as $ClientContext,
-} from "@osdk/shared.client";
+} from "@osdk/shared.client2";
 import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
 import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
 import type * as _Datasets from "../_components.js";
@@ -45,7 +49,7 @@ const _create: $FoundryPlatformMethod<
  * URL: /v2/datasets/{datasetRid}/transactions
  */
 export function create(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     datasetRid: _Datasets.DatasetRid,
     $body: _Datasets.CreateTransactionRequest,
@@ -75,7 +79,7 @@ const _get: $FoundryPlatformMethod<
  * URL: /v2/datasets/{datasetRid}/transactions/{transactionRid}
  */
 export function get(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     datasetRid: _Datasets.DatasetRid,
     transactionRid: _Datasets.TransactionRid,
@@ -104,7 +108,7 @@ const _commit: $FoundryPlatformMethod<
  * URL: /v2/datasets/{datasetRid}/transactions/{transactionRid}/commit
  */
 export function commit(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     datasetRid: _Datasets.DatasetRid,
     transactionRid: _Datasets.TransactionRid,
@@ -133,7 +137,7 @@ const _abort: $FoundryPlatformMethod<
  * URL: /v2/datasets/{datasetRid}/transactions/{transactionRid}/abort
  */
 export function abort(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     datasetRid: _Datasets.DatasetRid,
     transactionRid: _Datasets.TransactionRid,

@@ -16,9 +16,13 @@
 
 import type * as _Core from "@osdk/internal.foundry.core";
 import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
   SharedClient as $Client,
   SharedClientContext as $ClientContext,
-} from "@osdk/shared.client";
+} from "@osdk/shared.client2";
 import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
 import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
 import type * as _Datasets from "../_components.js";
@@ -43,7 +47,7 @@ const _create: $FoundryPlatformMethod<
  * URL: /v1/datasets/{datasetRid}/branches
  */
 export function create(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     datasetRid: _Datasets.DatasetRid,
     $body: _Datasets.CreateBranchRequest,
@@ -70,7 +74,7 @@ const _get: $FoundryPlatformMethod<
  * URL: /v1/datasets/{datasetRid}/branches/{branchId}
  */
 export function get(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [datasetRid: _Datasets.DatasetRid, branchId: _Datasets.BranchId]
 ): Promise<_Datasets.Branch> {
   return $foundryPlatformFetch($ctx, _get, ...args);
@@ -94,7 +98,7 @@ const _deleteBranch: $FoundryPlatformMethod<
  * URL: /v1/datasets/{datasetRid}/branches/{branchId}
  */
 export function deleteBranch(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [datasetRid: _Datasets.DatasetRid, branchId: _Datasets.BranchId]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _deleteBranch, ...args);
@@ -121,7 +125,7 @@ const _list: $FoundryPlatformMethod<
  * URL: /v1/datasets/{datasetRid}/branches
  */
 export function list(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     datasetRid: _Datasets.DatasetRid,
 

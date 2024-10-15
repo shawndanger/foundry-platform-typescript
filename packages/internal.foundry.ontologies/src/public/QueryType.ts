@@ -16,9 +16,13 @@
 
 import type * as _Core from "@osdk/internal.foundry.core";
 import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
   SharedClient as $Client,
   SharedClientContext as $ClientContext,
-} from "@osdk/shared.client";
+} from "@osdk/shared.client2";
 import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
 import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
 
@@ -48,7 +52,7 @@ const _list: $FoundryPlatformMethod<
  * URL: /v1/ontologies/{ontologyRid}/queryTypes
  */
 export function list(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontologyRid: _Core.OntologyRid,
 
@@ -79,7 +83,7 @@ const _get: $FoundryPlatformMethod<
  * URL: /v1/ontologies/{ontologyRid}/queryTypes/{queryApiName}
  */
 export function get(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [ontologyRid: _Core.OntologyRid, queryApiName: _Core.QueryApiName]
 ): Promise<_Core.QueryType> {
   return $foundryPlatformFetch($ctx, _get, ...args);

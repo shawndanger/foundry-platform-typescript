@@ -70,7 +70,33 @@ const disallowWorkspaceCaret = createRuleFactory({
       const deps = packageJson[d] ?? {};
 
       for (const [dep, version] of Object.entries(deps)) {
-        if (dep === "@osdk/shared.client") {
+        if (dep === "@osdk/shared.client2") {
+          const expected = "^1.0.0";
+          if (version !== expected) {
+            const message = `${dep} may only have '${expected}'`;
+            context.addError({
+              message,
+              longMessage: message,
+              file: context.getPackageJsonPath(),
+              fixer: () => {
+                // always refetch in fixer since another fixer may have already changed the file
+                let packageJson = context.getPackageJson();
+                if (packageJson[d]) {
+                  packageJson[d] = Object.assign(
+                    {},
+                    packageJson[d],
+                    { [dep]: expected },
+                  );
+
+                  context.host.writeJson(
+                    context.getPackageJsonPath(),
+                    packageJson,
+                  );
+                }
+              },
+            });
+          }
+        } else if (dep === " @osdk/shared.client") {
           // for shared client we need the symbol to work almost always so we are permissive
           if (version !== "workspace:^" && version !== "^1.0.1") {
             const message = `${dep} may only have 'workspace:^'`;
@@ -97,6 +123,7 @@ const disallowWorkspaceCaret = createRuleFactory({
             });
           }
         } else if (version === "workspace:^") {
+          if (dep === "@osdk/shared.client2") continue;
           if (dep === "@osdk/shared.client") continue;
           const message = `'workspace:^' not allowed (${d}['${dep}']).`;
           context.addError({
@@ -391,7 +418,8 @@ export default {
       options: {
         dependencies: {
           "@osdk/shared.client": "^1.0.1",
-          "@osdk/shared.net.platformapi": "~0.3.0",
+          "@osdk/shared.client2": "^1.0.0",
+          "@osdk/shared.net.platformapi": "~0.3.2",
         },
       },
     }),

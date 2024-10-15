@@ -16,9 +16,13 @@
 
 import type * as _Core from "@osdk/foundry.core";
 import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
   SharedClient as $Client,
   SharedClientContext as $ClientContext,
-} from "@osdk/shared.client";
+} from "@osdk/shared.client2";
 import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
 import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
 import type * as _Admin from "../_components.js";
@@ -48,7 +52,7 @@ const _list: $FoundryPlatformMethod<
  * URL: /v2/admin/groups/{groupId}/groupMembers
  */
 export function list(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     groupId: _Core.PrincipalId,
 
@@ -78,7 +82,7 @@ const _add: $FoundryPlatformMethod<
  * URL: /v2/admin/groups/{groupId}/groupMembers/add
  */
 export function add(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     groupId: _Core.PrincipalId,
     $body: _Admin.AddGroupMembersRequest,
@@ -103,7 +107,7 @@ const _remove: $FoundryPlatformMethod<
  * URL: /v2/admin/groups/{groupId}/groupMembers/remove
  */
 export function remove(
-  $ctx: $Client | $ClientContext,
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     groupId: _Core.PrincipalId,
     $body: _Admin.RemoveGroupMembersRequest,
