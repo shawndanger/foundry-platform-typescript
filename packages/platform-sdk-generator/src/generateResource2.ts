@@ -40,7 +40,7 @@ export async function writeResource2(
   return writeCode(
     filePath,
     `${copyright}\n\n
-        import type { SharedClient as $Client, SharedClientContext as $ClientContext,  } from "@osdk/shared.client";
+        import type { SharedClient as $Client, SharedClientContext as $ClientContext,  } from "@osdk/shared.client2";
         import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
         import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
         ${
