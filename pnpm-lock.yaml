@@ -175,7 +175,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: 1.0.0
+        specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -197,7 +197,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: 1.0.0
+        specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -219,7 +219,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: 1.0.0
+        specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -253,7 +253,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: 1.0.0
+        specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -278,7 +278,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: 1.0.0
+        specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -303,7 +303,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: 1.0.0
+        specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -325,7 +325,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: 1.0.0
+        specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -350,8 +350,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
-        specifier: ~0.3.0
-        version: 0.3.1
+        specifier: ~0.3.2
+        version: 0.3.2
     devDependencies:
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
@@ -366,7 +366,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: 1.0.0
+        specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -394,7 +394,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: 1.0.0
+        specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -416,7 +416,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: 1.0.0
+        specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -444,7 +444,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: 1.0.0
+        specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -466,7 +466,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: 1.0.0
+        specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -500,7 +500,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: 1.0.0
+        specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -522,7 +522,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: 1.0.0
+        specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -544,7 +544,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: 1.0.0
+        specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -563,7 +563,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: 1.0.0
+        specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -585,7 +585,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: 1.0.0
+        specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -607,7 +607,7 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@osdk/shared.client2':
-        specifier: 1.0.0
+        specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
         specifier: ~0.3.2
@@ -1819,9 +1819,6 @@ packages:
 
   '@osdk/shared.net.errors@2.0.0':
     resolution: {integrity: sha512-1XIz+8axQRKGzRretUC9wBnNnCaXEQXxjbFh7Tde+95lv6FASbkpZbslrANy4iIFMl4BhStq0jZmK8KAtvFnxg==}
-
-  '@osdk/shared.net.platformapi@0.3.1':
-    resolution: {integrity: sha512-5pJH/5abA2zm59SqJG5cLnZM/VKjTg/K/ULqlZun1K067rbIVt0G96+y84PbyE0nPgneCl9LSlbiA/hzt9KgCg==}
 
   '@osdk/shared.net.platformapi@0.3.2':
     resolution: {integrity: sha512-tei6AiSXI7We6dhm7CbyCAAu9ruhAahFmCsLOG4Wwsropyx8uWpH3+f8InB1fxOTSGcaX2Vt2nr7IzEdTuEEgQ==}
@@ -5959,11 +5956,6 @@ snapshots:
   '@osdk/shared.client@1.0.1': {}
 
   '@osdk/shared.net.errors@2.0.0': {}
-
-  '@osdk/shared.net.platformapi@0.3.1':
-    dependencies:
-      '@osdk/shared.client': 1.0.1
-      '@osdk/shared.net.errors': 2.0.0
 
   '@osdk/shared.net.platformapi@0.3.2':
     dependencies:
