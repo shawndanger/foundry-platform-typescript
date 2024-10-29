@@ -82,6 +82,33 @@ export function get(
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
 
+const _getByPath: $FoundryPlatformMethod<
+  ($queryParams: {
+    path: _Filesystem.ResourcePath;
+    preview?: _Core.PreviewMode | undefined;
+  }) => Promise<_Filesystem.Resource>
+> = [0, "/v2/filesystem/resources/getByPath", 2];
+
+/**
+ * Get a Resource by its absolute path.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:filesystem-read]
+ * URL: /v2/filesystem/resources/getByPath
+ */
+export function getByPath(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $queryParams: {
+      path: _Filesystem.ResourcePath;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Filesystem.Resource> {
+  return $foundryPlatformFetch($ctx, _getByPath, ...args);
+}
+
 const _restore: $FoundryPlatformMethod<
   (
     resourceRid: _Filesystem.ResourceRid,

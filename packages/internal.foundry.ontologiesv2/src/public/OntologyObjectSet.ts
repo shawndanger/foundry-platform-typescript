@@ -123,16 +123,16 @@ export function load(
   return $foundryPlatformFetch($ctx, _load, ...args);
 }
 
-const _loadBaseObjects: $FoundryPlatformMethod<
+const _loadMultipleObjectTypes: $FoundryPlatformMethod<
   (
     ontology: _Core.OntologyIdentifier,
-    $body: _Core.LoadObjectSetV2BaseObjectsRequest,
+    $body: _Core.LoadObjectSetV2MultipleObjectTypesRequest,
     $queryParams?: {
       artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
       packageName?: _Core.SdkPackageName | undefined;
     },
-  ) => Promise<_Core.LoadObjectSetV2BaseObjectsResponse>
-> = [1, "/v2/ontologies/{0}/objectSets/loadBaseObjects", 3];
+  ) => Promise<_Core.LoadObjectSetV2MultipleObjectTypesResponse>
+> = [1, "/v2/ontologies/{0}/objectSets/loadObjectsMultipleObjectTypes", 3];
 
 /**
  * Load the ontology objects present in the `ObjectSet` from the provided object set definition. The resulting
@@ -152,20 +152,20 @@ const _loadBaseObjects: $FoundryPlatformMethod<
  * @alpha
  *
  * Required Scopes: [api:ontologies-read]
- * URL: /v2/ontologies/{ontology}/objectSets/loadBaseObjects
+ * URL: /v2/ontologies/{ontology}/objectSets/loadObjectsMultipleObjectTypes
  */
-export function loadBaseObjects(
+export function loadMultipleObjectTypes(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     ontology: _Core.OntologyIdentifier,
-    $body: _Core.LoadObjectSetV2BaseObjectsRequest,
+    $body: _Core.LoadObjectSetV2MultipleObjectTypesRequest,
     $queryParams?: {
       artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
       packageName?: _Core.SdkPackageName | undefined;
     },
   ]
-): Promise<_Core.LoadObjectSetV2BaseObjectsResponse> {
-  return $foundryPlatformFetch($ctx, _loadBaseObjects, ...args);
+): Promise<_Core.LoadObjectSetV2MultipleObjectTypesResponse> {
+  return $foundryPlatformFetch($ctx, _loadMultipleObjectTypes, ...args);
 }
 
 const _aggregate: $FoundryPlatformMethod<

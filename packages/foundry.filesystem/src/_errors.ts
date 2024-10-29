@@ -73,6 +73,18 @@ export interface FolderNotFound {
 }
 
 /**
+ * Could not getByPath the Resource.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetByPathPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetByPathPermissionDenied";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
    * The display name of a Resource should not be exactly `.` or `..`, contain a forward slash `/` or be
 too long.
 
@@ -112,6 +124,20 @@ export interface MissingDisplayName {
   errorName: "MissingDisplayName";
   errorInstanceId: string;
   parameters: {};
+}
+
+/**
+ * The given path could not be found.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface PathNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "PathNotFound";
+  errorInstanceId: string;
+  parameters: {
+    path: unknown;
+  };
 }
 
 /**

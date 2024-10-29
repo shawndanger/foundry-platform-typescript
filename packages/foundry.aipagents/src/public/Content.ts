@@ -32,62 +32,27 @@ import type * as _AipAgents from "../_components.js";
 const _get: $FoundryPlatformMethod<
   (
     agentRid: _AipAgents.AgentRid,
-    $queryParams?: {
-      version?: _AipAgents.AgentVersionString | undefined;
-      preview?: _Core.PreviewMode | undefined;
-    },
-  ) => Promise<_AipAgents.Agent>
-> = [0, "/v2/aipAgents/agents/{0}", 2];
+    sessionRid: _AipAgents.SessionRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_AipAgents.Content>
+> = [0, "/v2/aipAgents/agents/{0}/sessions/{1}/content", 2];
 
 /**
- * Get details for an AIP Agent.
+ * Get the conversation content for a session between the calling user and an Agent.
  *
  * @alpha
  *
  * Required Scopes: [api:aip-agents-read]
- * URL: /v2/aipAgents/agents/{agentRid}
+ * URL: /v2/aipAgents/agents/{agentRid}/sessions/{sessionRid}/content
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     agentRid: _AipAgents.AgentRid,
+    sessionRid: _AipAgents.SessionRid,
 
-    $queryParams?: {
-      version?: _AipAgents.AgentVersionString | undefined;
-      preview?: _Core.PreviewMode | undefined;
-    },
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
-): Promise<_AipAgents.Agent> {
+): Promise<_AipAgents.Content> {
   return $foundryPlatformFetch($ctx, _get, ...args);
-}
-
-const _allSessions: $FoundryPlatformMethod<
-  ($queryParams?: {
-    pageSize?: _AipAgents.PageSize | undefined;
-    pageToken?: _AipAgents.PageToken | undefined;
-    preview?: _Core.PreviewMode | undefined;
-  }) => Promise<_AipAgents.AgentsSessionsPage>
-> = [0, "/v2/aipAgents/agents/allSessions", 2];
-
-/**
- * List all conversation sessions between the calling user across all accessible Agents that were created
- * by this client.
- * Sessions are returned in order of most recently updated first.
- *
- * @alpha
- *
- * Required Scopes: [api:aip-agents-write]
- * URL: /v2/aipAgents/agents/allSessions
- */
-export function allSessions(
-  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $queryParams?: {
-      pageSize?: _AipAgents.PageSize | undefined;
-      pageToken?: _AipAgents.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
-    },
-  ]
-): Promise<_AipAgents.AgentsSessionsPage> {
-  return $foundryPlatformFetch($ctx, _allSessions, ...args);
 }

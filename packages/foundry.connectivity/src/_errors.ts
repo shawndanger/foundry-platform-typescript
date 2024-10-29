@@ -19,6 +19,50 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+   * Details of the connection (such as which types of import it supports) could not be determined.
+
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ConnectionDetailsNotDetermined {
+  errorCode: "INTERNAL";
+  errorName: "ConnectionDetailsNotDetermined";
+  errorInstanceId: string;
+  parameters: {
+    connectionRid: unknown;
+    connectionType: unknown;
+  };
+}
+
+/**
+ * The given Connection could not be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface ConnectionNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "ConnectionNotFound";
+  errorInstanceId: string;
+  parameters: {
+    connectionRid: unknown;
+  };
+}
+
+/**
+ * Could not create the FileImport.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateFileImportPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateFileImportPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    connectionRid: unknown;
+  };
+}
+
+/**
  * Could not delete the FileImport.
  *
  * Log Safety: SAFE
@@ -29,6 +73,7 @@ export interface DeleteFileImportPermissionDenied {
   errorInstanceId: string;
   parameters: {
     fileImportRid: unknown;
+    connectionRid: unknown;
   };
 }
 
@@ -43,6 +88,23 @@ export interface ExecuteFileImportPermissionDenied {
   errorInstanceId: string;
   parameters: {
     fileImportRid: unknown;
+    connectionRid: unknown;
+  };
+}
+
+/**
+   * Custom file import filters can be fetched but cannot currently be used
+when creating or updating file imports.
+
+   *
+   * Log Safety: UNSAFE
+   */
+export interface FileImportCustomFilterCannotBeUsedToCreateOrUpdateFileImports {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "FileImportCustomFilterCannotBeUsedToCreateOrUpdateFileImports";
+  errorInstanceId: string;
+  parameters: {
+    config: unknown;
   };
 }
 
@@ -57,5 +119,112 @@ export interface FileImportNotFound {
   errorInstanceId: string;
   parameters: {
     fileImportRid: unknown;
+    connectionRid: unknown;
+  };
+}
+
+/**
+   * The specified connection does not support file imports.
+
+   *
+   * Log Safety: SAFE
+   */
+export interface FileImportNotSupportedForConnection {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "FileImportNotSupportedForConnection";
+  errorInstanceId: string;
+  parameters: {
+    connectionRid: unknown;
+  };
+}
+
+/**
+   * The `gt` field in the FileSizeFilter cannot be a negative number.
+
+   *
+   * Log Safety: SAFE
+   */
+export interface FileSizeFilterGreaterThanCannotBeNegative {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "FileSizeFilterGreaterThanCannotBeNegative";
+  errorInstanceId: string;
+  parameters: {
+    gt: unknown;
+  };
+}
+
+/**
+   * The provided `gt` and `lt` fields in the FileSizeFilter are invalid. No files will ever
+satisfy the provided range. The value specified for `gt` must be strictly less than `lt - 1`.
+
+   *
+   * Log Safety: SAFE
+   */
+export interface FileSizeFilterInvalidGreaterThanAndLessThanRange {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "FileSizeFilterInvalidGreaterThanAndLessThanRange";
+  errorInstanceId: string;
+  parameters: {
+    gt: unknown;
+    lt: unknown;
+  };
+}
+
+/**
+   * The `lt` field in the FileSizeFilter must be at least 1 byte.
+
+   *
+   * Log Safety: SAFE
+   */
+export interface FileSizeFilterLessThanMustBeOneByteOrLarger {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "FileSizeFilterLessThanMustBeOneByteOrLarger";
+  errorInstanceId: string;
+  parameters: {
+    lt: unknown;
+  };
+}
+
+/**
+   * Both the `gt` and `lt` fields are missing from the FileSizeFilter. At least one of these
+fields must be present
+
+   *
+   * Log Safety: SAFE
+   */
+export interface FileSizeFilterMissingGreaterThanAndLessThan {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "FileSizeFilterMissingGreaterThanAndLessThan";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+   * The secret names provided do not exist on the connection.
+
+   *
+   * Log Safety: UNSAFE
+   */
+export interface SecretNamesDoNotExist {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "SecretNamesDoNotExist";
+  errorInstanceId: string;
+  parameters: {
+    connectionRid: unknown;
+    secretNames: unknown;
+  };
+}
+
+/**
+ * Could not updateSecrets the Connection.
+ *
+ * Log Safety: SAFE
+ */
+export interface UpdateSecretsConnectionPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "UpdateSecretsConnectionPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    connectionRid: unknown;
   };
 }

@@ -15,7 +15,14 @@
  */
 
 export type {
+  AgentProxyRuntime,
+  AgentRid,
+  AgentWorkerRuntime,
+  Connection,
+  ConnectionDisplayName,
   ConnectionRid,
+  CreateFileImportRequest,
+  DirectConnectionRuntime,
   FileImport,
   FileImportCustomFilter,
   FileImportDisplayName,
@@ -25,10 +32,27 @@ export type {
   FileLastModifiedAfterFilter,
   FilePathMatchesFilter,
   FileSizeFilter,
+  NetworkEgressPolicyRid,
+  PlaintextValue,
+  RuntimePlatform,
+  SecretName,
+  UpdateSecretsConnectionRequest,
 } from "./_components.js";
 export type {
+  ConnectionDetailsNotDetermined,
+  ConnectionNotFound,
+  CreateFileImportPermissionDenied,
   DeleteFileImportPermissionDenied,
   ExecuteFileImportPermissionDenied,
+  FileImportCustomFilterCannotBeUsedToCreateOrUpdateFileImports,
   FileImportNotFound,
+  FileImportNotSupportedForConnection,
+  FileSizeFilterGreaterThanCannotBeNegative,
+  FileSizeFilterInvalidGreaterThanAndLessThanRange,
+  FileSizeFilterLessThanMustBeOneByteOrLarger,
+  FileSizeFilterMissingGreaterThanAndLessThan,
+  SecretNamesDoNotExist,
+  UpdateSecretsConnectionPermissionDenied,
 } from "./_errors.js";
+export * as Connections from "./public/Connection.js";
 export * as FileImports from "./public/FileImport.js";

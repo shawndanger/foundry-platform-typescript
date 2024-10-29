@@ -25,69 +25,53 @@ import type {
 } from "@osdk/shared.client2";
 import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
 import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
-import type * as _AipAgents from "../_components.js";
+import type * as _Admin from "../_components.js";
 
 //
 
 const _get: $FoundryPlatformMethod<
   (
-    agentRid: _AipAgents.AgentRid,
-    $queryParams?: {
-      version?: _AipAgents.AgentVersionString | undefined;
-      preview?: _Core.PreviewMode | undefined;
-    },
-  ) => Promise<_AipAgents.Agent>
-> = [0, "/v2/aipAgents/agents/{0}", 2];
+    enrollmentRid: _Core.EnrollmentRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Admin.Enrollment>
+> = [0, "/v2/admin/enrollments/{0}", 2];
 
 /**
- * Get details for an AIP Agent.
+ * Get the Enrollment with the specified rid.
  *
  * @alpha
  *
- * Required Scopes: [api:aip-agents-read]
- * URL: /v2/aipAgents/agents/{agentRid}
+ * Required Scopes: [api:admin-read]
+ * URL: /v2/admin/enrollments/{enrollmentRid}
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    agentRid: _AipAgents.AgentRid,
+    enrollmentRid: _Core.EnrollmentRid,
 
-    $queryParams?: {
-      version?: _AipAgents.AgentVersionString | undefined;
-      preview?: _Core.PreviewMode | undefined;
-    },
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
-): Promise<_AipAgents.Agent> {
+): Promise<_Admin.Enrollment> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
 
-const _allSessions: $FoundryPlatformMethod<
+const _getCurrent: $FoundryPlatformMethod<
   ($queryParams?: {
-    pageSize?: _AipAgents.PageSize | undefined;
-    pageToken?: _AipAgents.PageToken | undefined;
     preview?: _Core.PreviewMode | undefined;
-  }) => Promise<_AipAgents.AgentsSessionsPage>
-> = [0, "/v2/aipAgents/agents/allSessions", 2];
+  }) => Promise<_Admin.Enrollment>
+> = [0, "/v2/admin/enrollments/getCurrent", 2];
 
 /**
- * List all conversation sessions between the calling user across all accessible Agents that were created
- * by this client.
- * Sessions are returned in order of most recently updated first.
+ * Returns the Enrollment associated with the current User's primary organization.
  *
  * @alpha
  *
- * Required Scopes: [api:aip-agents-write]
- * URL: /v2/aipAgents/agents/allSessions
+ * Required Scopes: [api:admin-read]
+ * URL: /v2/admin/enrollments/getCurrent
  */
-export function allSessions(
+export function getCurrent(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $queryParams?: {
-      pageSize?: _AipAgents.PageSize | undefined;
-      pageToken?: _AipAgents.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
-    },
-  ]
-): Promise<_AipAgents.AgentsSessionsPage> {
-  return $foundryPlatformFetch($ctx, _allSessions, ...args);
+  ...args: [$queryParams?: { preview?: _Core.PreviewMode | undefined }]
+): Promise<_Admin.Enrollment> {
+  return $foundryPlatformFetch($ctx, _getCurrent, ...args);
 }

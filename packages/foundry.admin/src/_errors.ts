@@ -33,6 +33,20 @@ export interface AddGroupMembersPermissionDenied {
 }
 
 /**
+ * Could not add the MarkingMember.
+ *
+ * Log Safety: SAFE
+ */
+export interface AddMarkingMembersPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "AddMarkingMembersPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    markingId: unknown;
+  };
+}
+
+/**
  * Could not create the Group.
  *
  * Log Safety: SAFE
@@ -70,6 +84,32 @@ export interface DeleteUserPermissionDenied {
   parameters: {
     userId: unknown;
   };
+}
+
+/**
+ * The given Enrollment could not be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface EnrollmentNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "EnrollmentNotFound";
+  errorInstanceId: string;
+  parameters: {
+    enrollmentRid: unknown;
+  };
+}
+
+/**
+ * Could not getCurrent the Enrollment.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetCurrentEnrollmentPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetCurrentEnrollmentPermissionDenied";
+  errorInstanceId: string;
+  parameters: {};
 }
 
 /**
@@ -212,6 +252,34 @@ export interface InvalidProfilePicture {
 }
 
 /**
+ * You do not have permission to list hosts for this enrollment
+ *
+ * Log Safety: SAFE
+ */
+export interface ListHostsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ListHostsPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    enrollmentRid: unknown;
+  };
+}
+
+/**
+ * You do not have permission to list the members of this marking.
+ *
+ * Log Safety: SAFE
+ */
+export interface ListMarkingMembersPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ListMarkingMembersPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    markingId: unknown;
+  };
+}
+
+/**
  * The given MarkingCategory could not be found.
  *
  * Log Safety: SAFE
@@ -292,6 +360,20 @@ export interface RemoveGroupMembersPermissionDenied {
   errorInstanceId: string;
   parameters: {
     groupId: unknown;
+  };
+}
+
+/**
+ * Could not remove the MarkingMember.
+ *
+ * Log Safety: SAFE
+ */
+export interface RemoveMarkingMembersPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "RemoveMarkingMembersPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    markingId: unknown;
   };
 }
 

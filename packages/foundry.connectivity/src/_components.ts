@@ -22,11 +22,85 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+   * The agent proxy runtime is used to connect
+to data sources not accessible over the Internet. The agent acts as an inverting network proxy, forwarding
+network traffic originating in Foundry into the network where the agent is deployed, and relaying traffic
+back to Foundry. This allows capabilities in Foundry to work almost exactly the same as when using a
+direct connection but without requiring you to allow inbound network traffic to your systems originating
+from Foundry's IP addresses.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface AgentProxyRuntime {
+  agentRids: Array<AgentRid>;
+}
+
+/**
+ * The Resource Identifier (RID) of an Agent.
+ *
+ * Log Safety: UNSAFE
+ */
+export type AgentRid = LooselyBrandedString<"AgentRid">;
+
+/**
+   * The agent worker runtime is used to
+connect to data sources not accessible over the Internet. An agent worker should only be used when the desired
+connector does not support the agent proxy runtime. Agent worker runtimes are associated with a single or
+multiple agents that store the source configuration and credentials locally in an encrypted format,
+and run source capabilities on the agent itself.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface AgentWorkerRuntime {
+  agentRids: Array<AgentRid>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface Connection {
+  rid: ConnectionRid;
+  displayName: ConnectionDisplayName;
+  runtimePlatform: RuntimePlatform;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type ConnectionDisplayName = LooselyBrandedString<
+  "ConnectionDisplayName"
+>;
+
+/**
  * The Resource Identifier (RID) of a Connection (formerly known as a source).
  *
  * Log Safety: SAFE
  */
 export type ConnectionRid = LooselyBrandedString<"ConnectionRid">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateFileImportRequest {
+  datasetRid: _Datasets.DatasetRid;
+  importMode: FileImportMode;
+  displayName: FileImportDisplayName;
+  branchName?: _Datasets.BranchName;
+  subfolder?: string;
+  fileImportFilters: Array<FileImportFilter>;
+}
+
+/**
+   * Direct connections enable users to connect
+to data sources accessible over the Internet without needing to set up an agent. If your Foundry stack is
+hosted on-premises, you can also connect to data sources within your on-premises network.
+This is the preferred source connection method if the data source is accessible over the Internet.
+   *
+   * Log Safety: SAFE
+   */
+export interface DirectConnectionRuntime {
+  networkEgressPolicyRids: Array<NetworkEgressPolicyRid>;
+}
 
 /**
  * Log Safety: UNSAFE
@@ -117,13 +191,49 @@ export interface FilePathMatchesFilter {
 
 /**
    * Only import files whose size is between the specified minimum and maximum values.
-At least one of greaterThan or lessThan should be present.
-If both are present, the value specified for greaterThan must be strictly less than the value specified for
-lessThan.
+At least one of gt or lt should be present.
+If both are present, the value specified for gt must be strictly less than lt - 1.
    *
    * Log Safety: SAFE
    */
 export interface FileSizeFilter {
-  greaterThan?: _Core.SizeBytes;
-  lessThan?: _Core.SizeBytes;
+  gt?: _Core.SizeBytes;
+  lt?: _Core.SizeBytes;
+}
+
+/**
+ * The Resource Identifier (RID) of a Network Egress Policy.
+ *
+ * Log Safety: SAFE
+ */
+export type NetworkEgressPolicyRid = LooselyBrandedString<
+  "NetworkEgressPolicyRid"
+>;
+
+/**
+ * Log Safety: DO_NOT_LOG
+ */
+export type PlaintextValue = LooselyBrandedString<"PlaintextValue">;
+
+/**
+   * The runtime of a Connection, which defines the
+networking configuration and where capabilities are executed.
+   *
+   * Log Safety: UNSAFE
+   */
+export type RuntimePlatform =
+  | ({ type: "directConnectionRuntime" } & DirectConnectionRuntime)
+  | ({ type: "agentProxyRuntime" } & AgentProxyRuntime)
+  | ({ type: "agentWorkerRuntime" } & AgentWorkerRuntime);
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type SecretName = LooselyBrandedString<"SecretName">;
+
+/**
+ * Log Safety: DO_NOT_LOG
+ */
+export interface UpdateSecretsConnectionRequest {
+  secrets: Record<SecretName, PlaintextValue>;
 }
