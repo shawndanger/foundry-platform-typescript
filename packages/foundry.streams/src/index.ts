@@ -33,10 +33,10 @@ export type {
 } from "./_components.js";
 export type {
   CannotCreateStreamingDatasetInUserFolder,
-  CannotWriteToOutdatedView,
   CannotWriteToTrashedStream,
   CreateStreamingDatasetPermissionDenied,
   CreateStreamPermissionDenied,
+  FailedToProcessBinaryRecord,
   InvalidStreamNoSchema,
   InvalidStreamType,
   PublishBinaryRecordToStreamPermissionDenied,

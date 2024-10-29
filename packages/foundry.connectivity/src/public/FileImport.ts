@@ -30,12 +30,40 @@ import type * as _Connectivity from "../_components.js";
 
 //
 
+const _create: $FoundryPlatformMethod<
+  (
+    connectionRid: _Connectivity.ConnectionRid,
+    $body: _Connectivity.CreateFileImportRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Connectivity.FileImport>
+> = [1, "/v2/connectivity/connections/{0}/fileImports", 3];
+
+/**
+ * Creates a new FileImport.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:connectivity-file-import-write]
+ * URL: /v2/connectivity/connections/{connectionRid}/fileImports
+ */
+export function create(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    connectionRid: _Connectivity.ConnectionRid,
+    $body: _Connectivity.CreateFileImportRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Connectivity.FileImport> {
+  return $foundryPlatformFetch($ctx, _create, ...args);
+}
+
 const _deleteFileImport: $FoundryPlatformMethod<
   (
+    connectionRid: _Connectivity.ConnectionRid,
     fileImportRid: _Connectivity.FileImportRid,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [3, "/v2/connectivity/fileImports/{0}", 2];
+> = [3, "/v2/connectivity/connections/{0}/fileImports/{1}", 2];
 
 /**
  * Delete the FileImport with the specified RID.
@@ -45,11 +73,12 @@ const _deleteFileImport: $FoundryPlatformMethod<
  * @alpha
  *
  * Required Scopes: [api:connectivity-file-import-write]
- * URL: /v2/connectivity/fileImports/{fileImportRid}
+ * URL: /v2/connectivity/connections/{connectionRid}/fileImports/{fileImportRid}
  */
 export function deleteFileImport(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
+    connectionRid: _Connectivity.ConnectionRid,
     fileImportRid: _Connectivity.FileImportRid,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
@@ -60,10 +89,11 @@ export function deleteFileImport(
 
 const _get: $FoundryPlatformMethod<
   (
+    connectionRid: _Connectivity.ConnectionRid,
     fileImportRid: _Connectivity.FileImportRid,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Connectivity.FileImport>
-> = [0, "/v2/connectivity/fileImports/{0}", 2];
+> = [0, "/v2/connectivity/connections/{0}/fileImports/{1}", 2];
 
 /**
  * Get the FileImport with the specified rid.
@@ -71,11 +101,12 @@ const _get: $FoundryPlatformMethod<
  * @alpha
  *
  * Required Scopes: [api:connectivity-file-import-read]
- * URL: /v2/connectivity/fileImports/{fileImportRid}
+ * URL: /v2/connectivity/connections/{connectionRid}/fileImports/{fileImportRid}
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
+    connectionRid: _Connectivity.ConnectionRid,
     fileImportRid: _Connectivity.FileImportRid,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
@@ -86,10 +117,11 @@ export function get(
 
 const _execute: $FoundryPlatformMethod<
   (
+    connectionRid: _Connectivity.ConnectionRid,
     fileImportRid: _Connectivity.FileImportRid,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Orchestration.BuildRid>
-> = [1, "/v2/connectivity/fileImports/{0}/execute", 2];
+> = [1, "/v2/connectivity/connections/{0}/fileImports/{1}/execute", 2];
 
 /**
  * Executes the FileImport, which runs asynchronously as a [Foundry Build](https://www.palantir.com/docs/foundry/data-integration/builds/).
@@ -98,11 +130,12 @@ const _execute: $FoundryPlatformMethod<
  * @alpha
  *
  * Required Scopes: [api:connectivity-file-import-execute]
- * URL: /v2/connectivity/fileImports/{fileImportRid}/execute
+ * URL: /v2/connectivity/connections/{connectionRid}/fileImports/{fileImportRid}/execute
  */
 export function execute(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
+    connectionRid: _Connectivity.ConnectionRid,
     fileImportRid: _Connectivity.FileImportRid,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },

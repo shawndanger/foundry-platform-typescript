@@ -77,7 +77,7 @@ export interface BuildTargetsMissingJobSpecs {
 }
 
 /**
-   * The given build targets could be found.
+   * The given build targets could not be found.
 
    *
    * Log Safety: SAFE

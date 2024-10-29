@@ -156,6 +156,9 @@ importers:
       '@osdk/foundry.functions':
         specifier: workspace:*
         version: link:../foundry.functions
+      '@osdk/foundry.geo':
+        specifier: workspace:*
+        version: link:../foundry.geo
       '@osdk/foundry.ontologies':
         specifier: workspace:*
         version: link:../foundry.ontologies
@@ -274,6 +277,9 @@ importers:
 
   packages/foundry.core:
     dependencies:
+      '@osdk/foundry.geo':
+        specifier: workspace:*
+        version: link:../foundry.geo
       '@osdk/shared.client':
         specifier: ^1.0.1
         version: 1.0.1
@@ -343,6 +349,25 @@ importers:
       '@osdk/foundry.core':
         specifier: workspace:*
         version: link:../foundry.core
+      '@osdk/shared.client':
+        specifier: ^1.0.1
+        version: 1.0.1
+      '@osdk/shared.client2':
+        specifier: ^1.0.0
+        version: 1.0.0
+      '@osdk/shared.net.platformapi':
+        specifier: ~0.3.2
+        version: 0.3.2
+    devDependencies:
+      '@osdk/monorepo.tsconfig':
+        specifier: workspace:~
+        version: link:../monorepo.tsconfig
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
+
+  packages/foundry.geo:
+    dependencies:
       '@osdk/shared.client':
         specifier: ^1.0.1
         version: 1.0.1

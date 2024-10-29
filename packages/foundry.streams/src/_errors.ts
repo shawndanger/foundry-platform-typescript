@@ -33,20 +33,6 @@ export interface CannotCreateStreamingDatasetInUserFolder {
 }
 
 /**
- * The view specified is not the latest view on the branch.
- *
- * Log Safety: SAFE
- */
-export interface CannotWriteToOutdatedView {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "CannotWriteToOutdatedView";
-  errorInstanceId: string;
-  parameters: {
-    viewRid: unknown;
-  };
-}
-
-/**
  * Cannot write to a stream that is in the trash.
  *
  * Log Safety: SAFE
@@ -88,15 +74,29 @@ export interface CreateStreamingDatasetPermissionDenied {
 }
 
 /**
- * The requested stream exists but is invalid, as it does not have a schema.
+ * The byte stream could not be processed.
  *
  * Log Safety: SAFE
+ */
+export interface FailedToProcessBinaryRecord {
+  errorCode: "INTERNAL";
+  errorName: "FailedToProcessBinaryRecord";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * The requested stream exists but is invalid, as it does not have a schema.
+ *
+ * Log Safety: UNSAFE
  */
 export interface InvalidStreamNoSchema {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidStreamNoSchema";
   errorInstanceId: string;
   parameters: {
+    datasetRid: unknown;
+    branchName: unknown;
     viewRid: unknown;
   };
 }
@@ -170,6 +170,7 @@ export interface RecordDoesNotMatchStreamSchema {
   errorName: "RecordDoesNotMatchStreamSchema";
   errorInstanceId: string;
   parameters: {
+    datasetRid: unknown;
     branchName: unknown;
     viewRid: unknown;
   };
@@ -219,7 +220,7 @@ export interface StreamNotFound {
 }
 
 /**
- * No view for the view rid provided could be found.
+ * No view for the provided view rid provided could be found.
  *
  * Log Safety: SAFE
  */

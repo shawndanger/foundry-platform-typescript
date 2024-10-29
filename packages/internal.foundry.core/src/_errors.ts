@@ -19,6 +19,20 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+ * At least one of requested filters are malformed. Please look at the documentation of PropertyFilter.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MalformedPropertyFilters {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "MalformedPropertyFilters";
+  errorInstanceId: string;
+  parameters: {
+    malformedPropertyFilter: unknown;
+  };
+}
+
+/**
  * Aggregation value does not conform to the expected underlying type.
  *
  * Log Safety: UNSAFE
@@ -31,20 +45,6 @@ export interface InvalidAggregationRangeValue {
     property: unknown;
     objectType: unknown;
     propertyBaseType: unknown;
-  };
-}
-
-/**
- * At least one of requested filters are malformed. Please look at the documentation of PropertyFilter.
- *
- * Log Safety: UNSAFE
- */
-export interface MalformedPropertyFilters {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "MalformedPropertyFilters";
-  errorInstanceId: string;
-  parameters: {
-    malformedPropertyFilter: unknown;
   };
 }
 
@@ -108,6 +108,22 @@ export interface ParametersNotFound {
     actionType: unknown;
     unknownParameterIds: unknown;
     configuredParameterIds: unknown;
+  };
+}
+
+/**
+   * A nested object set within the aggregation exceeded the allowed limit.
+This can be fixed by aggregating over fewer objects, such as by applying a filter.
+   *
+   * Log Safety: SAFE
+   */
+export interface AggregationNestedObjectSetSizeExceededLimit {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "AggregationNestedObjectSetSizeExceededLimit";
+  errorInstanceId: string;
+  parameters: {
+    objectsCount: unknown;
+    objectsLimit: unknown;
   };
 }
 
@@ -566,6 +582,21 @@ export interface InvalidApplyActionOptionCombination {
 }
 
 /**
+ * The requested interface types were not found, or the client token does not have access to it.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InterfaceTypesNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "InterfaceTypesNotFound";
+  errorInstanceId: string;
+  parameters: {
+    apiName: unknown;
+    rid: unknown;
+  };
+}
+
+/**
  * The given action could not be mapped to a Marketplace installation.
  *
  * Log Safety: UNSAFE
@@ -966,21 +997,6 @@ export interface OntologyNotFound {
 }
 
 /**
- * The given property type is not of the expected type.
- *
- * Log Safety: UNSAFE
- */
-export interface InvalidPropertyType {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "InvalidPropertyType";
-  errorInstanceId: string;
-  parameters: {
-    propertyBaseType: unknown;
-    property: unknown;
-  };
-}
-
-/**
  * The given marketplace installation could not be found or the user does not have access to it.
  *
  * Log Safety: UNSAFE
@@ -992,6 +1008,21 @@ export interface MarketplaceInstallationNotFound {
   parameters: {
     artifactRepository: unknown;
     packageName: unknown;
+  };
+}
+
+/**
+ * The given property type is not of the expected type.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidPropertyType {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidPropertyType";
+  errorInstanceId: string;
+  parameters: {
+    propertyBaseType: unknown;
+    property: unknown;
   };
 }
 
@@ -1035,6 +1066,8 @@ export interface FunctionExecutionFailed {
   parameters: {
     functionRid: unknown;
     functionVersion: unknown;
+    message: unknown;
+    stacktrace: unknown;
   };
 }
 

@@ -16,10 +16,13 @@
 
 export type {
   AddGroupMembersRequest,
+  AddMarkingMembersRequest,
   AttributeName,
   AttributeValue,
   AttributeValues,
   CreateGroupRequest,
+  Enrollment,
+  EnrollmentName,
   GetGroupsBatchRequestElement,
   GetGroupsBatchResponse,
   GetMarkingsBatchRequestElement,
@@ -33,10 +36,14 @@ export type {
   GroupMembershipExpiration,
   GroupName,
   GroupSearchFilter,
+  Host,
+  HostName,
   ListGroupMembershipsResponse,
   ListGroupMembersResponse,
   ListGroupsResponse,
+  ListHostsResponse,
   ListMarkingCategoriesResponse,
+  ListMarkingMembersResponse,
   ListMarkingsResponse,
   ListUsersResponse,
   Marking,
@@ -45,9 +52,11 @@ export type {
   MarkingCategoryId,
   MarkingCategoryType,
   MarkingDisplayName,
+  MarkingMember,
   MarkingType,
   PrincipalFilterType,
   RemoveGroupMembersRequest,
+  RemoveMarkingMembersRequest,
   SearchGroupsRequest,
   SearchGroupsResponse,
   SearchUsersRequest,
@@ -58,9 +67,12 @@ export type {
 } from "./_components.js";
 export type {
   AddGroupMembersPermissionDenied,
+  AddMarkingMembersPermissionDenied,
   CreateGroupPermissionDenied,
   DeleteGroupPermissionDenied,
   DeleteUserPermissionDenied,
+  EnrollmentNotFound,
+  GetCurrentEnrollmentPermissionDenied,
   GetCurrentUserPermissionDenied,
   GetMarkingCategoryPermissionDenied,
   GetMarkingPermissionDenied,
@@ -71,19 +83,25 @@ export type {
   InvalidGroupMembershipExpiration,
   InvalidGroupOrganizations,
   InvalidProfilePicture,
+  ListHostsPermissionDenied,
+  ListMarkingMembersPermissionDenied,
   MarkingCategoryNotFound,
   MarkingNotFound,
   OrganizationNotFound,
   PrincipalNotFound,
   ProfilePictureNotFound,
   RemoveGroupMembersPermissionDenied,
+  RemoveMarkingMembersPermissionDenied,
   SearchGroupsPermissionDenied,
   SearchUsersPermissionDenied,
   UserNotFound,
 } from "./_errors.js";
+export * as Enrollments from "./public/Enrollment.js";
 export * as Groups from "./public/Group.js";
 export * as GroupMembers from "./public/GroupMember.js";
 export * as GroupMemberships from "./public/GroupMembership.js";
+export * as Hosts from "./public/Host.js";
 export * as Markings from "./public/Marking.js";
 export * as MarkingCategories from "./public/MarkingCategory.js";
+export * as MarkingMembers from "./public/MarkingMember.js";
 export * as Users from "./public/User.js";

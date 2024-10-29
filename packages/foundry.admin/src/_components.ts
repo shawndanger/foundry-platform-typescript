@@ -29,6 +29,13 @@ export interface AddGroupMembersRequest {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface AddMarkingMembersRequest {
+  principalIds: Array<_Core.PrincipalId>;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export type AttributeName = LooselyBrandedString<"AttributeName">;
@@ -52,6 +59,20 @@ export interface CreateGroupRequest {
   description?: string;
   attributes: Record<AttributeName, AttributeValues>;
 }
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface Enrollment {
+  rid: _Core.EnrollmentRid;
+  name: EnrollmentName;
+  createdTime?: _Core.CreatedTime;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type EnrollmentName = LooselyBrandedString<"EnrollmentName">;
 
 /**
  * Log Safety: SAFE
@@ -150,6 +171,18 @@ export interface GroupSearchFilter {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface Host {
+  hostName: HostName;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type HostName = LooselyBrandedString<"HostName">;
+
+/**
  * Log Safety: UNSAFE
  */
 export interface ListGroupMembersResponse {
@@ -176,8 +209,24 @@ export interface ListGroupsResponse {
 /**
  * Log Safety: UNSAFE
  */
+export interface ListHostsResponse {
+  data: Array<Host>;
+  nextPageToken?: _Core.PageToken;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface ListMarkingCategoriesResponse {
   data: Array<MarkingCategory>;
+  nextPageToken?: _Core.PageToken;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ListMarkingMembersResponse {
+  data: Array<MarkingMember>;
   nextPageToken?: _Core.PageToken;
 }
 
@@ -252,6 +301,14 @@ export type MarkingDisplayName = LooselyBrandedString<"MarkingDisplayName">;
 /**
  * Log Safety: SAFE
  */
+export interface MarkingMember {
+  principalType: _Core.PrincipalType;
+  principalId: _Core.PrincipalId;
+}
+
+/**
+ * Log Safety: SAFE
+ */
 export type MarkingType = "MANDATORY" | "CBAC";
 
 /**
@@ -263,6 +320,13 @@ export type PrincipalFilterType = "queryString";
  * Log Safety: SAFE
  */
 export interface RemoveGroupMembersRequest {
+  principalIds: Array<_Core.PrincipalId>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface RemoveMarkingMembersRequest {
   principalIds: Array<_Core.PrincipalId>;
 }
 
