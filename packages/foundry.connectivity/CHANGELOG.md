@@ -1,5 +1,18 @@
 # @osdk/foundry.connectivity
 
+## 2.3.0
+
+### Minor Changes
+
+- c53ab4b: Updates platform APIs with newly introduced APIs, for example, interface loading APIs.
+
+### Patch Changes
+
+- Updated dependencies [c53ab4b]
+  - @osdk/foundry.orchestration@2.3.0
+  - @osdk/foundry.datasets@2.3.0
+  - @osdk/foundry.core@2.3.0
+
 ## 2.2.0
 
 ### Minor Changes

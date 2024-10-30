@@ -1,5 +1,16 @@
 # @osdk/internal.foundry.ontologies
 
+## 2.3.0
+
+### Minor Changes
+
+- c53ab4b: Updates platform APIs with newly introduced APIs, for example, interface loading APIs.
+
+### Patch Changes
+
+- Updated dependencies [c53ab4b]
+  - @osdk/internal.foundry.core@2.3.0
+
 ## 2.2.0
 
 ### Minor Changes
