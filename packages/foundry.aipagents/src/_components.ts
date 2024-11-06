@@ -193,6 +193,16 @@ export interface ObjectSetParameter {
 }
 
 /**
+ * A value passed for ObjectSetParameter parameter types.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ObjectSetParameterValue {
+  objectSet: _Core.ObjectSet;
+  ontology: _Core.OntologyIdentifier;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface ObjectSetParameterValueUpdate {
@@ -252,7 +262,9 @@ configured on an Agent.
    *
    * Log Safety: UNSAFE
    */
-export type ParameterValue = { type: "string" } & StringParameterValue;
+export type ParameterValue =
+  | ({ type: "string" } & StringParameterValue)
+  | ({ type: "objectSet" } & ObjectSetParameterValue);
 
 /**
    * A value update for a parameter which was

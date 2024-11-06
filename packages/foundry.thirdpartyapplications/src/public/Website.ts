@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import type * as _Core from "@osdk/foundry.core";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -32,14 +31,13 @@ import type * as _ThirdPartyApplications from "../_components.js";
 const _get: $FoundryPlatformMethod<
   (
     thirdPartyApplicationRid: _ThirdPartyApplications.ThirdPartyApplicationRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_ThirdPartyApplications.Website>
-> = [0, "/v2/thirdPartyApplications/{0}/website", 2];
+> = [0, "/v2/thirdPartyApplications/{0}/website"];
 
 /**
  * Get the Website.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [third-party-application:deploy-application-website]
  * URL: /v2/thirdPartyApplications/{thirdPartyApplicationRid}/website
@@ -48,8 +46,6 @@ export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     thirdPartyApplicationRid: _ThirdPartyApplications.ThirdPartyApplicationRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_ThirdPartyApplications.Website> {
   return $foundryPlatformFetch($ctx, _get, ...args);
@@ -59,14 +55,13 @@ const _deploy: $FoundryPlatformMethod<
   (
     thirdPartyApplicationRid: _ThirdPartyApplications.ThirdPartyApplicationRid,
     $body: _ThirdPartyApplications.DeployWebsiteRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_ThirdPartyApplications.Website>
-> = [1, "/v2/thirdPartyApplications/{0}/website/deploy", 3];
+> = [1, "/v2/thirdPartyApplications/{0}/website/deploy", 1];
 
 /**
  * Deploy a version of the Website.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [third-party-application:deploy-application-website]
  * URL: /v2/thirdPartyApplications/{thirdPartyApplicationRid}/website/deploy
@@ -76,7 +71,6 @@ export function deploy(
   ...args: [
     thirdPartyApplicationRid: _ThirdPartyApplications.ThirdPartyApplicationRid,
     $body: _ThirdPartyApplications.DeployWebsiteRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_ThirdPartyApplications.Website> {
   return $foundryPlatformFetch($ctx, _deploy, ...args);
@@ -85,14 +79,13 @@ export function deploy(
 const _undeploy: $FoundryPlatformMethod<
   (
     thirdPartyApplicationRid: _ThirdPartyApplications.ThirdPartyApplicationRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_ThirdPartyApplications.Website>
-> = [1, "/v2/thirdPartyApplications/{0}/website/undeploy", 2];
+> = [1, "/v2/thirdPartyApplications/{0}/website/undeploy"];
 
 /**
  * Remove the currently deployed version of the Website.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [third-party-application:deploy-application-website]
  * URL: /v2/thirdPartyApplications/{thirdPartyApplicationRid}/website/undeploy
@@ -101,8 +94,6 @@ export function undeploy(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     thirdPartyApplicationRid: _ThirdPartyApplications.ThirdPartyApplicationRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_ThirdPartyApplications.Website> {
   return $foundryPlatformFetch($ctx, _undeploy, ...args);

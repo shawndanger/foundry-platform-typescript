@@ -93,6 +93,21 @@ export interface ExecuteFileImportPermissionDenied {
 }
 
 /**
+   * The provided `minFilesCount` field in the FileAtLeastCountFilter must be strictly greater than 0.
+
+   *
+   * Log Safety: SAFE
+   */
+export interface FileAtLeastCountFilterInvalidMinCount {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "FileAtLeastCountFilterInvalidMinCount";
+  errorInstanceId: string;
+  parameters: {
+    minFilesCount: unknown;
+  };
+}
+
+/**
    * Custom file import filters can be fetched but cannot currently be used
 when creating or updating file imports.
 
@@ -197,6 +212,21 @@ export interface FileSizeFilterMissingGreaterThanAndLessThan {
   errorName: "FileSizeFilterMissingGreaterThanAndLessThan";
   errorInstanceId: string;
   parameters: {};
+}
+
+/**
+   * The `filesCount` field in the FilesCountLimitFilter must be strictly greater than 0.
+
+   *
+   * Log Safety: SAFE
+   */
+export interface FilesCountLimitFilterInvalidLimit {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "FilesCountLimitFilterInvalidLimit";
+  errorInstanceId: string;
+  parameters: {
+    filesCount: unknown;
+  };
 }
 
 /**

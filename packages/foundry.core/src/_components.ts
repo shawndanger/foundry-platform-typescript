@@ -737,6 +737,20 @@ export interface ObjectSetUnionType {
 export type ObjectTypeId = LooselyBrandedString<"ObjectTypeId">;
 
 /**
+ * The unique Resource Identifier (RID) of an object type, useful for interacting with other Foundry APIs.
+ *
+ * Log Safety: SAFE
+ */
+export type ObjectTypeRid = LooselyBrandedString<"ObjectTypeRid">;
+
+/**
+ * Either an ontology RID or an ontology API name.
+ *
+ * Log Safety: UNSAFE
+ */
+export type OntologyIdentifier = LooselyBrandedString<"OntologyIdentifier">;
+
+/**
  * Returns objects where at least 1 query is satisfied.
  *
  * Log Safety: UNSAFE

@@ -30,27 +30,20 @@ import type * as _Admin from "../_components.js";
 //
 
 const _deleteUser: $FoundryPlatformMethod<
-  (
-    userId: _Core.PrincipalId,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<void>
-> = [3, "/v2/admin/users/{0}", 2];
+  (userId: _Core.PrincipalId) => Promise<void>
+> = [3, "/v2/admin/users/{0}"];
 
 /**
  * Delete the User with the specified id.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-write]
  * URL: /v2/admin/users/{userId}
  */
 export function deleteUser(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    userId: _Core.PrincipalId,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [userId: _Core.PrincipalId]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _deleteUser, ...args);
 }
@@ -59,7 +52,6 @@ const _list: $FoundryPlatformMethod<
   ($queryParams?: {
     pageSize?: _Core.PageSize | undefined;
     pageToken?: _Core.PageToken | undefined;
-    preview?: _Core.PreviewMode | undefined;
   }) => Promise<_Admin.ListUsersResponse>
 > = [0, "/v2/admin/users", 2];
 
@@ -68,7 +60,7 @@ const _list: $FoundryPlatformMethod<
  *
  * This is a paged endpoint. Each page may be smaller or larger than the requested page size. However, it is guaranteed that if there are more results available, the `nextPageToken` field will be populated. To get the next page, make the same request again, but set the value of the `pageToken` query parameter to be value of the `nextPageToken` value of the previous response. If there is no `nextPageToken` field in the response, you are on the last page.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/users
@@ -79,7 +71,6 @@ export function list(
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Admin.ListUsersResponse> {
@@ -87,27 +78,20 @@ export function list(
 }
 
 const _get: $FoundryPlatformMethod<
-  (
-    userId: _Core.PrincipalId,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Admin.User>
-> = [0, "/v2/admin/users/{0}", 2];
+  (userId: _Core.PrincipalId) => Promise<_Admin.User>
+> = [0, "/v2/admin/users/{0}"];
 
 /**
  * Get the User with the specified id.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/users/{userId}
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    userId: _Core.PrincipalId,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [userId: _Core.PrincipalId]
 ): Promise<_Admin.User> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
@@ -115,45 +99,40 @@ export function get(
 const _getBatch: $FoundryPlatformMethod<
   (
     $body: Array<_Admin.GetUsersBatchRequestElement>,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Admin.GetUsersBatchResponse>
-> = [1, "/v2/admin/users/getBatch", 3];
+> = [1, "/v2/admin/users/getBatch", 1];
 
 /**
  * Execute multiple get requests on User.
  *
  * The maximum batch size for this endpoint is 500.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/users/getBatch
  */
 export function getBatch(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $body: Array<_Admin.GetUsersBatchRequestElement>,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [$body: Array<_Admin.GetUsersBatchRequestElement>]
 ): Promise<_Admin.GetUsersBatchResponse> {
   return $foundryPlatformFetch($ctx, _getBatch, ...args);
 }
 
-const _getCurrent: $FoundryPlatformMethod<
-  ($queryParams?: {
-    preview?: _Core.PreviewMode | undefined;
-  }) => Promise<_Admin.User>
-> = [0, "/v2/admin/users/getCurrent", 2];
+const _getCurrent: $FoundryPlatformMethod<() => Promise<_Admin.User>> = [
+  0,
+  "/v2/admin/users/getCurrent",
+];
 
 /**
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/users/getCurrent
  */
 export function getCurrent(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [$queryParams?: { preview?: _Core.PreviewMode | undefined }]
+  ...args: []
 ): Promise<_Admin.User> {
   return $foundryPlatformFetch($ctx, _getCurrent, ...args);
 }
@@ -185,48 +164,35 @@ export function getMarkings(
 }
 
 const _profilePicture: $FoundryPlatformMethod<
-  (
-    userId: _Core.PrincipalId,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<Blob>
-> = [0, "/v2/admin/users/{0}/profilePicture", 2, , "application/octet-stream"];
+  (userId: _Core.PrincipalId) => Promise<Blob>
+> = [0, "/v2/admin/users/{0}/profilePicture", , , "application/octet-stream"];
 
 /**
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/users/{userId}/profilePicture
  */
 export function profilePicture(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    userId: _Core.PrincipalId,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [userId: _Core.PrincipalId]
 ): Promise<Blob> {
   return $foundryPlatformFetch($ctx, _profilePicture, ...args);
 }
 
 const _search: $FoundryPlatformMethod<
-  (
-    $body: _Admin.SearchUsersRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Admin.SearchUsersResponse>
-> = [1, "/v2/admin/users/search", 3];
+  ($body: _Admin.SearchUsersRequest) => Promise<_Admin.SearchUsersResponse>
+> = [1, "/v2/admin/users/search", 1];
 
 /**
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/users/search
  */
 export function search(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $body: _Admin.SearchUsersRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [$body: _Admin.SearchUsersRequest]
 ): Promise<_Admin.SearchUsersResponse> {
   return $foundryPlatformFetch($ctx, _search, ...args);
 }

@@ -103,6 +103,34 @@ export interface DirectConnectionRuntime {
 }
 
 /**
+ * If any file has a relative path matching the regular expression, sync all files in the subfolder that are not otherwise filtered.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface FileAnyPathMatchesFilter {
+  regex: string;
+}
+
+/**
+ * Import all filtered files only if there are at least the specified number of files remaining.
+ *
+ * Log Safety: SAFE
+ */
+export interface FileAtLeastCountFilter {
+  minFilesCount: number;
+}
+
+/**
+   * Only import files that have changed or been added since the last import run. Whether or not a file is considered to be changed is determined by the specified file properties.
+This will exclude files uploaded in any previous imports, regardless of the file import mode used. A SNAPSHOT file import mode does not reset the filter.
+   *
+   * Log Safety: SAFE
+   */
+export interface FileChangedSinceLastUploadFilter {
+  fileProperties: Array<FileProperty>;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface FileImport {
@@ -140,9 +168,16 @@ before they are imported into Foundry.
    * Log Safety: UNSAFE
    */
 export type FileImportFilter =
+  | ({ type: "pathNotMatchesFilter" } & FilePathNotMatchesFilter)
+  | ({ type: "anyPathMatchesFilter" } & FileAnyPathMatchesFilter)
+  | ({ type: "filesCountLimitFilter" } & FilesCountLimitFilter)
+  | ({
+    type: "changedSinceLastUploadFilter";
+  } & FileChangedSinceLastUploadFilter)
   | ({ type: "customFilter" } & FileImportCustomFilter)
   | ({ type: "lastModifiedAfterFilter" } & FileLastModifiedAfterFilter)
   | ({ type: "pathMatchesFilter" } & FilePathMatchesFilter)
+  | ({ type: "atLeastCountFilter" } & FileAtLeastCountFilter)
   | ({ type: "fileSizeFilter" } & FileSizeFilter);
 
 /**
@@ -190,6 +225,30 @@ export interface FilePathMatchesFilter {
 }
 
 /**
+   * Only import files whose path (relative to the root of the source) does not match the regular expression.
+Example
+Suppose we are importing files from relative/subfolder.
+relative/subfolder contains:
+
+relative/subfolder/include-file.txt
+relative/subfolder/exclude-file.txt
+relative/subfolder/other-file.txt
+
+With the relative/subfolder/exclude-.*.txt regex, both relative/subfolder/include-file.txt and relative/subfolder/other-file.txt will be imported,
+and relative/subfolder/exclude-file.txt will be excluded from the import.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface FilePathNotMatchesFilter {
+  regex: string;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type FileProperty = "LAST_MODIFIED" | "SIZE";
+
+/**
    * Only import files whose size is between the specified minimum and maximum values.
 At least one of gt or lt should be present.
 If both are present, the value specified for gt must be strictly less than lt - 1.
@@ -199,6 +258,25 @@ If both are present, the value specified for gt must be strictly less than lt - 
 export interface FileSizeFilter {
   gt?: _Core.SizeBytes;
   lt?: _Core.SizeBytes;
+}
+
+/**
+   * Only retain filesCount number of files in each transaction.
+The choice of files to retain is made without any guarantee of order.
+This option can increase the reliability of incremental syncs.
+   *
+   * Log Safety: SAFE
+   */
+export interface FilesCountLimitFilter {
+  filesCount: number;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ListFileImportsResponse {
+  data: Array<FileImport>;
+  nextPageToken?: _Core.PageToken;
 }
 
 /**

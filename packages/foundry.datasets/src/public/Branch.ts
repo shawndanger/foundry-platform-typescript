@@ -33,14 +33,13 @@ const _create: $FoundryPlatformMethod<
   (
     datasetRid: _Datasets.DatasetRid,
     $body: _Datasets.CreateBranchRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Datasets.Branch>
-> = [1, "/v2/datasets/{0}/branches", 3];
+> = [1, "/v2/datasets/{0}/branches", 1];
 
 /**
  * Creates a branch on an existing dataset. A branch may optionally point to a (committed) transaction.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:datasets-write]
  * URL: /v2/datasets/{datasetRid}/branches
@@ -50,7 +49,6 @@ export function create(
   ...args: [
     datasetRid: _Datasets.DatasetRid,
     $body: _Datasets.CreateBranchRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Datasets.Branch> {
   return $foundryPlatformFetch($ctx, _create, ...args);
@@ -60,26 +58,20 @@ const _deleteBranch: $FoundryPlatformMethod<
   (
     datasetRid: _Datasets.DatasetRid,
     branchName: _Datasets.BranchName,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [3, "/v2/datasets/{0}/branches/{1}", 2];
+> = [3, "/v2/datasets/{0}/branches/{1}"];
 
 /**
  * Deletes the Branch with the given BranchName.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:datasets-write]
  * URL: /v2/datasets/{datasetRid}/branches/{branchName}
  */
 export function deleteBranch(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    datasetRid: _Datasets.DatasetRid,
-    branchName: _Datasets.BranchName,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [datasetRid: _Datasets.DatasetRid, branchName: _Datasets.BranchName]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _deleteBranch, ...args);
 }
@@ -90,7 +82,6 @@ const _list: $FoundryPlatformMethod<
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Datasets.ListBranchesResponse>
 > = [0, "/v2/datasets/{0}/branches", 2];
@@ -98,7 +89,7 @@ const _list: $FoundryPlatformMethod<
 /**
  * Lists the Branches of a Dataset.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:datasets-read]
  * URL: /v2/datasets/{datasetRid}/branches
@@ -111,7 +102,6 @@ export function list(
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Datasets.ListBranchesResponse> {
@@ -122,26 +112,20 @@ const _get: $FoundryPlatformMethod<
   (
     datasetRid: _Datasets.DatasetRid,
     branchName: _Datasets.BranchName,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Datasets.Branch>
-> = [0, "/v2/datasets/{0}/branches/{1}", 2];
+> = [0, "/v2/datasets/{0}/branches/{1}"];
 
 /**
  * Get a Branch of a Dataset.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:datasets-read]
  * URL: /v2/datasets/{datasetRid}/branches/{branchName}
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    datasetRid: _Datasets.DatasetRid,
-    branchName: _Datasets.BranchName,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [datasetRid: _Datasets.DatasetRid, branchName: _Datasets.BranchName]
 ): Promise<_Datasets.Branch> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }

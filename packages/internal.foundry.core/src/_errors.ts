@@ -19,20 +19,6 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
- * At least one of requested filters are malformed. Please look at the documentation of PropertyFilter.
- *
- * Log Safety: UNSAFE
- */
-export interface MalformedPropertyFilters {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "MalformedPropertyFilters";
-  errorInstanceId: string;
-  parameters: {
-    malformedPropertyFilter: unknown;
-  };
-}
-
-/**
  * Aggregation value does not conform to the expected underlying type.
  *
  * Log Safety: UNSAFE
@@ -45,6 +31,20 @@ export interface InvalidAggregationRangeValue {
     property: unknown;
     objectType: unknown;
     propertyBaseType: unknown;
+  };
+}
+
+/**
+ * At least one of requested filters are malformed. Please look at the documentation of PropertyFilter.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MalformedPropertyFilters {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "MalformedPropertyFilters";
+  errorInstanceId: string;
+  parameters: {
+    malformedPropertyFilter: unknown;
   };
 }
 

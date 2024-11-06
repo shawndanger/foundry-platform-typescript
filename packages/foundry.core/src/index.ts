@@ -84,6 +84,8 @@ export type {
   ObjectSetSubtractType,
   ObjectSetUnionType,
   ObjectTypeId,
+  ObjectTypeRid,
+  OntologyIdentifier,
   OrganizationRid,
   OrQueryV2,
   PageSize,

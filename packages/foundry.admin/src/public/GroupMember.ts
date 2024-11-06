@@ -36,7 +36,6 @@ const _list: $FoundryPlatformMethod<
       transitive?: boolean | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Admin.ListGroupMembersResponse>
 > = [0, "/v2/admin/groups/{0}/groupMembers", 2];
@@ -46,7 +45,7 @@ const _list: $FoundryPlatformMethod<
  *
  * This is a paged endpoint. Each page may be smaller or larger than the requested page size. However, it is guaranteed that if there are more results available, the `nextPageToken` field will be populated. To get the next page, make the same request again, but set the value of the `pageToken` query parameter to be value of the `nextPageToken` value of the previous response. If there is no `nextPageToken` field in the response, you are on the last page.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/groups/{groupId}/groupMembers
@@ -60,7 +59,6 @@ export function list(
       transitive?: boolean | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Admin.ListGroupMembersResponse> {
@@ -71,23 +69,18 @@ const _add: $FoundryPlatformMethod<
   (
     groupId: _Core.PrincipalId,
     $body: _Admin.AddGroupMembersRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v2/admin/groups/{0}/groupMembers/add", 3];
+> = [1, "/v2/admin/groups/{0}/groupMembers/add", 1];
 
 /**
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-write]
  * URL: /v2/admin/groups/{groupId}/groupMembers/add
  */
 export function add(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    groupId: _Core.PrincipalId,
-    $body: _Admin.AddGroupMembersRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [groupId: _Core.PrincipalId, $body: _Admin.AddGroupMembersRequest]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _add, ...args);
 }
@@ -96,23 +89,18 @@ const _remove: $FoundryPlatformMethod<
   (
     groupId: _Core.PrincipalId,
     $body: _Admin.RemoveGroupMembersRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v2/admin/groups/{0}/groupMembers/remove", 3];
+> = [1, "/v2/admin/groups/{0}/groupMembers/remove", 1];
 
 /**
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-write]
  * URL: /v2/admin/groups/{groupId}/groupMembers/remove
  */
 export function remove(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    groupId: _Core.PrincipalId,
-    $body: _Admin.RemoveGroupMembersRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [groupId: _Core.PrincipalId, $body: _Admin.RemoveGroupMembersRequest]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _remove, ...args);
 }

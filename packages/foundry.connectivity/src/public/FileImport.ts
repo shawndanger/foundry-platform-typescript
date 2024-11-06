@@ -87,6 +87,41 @@ export function deleteFileImport(
   return $foundryPlatformFetch($ctx, _deleteFileImport, ...args);
 }
 
+const _list: $FoundryPlatformMethod<
+  (
+    connectionRid: _Connectivity.ConnectionRid,
+    $queryParams?: {
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Connectivity.ListFileImportsResponse>
+> = [0, "/v2/connectivity/connections/{0}/fileImports", 2];
+
+/**
+ * Lists all file imports defined for this connection.
+ * Only file imports that the user has permissions to view will be returned.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:connectivity-file-import-read]
+ * URL: /v2/connectivity/connections/{connectionRid}/fileImports
+ */
+export function list(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    connectionRid: _Connectivity.ConnectionRid,
+
+    $queryParams?: {
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Connectivity.ListFileImportsResponse> {
+  return $foundryPlatformFetch($ctx, _list, ...args);
+}
+
 const _get: $FoundryPlatformMethod<
   (
     connectionRid: _Connectivity.ConnectionRid,

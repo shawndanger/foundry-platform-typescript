@@ -33,14 +33,13 @@ const _deleteVersion: $FoundryPlatformMethod<
   (
     thirdPartyApplicationRid: _ThirdPartyApplications.ThirdPartyApplicationRid,
     versionVersion: _ThirdPartyApplications.VersionVersion,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [3, "/v2/thirdPartyApplications/{0}/website/versions/{1}", 2];
+> = [3, "/v2/thirdPartyApplications/{0}/website/versions/{1}"];
 
 /**
  * Delete the Version with the specified version.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [third-party-application:deploy-application-website]
  * URL: /v2/thirdPartyApplications/{thirdPartyApplicationRid}/website/versions/{versionVersion}
@@ -50,8 +49,6 @@ export function deleteVersion(
   ...args: [
     thirdPartyApplicationRid: _ThirdPartyApplications.ThirdPartyApplicationRid,
     versionVersion: _ThirdPartyApplications.VersionVersion,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _deleteVersion, ...args);
@@ -63,7 +60,6 @@ const _list: $FoundryPlatformMethod<
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_ThirdPartyApplications.ListVersionsResponse>
 > = [0, "/v2/thirdPartyApplications/{0}/website/versions", 2];
@@ -73,7 +69,7 @@ const _list: $FoundryPlatformMethod<
  *
  * This is a paged endpoint. Each page may be smaller or larger than the requested page size. However, it is guaranteed that if there are more results available, the `nextPageToken` field will be populated. To get the next page, make the same request again, but set the value of the `pageToken` query parameter to be value of the `nextPageToken` value of the previous response. If there is no `nextPageToken` field in the response, you are on the last page.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [third-party-application:deploy-application-website]
  * URL: /v2/thirdPartyApplications/{thirdPartyApplicationRid}/website/versions
@@ -86,7 +82,6 @@ export function list(
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_ThirdPartyApplications.ListVersionsResponse> {
@@ -97,14 +92,13 @@ const _get: $FoundryPlatformMethod<
   (
     thirdPartyApplicationRid: _ThirdPartyApplications.ThirdPartyApplicationRid,
     versionVersion: _ThirdPartyApplications.VersionVersion,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_ThirdPartyApplications.Version>
-> = [0, "/v2/thirdPartyApplications/{0}/website/versions/{1}", 2];
+> = [0, "/v2/thirdPartyApplications/{0}/website/versions/{1}"];
 
 /**
  * Get the Version with the specified version.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [third-party-application:deploy-application-website]
  * URL: /v2/thirdPartyApplications/{thirdPartyApplicationRid}/website/versions/{versionVersion}
@@ -114,8 +108,6 @@ export function get(
   ...args: [
     thirdPartyApplicationRid: _ThirdPartyApplications.ThirdPartyApplicationRid,
     versionVersion: _ThirdPartyApplications.VersionVersion,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_ThirdPartyApplications.Version> {
   return $foundryPlatformFetch($ctx, _get, ...args);
@@ -125,10 +117,7 @@ const _upload: $FoundryPlatformMethod<
   (
     thirdPartyApplicationRid: _ThirdPartyApplications.ThirdPartyApplicationRid,
     $body: Blob,
-    $queryParams: {
-      version: _ThirdPartyApplications.VersionVersion;
-      preview?: _Core.PreviewMode | undefined;
-    },
+    $queryParams: { version: _ThirdPartyApplications.VersionVersion },
   ) => Promise<_ThirdPartyApplications.Version>
 > = [
   1,
@@ -140,7 +129,7 @@ const _upload: $FoundryPlatformMethod<
 /**
  * Upload a new version of the Website.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [third-party-application:deploy-application-website]
  * URL: /v2/thirdPartyApplications/{thirdPartyApplicationRid}/website/versions/upload
@@ -150,10 +139,7 @@ export function upload(
   ...args: [
     thirdPartyApplicationRid: _ThirdPartyApplications.ThirdPartyApplicationRid,
     $body: Blob,
-    $queryParams: {
-      version: _ThirdPartyApplications.VersionVersion;
-      preview?: _Core.PreviewMode | undefined;
-    },
+    $queryParams: { version: _ThirdPartyApplications.VersionVersion },
   ]
 ): Promise<_ThirdPartyApplications.Version> {
   return $foundryPlatformFetch($ctx, _upload, ...args);
