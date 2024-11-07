@@ -39,6 +39,7 @@ export type {
   GetByPathPermissionDenied,
   InvalidDisplayName,
   InvalidFolder,
+  InvalidPath,
   MissingDisplayName,
   PathNotFound,
   PermanentlyDeleteResourcePermissionDenied,

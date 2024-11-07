@@ -36,7 +36,6 @@ const _deleteFile: $FoundryPlatformMethod<
     $queryParams?: {
       branchName?: _Datasets.BranchName | undefined;
       transactionRid?: _Datasets.TransactionRid | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<void>
 > = [3, "/v2/datasets/{0}/files/{1}", 2];
@@ -55,7 +54,7 @@ const _deleteFile: $FoundryPlatformMethod<
  * single transaction. See [createTransaction](https://www.palantir.com/docs/foundry/api/datasets-resources/transactions/create-transaction/) to
  * open a transaction.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:datasets-write]
  * URL: /v2/datasets/{datasetRid}/files/{filePath}
@@ -69,7 +68,6 @@ export function deleteFile(
     $queryParams?: {
       branchName?: _Datasets.BranchName | undefined;
       transactionRid?: _Datasets.TransactionRid | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<void> {
@@ -85,7 +83,6 @@ const _list: $FoundryPlatformMethod<
       endTransactionRid?: _Datasets.TransactionRid | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Datasets.ListFilesResponse>
 > = [0, "/v2/datasets/{0}/files", 2];
@@ -112,7 +109,7 @@ const _list: $FoundryPlatformMethod<
  * `startTransactionRid` and `endTransactionRid`. This will include only files that were modified as part of that
  * Transaction.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:datasets-read]
  * URL: /v2/datasets/{datasetRid}/files
@@ -128,7 +125,6 @@ export function list(
       endTransactionRid?: _Datasets.TransactionRid | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Datasets.ListFilesResponse> {
@@ -143,7 +139,6 @@ const _get: $FoundryPlatformMethod<
       branchName?: _Datasets.BranchName | undefined;
       startTransactionRid?: _Datasets.TransactionRid | undefined;
       endTransactionRid?: _Datasets.TransactionRid | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Datasets.File>
 > = [0, "/v2/datasets/{0}/files/{1}", 2];
@@ -168,7 +163,7 @@ const _get: $FoundryPlatformMethod<
  * To **get a file's metadata from a specific transaction** specify the Transaction's resource identifier as both the
  * `startTransactionRid` and `endTransactionRid`.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:datasets-read]
  * URL: /v2/datasets/{datasetRid}/files/{filePath}
@@ -183,7 +178,6 @@ export function get(
       branchName?: _Datasets.BranchName | undefined;
       startTransactionRid?: _Datasets.TransactionRid | undefined;
       endTransactionRid?: _Datasets.TransactionRid | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Datasets.File> {
@@ -199,7 +193,6 @@ const _upload: $FoundryPlatformMethod<
       branchName?: _Datasets.BranchName | undefined;
       transactionType?: _Datasets.TransactionType | undefined;
       transactionRid?: _Datasets.TransactionRid | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Datasets.File>
 > = [1, "/v2/datasets/{0}/files/{1}/upload", 3, "application/octet-stream"];
@@ -221,7 +214,7 @@ const _upload: $FoundryPlatformMethod<
  * `transactionRid`. This is useful for uploading multiple files in a single transaction.
  * See [createTransaction](https://www.palantir.com/docs/foundry/api/datasets-resources/transactions/create-transaction/) to open a transaction.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:datasets-write]
  * URL: /v2/datasets/{datasetRid}/files/{filePath}/upload
@@ -236,7 +229,6 @@ export function upload(
       branchName?: _Datasets.BranchName | undefined;
       transactionType?: _Datasets.TransactionType | undefined;
       transactionRid?: _Datasets.TransactionRid | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Datasets.File> {
@@ -251,7 +243,6 @@ const _content: $FoundryPlatformMethod<
       branchName?: _Datasets.BranchName | undefined;
       startTransactionRid?: _Datasets.TransactionRid | undefined;
       endTransactionRid?: _Datasets.TransactionRid | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<Blob>
 > = [0, "/v2/datasets/{0}/files/{1}/content", 2, , "application/octet-stream"];
@@ -277,7 +268,7 @@ const _content: $FoundryPlatformMethod<
  * To **get a file's content from a specific transaction** specify the Transaction's resource identifier as both the
  * `startTransactionRid` and `endTransactionRid`.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:datasets-read]
  * URL: /v2/datasets/{datasetRid}/files/{filePath}/content
@@ -292,7 +283,6 @@ export function content(
       branchName?: _Datasets.BranchName | undefined;
       startTransactionRid?: _Datasets.TransactionRid | undefined;
       endTransactionRid?: _Datasets.TransactionRid | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<Blob> {

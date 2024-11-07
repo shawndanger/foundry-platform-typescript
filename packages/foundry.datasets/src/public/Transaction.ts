@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import type * as _Core from "@osdk/foundry.core";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -33,17 +32,14 @@ const _create: $FoundryPlatformMethod<
   (
     datasetRid: _Datasets.DatasetRid,
     $body: _Datasets.CreateTransactionRequest,
-    $queryParams?: {
-      branchName?: _Datasets.BranchName | undefined;
-      preview?: _Core.PreviewMode | undefined;
-    },
+    $queryParams?: { branchName?: _Datasets.BranchName | undefined },
   ) => Promise<_Datasets.Transaction>
 > = [1, "/v2/datasets/{0}/transactions", 3];
 
 /**
  * Creates a Transaction on a Branch of a Dataset.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:datasets-write]
  * URL: /v2/datasets/{datasetRid}/transactions
@@ -53,10 +49,7 @@ export function create(
   ...args: [
     datasetRid: _Datasets.DatasetRid,
     $body: _Datasets.CreateTransactionRequest,
-    $queryParams?: {
-      branchName?: _Datasets.BranchName | undefined;
-      preview?: _Core.PreviewMode | undefined;
-    },
+    $queryParams?: { branchName?: _Datasets.BranchName | undefined },
   ]
 ): Promise<_Datasets.Transaction> {
   return $foundryPlatformFetch($ctx, _create, ...args);
@@ -66,14 +59,13 @@ const _get: $FoundryPlatformMethod<
   (
     datasetRid: _Datasets.DatasetRid,
     transactionRid: _Datasets.TransactionRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Datasets.Transaction>
-> = [0, "/v2/datasets/{0}/transactions/{1}", 2];
+> = [0, "/v2/datasets/{0}/transactions/{1}"];
 
 /**
  * Gets a Transaction of a Dataset.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:datasets-read]
  * URL: /v2/datasets/{datasetRid}/transactions/{transactionRid}
@@ -83,8 +75,6 @@ export function get(
   ...args: [
     datasetRid: _Datasets.DatasetRid,
     transactionRid: _Datasets.TransactionRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Datasets.Transaction> {
   return $foundryPlatformFetch($ctx, _get, ...args);
@@ -94,15 +84,14 @@ const _commit: $FoundryPlatformMethod<
   (
     datasetRid: _Datasets.DatasetRid,
     transactionRid: _Datasets.TransactionRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Datasets.Transaction>
-> = [1, "/v2/datasets/{0}/transactions/{1}/commit", 2];
+> = [1, "/v2/datasets/{0}/transactions/{1}/commit"];
 
 /**
  * Commits an open Transaction. File modifications made on this Transaction are preserved and the Branch is
  * updated to point to the Transaction.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:datasets-write]
  * URL: /v2/datasets/{datasetRid}/transactions/{transactionRid}/commit
@@ -112,8 +101,6 @@ export function commit(
   ...args: [
     datasetRid: _Datasets.DatasetRid,
     transactionRid: _Datasets.TransactionRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Datasets.Transaction> {
   return $foundryPlatformFetch($ctx, _commit, ...args);
@@ -123,15 +110,14 @@ const _abort: $FoundryPlatformMethod<
   (
     datasetRid: _Datasets.DatasetRid,
     transactionRid: _Datasets.TransactionRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Datasets.Transaction>
-> = [1, "/v2/datasets/{0}/transactions/{1}/abort", 2];
+> = [1, "/v2/datasets/{0}/transactions/{1}/abort"];
 
 /**
  * Aborts an open Transaction. File modifications made on this Transaction are not preserved and the Branch is
  * not updated.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:datasets-write]
  * URL: /v2/datasets/{datasetRid}/transactions/{transactionRid}/abort
@@ -141,8 +127,6 @@ export function abort(
   ...args: [
     datasetRid: _Datasets.DatasetRid,
     transactionRid: _Datasets.TransactionRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Datasets.Transaction> {
   return $foundryPlatformFetch($ctx, _abort, ...args);

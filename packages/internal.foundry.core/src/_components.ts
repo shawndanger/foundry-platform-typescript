@@ -186,14 +186,6 @@ export interface ListLinkedObjectsResponse {
 }
 
 /**
-   * Divides objects into groups based on their object type. This grouping is only useful when aggregating across
-multiple object types, such as when aggregating over an interface type.
-   *
-   * Log Safety: SAFE
-   */
-export interface AggregationObjectTypeGrouping {}
-
-/**
  * The underlying data values pointed to by a GeotimeSeriesReference.
  *
  * Log Safety: UNSAFE
@@ -202,6 +194,14 @@ export interface GeotimeSeriesValue {
   position: _Geo.Position;
   timestamp: string;
 }
+
+/**
+   * Divides objects into groups based on their object type. This grouping is only useful when aggregating across
+multiple object types, such as when aggregating over an interface type.
+   *
+   * Log Safety: SAFE
+   */
+export interface AggregationObjectTypeGrouping {}
 
 /**
  * Log Safety: SAFE
@@ -367,6 +367,15 @@ export type ObjectEdit =
   | ({ type: "addLink" } & AddLink);
 
 /**
+ * Definition of a derived property.
+ *
+ * Log Safety: UNSAFE
+ */
+export type DerivedPropertyDefinition = {
+  type: "selection";
+} & SelectedPropertyDefinition;
+
+/**
    * Divides objects into groups according to an interval. Note that this grouping applies only on date types.
 The interval uses the ISO 8601 notation. For example, "PT1H2M34S" represents a duration of 3754 seconds.
    *
@@ -451,6 +460,13 @@ export interface MinAggregationV2 {
   name?: AggregationMetricName;
   direction?: OrderByDirection;
 }
+
+/**
+ * Computes the total count of objects.
+ *
+ * Log Safety: SAFE
+ */
+export interface SelectedPropertyCountAggregation {}
 
 /**
  * Log Safety: UNSAFE
@@ -652,16 +668,13 @@ export type SubscriptionClosureCause =
   | ({ type: "error" } & Error);
 
 /**
- * Metadata about an Ontology.
+ * The name of the derived property that will be returned.
  *
  * Log Safety: UNSAFE
  */
-export interface Ontology {
-  apiName: OntologyApiName;
-  displayName: DisplayName;
-  description: string;
-  rid: OntologyRid;
-}
+export type DerivedPropertyApiName = LooselyBrandedString<
+  "DerivedPropertyApiName"
+>;
 
 /**
  * Divides objects into groups with the specified width.
@@ -671,6 +684,18 @@ export interface Ontology {
 export interface AggregationFixedWidthGrouping {
   field: FieldNameV1;
   fixedWidth: number;
+}
+
+/**
+ * Metadata about an Ontology.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface Ontology {
+  apiName: OntologyApiName;
+  displayName: DisplayName;
+  description: string;
+  rid: OntologyRid;
 }
 
 /**
@@ -766,10 +791,13 @@ export interface NotQuery {
 }
 
 /**
+ * Divides objects into groups according to specified ranges.
+ *
  * Log Safety: UNSAFE
  */
-export interface QueryUnionType {
-  unionTypes: Array<QueryDataType>;
+export interface AggregationRangesGrouping {
+  field: FieldNameV1;
+  ranges: Array<AggregationRange>;
 }
 
 /**
@@ -780,13 +808,10 @@ export interface QueryUnionType {
 export type FieldNameV1 = LooselyBrandedString<"FieldNameV1">;
 
 /**
- * Divides objects into groups according to specified ranges.
- *
  * Log Safety: UNSAFE
  */
-export interface AggregationRangesGrouping {
-  field: FieldNameV1;
-  ranges: Array<AggregationRange>;
+export interface QueryUnionType {
+  unionTypes: Array<QueryDataType>;
 }
 
 /**
@@ -844,6 +869,15 @@ endpoint or check the Ontology Manager.
    * Log Safety: UNSAFE
    */
 export type ActionTypeApiName = LooselyBrandedString<"ActionTypeApiName">;
+
+/**
+ * Computes an exact number of distinct values for the provided field. May be slower than an approximate distinct aggregation.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SelectedPropertyExactDistinctAggregation {
+  selectedPropertyApiName: PropertyApiName;
+}
 
 /**
  * Specifies a date range from an inclusive start date to an exclusive end date.
@@ -968,6 +1002,28 @@ export type InterfaceToObjectTypeMappings = Record<
 >;
 
 /**
+ * Operation on a selected property, can be an aggregation function or retrieval of a single selected property
+ *
+ * Log Safety: UNSAFE
+ */
+export type SelectedPropertyOperation =
+  | ({
+    type: "approximateDistinct";
+  } & SelectedPropertyApproximateDistinctAggregation)
+  | ({ type: "min" } & SelectedPropertyMinAggregation)
+  | ({ type: "avg" } & SelectedPropertyAvgAggregation)
+  | ({ type: "max" } & SelectedPropertyMaxAggregation)
+  | ({
+    type: "approximatePercentile";
+  } & SelectedPropertyApproximatePercentileAggregation)
+  | ({ type: "get" } & GetSelectedPropertyOperation)
+  | ({ type: "count" } & SelectedPropertyCountAggregation)
+  | ({ type: "sum" } & SelectedPropertySumAggregation)
+  | ({ type: "collectList" } & SelectedPropertyCollectListAggregation)
+  | ({ type: "exactDistinct" } & SelectedPropertyExactDistinctAggregation)
+  | ({ type: "collectSet" } & SelectedPropertyCollectSetAggregation);
+
+/**
  * Log Safety: UNSAFE
  */
 export interface ListObjectsResponse {
@@ -980,6 +1036,15 @@ export interface ListObjectsResponse {
  * Log Safety: SAFE
  */
 export type ObjectSetRid = LooselyBrandedString<"ObjectSetRid">;
+
+/**
+ * Computes an approximate number of distinct values for the provided field.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SelectedPropertyApproximateDistinctAggregation {
+  selectedPropertyApiName: PropertyApiName;
+}
 
 /**
  * Log Safety: UNSAFE
@@ -1044,6 +1109,11 @@ export interface MaxAggregationV2 {
   name?: AggregationMetricName;
   direction?: OrderByDirection;
 }
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type MethodObjectSet = ObjectSet;
 
 /**
    * The unique Resource Identifier (RID) of the Ontology. To look up your Ontology RID, please use the
@@ -1511,6 +1581,20 @@ export interface StringLengthConstraint {
 }
 
 /**
+   * Lists all distinct values of a property up to the specified limit. The maximum supported limit is 100.
+NOTE: A separate cardinality / exactCardinality aggregation should be used to determine the total count of
+values, to account for a possible truncation of the returned set.
+Ignores objects for which a property is absent, so the returned list will contain non-null values only.
+Returns an empty list when none of the objects have values for a provided property.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface SelectedPropertyCollectSetAggregation {
+  selectedPropertyApiName: PropertyApiName;
+  limit: number;
+}
+
+/**
  * The name of the Query in the API.
  *
  * Log Safety: UNSAFE
@@ -1766,16 +1850,18 @@ export interface StreamTimeSeriesPointsRequest {
  * Log Safety: UNSAFE
  */
 export type ObjectSet =
-  | ({ type: "reference" } & ObjectSetReferenceType)
-  | ({ type: "filter" } & ObjectSetFilterType)
   | ({ type: "searchAround" } & ObjectSetSearchAroundType)
-  | ({ type: "interfaceBase" } & ObjectSetInterfaceBaseType)
   | ({ type: "static" } & ObjectSetStaticType)
   | ({ type: "intersect" } & ObjectSetIntersectionType)
-  | ({ type: "asBaseObjectTypes" } & ObjectSetAsBaseObjectTypesType)
+  | ({ type: "withProperties" } & ObjectSetWithPropertiesType)
   | ({ type: "subtract" } & ObjectSetSubtractType)
   | ({ type: "union" } & ObjectSetUnionType)
   | ({ type: "asType" } & ObjectSetAsTypeType)
+  | ({ type: "methodInput" } & ObjectSetMethodInputType)
+  | ({ type: "reference" } & ObjectSetReferenceType)
+  | ({ type: "filter" } & ObjectSetFilterType)
+  | ({ type: "interfaceBase" } & ObjectSetInterfaceBaseType)
+  | ({ type: "asBaseObjectTypes" } & ObjectSetAsBaseObjectTypesType)
   | ({ type: "base" } & ObjectSetBaseType);
 
 /**
@@ -1854,6 +1940,15 @@ export interface RelativeTime {
   when: RelativeTimeRelation;
   value: number;
   unit: RelativeTimeSeriesTimeUnit;
+}
+
+/**
+ * Computes the sum of values for the provided field.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SelectedPropertySumAggregation {
+  selectedPropertyApiName: PropertyApiName;
 }
 
 /**
@@ -2108,6 +2203,15 @@ export type OntologyDataType =
   | ({ type: "object" } & OntologyObjectType);
 
 /**
+ * Computes the minimum value for the provided field.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SelectedPropertyMinAggregation {
+  selectedPropertyApiName: PropertyApiName;
+}
+
+/**
  * The unique resource identifier of a Function, useful for interacting with other Foundry APIs.
  *
  * Log Safety: SAFE
@@ -2259,6 +2363,15 @@ export interface ObjectSetStreamSubscribeRequest {
 }
 
 /**
+ * Computes the maximum value for the provided field.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SelectedPropertyMaxAggregation {
+  selectedPropertyApiName: PropertyApiName;
+}
+
+/**
  * Represents the primary key value that is used as a unique identifier for an object.
  *
  * Log Safety: UNSAFE
@@ -2352,6 +2465,17 @@ export interface ObjectSetAsBaseObjectTypesType {
  */
 export interface ObjectSetSubtractType {
   objectSets: Array<ObjectSet>;
+}
+
+/**
+   * Gets a single value of a property. Throws if the target object set is on the MANY side of the link and could
+explode the cardinality.
+Use collectList or collectSet which will return a list of values in that case.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface GetSelectedPropertyOperation {
+  selectedPropertyApiName: PropertyApiName;
 }
 
 /**
@@ -2456,6 +2580,16 @@ export interface SearchObjectsForInterfaceRequest {
   otherInterfaceTypes: Array<InterfaceTypeApiName>;
   pageSize?: PageSize;
   pageToken?: PageToken;
+}
+
+/**
+ * Computes the approximate percentile value for the provided field.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SelectedPropertyApproximatePercentileAggregation {
+  selectedPropertyApiName: PropertyApiName;
+  approximatePercentile: number;
 }
 
 /**
@@ -2632,6 +2766,14 @@ export interface ContainsQuery {
 }
 
 /**
+   * ObjectSet which is the root of a MethodObjectSet definition.
+This feature is experimental and not yet generally available.
+   *
+   * Log Safety: SAFE
+   */
+export interface ObjectSetMethodInputType {}
+
+/**
  * Returns objects where the specified field is less than or equal to a value.
  *
  * Log Safety: UNSAFE
@@ -2719,6 +2861,16 @@ export type Aggregation =
   | ({ type: "sum" } & SumAggregation);
 
 /**
+ * Definition for a selected property over a MethodObjectSet.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SelectedPropertyDefinition {
+  objectSet: MethodObjectSet;
+  operation: SelectedPropertyOperation;
+}
+
+/**
  * A unique identifier used to associate subscription requests with responses.
  *
  * Log Safety: SAFE
@@ -2773,6 +2925,17 @@ You may also use the shorthand p instead of properties such as orderBy=p.lastNam
    * Log Safety: UNSAFE
    */
 export type OrderBy = LooselyBrandedString<"OrderBy">;
+
+/**
+   * ObjectSet which returns objects with additional derived properties.
+This feature is experimental and not yet generally available.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ObjectSetWithPropertiesType {
+  objectSet: ObjectSet;
+  derivedProperties: Record<DerivedPropertyApiName, DerivedPropertyDefinition>;
+}
 
 /**
  * Returns objects where the specified field intersects the polygon provided.
@@ -2846,6 +3009,15 @@ export type WithinBoundingBoxPoint = { type: "Point" } & _Geo.GeoPoint;
 export interface AggregationRangeV2 {
   startValue: any;
   endValue: any;
+}
+
+/**
+ * Computes the average value for the provided field.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SelectedPropertyAvgAggregation {
+  selectedPropertyApiName: PropertyApiName;
 }
 
 /**
@@ -3072,6 +3244,20 @@ export type AsyncActionStatus =
   | "WRITING_ONTOLOGY_EDITS"
   | "EXECUTING_SIDE_EFFECT_WEBHOOK"
   | "SENDING_NOTIFICATIONS";
+
+/**
+   * Lists all values of a property up to the specified limit. The maximum supported limit is 100, by default.
+NOTE: A separate count aggregation should be used to determine the total count of values, to account for
+a possible truncation of the returned list.
+Ignores objects for which a property is absent, so the returned list will contain non-null values only.
+Returns an empty list when none of the objects have values for a provided property.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface SelectedPropertyCollectListAggregation {
+  selectedPropertyApiName: PropertyApiName;
+  limit: number;
+}
 
 /**
  * The unique resource identifier of an action type, useful for interacting with other Foundry APIs.

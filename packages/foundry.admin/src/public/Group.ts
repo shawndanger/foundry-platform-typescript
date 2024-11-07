@@ -30,52 +30,39 @@ import type * as _Admin from "../_components.js";
 //
 
 const _create: $FoundryPlatformMethod<
-  (
-    $body: _Admin.CreateGroupRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Admin.Group>
-> = [1, "/v2/admin/groups", 3];
+  ($body: _Admin.CreateGroupRequest) => Promise<_Admin.Group>
+> = [1, "/v2/admin/groups", 1];
 
 /**
  * Creates a new Group.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-write]
  * URL: /v2/admin/groups
  */
 export function create(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $body: _Admin.CreateGroupRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [$body: _Admin.CreateGroupRequest]
 ): Promise<_Admin.Group> {
   return $foundryPlatformFetch($ctx, _create, ...args);
 }
 
 const _deleteGroup: $FoundryPlatformMethod<
-  (
-    groupId: _Core.PrincipalId,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<void>
-> = [3, "/v2/admin/groups/{0}", 2];
+  (groupId: _Core.PrincipalId) => Promise<void>
+> = [3, "/v2/admin/groups/{0}"];
 
 /**
  * Delete the Group with the specified id.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-write]
  * URL: /v2/admin/groups/{groupId}
  */
 export function deleteGroup(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    groupId: _Core.PrincipalId,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [groupId: _Core.PrincipalId]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _deleteGroup, ...args);
 }
@@ -84,7 +71,6 @@ const _list: $FoundryPlatformMethod<
   ($queryParams?: {
     pageSize?: _Core.PageSize | undefined;
     pageToken?: _Core.PageToken | undefined;
-    preview?: _Core.PreviewMode | undefined;
   }) => Promise<_Admin.ListGroupsResponse>
 > = [0, "/v2/admin/groups", 2];
 
@@ -93,7 +79,7 @@ const _list: $FoundryPlatformMethod<
  *
  * This is a paged endpoint. Each page may be smaller or larger than the requested page size. However, it is guaranteed that if there are more results available, the `nextPageToken` field will be populated. To get the next page, make the same request again, but set the value of the `pageToken` query parameter to be value of the `nextPageToken` value of the previous response. If there is no `nextPageToken` field in the response, you are on the last page.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/groups
@@ -104,7 +90,6 @@ export function list(
     $queryParams?: {
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Admin.ListGroupsResponse> {
@@ -112,27 +97,20 @@ export function list(
 }
 
 const _get: $FoundryPlatformMethod<
-  (
-    groupId: _Core.PrincipalId,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Admin.Group>
-> = [0, "/v2/admin/groups/{0}", 2];
+  (groupId: _Core.PrincipalId) => Promise<_Admin.Group>
+> = [0, "/v2/admin/groups/{0}"];
 
 /**
  * Get the Group with the specified id.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/groups/{groupId}
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    groupId: _Core.PrincipalId,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [groupId: _Core.PrincipalId]
 ): Promise<_Admin.Group> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
@@ -140,49 +118,39 @@ export function get(
 const _getBatch: $FoundryPlatformMethod<
   (
     $body: Array<_Admin.GetGroupsBatchRequestElement>,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Admin.GetGroupsBatchResponse>
-> = [1, "/v2/admin/groups/getBatch", 3];
+> = [1, "/v2/admin/groups/getBatch", 1];
 
 /**
  * Execute multiple get requests on Group.
  *
  * The maximum batch size for this endpoint is 500.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/groups/getBatch
  */
 export function getBatch(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $body: Array<_Admin.GetGroupsBatchRequestElement>,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [$body: Array<_Admin.GetGroupsBatchRequestElement>]
 ): Promise<_Admin.GetGroupsBatchResponse> {
   return $foundryPlatformFetch($ctx, _getBatch, ...args);
 }
 
 const _search: $FoundryPlatformMethod<
-  (
-    $body: _Admin.SearchGroupsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Admin.SearchGroupsResponse>
-> = [1, "/v2/admin/groups/search", 3];
+  ($body: _Admin.SearchGroupsRequest) => Promise<_Admin.SearchGroupsResponse>
+> = [1, "/v2/admin/groups/search", 1];
 
 /**
- * @beta
+ * @public
  *
  * Required Scopes: [api:admin-read]
  * URL: /v2/admin/groups/search
  */
 export function search(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $body: _Admin.SearchGroupsRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [$body: _Admin.SearchGroupsRequest]
 ): Promise<_Admin.SearchGroupsResponse> {
   return $foundryPlatformFetch($ctx, _search, ...args);
 }

@@ -115,6 +115,23 @@ export interface InvalidFolder {
 }
 
 /**
+   * The given path is invalid.
+
+A valid path has all components separated by a single `/`.
+
+   *
+   * Log Safety: UNSAFE
+   */
+export interface InvalidPath {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidPath";
+  errorInstanceId: string;
+  parameters: {
+    path: unknown;
+  };
+}
+
+/**
  * A Display Name must be provided.
  *
  * Log Safety: SAFE

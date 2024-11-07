@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import type * as _Core from "@osdk/foundry.core";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -30,52 +29,39 @@ import type * as _Datasets from "../_components.js";
 //
 
 const _create: $FoundryPlatformMethod<
-  (
-    $body: _Datasets.CreateDatasetRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Datasets.Dataset>
-> = [1, "/v2/datasets", 3];
+  ($body: _Datasets.CreateDatasetRequest) => Promise<_Datasets.Dataset>
+> = [1, "/v2/datasets", 1];
 
 /**
  * Creates a new Dataset. A default branch - `master` for most enrollments - will be created on the Dataset.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:datasets-write]
  * URL: /v2/datasets
  */
 export function create(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    $body: _Datasets.CreateDatasetRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [$body: _Datasets.CreateDatasetRequest]
 ): Promise<_Datasets.Dataset> {
   return $foundryPlatformFetch($ctx, _create, ...args);
 }
 
 const _get: $FoundryPlatformMethod<
-  (
-    datasetRid: _Datasets.DatasetRid,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Datasets.Dataset>
-> = [0, "/v2/datasets/{0}", 2];
+  (datasetRid: _Datasets.DatasetRid) => Promise<_Datasets.Dataset>
+> = [0, "/v2/datasets/{0}"];
 
 /**
  * Get the Dataset with the specified rid.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:datasets-read]
  * URL: /v2/datasets/{datasetRid}
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [
-    datasetRid: _Datasets.DatasetRid,
-
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ]
+  ...args: [datasetRid: _Datasets.DatasetRid]
 ): Promise<_Datasets.Dataset> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
@@ -90,7 +76,6 @@ const _readTable: $FoundryPlatformMethod<
       format: _Datasets.TableExportFormat;
       columns: Array<string>;
       rowLimit?: number | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<Blob>
 > = [0, "/v2/datasets/{0}/readTable", 2, , "application/octet-stream"];
@@ -100,7 +85,7 @@ const _readTable: $FoundryPlatformMethod<
  *
  * This endpoint currently does not support views (Virtual datasets composed of other datasets).
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:datasets-read]
  * URL: /v2/datasets/{datasetRid}/readTable
@@ -117,7 +102,6 @@ export function readTable(
       format: _Datasets.TableExportFormat;
       columns: Array<string>;
       rowLimit?: number | undefined;
-      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<Blob> {

@@ -182,6 +182,25 @@ export interface CreateSessionPermissionDenied {
 }
 
 /**
+   * The specified function locator is configured for use by the Agent but could not be found.
+The function type or version may not exist or the client token does not have access.
+
+   *
+   * Log Safety: UNSAFE
+   */
+export interface FunctionLocatorNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "FunctionLocatorNotFound";
+  errorInstanceId: string;
+  parameters: {
+    agentRid: unknown;
+    sessionRid: unknown;
+    functionRid: unknown;
+    functionVersion: unknown;
+  };
+}
+
+/**
    * The calling user does not have permission to list all sessions across all Agents.
 Listing all sessions across all agents requires the `api:aip-agents-write` scope.
 
@@ -212,7 +231,49 @@ export interface InvalidAgentVersion {
 }
 
 /**
+   * The provided parameter is not valid for the Agent for this session.
+Check the available parameters for the Agent and version through the API with `getAgent`, or in AIP Agent Studio.
+The Agent version used for the session can be checked through the API with `getSession`.
+
+   *
+   * Log Safety: UNSAFE
+   */
+export interface InvalidParameter {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidParameter";
+  errorInstanceId: string;
+  parameters: {
+    agentRid: unknown;
+    sessionRid: unknown;
+    parameter: unknown;
+  };
+}
+
+/**
+   * The provided parameter type does not match the expected type for the parameter configured on the Agent for this session.
+Check the available parameters and their expected types for the Agent and version through the API with `getAgent`, or in AIP Agent Studio.
+The Agent version used for the session can be checked through the API with `getSession`.
+
+   *
+   * Log Safety: UNSAFE
+   */
+export interface InvalidParameterType {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidParameterType";
+  errorInstanceId: string;
+  parameters: {
+    agentRid: unknown;
+    sessionRid: unknown;
+    parameter: unknown;
+    expectedType: unknown;
+    receivedType: unknown;
+  };
+}
+
+/**
    * Failed to retrieve the latest published version of the Agent because the Agent has no published versions.
+Try publishing the Agent in AIP Agent Studio to use the latest published version, or specify the
+version of the Agent to use.
 
    *
    * Log Safety: SAFE
@@ -223,6 +284,44 @@ export interface NoPublishedAgentVersion {
   errorInstanceId: string;
   parameters: {
     agentRid: unknown;
+  };
+}
+
+/**
+   * Some object types are configured for use by the Agent but could not be found.
+The object types either do not exist or the client token does not have access.
+Object types can be checked by listing available object types through the API, or searching in [Ontology Manager](/docs/foundry/ontology-manager/overview/).
+
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ObjectTypeIdsNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "ObjectTypeIdsNotFound";
+  errorInstanceId: string;
+  parameters: {
+    agentRid: unknown;
+    sessionRid: unknown;
+    objectTypeIds: unknown;
+  };
+}
+
+/**
+   * Some object types are configured for use by the Agent but could not be found.
+The object types either do not exist or the client token does not have access.
+Object types can be checked by listing available object types through the API, or searching in [Ontology Manager](/docs/foundry/ontology-manager/overview/).
+
+   *
+   * Log Safety: SAFE
+   */
+export interface ObjectTypeRidsNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "ObjectTypeRidsNotFound";
+  errorInstanceId: string;
+  parameters: {
+    agentRid: unknown;
+    sessionRid: unknown;
+    objectTypeRids: unknown;
   };
 }
 
