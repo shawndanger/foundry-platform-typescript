@@ -19,6 +19,7 @@ import type * as ir from "../ir/index.js";
 import { quoteMimeTypeOrEmpty } from "../quoteMimeTypeOrEmpty.js";
 import { addAll } from "../util/addAll.js";
 import { groupByAsObject } from "../util/groupByAsObject.js";
+import { BinaryResponseType } from "./BinaryResponseType.js";
 import { BinaryType } from "./BinaryType.js";
 import type { Component } from "./Component.js";
 import type { Model } from "./Model.js";
@@ -82,7 +83,7 @@ export class Operation {
     if (body.type === "ok") {
       const { responseType, required } = body.ok;
       if (responseType.type === "binary") {
-        return new BinaryType();
+        return new BinaryResponseType();
       }
 
       let { type: { type: irType } } = responseType.type === "component"
