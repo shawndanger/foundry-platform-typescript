@@ -419,7 +419,7 @@ export default {
         dependencies: {
           "@osdk/shared.client": "^1.0.1",
           "@osdk/shared.client2": "^1.0.0",
-          "@osdk/shared.net.platformapi": "~0.3.2",
+          "@osdk/shared.net.platformapi": "~0.4.0-beta.2",
         },
       },
     }),
