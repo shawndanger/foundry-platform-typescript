@@ -1,5 +1,28 @@
 # @osdk/foundry
 
+## 2.4.0
+
+### Minor Changes
+
+- 4720b1d: Update platform APIs with new APIs, including Runtime Derived Property API's
+
+### Patch Changes
+
+- Updated dependencies [4720b1d]
+  - @osdk/foundry.thirdpartyapplications@2.4.0
+  - @osdk/foundry.orchestration@2.4.0
+  - @osdk/foundry.connectivity@2.4.0
+  - @osdk/foundry.filesystem@2.4.0
+  - @osdk/foundry.ontologies@2.4.0
+  - @osdk/foundry.publicapis@2.4.0
+  - @osdk/foundry.aipagents@2.4.0
+  - @osdk/foundry.datasets@2.4.0
+  - @osdk/foundry.streams@2.4.0
+  - @osdk/foundry.admin@2.4.0
+  - @osdk/foundry.core@2.4.0
+  - @osdk/foundry.geo@2.4.0
+  - @osdk/foundry.functions@2.4.0
+
 ## 2.3.0
 
 ### Minor Changes
