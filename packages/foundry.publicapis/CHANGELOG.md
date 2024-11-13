@@ -1,5 +1,16 @@
 # @osdk/foundry.publicapis
 
+## 2.4.0
+
+### Minor Changes
+
+- 4720b1d: Update platform APIs with new APIs, including Runtime Derived Property API's
+
+### Patch Changes
+
+- Updated dependencies [4720b1d]
+  - @osdk/foundry.core@2.4.0
+
 ## 2.3.0
 
 ### Minor Changes
