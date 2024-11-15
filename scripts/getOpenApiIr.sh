@@ -6,6 +6,8 @@ set -eu
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 mkdir -p "${SCRIPT_DIR}/../tmp"
 
+echo "yq version: ${yq --version}"
+
 BUILD_DIR="${SCRIPT_DIR}/../tmp"
 DOWNLOAD_DIR="${BUILD_DIR}/api-gateway-bundle"
 EXTRACT_DIR="${BUILD_DIR}/api-gateway-ir"
