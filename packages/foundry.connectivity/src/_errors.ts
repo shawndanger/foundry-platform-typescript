@@ -49,6 +49,21 @@ export interface ConnectionNotFound {
 }
 
 /**
+   * The specified connection is not yet supported in the Platform API.
+
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ConnectionTypeNotSupported {
+  errorCode: "INTERNAL";
+  errorName: "ConnectionTypeNotSupported";
+  errorInstanceId: string;
+  parameters: {
+    connectionType: unknown;
+  };
+}
+
+/**
  * Could not create the FileImport.
  *
  * Log Safety: SAFE
@@ -242,6 +257,36 @@ export interface SecretNamesDoNotExist {
   parameters: {
     connectionRid: unknown;
     secretNames: unknown;
+  };
+}
+
+/**
+ * The given TableImport could not be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface TableImportNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "TableImportNotFound";
+  errorInstanceId: string;
+  parameters: {
+    tableImportRid: unknown;
+    connectionRid: unknown;
+  };
+}
+
+/**
+   * The specified table import type is not yet supported in the Platform API.
+
+   *
+   * Log Safety: UNSAFE
+   */
+export interface TableImportTypeNotSupported {
+  errorCode: "INTERNAL";
+  errorName: "TableImportTypeNotSupported";
+  errorInstanceId: string;
+  parameters: {
+    tableImportType: unknown;
   };
 }
 

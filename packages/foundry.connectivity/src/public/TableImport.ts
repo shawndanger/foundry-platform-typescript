@@ -25,34 +25,34 @@ import type {
 } from "@osdk/shared.client2";
 import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
 import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
-import type * as _AipAgents from "../_components.js";
+import type * as _Connectivity from "../_components.js";
 
 //
 
 const _get: $FoundryPlatformMethod<
   (
-    agentRid: _AipAgents.AgentRid,
-    sessionRid: _AipAgents.SessionRid,
+    connectionRid: _Connectivity.ConnectionRid,
+    tableImportRid: _Connectivity.TableImportRid,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_AipAgents.Content>
-> = [0, "/v2/aipAgents/agents/{0}/sessions/{1}/content", 2];
+  ) => Promise<_Connectivity.TableImport>
+> = [0, "/v2/connectivity/connections/{0}/tableImports/{1}", 2];
 
 /**
- * Get the conversation content for a session between the calling user and an Agent.
+ * Get the TableImport with the specified rid.
  *
- * @beta
+ * @alpha
  *
- * Required Scopes: [api:aip-agents-read]
- * URL: /v2/aipAgents/agents/{agentRid}/sessions/{sessionRid}/content
+ * Required Scopes: []
+ * URL: /v2/connectivity/connections/{connectionRid}/tableImports/{tableImportRid}
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    agentRid: _AipAgents.AgentRid,
-    sessionRid: _AipAgents.SessionRid,
+    connectionRid: _Connectivity.ConnectionRid,
+    tableImportRid: _Connectivity.TableImportRid,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
-): Promise<_AipAgents.Content> {
+): Promise<_Connectivity.TableImport> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }

@@ -56,7 +56,7 @@ export interface Folder {
 export type FolderRid = LooselyBrandedString<"FolderRid">;
 
 /**
-   * A folder can either a regular Folder, a
+   * A folder can be a regular Folder, a
 Project or a
 Space.
    *
@@ -73,10 +73,20 @@ export interface ListChildrenOfFolderResponse {
 }
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface Project {
   rid: ProjectRid;
+  displayName: ResourceDisplayName;
+  description?: string;
+  documentation?: string;
+  path: ResourcePath;
+  createdBy: _Core.CreatedBy;
+  updatedBy: _Core.UpdatedBy;
+  createdTime: _Core.CreatedTime;
+  updatedTime: _Core.UpdatedTime;
+  trashStatus: TrashStatus;
+  spaceRid: SpaceRid;
 }
 
 /**

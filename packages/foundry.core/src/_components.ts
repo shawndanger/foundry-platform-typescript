@@ -282,7 +282,7 @@ export type PageSize = number;
 /**
    * The page token indicates where to start paging. This should be omitted from the first page's request.
 To fetch the next page, clients should take the value from the nextPageToken field of the previous response
-and populate the next request's pageToken field with it.
+and use it to populate the pageToken field of the next request.
    *
    * Log Safety: UNSAFE
    */
@@ -599,11 +599,10 @@ export interface IsNullQueryV2 {
 }
 
 /**
-   * The name of the link type in the API. To find the API name for your Link Type, check the Ontology Manager
-application.
-   *
-   * Log Safety: UNSAFE
-   */
+ * The name of the link type in the API. To find the API name for your Link Type, check the Ontology Manager.
+ *
+ * Log Safety: UNSAFE
+ */
 export type LinkTypeApiName = LooselyBrandedString<"LinkTypeApiName">;
 
 /**

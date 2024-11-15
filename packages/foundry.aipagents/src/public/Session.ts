@@ -41,7 +41,7 @@ const _create: $FoundryPlatformMethod<
  * Create a new conversation session between the calling user and an Agent.
  * Use `blockingContinue` or `streamingContinue` to start adding exchanges to the session.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:aip-agents-write]
  * URL: /v2/aipAgents/agents/{agentRid}/sessions
@@ -69,12 +69,12 @@ const _list: $FoundryPlatformMethod<
 > = [0, "/v2/aipAgents/agents/{0}/sessions", 2];
 
 /**
- * List all conversation sessions between the calling user and an Agent that were created by this client.
- * This does not list sessions for the user created by other clients. For example, any sessions created by
- * the user in AIP Agent Studio will not be listed here.
+ * List all conversation sessions between the calling user and an Agent that was created by this client.
+ * This does not list sessions for the user created by other clients.
+ * For example, any sessions created by the user in AIP Agent Studio will not be listed here.
  * Sessions are returned in order of most recently updated first.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:aip-agents-read]
  * URL: /v2/aipAgents/agents/{agentRid}/sessions
@@ -103,9 +103,9 @@ const _get: $FoundryPlatformMethod<
 > = [0, "/v2/aipAgents/agents/{0}/sessions/{1}", 2];
 
 /**
- * Get details of a conversation session between the calling user and an Agent.
+ * Get the details of a conversation session between the calling user and an Agent.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:aip-agents-read]
  * URL: /v2/aipAgents/agents/{agentRid}/sessions/{sessionRid}
@@ -136,10 +136,10 @@ const _blockingContinue: $FoundryPlatformMethod<
  * Adds a new exchange to the session with the provided inputs, and generates a response from the Agent.
  * Blocks on returning the result of the added exchange until the response is fully generated.
  * Streamed responses are also supported; see `streamingContinue` for details.
- * Concurrent requests to continue the same session are not supported. Clients should wait
- * to receive a response before sending the next message.
+ * Concurrent requests to continue the same session are not supported.
+ * Clients should wait to receive a response before sending the next message.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:aip-agents-write]
  * URL: /v2/aipAgents/agents/{agentRid}/sessions/{sessionRid}/blockingContinue
@@ -174,15 +174,13 @@ const _streamingContinue: $FoundryPlatformMethod<
 /**
  * Continue a conversation session with an Agent, or add the first exchange to a session after creation.
  * Adds a new exchange to the session with the provided inputs, and generates a response from the Agent.
- * Returns a stream of the Agent response text (formatted using markdown) for clients to consume as
- * the response is generated.
- * On completion of the streamed response, clients can load the full details of the exchange that was
- * added to the session by reloading the session content.
+ * Returns a stream of the Agent response text (formatted using markdown) for clients to consume as the response is generated.
+ * On completion of the streamed response, clients can load the full details of the exchange that was added to the session by reloading the session content.
  * Streamed exchanges also support cancellation; see `cancel` for details.
- * Concurrent requests to continue the same session are not supported. Clients should wait to receive a
- * response, or cancel the in-progress exchange, before sending the next message.
+ * Concurrent requests to continue the same session are not supported.
+ * Clients should wait to receive a response, or cancel the in-progress exchange, before sending the next message.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:aip-agents-write]
  * URL: /v2/aipAgents/agents/{agentRid}/sessions/{sessionRid}/streamingContinue
@@ -210,12 +208,10 @@ const _cancel: $FoundryPlatformMethod<
 
 /**
  * Cancel an in-progress streamed exchange with an Agent which was initiated with `streamingContinue`.
- * Canceling an exchange allows clients to prevent the exchange from being added to the session,
- * or to provide a response to replace the Agent-generated response.
- * Note that canceling an exchange does not terminate the stream returned by `streamingContinue`;
- * clients should close the stream on triggering the cancellation request to stop reading from the stream.
+ * Canceling an exchange allows clients to prevent the exchange from being added to the session, or to provide a response to replace the Agent-generated response.
+ * Note that canceling an exchange does not terminate the stream returned by `streamingContinue`; clients should close the stream on triggering the cancellation request to stop reading from the stream.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:aip-agents-write]
  * URL: /v2/aipAgents/agents/{agentRid}/sessions/{sessionRid}/cancel
@@ -242,12 +238,10 @@ const _ragContext: $FoundryPlatformMethod<
 > = [2, "/v2/aipAgents/agents/{0}/sessions/{1}/ragContext", 3];
 
 /**
- * Retrieve relevant [context](https://www.palantir.com/docs/foundry/agent-studio/core-concepts/#retrieval-context) for a user message
- * from the data sources configured for the session. This allows clients to pre-retrieve context for a user
- * message before sending it to the Agent with the `contextsOverride` option when continuing a session, to
- * allow any pre-processing of the context before sending it to the Agent.
+ * Retrieve relevant [context](https://www.palantir.com/docs/foundry/agent-studio/core-concepts/#retrieval-context) for a user message from the data sources configured for the session.
+ * This allows clients to pre-retrieve context for a user message before sending it to the Agent with the `contextsOverride` option when continuing a session, to allow any pre-processing of the context before sending it to the Agent.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:aip-agents-write]
  * URL: /v2/aipAgents/agents/{agentRid}/sessions/{sessionRid}/ragContext

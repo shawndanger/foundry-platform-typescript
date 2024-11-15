@@ -25,34 +25,32 @@ import type {
 } from "@osdk/shared.client2";
 import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
 import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
-import type * as _AipAgents from "../_components.js";
+import type * as _Filesystem from "../_components.js";
 
 //
 
 const _get: $FoundryPlatformMethod<
   (
-    agentRid: _AipAgents.AgentRid,
-    sessionRid: _AipAgents.SessionRid,
+    projectRid: _Filesystem.ProjectRid,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_AipAgents.Content>
-> = [0, "/v2/aipAgents/agents/{0}/sessions/{1}/content", 2];
+  ) => Promise<_Filesystem.Project>
+> = [0, "/v2/filesystem/projects/{0}", 2];
 
 /**
- * Get the conversation content for a session between the calling user and an Agent.
+ * Get the Project with the specified rid.
  *
- * @beta
+ * @alpha
  *
- * Required Scopes: [api:aip-agents-read]
- * URL: /v2/aipAgents/agents/{agentRid}/sessions/{sessionRid}/content
+ * Required Scopes: [api:filesystem-read]
+ * URL: /v2/filesystem/projects/{projectRid}
  */
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    agentRid: _AipAgents.AgentRid,
-    sessionRid: _AipAgents.SessionRid,
+    projectRid: _Filesystem.ProjectRid,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
-): Promise<_AipAgents.Content> {
+): Promise<_Filesystem.Project> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }

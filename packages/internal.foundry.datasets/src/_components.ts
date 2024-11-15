@@ -21,7 +21,7 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
- * The identifier (name) of a Branch. Example: master.
+ * The identifier (name) of a Branch.
  *
  * Log Safety: UNSAFE
  */
@@ -43,7 +43,7 @@ export interface ListBranchesResponse {
 }
 
 /**
- * The Resource Identifier (RID) of a Dataset. Example: ri.foundry.main.dataset.c26f11c8-cdb3-4f44-9f5d-9816ea1c82da.
+ * The Resource Identifier (RID) of a Dataset.
  *
  * Log Safety: SAFE
  */
@@ -95,7 +95,7 @@ export interface File {
 }
 
 /**
- * The Resource Identifier (RID) of a Transaction. Example: ri.foundry.main.transaction.0a0207cb-26b7-415b-bc80-66a3aa3933f4.
+ * The Resource Identifier (RID) of a Transaction.
  *
  * Log Safety: SAFE
  */
