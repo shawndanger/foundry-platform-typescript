@@ -7,6 +7,7 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 mkdir -p "${SCRIPT_DIR}/../tmp"
 
 echo "yq version: $(yq --version)"
+echo "yq which: $(which yq)"
 
 BUILD_DIR="${SCRIPT_DIR}/../tmp"
 DOWNLOAD_DIR="${BUILD_DIR}/api-gateway-bundle"
