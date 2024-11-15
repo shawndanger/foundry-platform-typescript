@@ -149,9 +149,8 @@ export interface ContentNotFound {
 }
 
 /**
-   * Failed to generate a response for a session because the context size of the LLM has been
-exceeded. Clients should either retry with a shorter message or create a new session
-and try re-sending the message.
+   * Failed to generate a response for a session because the context size of the LLM has been exceeded.
+Clients should either retry with a shorter message or create a new session and try re-sending the message.
 
    *
    * Log Safety: UNSAFE
@@ -272,8 +271,7 @@ export interface InvalidParameterType {
 
 /**
    * Failed to retrieve the latest published version of the Agent because the Agent has no published versions.
-Try publishing the Agent in AIP Agent Studio to use the latest published version, or specify the
-version of the Agent to use.
+Try publishing the Agent in AIP Agent Studio to use the latest published version, or specify the version of the Agent to use.
 
    *
    * Log Safety: SAFE
@@ -337,6 +335,23 @@ export interface RagContextSessionPermissionDenied {
   parameters: {
     agentRid: unknown;
     sessionRid: unknown;
+  };
+}
+
+/**
+   * Failed to generate a response as the model rate limits were exceeded. Clients should wait and retry.
+
+   *
+   * Log Safety: UNSAFE
+   */
+export interface RateLimitExceeded {
+  errorCode: "CUSTOM_CLIENT";
+  errorName: "RateLimitExceeded";
+  errorInstanceId: string;
+  parameters: {
+    agentRid: unknown;
+    sessionRid: unknown;
+    details: unknown;
   };
 }
 

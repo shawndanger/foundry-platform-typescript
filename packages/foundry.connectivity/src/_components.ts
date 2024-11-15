@@ -56,13 +56,49 @@ export interface AgentWorkerRuntime {
 }
 
 /**
+ * Log Safety: DO_NOT_LOG
+ */
+export interface AsPlaintextValue {
+  value: PlaintextValue;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface AsSecretName {
+  value: SecretName;
+}
+
+/**
+   * Access keys are long-term
+credentials for an IAM user or the AWS account root user.
+Access keys consist of two parts: an access key ID (for example, AKIAIOSFODNN7EXAMPLE) and a secret access
+key (for example, wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY). You must use both the access key ID and
+secret access key together to authenticate your requests.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface AwsAccessKey {
+  accessKeyId: string;
+  secretAccessKey: EncryptedProperty;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface Connection {
   rid: ConnectionRid;
   displayName: ConnectionDisplayName;
   runtimePlatform: RuntimePlatform;
+  configuration: ConnectionConfiguration;
 }
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type ConnectionConfiguration = {
+  type: "s3";
+} & S3ConnectionConfiguration;
 
 /**
  * Log Safety: UNSAFE
@@ -101,6 +137,20 @@ This is the preferred source connection method if the data source is accessible 
 export interface DirectConnectionRuntime {
   networkEgressPolicyRids: Array<NetworkEgressPolicyRid>;
 }
+
+/**
+   * When reading an encrypted property, the secret name representing the encrypted value will be returned.
+When writing to an encrypted property:
+
+If a plaintext value is passed as an input, the plaintext value will be encrypted and saved to the property.
+If a secret name is passed as an input, the secret name must match the existing secret name of the property
+and the property will retain its previously encrypted value.
+   *
+   * Log Safety: UNSAFE
+   */
+export type EncryptedProperty =
+  | ({ type: "asSecretName" } & AsSecretName)
+  | ({ type: "asPlaintextValue" } & AsPlaintextValue);
 
 /**
  * If any file has a relative path matching the regular expression, sync all files in the subfolder that are not otherwise filtered.
@@ -280,6 +330,13 @@ export interface ListFileImportsResponse {
 }
 
 /**
+ * The import configuration for a Microsoft Access connection.
+ *
+ * Log Safety: UNSAFE
+ */
+export type MicrosoftAccessImportConfig = PalantirProvidedDriversImportConfig;
+
+/**
  * The Resource Identifier (RID) of a Network Egress Policy.
  *
  * Log Safety: SAFE
@@ -287,6 +344,15 @@ export interface ListFileImportsResponse {
 export type NetworkEgressPolicyRid = LooselyBrandedString<
   "NetworkEgressPolicyRid"
 >;
+
+/**
+ * The configuration for all connectors that are Palantir-provided drivers.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface PalantirProvidedDriversImportConfig {
+  query: string;
+}
 
 /**
  * Log Safety: DO_NOT_LOG
@@ -307,7 +373,68 @@ export type RuntimePlatform =
 /**
  * Log Safety: UNSAFE
  */
+export type S3AuthenticationMode = { type: "awsAccessKey" } & AwsAccessKey;
+
+/**
+   * The configuration needed to connect to an AWS S3 external system (or any other S3-like external systems that
+implement the s3a protocol).
+   *
+   * Log Safety: UNSAFE
+   */
+export interface S3ConnectionConfiguration {
+  bucketUrl: string;
+  authenticationMode?: S3AuthenticationMode;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export type SecretName = LooselyBrandedString<"SecretName">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface TableImport {
+  rid: TableImportRid;
+  connectionRid: ConnectionRid;
+  datasetRid: _Datasets.DatasetRid;
+  branchName?: _Datasets.BranchName;
+  displayName: TableImportDisplayName;
+  importMode: TableImportMode;
+  config: TableImportConfig;
+}
+
+/**
+ * The import configuration for a specific connector type.
+ *
+ * Log Safety: UNSAFE
+ */
+export type TableImportConfig = {
+  type: "microsoftAccessImportConfig";
+} & MicrosoftAccessImportConfig;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type TableImportDisplayName = LooselyBrandedString<
+  "TableImportDisplayName"
+>;
+
+/**
+   * Import mode governs how data is read from an external system, and written into a Foundry dataset.
+SNAPSHOT: Defines a new dataset state consisting only of data from a particular import execution.
+APPEND: Purely additive and yields data from previous import executions in addition to newly added data.
+   *
+   * Log Safety: SAFE
+   */
+export type TableImportMode = "SNAPSHOT" | "APPEND";
+
+/**
+ * The Resource Identifier (RID) of a TableImport (formerly known as a batch sync).
+ *
+ * Log Safety: SAFE
+ */
+export type TableImportRid = LooselyBrandedString<"TableImportRid">;
 
 /**
  * Log Safety: DO_NOT_LOG

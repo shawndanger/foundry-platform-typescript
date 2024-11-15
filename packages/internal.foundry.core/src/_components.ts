@@ -186,6 +186,14 @@ export interface ListLinkedObjectsResponse {
 }
 
 /**
+   * Divides objects into groups based on their object type. This grouping is only useful when aggregating across
+multiple object types, such as when aggregating over an interface type.
+   *
+   * Log Safety: SAFE
+   */
+export interface AggregationObjectTypeGrouping {}
+
+/**
  * The underlying data values pointed to by a GeotimeSeriesReference.
  *
  * Log Safety: UNSAFE
@@ -194,14 +202,6 @@ export interface GeotimeSeriesValue {
   position: _Geo.Position;
   timestamp: string;
 }
-
-/**
-   * Divides objects into groups based on their object type. This grouping is only useful when aggregating across
-multiple object types, such as when aggregating over an interface type.
-   *
-   * Log Safety: SAFE
-   */
-export interface AggregationObjectTypeGrouping {}
 
 /**
  * Log Safety: SAFE
@@ -245,6 +245,15 @@ export interface AbsoluteTimeRange {
   startTime?: string;
   endTime?: string;
 }
+
+/**
+ * The version corresponding to a codex template.
+ *
+ * Log Safety: UNSAFE
+ */
+export type TimeseriesTemplateVersion = LooselyBrandedString<
+  "TimeseriesTemplateVersion"
+>;
 
 /**
  * Log Safety: UNSAFE
@@ -462,19 +471,19 @@ export interface MinAggregationV2 {
 }
 
 /**
- * Computes the total count of objects.
- *
- * Log Safety: SAFE
- */
-export interface SelectedPropertyCountAggregation {}
-
-/**
  * Log Safety: UNSAFE
  */
 export interface AddObject {
   primaryKey: PropertyValue;
   objectType: ObjectTypeApiName;
 }
+
+/**
+ * Computes the total count of objects.
+ *
+ * Log Safety: SAFE
+ */
+export interface SelectedPropertyCountAggregation {}
 
 /**
  * The representation of an attachment.
@@ -576,19 +585,19 @@ export interface ListAttachmentsResponseV2 {
 }
 
 /**
- * Log Safety: SAFE
- */
-export interface ObjectSetReferenceType {
-  reference: string;
-}
-
-/**
  * Log Safety: UNSAFE
  */
 export interface ListObjectsResponseV2 {
   nextPageToken?: PageToken;
   data: Array<OntologyObjectV2>;
   totalCount: TotalCount;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ObjectSetReferenceType {
+  reference: string;
 }
 
 /**
@@ -716,17 +725,6 @@ export interface QueryAggregationRangeType {
 }
 
 /**
- * Computes the average value for the provided field.
- *
- * Log Safety: UNSAFE
- */
-export interface AvgAggregationV2 {
-  field: PropertyApiName;
-  name?: AggregationMetricName;
-  direction?: OrderByDirection;
-}
-
-/**
  * Details about some property of an object.
  *
  * Log Safety: UNSAFE
@@ -735,6 +733,7 @@ export interface PropertyV2 {
   description?: string;
   displayName?: DisplayName;
   dataType: ObjectPropertyType;
+  rid: PropertyTypeRid;
 }
 
 /**
@@ -750,13 +749,14 @@ export interface OntologyV2 {
 }
 
 /**
- * Returns objects where the specified field is greater than a value.
+ * Computes the average value for the provided field.
  *
  * Log Safety: UNSAFE
  */
-export interface GtQueryV2 {
+export interface AvgAggregationV2 {
   field: PropertyApiName;
-  value: PropertyValue;
+  name?: AggregationMetricName;
+  direction?: OrderByDirection;
 }
 
 /**
@@ -765,6 +765,16 @@ export interface GtQueryV2 {
  * Log Safety: SAFE
  */
 export type InterfaceLinkTypeRid = LooselyBrandedString<"InterfaceLinkTypeRid">;
+
+/**
+ * Returns objects where the specified field is greater than a value.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface GtQueryV2 {
+  field: PropertyApiName;
+  value: PropertyValue;
+}
 
 /**
  * Log Safety: SAFE
@@ -1038,15 +1048,6 @@ export interface ListObjectsResponse {
 export type ObjectSetRid = LooselyBrandedString<"ObjectSetRid">;
 
 /**
- * Computes an approximate number of distinct values for the provided field.
- *
- * Log Safety: UNSAFE
- */
-export interface SelectedPropertyApproximateDistinctAggregation {
-  selectedPropertyApiName: PropertyApiName;
-}
-
-/**
  * Log Safety: UNSAFE
  */
 export interface LinkTypeSideV2 {
@@ -1057,6 +1058,15 @@ export interface LinkTypeSideV2 {
   cardinality: LinkTypeSideCardinality;
   foreignKeyPropertyApiName?: PropertyApiName;
   linkTypeRid: LinkTypeRid;
+}
+
+/**
+ * Computes an approximate number of distinct values for the provided field.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SelectedPropertyApproximateDistinctAggregation {
+  selectedPropertyApiName: PropertyApiName;
 }
 
 /**
@@ -1372,6 +1382,7 @@ export interface InterfaceType {
   description?: string;
   properties: Record<SharedPropertyTypeApiName, SharedPropertyType>;
   extendsInterfaces: Array<InterfaceTypeApiName>;
+  implementedByObjectTypes: Array<ObjectTypeApiName>;
   links: Record<InterfaceLinkTypeApiName, InterfaceLinkType>;
 }
 
@@ -1537,6 +1548,13 @@ export type ObjectPropertyType =
   | ({ type: "short" } & ShortType)
   | ({ type: "decimal" } & DecimalType)
   | ({ type: "timestamp" } & TimestampType);
+
+/**
+ * The RID identifying a time series sync.
+ *
+ * Log Safety: SAFE
+ */
+export type TimeseriesSyncRid = LooselyBrandedString<"TimeseriesSyncRid">;
 
 /**
  * Details about a parameter of an action.
@@ -1813,24 +1831,40 @@ export interface QueryStructType {
 }
 
 /**
+ * The representation of a time series property backed by a derived time series calculated with a formula.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DerivedTimeSeriesProperty {
+  templateRid: TimeseriesTemplateRid;
+  templateVersion?: TimeseriesTemplateVersion;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type PropertyTypeRid = LooselyBrandedString<"PropertyTypeRid">;
+
+/**
    * Represents the value of a property in the following format.
-| Type       | JSON encoding                                         | Example                                                                                            |
-|----------- |-------------------------------------------------------|----------------------------------------------------------------------------------------------------|
-| Array      | array                                                 | ["alpha", "bravo", "charlie"]                                                                    |
-| Attachment | JSON encoded AttachmentProperty object              | {"rid":"ri.blobster.main.attachment.2f944bae-5851-4204-8615-920c969a9f2e"}                       |
-| Boolean    | boolean                                               | true                                                                                             |
-| Byte       | number                                                | 31                                                                                               |
-| Date       | ISO 8601 extended local date string                   | "2021-05-01"                                                                                     |
-| Decimal    | string                                                | "2.718281828"                                                                                    |
-| Double     | number                                                | 3.14159265                                                                                       |
-| Float      | number                                                | 3.14159265                                                                                       |
-| GeoPoint   | geojson                                               | {"type":"Point","coordinates":[102.0,0.5]}                                                       |
-| GeoShape   | geojson                                               | {"type":"LineString","coordinates":[[102.0,0.0],[103.0,1.0],[104.0,0.0],[105.0,1.0]]}            |
-| Integer    | number                                                | 238940                                                                                           |
-| Long       | string                                                | "58319870951433"                                                                                 |
-| Short      | number                                                | 8739                                                                                             |
-| String     | string                                                | "Call me Ishmael"                                                                                |
-| Timestamp  | ISO 8601 extended offset date-time string in UTC zone | "2021-01-04T05:00:00Z"                                                                           |
+| Type       | JSON encoding                                               | Example                                                                                                                                                                                                                                                                  |
+|----------- |-------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Array      | array                                                       | ["alpha", "bravo", "charlie"]                                                                                                                                                                                                                                          |
+| Attachment | JSON encoded AttachmentProperty object                    | {"rid":"ri.blobster.main.attachment.2f944bae-5851-4204-8615-920c969a9f2e"}                                                                                                                                                                                             |
+| Boolean    | boolean                                                     | true                                                                                                                                                                                                                                                                   |
+| Byte       | number                                                      | 31                                                                                                                                                                                                                                                                     |
+| Date       | ISO 8601 extended local date string                         | "2021-05-01"                                                                                                                                                                                                                                                           |
+| Decimal    | string                                                      | "2.718281828"                                                                                                                                                                                                                                                          |
+| Double     | number                                                      | 3.14159265                                                                                                                                                                                                                                                             |
+| Float      | number                                                      | 3.14159265                                                                                                                                                                                                                                                             |
+| GeoPoint   | geojson                                                     | {"type":"Point","coordinates":[102.0,0.5]}                                                                                                                                                                                                                             |
+| GeoShape   | geojson                                                     | {"type":"LineString","coordinates":[[102.0,0.0],[103.0,1.0],[104.0,0.0],[105.0,1.0]]}                                                                                                                                                                                  |
+| Integer    | number                                                      | 238940                                                                                                                                                                                                                                                                 |
+| Long       | string                                                      | "58319870951433"                                                                                                                                                                                                                                                       |
+| Short      | number                                                      | 8739                                                                                                                                                                                                                                                                   |
+| String     | string                                                      | "Call me Ishmael"                                                                                                                                                                                                                                                      |
+| Timestamp  | ISO 8601 extended offset date-time string in UTC zone       | "2021-01-04T05:00:00Z"                                                                                                                                                                                                                                                 |
+| Timeseries | JSON encoded TimeseriesProperty object or seriesId string | {"seriesId": "wellPressureSeriesId", "syncRid": ri.time-series-catalog.main.sync.04f5ac1f-91bf-44f9-a51f-4f34e06e42df"} or {"templateRid": "ri.codex-emu.main.template.367cac64-e53b-4653-b111-f61856a63df9", "templateVersion": "0.0.0"} or "wellPressureSeriesId"|                                                                           |
 Note that for backwards compatibility, the Boolean, Byte, Double, Float, Integer, and Short types can also be encoded as JSON strings.
    *
    * Log Safety: UNSAFE
@@ -1907,6 +1941,11 @@ export interface ApplyActionResponse {}
 export interface BatchApplyActionResponse {}
 
 /**
+ * Log Safety: SAFE
+ */
+export type AsyncApplyActionOperationV2 = undefined; // {"locator":{"namespaceName":"Core","localName":"AsyncApplyActionOperationV2"},"type":{"type":"asyncOperation","asyncOperation":{"operationType":"applyActionAsyncV2","resultType":{"locator":{"namespaceName":"Ontologies","localName":"AsyncApplyActionOperationResponseV2"}},"stageType":{"locator":{"namespaceName":"Ontologies","localName":"AsyncActionStatus"}}}},"safety":"SAFE","documentation":{"example":[]}}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface AggregateObjectsRequestV2 {
@@ -1915,11 +1954,6 @@ export interface AggregateObjectsRequestV2 {
   groupBy: Array<AggregationGroupByV2>;
   accuracy?: AggregationAccuracyRequest;
 }
-
-/**
- * Log Safety: SAFE
- */
-export type AsyncApplyActionOperationV2 = undefined; // {"locator":{"namespaceName":"Core","localName":"AsyncApplyActionOperationV2"},"type":{"type":"asyncOperation","asyncOperation":{"operationType":"applyActionAsyncV2","resultType":{"locator":{"namespaceName":"Ontologies","localName":"AsyncApplyActionOperationResponseV2"}},"stageType":{"locator":{"namespaceName":"Ontologies","localName":"AsyncActionStatus"}}}},"safety":"SAFE","documentation":{"example":[]}}
 
 /**
  * Returns objects based on the existence of the specified field.
@@ -2203,6 +2237,16 @@ export type OntologyDataType =
   | ({ type: "object" } & OntologyObjectType);
 
 /**
+ * The representation of a time series property backed by multiple time series syncs.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface QualifiedTimeseriesProperty {
+  seriesId: SeriesId;
+  syncRid: TimeseriesSyncRid;
+}
+
+/**
  * Computes the minimum value for the provided field.
  *
  * Log Safety: UNSAFE
@@ -2244,18 +2288,18 @@ export interface IntersectsBoundingBoxQuery {
 }
 
 /**
- * Log Safety: SAFE
- */
-export interface SubscriptionSuccess {
-  id: SubscriptionId;
-}
-
-/**
  * Log Safety: UNSAFE
  */
 export interface AggregateObjectsResponseItemV2 {
   group: Record<AggregationGroupKeyV2, AggregationGroupValueV2>;
   metrics: Array<AggregationMetricResultV2>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface SubscriptionSuccess {
+  id: SubscriptionId;
 }
 
 /**
@@ -2354,21 +2398,21 @@ export interface OrQuery {
 }
 
 /**
- * Log Safety: UNSAFE
- */
-export interface ObjectSetStreamSubscribeRequest {
-  objectSet: ObjectSet;
-  propertySet: Array<SelectedPropertyApiName>;
-  referenceSet: Array<SelectedPropertyApiName>;
-}
-
-/**
  * Computes the maximum value for the provided field.
  *
  * Log Safety: UNSAFE
  */
 export interface SelectedPropertyMaxAggregation {
   selectedPropertyApiName: PropertyApiName;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ObjectSetStreamSubscribeRequest {
+  objectSet: ObjectSet;
+  propertySet: Array<SelectedPropertyApiName>;
+  referenceSet: Array<SelectedPropertyApiName>;
 }
 
 /**
@@ -2815,11 +2859,30 @@ export interface ListLinkedObjectsResponseV2 {
 export interface QosError {}
 
 /**
+ * The unique codex id of a time series.
+ *
+ * Log Safety: UNSAFE
+ */
+export type SeriesId = LooselyBrandedString<"SeriesId">;
+
+/**
  * Log Safety: UNSAFE
  */
 export type ObjectSetUpdate =
   | ({ type: "reference" } & ReferenceUpdate)
   | ({ type: "object" } & ObjectUpdate);
+
+/**
+ * The representation of an attachment.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface AttachmentV2 {
+  rid: AttachmentRid;
+  filename: Filename;
+  sizeBytes: SizeBytes;
+  mediaType: MediaType;
+}
 
 /**
    * The updated data value associated with an object instance's external reference. The object instance
@@ -2833,18 +2896,6 @@ export interface ReferenceUpdate {
   primaryKey: ObjectPrimaryKey;
   property: PropertyApiName;
   value: ReferenceValue;
-}
-
-/**
- * The representation of an attachment.
- *
- * Log Safety: UNSAFE
- */
-export interface AttachmentV2 {
-  rid: AttachmentRid;
-  filename: Filename;
-  sizeBytes: SizeBytes;
-  mediaType: MediaType;
 }
 
 /**
@@ -2997,11 +3048,6 @@ export interface QueryParameterV2 {
 }
 
 /**
- * Log Safety: UNSAFE
- */
-export type WithinBoundingBoxPoint = { type: "Point" } & _Geo.GeoPoint;
-
-/**
  * Specifies a range from an inclusive start value to an exclusive end value.
  *
  * Log Safety: UNSAFE
@@ -3012,6 +3058,11 @@ export interface AggregationRangeV2 {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export type WithinBoundingBoxPoint = { type: "Point" } & _Geo.GeoPoint;
+
+/**
  * Computes the average value for the provided field.
  *
  * Log Safety: UNSAFE
@@ -3019,6 +3070,15 @@ export interface AggregationRangeV2 {
 export interface SelectedPropertyAvgAggregation {
   selectedPropertyApiName: PropertyApiName;
 }
+
+/**
+ * The RID identifying a time series codex template that resolves to a derived series.
+ *
+ * Log Safety: SAFE
+ */
+export type TimeseriesTemplateRid = LooselyBrandedString<
+  "TimeseriesTemplateRid"
+>;
 
 /**
  * Specifies the ordering of search results by a field and an ordering direction.
@@ -3148,6 +3208,11 @@ export interface StreamTimeSeriesValuesResponse {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface AsyncApplyActionOperationResponseV2 {}
+
+/**
    * Returns objects where the specified field contains all of the whitespace separated words in any
 order in the provided value. This query supports fuzzy matching.
    *
@@ -3158,11 +3223,6 @@ export interface ContainsAllTermsQuery {
   value: string;
   fuzzy?: FuzzyV2;
 }
-
-/**
- * Log Safety: SAFE
- */
-export interface AsyncApplyActionOperationResponseV2 {}
 
 /**
  * A union of all the types supported by Ontology Query parameters or outputs.
@@ -3282,16 +3342,6 @@ export interface QueryType {
 }
 
 /**
- * Returns a response for every request in the same order. Duplicate requests will be assigned the same SubscriberId.
- *
- * Log Safety: UNSAFE
- */
-export interface ObjectSetSubscribeResponses {
-  responses: Array<ObjectSetSubscribeResponse>;
-  id: RequestId;
-}
-
-/**
  * Returns objects where the specified field contains a point within the bounding box provided.
  *
  * Log Safety: UNSAFE
@@ -3299,6 +3349,16 @@ export interface ObjectSetSubscribeResponses {
 export interface WithinBoundingBoxQuery {
   field: PropertyApiName;
   value: BoundingBoxValue;
+}
+
+/**
+ * Returns a response for every request in the same order. Duplicate requests will be assigned the same SubscriberId.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ObjectSetSubscribeResponses {
+  responses: Array<ObjectSetSubscribeResponse>;
+  id: RequestId;
 }
 
 /**
@@ -3516,7 +3576,7 @@ export interface ByteType {}
  * Log Safety: UNSAFE
  */
 export interface TimeseriesType {
-  itemType: TimeSeriesItemType;
+  itemType?: TimeSeriesItemType;
 }
 
 /**
@@ -3729,7 +3789,7 @@ export type ContentType = LooselyBrandedString<"ContentType">;
 /**
    * The page token indicates where to start paging. This should be omitted from the first page's request.
 To fetch the next page, clients should take the value from the nextPageToken field of the previous response
-and populate the next request's pageToken field with it.
+and use it to populate the pageToken field of the next request.
    *
    * Log Safety: UNSAFE
    */

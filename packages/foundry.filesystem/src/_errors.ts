@@ -172,6 +172,20 @@ export interface PermanentlyDeleteResourcePermissionDenied {
 }
 
 /**
+ * The given Project could not be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface ProjectNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "ProjectNotFound";
+  errorInstanceId: string;
+  parameters: {
+    projectRid: unknown;
+  };
+}
+
+/**
    * The Resource is not directly trashed.
 
    *
