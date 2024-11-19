@@ -181,8 +181,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
-        specifier: ~0.3.2
-        version: 0.3.2
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
     devDependencies:
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
@@ -203,8 +203,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
-        specifier: ~0.3.2
-        version: 0.3.2
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
     devDependencies:
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
@@ -225,8 +225,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
-        specifier: ~0.3.2
-        version: 0.3.2
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
     devDependencies:
       '@osdk/monorepo.api-extractor':
         specifier: workspace:~
@@ -259,8 +259,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
-        specifier: ~0.3.2
-        version: 0.3.2
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
     devDependencies:
       '@osdk/monorepo.api-extractor':
         specifier: workspace:~
@@ -287,8 +287,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
-        specifier: ~0.3.2
-        version: 0.3.2
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
     devDependencies:
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
@@ -312,8 +312,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
-        specifier: ~0.3.2
-        version: 0.3.2
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
     devDependencies:
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
@@ -334,8 +334,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
-        specifier: ~0.3.2
-        version: 0.3.2
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
     devDependencies:
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
@@ -356,8 +356,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
-        specifier: ~0.3.2
-        version: 0.3.2
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
     devDependencies:
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
@@ -375,8 +375,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
-        specifier: ~0.3.2
-        version: 0.3.2
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
     devDependencies:
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
@@ -394,8 +394,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
-        specifier: ~0.3.2
-        version: 0.3.2
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
     devDependencies:
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
@@ -422,8 +422,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
-        specifier: ~0.3.2
-        version: 0.3.2
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
     devDependencies:
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
@@ -444,8 +444,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
-        specifier: ~0.3.2
-        version: 0.3.2
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
     devDependencies:
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
@@ -472,8 +472,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
-        specifier: ~0.3.2
-        version: 0.3.2
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
     devDependencies:
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
@@ -494,8 +494,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
-        specifier: ~0.3.2
-        version: 0.3.2
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
     devDependencies:
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
@@ -528,8 +528,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
-        specifier: ~0.3.2
-        version: 0.3.2
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
     devDependencies:
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
@@ -550,8 +550,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
-        specifier: ~0.3.2
-        version: 0.3.2
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
     devDependencies:
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
@@ -572,8 +572,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
-        specifier: ~0.3.2
-        version: 0.3.2
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
     devDependencies:
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
@@ -591,8 +591,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
-        specifier: ~0.3.2
-        version: 0.3.2
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
     devDependencies:
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
@@ -613,8 +613,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
-        specifier: ~0.3.2
-        version: 0.3.2
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
     devDependencies:
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
@@ -635,8 +635,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       '@osdk/shared.net.platformapi':
-        specifier: ~0.3.2
-        version: 0.3.2
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
     devDependencies:
       '@osdk/monorepo.tsconfig':
         specifier: workspace:~
@@ -716,6 +716,31 @@ importers:
       '@types/yargs':
         specifier: ^17.0.29
         version: 17.0.32
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
+
+  packages/shared.net.platformapi:
+    dependencies:
+      '@osdk/shared.client':
+        specifier: ^1.0.1
+        version: 1.0.1
+      '@osdk/shared.client2':
+        specifier: ^1.0.0
+        version: 1.0.0
+      '@osdk/shared.net.errors':
+        specifier: ^2.0.1
+        version: 2.0.1
+    devDependencies:
+      '@osdk/monorepo.api-extractor':
+        specifier: workspace:~
+        version: link:../monorepo.api-extractor
+      '@osdk/monorepo.tsconfig':
+        specifier: workspace:~
+        version: link:../monorepo.tsconfig
+      '@osdk/monorepo.tsup':
+        specifier: workspace:~
+        version: link:../monorepo.tsup
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
@@ -1842,11 +1867,8 @@ packages:
   '@osdk/shared.client@1.0.1':
     resolution: {integrity: sha512-yTH9nOn46SV2Vh8gtHI1DkNa7VatIaQdb3lp7LLREqviY7bjAQI9+IYK/oMSUYkHgB8uU1JIP1qgVETamhS7VA==}
 
-  '@osdk/shared.net.errors@2.0.0':
-    resolution: {integrity: sha512-1XIz+8axQRKGzRretUC9wBnNnCaXEQXxjbFh7Tde+95lv6FASbkpZbslrANy4iIFMl4BhStq0jZmK8KAtvFnxg==}
-
-  '@osdk/shared.net.platformapi@0.3.2':
-    resolution: {integrity: sha512-tei6AiSXI7We6dhm7CbyCAAu9ruhAahFmCsLOG4Wwsropyx8uWpH3+f8InB1fxOTSGcaX2Vt2nr7IzEdTuEEgQ==}
+  '@osdk/shared.net.errors@2.0.1':
+    resolution: {integrity: sha512-9M2Kfe9+VATKBXQ459Ju6Bo/TDWjZbS1C4XwPdVDslyJfbuveFZGqHP9Cs32eGbhikZ0A8O5pKMMteHST4pUZw==}
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -5980,13 +6002,7 @@ snapshots:
 
   '@osdk/shared.client@1.0.1': {}
 
-  '@osdk/shared.net.errors@2.0.0': {}
-
-  '@osdk/shared.net.platformapi@0.3.2':
-    dependencies:
-      '@osdk/shared.client': 1.0.1
-      '@osdk/shared.client2': 1.0.0
-      '@osdk/shared.net.errors': 2.0.0
+  '@osdk/shared.net.errors@2.0.1': {}
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
