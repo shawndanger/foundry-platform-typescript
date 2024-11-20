@@ -28,7 +28,7 @@ export async function addPackagesToPackageJson(
   );
   packageJson.dependencies["@osdk/shared.client"] = "1.0.1";
   packageJson.dependencies["@osdk/shared.client2"] = "1.0.0";
-  packageJson.dependencies["@osdk/shared.net.platformapi"] = "~0.4.0-beta.3";
+  packageJson.dependencies["@osdk/shared.net.platformapi"] = "workspace:~";
   await fs.writeFile(
     packageJsonPath,
     JSON.stringify(packageJson, undefined, 2),
