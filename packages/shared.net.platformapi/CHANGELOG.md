@@ -1,5 +1,11 @@
 # @osdk/shared.net.platformapi
 
+## 1.2.0-beta.0
+
+### Minor Changes
+
+- e866c5c: Update fetch function to parse urls correctly.
+
 ## 1.1.0
 
 ### Minor Changes
