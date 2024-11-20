@@ -1,5 +1,17 @@
 # @osdk/foundry.ontologies
 
+## 2.5.0
+
+### Minor Changes
+
+- 92ceb52: Using new version of shared platform API. Also releasing 1.0 of that package.
+- c5eab42: Updating apis to include new timeseries types.
+
+### Patch Changes
+
+- Updated dependencies [92ceb52]
+  - @osdk/shared.net.platformapi@1.1.0
+
 ## 2.4.0
 
 ### Minor Changes
