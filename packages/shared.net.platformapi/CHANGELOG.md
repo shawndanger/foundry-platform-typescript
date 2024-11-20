@@ -1,5 +1,11 @@
 # @osdk/shared.net.platformapi
 
+## 1.1.0
+
+### Minor Changes
+
+- 92ceb52: Using new version of shared platform API. Also releasing 1.0 of that package.
+
 ## 0.4.0-beta.3
 
 ### Minor Changes

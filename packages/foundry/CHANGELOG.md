@@ -1,5 +1,31 @@
 # @osdk/foundry
 
+## 2.5.0
+
+### Minor Changes
+
+- 92ceb52: Using new version of shared platform API. Also releasing 1.0 of that package.
+- c5eab42: Updating apis to include new timeseries types.
+
+### Patch Changes
+
+- Updated dependencies [92ceb52]
+- Updated dependencies [c5eab42]
+  - @osdk/foundry.thirdpartyapplications@2.5.0
+  - @osdk/shared.net.platformapi@1.1.0
+  - @osdk/foundry.orchestration@2.5.0
+  - @osdk/foundry.connectivity@2.5.0
+  - @osdk/foundry.filesystem@2.5.0
+  - @osdk/foundry.ontologies@2.5.0
+  - @osdk/foundry.publicapis@2.5.0
+  - @osdk/foundry.aipagents@2.5.0
+  - @osdk/foundry.functions@2.5.0
+  - @osdk/foundry.datasets@2.5.0
+  - @osdk/foundry.streams@2.5.0
+  - @osdk/foundry.admin@2.5.0
+  - @osdk/foundry.core@2.5.0
+  - @osdk/foundry.geo@2.5.0
+
 ## 2.4.0
 
 ### Minor Changes
