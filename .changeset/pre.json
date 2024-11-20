@@ -33,5 +33,7 @@
     "@osdk/shared.net.platformapi": "1.1.0",
     "@osdk/tool.release": "0.5.0"
   },
-  "changesets": []
+  "changesets": [
+    "tiny-forks-end"
+  ]
 }
