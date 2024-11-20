@@ -42,7 +42,7 @@ const _get: $FoundryPlatformMethod<
 /**
  * Get details for an AIP Agent.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:aip-agents-read]
  * URL: /v2/aipAgents/agents/{agentRid}
@@ -63,18 +63,17 @@ export function get(
 
 const _allSessions: $FoundryPlatformMethod<
   ($queryParams?: {
-    pageSize?: _AipAgents.PageSize | undefined;
-    pageToken?: _AipAgents.PageToken | undefined;
+    pageSize?: _Core.PageSize | undefined;
+    pageToken?: _Core.PageToken | undefined;
     preview?: _Core.PreviewMode | undefined;
   }) => Promise<_AipAgents.AgentsSessionsPage>
 > = [0, "/v2/aipAgents/agents/allSessions", 2];
 
 /**
- * List all conversation sessions between the calling user across all accessible Agents that were created
- * by this client.
+ * List all conversation sessions between the calling user and all accessible Agents that were created by this client.
  * Sessions are returned in order of most recently updated first.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:aip-agents-write]
  * URL: /v2/aipAgents/agents/allSessions
@@ -83,8 +82,8 @@ export function allSessions(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     $queryParams?: {
-      pageSize?: _AipAgents.PageSize | undefined;
-      pageToken?: _AipAgents.PageToken | undefined;
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ]

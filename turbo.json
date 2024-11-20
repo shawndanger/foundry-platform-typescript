@@ -9,14 +9,6 @@
       "cache": false
     },
 
-    "ci:cspell": {
-      "dependsOn": ["//#cspell:all"]
-    },
-
-    "//#cspell:all": {
-      "cache": false
-    },
-
     "lint": {
       "outputLogs": "new-only",
       "inputs": [

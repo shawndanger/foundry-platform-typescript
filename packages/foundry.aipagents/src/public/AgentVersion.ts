@@ -44,7 +44,7 @@ const _list: $FoundryPlatformMethod<
  * List all versions for an AIP Agent.
  * Versions are returned in descending order, by most recent versions first.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:aip-agents-read]
  * URL: /v2/aipAgents/agents/{agentRid}/agentVersions
@@ -75,7 +75,7 @@ const _get: $FoundryPlatformMethod<
 /**
  * Get version details for an AIP Agent.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:aip-agents-read]
  * URL: /v2/aipAgents/agents/{agentRid}/agentVersions/{agentVersionString}

@@ -43,6 +43,7 @@ export type {
   MissingDisplayName,
   PathNotFound,
   PermanentlyDeleteResourcePermissionDenied,
+  ProjectNotFound,
   ResourceNotDirectlyTrashed,
   ResourceNotFound,
   ResourceNotTrashed,
@@ -52,4 +53,5 @@ export type {
   TrashingSpaceNotSupported,
 } from "./_errors.js";
 export * as Folders from "./public/Folder.js";
+export * as Projects from "./public/Project.js";
 export * as Resources from "./public/Resource.js";

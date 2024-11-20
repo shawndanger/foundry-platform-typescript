@@ -143,6 +143,9 @@ const cspell = {
 
         // Used in a stub
         "Clooney",
+
+        // Used in API docs
+        "AKIAIOSFODNN",
       ],
     },
     {

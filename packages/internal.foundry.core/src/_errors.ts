@@ -1100,6 +1100,18 @@ export interface InvalidSortType {
 }
 
 /**
+ * Failed to find a provided property for a given object.
+ *
+ * Log Safety: SAFE
+ */
+export interface PropertyNotFound {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "PropertyNotFound";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The given Ontology API name is not unique. Use the Ontology RID in place of the Ontology API name.
  *
  * Log Safety: UNSAFE
