@@ -1,5 +1,18 @@
 # @osdk/foundry.functions
 
+## 2.5.0
+
+### Minor Changes
+
+- 92ceb52: Using new version of shared platform API. Also releasing 1.0 of that package.
+
+### Patch Changes
+
+- Updated dependencies [92ceb52]
+- Updated dependencies [c5eab42]
+  - @osdk/shared.net.platformapi@1.1.0
+  - @osdk/foundry.core@2.5.0
+
 ## 2.4.0
 
 ### Patch Changes
