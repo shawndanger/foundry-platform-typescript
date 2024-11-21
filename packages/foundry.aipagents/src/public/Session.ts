@@ -162,7 +162,7 @@ const _streamingContinue: $FoundryPlatformMethod<
     sessionRid: _AipAgents.SessionRid,
     $body: _AipAgents.StreamingContinueSessionRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<Blob>
+  ) => Promise<Response>
 > = [
   1,
   "/v2/aipAgents/agents/{0}/sessions/{1}/streamingContinue",
@@ -193,7 +193,7 @@ export function streamingContinue(
     $body: _AipAgents.StreamingContinueSessionRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
-): Promise<Blob> {
+): Promise<Response> {
   return $foundryPlatformFetch($ctx, _streamingContinue, ...args);
 }
 

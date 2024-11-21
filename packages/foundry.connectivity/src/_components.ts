@@ -84,6 +84,23 @@ export interface AwsAccessKey {
 }
 
 /**
+   * Cloud identities allow you to authenticate to
+cloud provider resources without the use of static credentials.
+   *
+   * Log Safety: SAFE
+   */
+export interface CloudIdentity {
+  cloudIdentityRid: CloudIdentityRid;
+}
+
+/**
+ * The Resource Identifier (RID) of a Cloud Identity.
+ *
+ * Log Safety: SAFE
+ */
+export type CloudIdentityRid = LooselyBrandedString<"CloudIdentityRid">;
+
+/**
  * Log Safety: UNSAFE
  */
 export interface Connection {
@@ -125,6 +142,33 @@ export interface CreateFileImportRequest {
   subfolder?: string;
   fileImportFilters: Array<FileImportFilter>;
 }
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateTableImportRequest {
+  datasetRid: _Datasets.DatasetRid;
+  importMode: TableImportMode;
+  displayName: TableImportDisplayName;
+  branchName?: _Datasets.BranchName;
+  config: CreateTableImportRequestTableImportConfig;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateTableImportRequestPalantirProvidedDriversImportConfig {
+  query: string;
+}
+
+/**
+ * The import configuration for a specific connector type.
+ *
+ * Log Safety: UNSAFE
+ */
+export type CreateTableImportRequestTableImportConfig = {
+  type: "microsoftAccessImportConfig";
+} & MicrosoftAccessImportConfig;
 
 /**
    * Direct connections enable users to connect
@@ -346,6 +390,18 @@ export type NetworkEgressPolicyRid = LooselyBrandedString<
 >;
 
 /**
+   * OpenID Connect (OIDC) is an open authentication protocol that allows
+you to authenticate to external system resources without the use of static credentials.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface Oidc {
+  audience: string;
+  issuerUrl: string;
+  subject: ConnectionRid;
+}
+
+/**
  * The configuration for all connectors that are Palantir-provided drivers.
  *
  * Log Safety: UNSAFE
@@ -373,7 +429,10 @@ export type RuntimePlatform =
 /**
  * Log Safety: UNSAFE
  */
-export type S3AuthenticationMode = { type: "awsAccessKey" } & AwsAccessKey;
+export type S3AuthenticationMode =
+  | ({ type: "awsAccessKey" } & AwsAccessKey)
+  | ({ type: "cloudIdentity" } & CloudIdentity)
+  | ({ type: "oidc" } & Oidc);
 
 /**
    * The configuration needed to connect to an AWS S3 external system (or any other S3-like external systems that

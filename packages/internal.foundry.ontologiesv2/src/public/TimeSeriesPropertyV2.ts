@@ -121,7 +121,7 @@ const _streamPoints: $FoundryPlatformMethod<
       artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
       packageName?: _Core.SdkPackageName | undefined;
     },
-  ) => Promise<Blob>
+  ) => Promise<Response>
 > = [
   1,
   "/v2/ontologies/{0}/objects/{1}/{2}/timeseries/{3}/streamPoints",
@@ -154,6 +154,6 @@ export function streamPoints(
       packageName?: _Core.SdkPackageName | undefined;
     },
   ]
-): Promise<Blob> {
+): Promise<Response> {
   return $foundryPlatformFetch($ctx, _streamPoints, ...args);
 }

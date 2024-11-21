@@ -122,7 +122,7 @@ const _readAttachment: $FoundryPlatformMethod<
       artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
       packageName?: _Core.SdkPackageName | undefined;
     },
-  ) => Promise<Blob>
+  ) => Promise<Response>
 > = [
   0,
   "/v2/ontologies/{0}/objects/{1}/{2}/attachments/{3}/content",
@@ -155,7 +155,7 @@ export function readAttachment(
       packageName?: _Core.SdkPackageName | undefined;
     },
   ]
-): Promise<Blob> {
+): Promise<Response> {
   return $foundryPlatformFetch($ctx, _readAttachment, ...args);
 }
 
@@ -170,7 +170,7 @@ const _readAttachmentByRid: $FoundryPlatformMethod<
       artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
       packageName?: _Core.SdkPackageName | undefined;
     },
-  ) => Promise<Blob>
+  ) => Promise<Response>
 > = [
   0,
   "/v2/ontologies/{0}/objects/{1}/{2}/attachments/{3}/{4}/content",
@@ -206,6 +206,6 @@ export function readAttachmentByRid(
       packageName?: _Core.SdkPackageName | undefined;
     },
   ]
-): Promise<Blob> {
+): Promise<Response> {
   return $foundryPlatformFetch($ctx, _readAttachmentByRid, ...args);
 }

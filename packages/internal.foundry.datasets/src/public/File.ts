@@ -265,7 +265,7 @@ const _read: $FoundryPlatformMethod<
       startTransactionRid?: _Datasets.TransactionRid | undefined;
       endTransactionRid?: _Datasets.TransactionRid | undefined;
     },
-  ) => Promise<Blob>
+  ) => Promise<Response>
 > = [0, "/v1/datasets/{0}/files/{1}/content", 2, , "*/*"];
 
 /**
@@ -312,6 +312,6 @@ export function read(
       endTransactionRid?: _Datasets.TransactionRid | undefined;
     },
   ]
-): Promise<Blob> {
+): Promise<Response> {
   return $foundryPlatformFetch($ctx, _read, ...args);
 }

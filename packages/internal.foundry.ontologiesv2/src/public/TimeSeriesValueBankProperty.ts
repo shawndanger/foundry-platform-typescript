@@ -80,7 +80,7 @@ const _streamValues: $FoundryPlatformMethod<
       artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
       packageName?: _Core.SdkPackageName | undefined;
     },
-  ) => Promise<Blob>
+  ) => Promise<Response>
 > = [
   1,
   "/v2/ontologies/{0}/objects/{1}/{2}/timeseries/{3}/streamValues",
@@ -113,6 +113,6 @@ export function streamValues(
       packageName?: _Core.SdkPackageName | undefined;
     },
   ]
-): Promise<Blob> {
+): Promise<Response> {
   return $foundryPlatformFetch($ctx, _streamValues, ...args);
 }
