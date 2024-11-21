@@ -1,5 +1,12 @@
 # @osdk/foundry.geo
 
+## 2.6.0-beta.0
+
+### Patch Changes
+
+- Updated dependencies [e866c5c]
+  - @osdk/shared.net.platformapi@1.2.0-beta.0
+
 ## 2.5.0
 
 ### Minor Changes
