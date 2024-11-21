@@ -1,5 +1,29 @@
 # @osdk/foundry
 
+## 2.6.0-beta.1
+
+### Minor Changes
+
+- 7e79126: Updates the response type of methods that returned Blob to return Response
+
+### Patch Changes
+
+- Updated dependencies [7e79126]
+  - @osdk/foundry.thirdpartyapplications@2.6.0-beta.1
+  - @osdk/shared.net.platformapi@1.2.0-beta.1
+  - @osdk/foundry.orchestration@2.6.0-beta.1
+  - @osdk/foundry.connectivity@2.6.0-beta.1
+  - @osdk/foundry.filesystem@2.6.0-beta.1
+  - @osdk/foundry.ontologies@2.6.0-beta.1
+  - @osdk/foundry.publicapis@2.6.0-beta.1
+  - @osdk/foundry.aipagents@2.6.0-beta.1
+  - @osdk/foundry.datasets@2.6.0-beta.1
+  - @osdk/foundry.streams@2.6.0-beta.1
+  - @osdk/foundry.admin@2.6.0-beta.1
+  - @osdk/foundry.core@2.6.0-beta.1
+  - @osdk/foundry.geo@2.6.0-beta.1
+  - @osdk/foundry.functions@2.6.0-beta.1
+
 ## 2.6.0-beta.0
 
 ### Patch Changes
