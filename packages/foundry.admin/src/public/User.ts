@@ -164,7 +164,7 @@ export function getMarkings(
 }
 
 const _profilePicture: $FoundryPlatformMethod<
-  (userId: _Core.PrincipalId) => Promise<Blob>
+  (userId: _Core.PrincipalId) => Promise<Response>
 > = [0, "/v2/admin/users/{0}/profilePicture", , , "application/octet-stream"];
 
 /**
@@ -176,7 +176,7 @@ const _profilePicture: $FoundryPlatformMethod<
 export function profilePicture(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [userId: _Core.PrincipalId]
-): Promise<Blob> {
+): Promise<Response> {
   return $foundryPlatformFetch($ctx, _profilePicture, ...args);
 }
 

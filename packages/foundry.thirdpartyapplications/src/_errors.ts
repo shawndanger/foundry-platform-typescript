@@ -62,6 +62,38 @@ export interface DeployWebsitePermissionDenied {
 }
 
 /**
+   * The .zip archive contains too many files.
+
+   *
+   * Log Safety: SAFE
+   */
+export interface FileCountLimitExceeded {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "FileCountLimitExceeded";
+  errorInstanceId: string;
+  parameters: {
+    fileCountLimit: unknown;
+  };
+}
+
+/**
+   * A file inside the .zip archive is too big. You must ensure that all files inside
+the .zip archive are within the limit.
+
+   *
+   * Log Safety: SAFE
+   */
+export interface FileSizeLimitExceeded {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "FileSizeLimitExceeded";
+  errorInstanceId: string;
+  parameters: {
+    fileSizeBytesLimit: unknown;
+    currentFileSizeBytes: unknown;
+  };
+}
+
+/**
  * The given website version is invalid. Versions must follow semantic versioning with major, minor, and patch versions separate by periods, e.g. `0.1.0` or `1.2.3`.
  *
  * Log Safety: UNSAFE
@@ -128,6 +160,22 @@ export interface VersionAlreadyExists {
   errorInstanceId: string;
   parameters: {
     version: unknown;
+  };
+}
+
+/**
+   * The website contains too many versions. You must delete an old version before
+uploading a new one.
+
+   *
+   * Log Safety: SAFE
+   */
+export interface VersionLimitExceeded {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "VersionLimitExceeded";
+  errorInstanceId: string;
+  parameters: {
+    versionLimit: unknown;
   };
 }
 

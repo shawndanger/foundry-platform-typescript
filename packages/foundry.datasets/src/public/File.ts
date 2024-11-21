@@ -244,7 +244,7 @@ const _content: $FoundryPlatformMethod<
       startTransactionRid?: _Datasets.TransactionRid | undefined;
       endTransactionRid?: _Datasets.TransactionRid | undefined;
     },
-  ) => Promise<Blob>
+  ) => Promise<Response>
 > = [0, "/v2/datasets/{0}/files/{1}/content", 2, , "application/octet-stream"];
 
 /**
@@ -285,6 +285,6 @@ export function content(
       endTransactionRid?: _Datasets.TransactionRid | undefined;
     },
   ]
-): Promise<Blob> {
+): Promise<Response> {
   return $foundryPlatformFetch($ctx, _content, ...args);
 }

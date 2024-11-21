@@ -130,6 +130,7 @@ const _loadMultipleObjectTypes: $FoundryPlatformMethod<
     $queryParams?: {
       artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
       packageName?: _Core.SdkPackageName | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Core.LoadObjectSetV2MultipleObjectTypesResponse>
 > = [1, "/v2/ontologies/{0}/objectSets/loadObjectsMultipleObjectTypes", 3];
@@ -162,10 +163,58 @@ export function loadMultipleObjectTypes(
     $queryParams?: {
       artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
       packageName?: _Core.SdkPackageName | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Core.LoadObjectSetV2MultipleObjectTypesResponse> {
   return $foundryPlatformFetch($ctx, _loadMultipleObjectTypes, ...args);
+}
+
+const _loadObjectsOrInterfaces: $FoundryPlatformMethod<
+  (
+    ontology: _Core.OntologyIdentifier,
+    $body: _Core.LoadObjectSetV2ObjectsOrInterfacesRequest,
+    $queryParams?: {
+      artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
+      packageName?: _Core.SdkPackageName | undefined;
+    },
+  ) => Promise<_Core.LoadObjectSetV2ObjectsOrInterfacesResponse>
+> = [1, "/v2/ontologies/{0}/objectSets/loadObjectsOrInterfaces", 3];
+
+/**
+ * Load the ontology objects present in the `ObjectSet` from the provided object set definition. If the requested
+ * object set contains interfaces and the object can be viewed as an interface, it will contain the properties
+ * defined by the interface. If not, it will contain the properties defined by its object type. This allows directly
+ * loading all objects of an interface where all objects are viewed as the interface, for example.
+ *
+ * Note that the result object set cannot contain a mix of objects with "interface" properties and "object type"
+ * properties. Attempting to load an object set like this will result in an error.
+ *
+ * For Object Storage V1 backed objects, this endpoint returns a maximum of 10,000 objects. After 10,000 objects have been returned and if more objects
+ * are available, attempting to load another page will result in an `ObjectsExceededLimit` error being returned. There is no limit on Object Storage V2 backed objects.
+ *
+ * Note that null value properties will not be returned. In addition, property metadata (rid, apiName, and primaryKey)
+ * will be prefixed with '$' instead of '\_\_' as is the case in `/loadObjects`.
+ *
+ * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:ontologies-read]
+ * URL: /v2/ontologies/{ontology}/objectSets/loadObjectsOrInterfaces
+ */
+export function loadObjectsOrInterfaces(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Core.OntologyIdentifier,
+    $body: _Core.LoadObjectSetV2ObjectsOrInterfacesRequest,
+    $queryParams?: {
+      artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
+      packageName?: _Core.SdkPackageName | undefined;
+    },
+  ]
+): Promise<_Core.LoadObjectSetV2ObjectsOrInterfacesResponse> {
+  return $foundryPlatformFetch($ctx, _loadObjectsOrInterfaces, ...args);
 }
 
 const _aggregate: $FoundryPlatformMethod<

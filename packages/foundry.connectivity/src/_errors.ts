@@ -78,6 +78,20 @@ export interface CreateFileImportPermissionDenied {
 }
 
 /**
+ * Could not create the TableImport.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateTableImportPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateTableImportPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    connectionRid: unknown;
+  };
+}
+
+/**
  * Could not delete the FileImport.
  *
  * Log Safety: SAFE
@@ -93,6 +107,21 @@ export interface DeleteFileImportPermissionDenied {
 }
 
 /**
+ * Could not delete the TableImport.
+ *
+ * Log Safety: SAFE
+ */
+export interface DeleteTableImportPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "DeleteTableImportPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    tableImportRid: unknown;
+    connectionRid: unknown;
+  };
+}
+
+/**
  * Could not execute the FileImport.
  *
  * Log Safety: SAFE
@@ -103,6 +132,21 @@ export interface ExecuteFileImportPermissionDenied {
   errorInstanceId: string;
   parameters: {
     fileImportRid: unknown;
+    connectionRid: unknown;
+  };
+}
+
+/**
+ * Could not execute the TableImport.
+ *
+ * Log Safety: SAFE
+ */
+export interface ExecuteTableImportPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ExecuteTableImportPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    tableImportRid: unknown;
     connectionRid: unknown;
   };
 }
@@ -272,6 +316,22 @@ export interface TableImportNotFound {
   parameters: {
     tableImportRid: unknown;
     connectionRid: unknown;
+  };
+}
+
+/**
+   * The specified connection does not support creating a table import with the specified config.
+
+   *
+   * Log Safety: UNSAFE
+   */
+export interface TableImportNotSupportedForConnection {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "TableImportNotSupportedForConnection";
+  errorInstanceId: string;
+  parameters: {
+    connectionRid: unknown;
+    tableImportType: unknown;
   };
 }
 

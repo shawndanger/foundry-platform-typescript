@@ -67,6 +67,15 @@ const _updateSecrets: $FoundryPlatformMethod<
  * Updates the secrets on the connection to the specified secret values.
  * Secrets that are currently configured on the connection but are omitted in the request will remain unchanged.
  *
+ * Secrets are transmitted over the network encrypted using TLS. Once the secrets reach Foundry's servers,
+ * they will be temporarily decrypted and remain in plaintext in memory to be processed as needed.
+ * They will stay in plaintext in memory until the garbage collection process cleans up the memory.
+ * The secrets are always stored encrypted on our servers.
+ *
+ * By using this endpoint, you acknowledge and accept any potential risks associated with the temporary
+ * in-memory handling of secrets. If you do not want your secrets to be temporarily decrypted, you should
+ * use the Foundry UI instead.
+ *
  * @alpha
  *
  * Required Scopes: [api:connectivity-connection-write]

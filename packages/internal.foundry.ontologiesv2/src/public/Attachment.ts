@@ -69,7 +69,7 @@ export function upload(
 }
 
 const _read: $FoundryPlatformMethod<
-  (attachmentRid: _Core.AttachmentRid) => Promise<Blob>
+  (attachmentRid: _Core.AttachmentRid) => Promise<Response>
 > = [0, "/v2/ontologies/attachments/{0}/content", , , "*/*"];
 
 /**
@@ -86,7 +86,7 @@ const _read: $FoundryPlatformMethod<
 export function read(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [attachmentRid: _Core.AttachmentRid]
-): Promise<Blob> {
+): Promise<Response> {
   return $foundryPlatformFetch($ctx, _read, ...args);
 }
 

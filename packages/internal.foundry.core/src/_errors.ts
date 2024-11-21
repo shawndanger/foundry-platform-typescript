@@ -49,6 +49,20 @@ export interface MalformedPropertyFilters {
 }
 
 /**
+ * The parameter references an interface type that could not be found, or the client token does not have access to it.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ActionParameterInterfaceTypeNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "ActionParameterInterfaceTypeNotFound";
+  errorInstanceId: string;
+  parameters: {
+    parameterId: unknown;
+  };
+}
+
+/**
  * The given object could not be mapped to a Marketplace installation.
  *
  * Log Safety: UNSAFE
@@ -1126,7 +1140,7 @@ export interface OntologyApiNameNotUnique {
 }
 
 /**
-   * The amount of memory used in the request exceeded the limit. The number of groups in the aggregations grouping exceeded the allowed limit. This can typically be fixed by
+   * The amount of memory used in the request exceeded the limit. This can typically be fixed by
 adjusting your query to reduce the number of groups created by your aggregation. For instance:
 
 If you are using multiple groupBy clauses, try reducing the number of clauses.

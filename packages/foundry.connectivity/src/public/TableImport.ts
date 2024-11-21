@@ -15,6 +15,7 @@
  */
 
 import type * as _Core from "@osdk/foundry.core";
+import type * as _Orchestration from "@osdk/foundry.orchestration";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -28,6 +29,63 @@ import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.
 import type * as _Connectivity from "../_components.js";
 
 //
+
+const _create: $FoundryPlatformMethod<
+  (
+    connectionRid: _Connectivity.ConnectionRid,
+    $body: _Connectivity.CreateTableImportRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Connectivity.TableImport>
+> = [1, "/v2/connectivity/connections/{0}/tableImports", 3];
+
+/**
+ * Creates a new TableImport.
+ *
+ * @alpha
+ *
+ * Required Scopes: []
+ * URL: /v2/connectivity/connections/{connectionRid}/tableImports
+ */
+export function create(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    connectionRid: _Connectivity.ConnectionRid,
+    $body: _Connectivity.CreateTableImportRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Connectivity.TableImport> {
+  return $foundryPlatformFetch($ctx, _create, ...args);
+}
+
+const _deleteTableImport: $FoundryPlatformMethod<
+  (
+    connectionRid: _Connectivity.ConnectionRid,
+    tableImportRid: _Connectivity.TableImportRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<void>
+> = [3, "/v2/connectivity/connections/{0}/tableImports/{1}", 2];
+
+/**
+ * Delete the TableImport with the specified RID.
+ * Deleting the table import does not delete the destination dataset but the dataset will no longer
+ * be updated by this import.
+ *
+ * @alpha
+ *
+ * Required Scopes: []
+ * URL: /v2/connectivity/connections/{connectionRid}/tableImports/{tableImportRid}
+ */
+export function deleteTableImport(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    connectionRid: _Connectivity.ConnectionRid,
+    tableImportRid: _Connectivity.TableImportRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<void> {
+  return $foundryPlatformFetch($ctx, _deleteTableImport, ...args);
+}
 
 const _get: $FoundryPlatformMethod<
   (
@@ -55,4 +113,33 @@ export function get(
   ]
 ): Promise<_Connectivity.TableImport> {
   return $foundryPlatformFetch($ctx, _get, ...args);
+}
+
+const _execute: $FoundryPlatformMethod<
+  (
+    connectionRid: _Connectivity.ConnectionRid,
+    tableImportRid: _Connectivity.TableImportRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Orchestration.BuildRid>
+> = [1, "/v2/connectivity/connections/{0}/tableImports/{1}/execute", 2];
+
+/**
+ * Executes the TableImport, which runs asynchronously as a [Foundry Build](https://www.palantir.com/docs/foundry/data-integration/builds/).
+ * The returned BuildRid can be used to check the status via the Orchestration API.
+ *
+ * @alpha
+ *
+ * Required Scopes: []
+ * URL: /v2/connectivity/connections/{connectionRid}/tableImports/{tableImportRid}/execute
+ */
+export function execute(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    connectionRid: _Connectivity.ConnectionRid,
+    tableImportRid: _Connectivity.TableImportRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Orchestration.BuildRid> {
+  return $foundryPlatformFetch($ctx, _execute, ...args);
 }
