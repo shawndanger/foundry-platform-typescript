@@ -1,5 +1,13 @@
 # @osdk/foundry.functions
 
+## 2.6.0-beta.1
+
+### Patch Changes
+
+- Updated dependencies [7e79126]
+  - @osdk/shared.net.platformapi@1.2.0-beta.1
+  - @osdk/foundry.core@2.6.0-beta.1
+
 ## 2.6.0-beta.0
 
 ### Patch Changes

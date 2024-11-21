@@ -1,5 +1,11 @@
 # @osdk/shared.net.platformapi
 
+## 1.2.0-beta.1
+
+### Minor Changes
+
+- 7e79126: Updates the response type of methods that returned Blob to return Response
+
 ## 1.2.0-beta.0
 
 ### Minor Changes

@@ -34,6 +34,7 @@
     "@osdk/tool.release": "0.5.0"
   },
   "changesets": [
+    "mean-plums-pull",
     "tiny-forks-end"
   ]
 }
