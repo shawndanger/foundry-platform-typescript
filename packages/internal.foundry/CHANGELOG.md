@@ -1,5 +1,24 @@
 # @osdk/foundry
 
+## 2.6.0
+
+### Minor Changes
+
+- bd6d407: Adds a "default" export entry
+- 7e79126: Updates the response type of methods that returned Blob to return Response
+
+### Patch Changes
+
+- Updated dependencies [bd6d407]
+- Updated dependencies [7e79126]
+- Updated dependencies [e866c5c]
+  - @osdk/internal.foundry.ontologiesv2@2.6.0
+  - @osdk/internal.foundry.ontologies@2.6.0
+  - @osdk/internal.foundry.datasets@2.6.0
+  - @osdk/shared.net.platformapi@1.2.0
+  - @osdk/internal.foundry.core@2.6.0
+  - @osdk/internal.foundry.geo@2.6.0
+
 ## 2.6.0-beta.1
 
 ### Minor Changes
