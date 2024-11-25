@@ -1,5 +1,19 @@
 # @osdk/foundry.functions
 
+## 2.6.0
+
+### Minor Changes
+
+- bd6d407: Adds a "default" export entry
+
+### Patch Changes
+
+- Updated dependencies [bd6d407]
+- Updated dependencies [7e79126]
+- Updated dependencies [e866c5c]
+  - @osdk/shared.net.platformapi@1.2.0
+  - @osdk/foundry.core@2.6.0
+
 ## 2.6.0-beta.1
 
 ### Patch Changes
