@@ -193,14 +193,6 @@ export interface ListLinkedObjectsResponse {
 }
 
 /**
-   * Divides objects into groups based on their object type. This grouping is only useful when aggregating across
-multiple object types, such as when aggregating over an interface type.
-   *
-   * Log Safety: SAFE
-   */
-export interface AggregationObjectTypeGrouping {}
-
-/**
  * The underlying data values pointed to by a GeotimeSeriesReference.
  *
  * Log Safety: UNSAFE
@@ -209,6 +201,14 @@ export interface GeotimeSeriesValue {
   position: _Geo.Position;
   timestamp: string;
 }
+
+/**
+   * Divides objects into groups based on their object type. This grouping is only useful when aggregating across
+multiple object types, such as when aggregating over an interface type.
+   *
+   * Log Safety: SAFE
+   */
+export interface AggregationObjectTypeGrouping {}
 
 /**
  * Log Safety: SAFE
@@ -739,17 +739,6 @@ export interface QueryAggregationRangeType {
 }
 
 /**
- * Computes the average value for the provided field.
- *
- * Log Safety: UNSAFE
- */
-export interface AvgAggregationV2 {
-  field: PropertyApiName;
-  name?: AggregationMetricName;
-  direction?: OrderByDirection;
-}
-
-/**
  * Details about some property of an object.
  *
  * Log Safety: UNSAFE
@@ -776,13 +765,14 @@ export interface OntologyV2 {
 }
 
 /**
- * Returns objects where the specified field is greater than a value.
+ * Computes the average value for the provided field.
  *
  * Log Safety: UNSAFE
  */
-export interface GtQueryV2 {
+export interface AvgAggregationV2 {
   field: PropertyApiName;
-  value: PropertyValue;
+  name?: AggregationMetricName;
+  direction?: OrderByDirection;
 }
 
 /**
@@ -791,6 +781,16 @@ export interface GtQueryV2 {
  * Log Safety: SAFE
  */
 export type InterfaceLinkTypeRid = LooselyBrandedString<"InterfaceLinkTypeRid">;
+
+/**
+ * Returns objects where the specified field is greater than a value.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface GtQueryV2 {
+  field: PropertyApiName;
+  value: PropertyValue;
+}
 
 /**
  * Log Safety: SAFE
@@ -824,13 +824,6 @@ export interface QueryUnionType {
 }
 
 /**
- * A reference to an Ontology object property with the form properties.{propertyApiName}.
- *
- * Log Safety: UNSAFE
- */
-export type FieldNameV1 = LooselyBrandedString<"FieldNameV1">;
-
-/**
  * Divides objects into groups according to specified ranges.
  *
  * Log Safety: UNSAFE
@@ -839,6 +832,13 @@ export interface AggregationRangesGrouping {
   field: FieldNameV1;
   ranges: Array<AggregationRange>;
 }
+
+/**
+ * A reference to an Ontology object property with the form properties.{propertyApiName}.
+ *
+ * Log Safety: UNSAFE
+ */
+export type FieldNameV1 = LooselyBrandedString<"FieldNameV1">;
 
 /**
  * Returns objects where the specified field is equal to a value.
@@ -1128,6 +1128,11 @@ export type AggregationGroupBy =
   | ({ type: "exact" } & AggregationExactGrouping);
 
 /**
+ * Log Safety: UNSAFE
+ */
+export type MethodObjectSet = ObjectSet;
+
+/**
  * Computes the maximum value for the provided field.
  *
  * Log Safety: UNSAFE
@@ -1137,11 +1142,6 @@ export interface MaxAggregationV2 {
   name?: AggregationMetricName;
   direction?: OrderByDirection;
 }
-
-/**
- * Log Safety: UNSAFE
- */
-export type MethodObjectSet = ObjectSet;
 
 /**
    * The unique Resource Identifier (RID) of the Ontology. To look up your Ontology RID, please use the
@@ -1591,6 +1591,7 @@ export type ObjectPropertyType =
   | ({ type: "geoshape" } & GeoShapeType)
   | ({ type: "long" } & LongType)
   | ({ type: "boolean" } & BooleanType)
+  | ({ type: "cipherText" } & CipherTextType)
   | ({ type: "marking" } & MarkingType)
   | ({ type: "attachment" } & AttachmentType)
   | ({ type: "mediaReference" } & MediaReferenceType)
@@ -1696,6 +1697,7 @@ structs.
 | Attachment          | Attachment                                                                                                      |
 | Boolean             | Boolean                                                                                                         |
 | Byte                | Byte                                                                                                            |
+| CipherText          | CipherText                                                                                                      |
 | Date                | LocalDate                                                                                                       |
 | Decimal             | Decimal                                                                                                         |
 | Double              | Double                                                                                                          |
@@ -1900,24 +1902,26 @@ export type PropertyTypeRid = LooselyBrandedString<"PropertyTypeRid">;
 
 /**
    * Represents the value of a property in the following format.
-| Type       | JSON encoding                                               | Example                                                                                                                                                                                                                                                                  |
-|----------- |-------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Array      | array                                                       | ["alpha", "bravo", "charlie"]                                                                                                                                                                                                                                          |
-| Attachment | JSON encoded AttachmentProperty object                    | {"rid":"ri.blobster.main.attachment.2f944bae-5851-4204-8615-920c969a9f2e"}                                                                                                                                                                                             |
-| Boolean    | boolean                                                     | true                                                                                                                                                                                                                                                                   |
-| Byte       | number                                                      | 31                                                                                                                                                                                                                                                                     |
-| Date       | ISO 8601 extended local date string                         | "2021-05-01"                                                                                                                                                                                                                                                           |
-| Decimal    | string                                                      | "2.718281828"                                                                                                                                                                                                                                                          |
-| Double     | number                                                      | 3.14159265                                                                                                                                                                                                                                                             |
-| Float      | number                                                      | 3.14159265                                                                                                                                                                                                                                                             |
-| GeoPoint   | geojson                                                     | {"type":"Point","coordinates":[102.0,0.5]}                                                                                                                                                                                                                             |
-| GeoShape   | geojson                                                     | {"type":"LineString","coordinates":[[102.0,0.0],[103.0,1.0],[104.0,0.0],[105.0,1.0]]}                                                                                                                                                                                  |
-| Integer    | number                                                      | 238940                                                                                                                                                                                                                                                                 |
-| Long       | string                                                      | "58319870951433"                                                                                                                                                                                                                                                       |
-| Short      | number                                                      | 8739                                                                                                                                                                                                                                                                   |
-| String     | string                                                      | "Call me Ishmael"                                                                                                                                                                                                                                                      |
-| Timestamp  | ISO 8601 extended offset date-time string in UTC zone       | "2021-01-04T05:00:00Z"                                                                                                                                                                                                                                                 |
-| Timeseries | JSON encoded TimeseriesProperty object or seriesId string | {"seriesId": "wellPressureSeriesId", "syncRid": ri.time-series-catalog.main.sync.04f5ac1f-91bf-44f9-a51f-4f34e06e42df"} or {"templateRid": "ri.codex-emu.main.template.367cac64-e53b-4653-b111-f61856a63df9", "templateVersion": "0.0.0"} or "wellPressureSeriesId"|                                                                           |
+| Type            | JSON encoding                                               | Example                                                                                                                                                                                                                                                                                                                                              |
+|---------------- |-------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Array           | array                                                       | ["alpha", "bravo", "charlie"]                                                                                                                                                                                                                                                                                                                      |
+| Attachment      | JSON encoded AttachmentProperty object                    | {"rid":"ri.blobster.main.attachment.2f944bae-5851-4204-8615-920c969a9f2e"}                                                                                                                                                                                                                                                                         |
+| Boolean         | boolean                                                     | true                                                                                                                                                                                                                                                                                                                                               |
+| Byte            | number                                                      | 31                                                                                                                                                                                                                                                                                                                                                 |
+| CipherText      | string                                                      | "CIPHER::ri.bellaso.main.cipher-channel.e414ab9e-b606-499a-a0e1-844fa296ba7e::unzjs3VifsTxuIpf1fH1CJ7OaPBr2bzMMdozPaZJtCii8vVG60yXIEmzoOJaEl9mfFFe::CIPHER"                                                                                                                                                                                        |
+| Date            | ISO 8601 extended local date string                         | "2021-05-01"                                                                                                                                                                                                                                                                                                                                       |
+| Decimal         | string                                                      | "2.718281828"                                                                                                                                                                                                                                                                                                                                      |
+| Double          | number                                                      | 3.14159265                                                                                                                                                                                                                                                                                                                                         |
+| Float           | number                                                      | 3.14159265                                                                                                                                                                                                                                                                                                                                         |
+| GeoPoint        | geojson                                                     | {"type":"Point","coordinates":[102.0,0.5]}                                                                                                                                                                                                                                                                                                         |
+| GeoShape        | geojson                                                     | {"type":"LineString","coordinates":[[102.0,0.0],[103.0,1.0],[104.0,0.0],[105.0,1.0]]}                                                                                                                                                                                                                                                              |
+| Integer         | number                                                      | 238940                                                                                                                                                                                                                                                                                                                                             |
+| Long            | string                                                      | "58319870951433"                                                                                                                                                                                                                                                                                                                                   |
+| MediaReference  | JSON encoded MediaReference object                        | {"mimeType":"application/pdf","reference":{"type":"mediaSetViewItem","mediaSetViewItem":{"mediaSetRid":"ri.mio.main.media-set.4153d42f-ca4b-4e42-8ca5-8e6aa7edb642","mediaSetViewRid":"ri.mio.main.view.82a798ad-d637-4595-acc6-987bcf16629b","mediaItemRid":"ri.mio.main.media-item.001ec98b-1620-4814-9e17-8e9c4e536225"}}}                      |
+| Short           | number                                                      | 8739                                                                                                                                                                                                                                                                                                                                               |
+| String          | string                                                      | "Call me Ishmael"                                                                                                                                                                                                                                                                                                                                  |
+| Timestamp       | ISO 8601 extended offset date-time string in UTC zone       | "2021-01-04T05:00:00Z"                                                                                                                                                                                                                                                                                                                             |
+| Timeseries      | JSON encoded TimeseriesProperty object or seriesId string | {"seriesId": "wellPressureSeriesId", "syncRid": ri.time-series-catalog.main.sync.04f5ac1f-91bf-44f9-a51f-4f34e06e42df"} or {"templateRid": "ri.codex-emu.main.template.367cac64-e53b-4653-b111-f61856a63df9", "templateVersion": "0.0.0"} or "wellPressureSeriesId"                                                                            |
 Note that for backwards compatibility, the Boolean, Byte, Double, Float, Integer, and Short types can also be encoded as JSON strings.
    *
    * Log Safety: UNSAFE
@@ -1994,6 +1998,11 @@ export interface ApplyActionResponse {}
 export interface BatchApplyActionResponse {}
 
 /**
+ * Log Safety: SAFE
+ */
+export type AsyncApplyActionOperationV2 = undefined; // {"locator":{"namespaceName":"Core","localName":"AsyncApplyActionOperationV2"},"type":{"type":"asyncOperation","asyncOperation":{"operationType":"applyActionAsyncV2","resultType":{"locator":{"namespaceName":"Ontologies","localName":"AsyncApplyActionOperationResponseV2"}},"stageType":{"locator":{"namespaceName":"Ontologies","localName":"AsyncActionStatus"}}}},"safety":"SAFE","documentation":{"example":[]}}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface AggregateObjectsRequestV2 {
@@ -2004,11 +2013,6 @@ export interface AggregateObjectsRequestV2 {
 }
 
 /**
- * Log Safety: SAFE
- */
-export type AsyncApplyActionOperationV2 = undefined; // {"locator":{"namespaceName":"Core","localName":"AsyncApplyActionOperationV2"},"type":{"type":"asyncOperation","asyncOperation":{"operationType":"applyActionAsyncV2","resultType":{"locator":{"namespaceName":"Ontologies","localName":"AsyncApplyActionOperationResponseV2"}},"stageType":{"locator":{"namespaceName":"Ontologies","localName":"AsyncActionStatus"}}}},"safety":"SAFE","documentation":{"example":[]}}
-
-/**
  * Returns objects based on the existence of the specified field.
  *
  * Log Safety: UNSAFE
@@ -2017,6 +2021,13 @@ export interface IsNullQuery {
   field: FieldNameV1;
   value: boolean;
 }
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type MediaReferenceProperty = LooselyBrandedString<
+  "MediaReferenceProperty"
+>;
 
 /**
  * A relative time, such as "3 days before" or "2 hours after" the current moment.
@@ -2233,29 +2244,32 @@ export type RelativeTimeSeriesTimeUnit =
 
 /**
    * Represents the value of data in the following format. Note that these values can be nested, for example an array of structs.
-| Type                        | JSON encoding                                         | Example                                                                       |
-|-----------------------------|-------------------------------------------------------|-------------------------------------------------------------------------------|
-| Array                       | array                                                 | ["alpha", "bravo", "charlie"]                                               |
-| Attachment                  | string                                                | "ri.attachments.main.attachment.2f944bae-5851-4204-8615-920c969a9f2e"       |
-| Boolean                     | boolean                                               | true                                                                        |
-| Byte                        | number                                                | 31                                                                          |
-| Date                        | ISO 8601 extended local date string                   | "2021-05-01"                                                                |
-| Decimal                     | string                                                | "2.718281828"                                                               |
-| Float                       | number                                                | 3.14159265                                                                  |
-| Double                      | number                                                | 3.14159265                                                                  |
-| Integer                     | number                                                | 238940                                                                      |
-| Long                        | string                                                | "58319870951433"                                                            |
-| Marking                     | string                                                | "MU"                                                                        |
-| Null                        | null                                                  | null                                                                        |
-| Object Set                  | string OR the object set definition                   | ri.object-set.main.versioned-object-set.h13274m8-23f5-431c-8aee-a4554157c57z|
-| Ontology Object Reference   | JSON encoding of the object's primary key             | 10033123 or "EMP1234"                                                     |
-| Set                         | array                                                 | ["alpha", "bravo", "charlie"]                                               |
-| Short                       | number                                                | 8739                                                                        |
-| String                      | string                                                | "Call me Ishmael"                                                           |
-| Struct                      | JSON object                                           | {"name": "John Doe", "age": 42}                                             |
-| TwoDimensionalAggregation   | JSON object                                           | {"groups": [{"key": "alpha", "value": 100}, {"key": "beta", "value": 101}]} |
-| ThreeDimensionalAggregation | JSON object                                           | {"groups": [{"key": "NYC", "groups": [{"key": "Engineer", "value" : 100}]}]}|
-| Timestamp                   | ISO 8601 extended offset date-time string in UTC zone | "2021-01-04T05:00:00Z"                                                      |
+| Type                                | JSON encoding                                         | Example                                                                                                                                                       |
+|-------------------------------------|-------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Array                               | array                                                 | ["alpha", "bravo", "charlie"]                                                                                                                               |
+| Attachment                          | string                                                | "ri.attachments.main.attachment.2f944bae-5851-4204-8615-920c969a9f2e"                                                                                       |
+| Boolean                             | boolean                                               | true                                                                                                                                                        |
+| Byte                                | number                                                | 31                                                                                                                                                          |
+| CipherText                          | string                                                | "CIPHER::ri.bellaso.main.cipher-channel.e414ab9e-b606-499a-a0e1-844fa296ba7e::unzjs3VifsTxuIpf1fH1CJ7OaPBr2bzMMdozPaZJtCii8vVG60yXIEmzoOJaEl9mfFFe::CIPHER" |
+| Date                                | ISO 8601 extended local date string                   | "2021-05-01"                                                                                                                                                |
+| Decimal                             | string                                                | "2.718281828"                                                                                                                                               |
+| Float                               | number                                                | 3.14159265                                                                                                                                                  |
+| Double                              | number                                                | 3.14159265                                                                                                                                                  |
+| Integer                             | number                                                | 238940                                                                                                                                                      |
+| Long                                | string                                                | "58319870951433"                                                                                                                                            |
+| Marking                             | string                                                | "MU"                                                                                                                                                        |
+| Null                                | null                                                  | null                                                                                                                                                        |
+| Object Set                          | string OR the object set definition                   | ri.object-set.main.versioned-object-set.h13274m8-23f5-431c-8aee-a4554157c57z                                                                                |
+| Ontology Object Reference           | JSON encoding of the object's primary key             | 10033123 or "EMP1234"                                                                                                                                     |
+| Ontology Interface Object Reference | JSON encoding of the object's api name and primary key| {"objectTypeApiName":"Employee", "primaryKeyValue":"EMP1234"}                                                                                               |
+| Ontology Object Type Reference      | string of the object type's api name                  | "Employee"                                                                                                                                                  |
+| Set                                 | array                                                 | ["alpha", "bravo", "charlie"]                                                                                                                               |
+| Short                               | number                                                | 8739                                                                                                                                                        |
+| String                              | string                                                | "Call me Ishmael"                                                                                                                                           |
+| Struct                              | JSON object                                           | {"name": "John Doe", "age": 42}                                                                                                                             |
+| TwoDimensionalAggregation           | JSON object                                           | {"groups": [{"key": "alpha", "value": 100}, {"key": "beta", "value": 101}]}                                                                                 |
+| ThreeDimensionalAggregation         | JSON object                                           | {"groups": [{"key": "NYC", "groups": [{"key": "Engineer", "value" : 100}]}]}                                                                                |
+| Timestamp                           | ISO 8601 extended offset date-time string in UTC zone | "2021-01-04T05:00:00Z"                                                                                                                                      |
    *
    * Log Safety: UNSAFE
    */
@@ -2278,6 +2292,7 @@ export type OntologyDataType =
   | ({ type: "any" } & AnyType)
   | ({ type: "long" } & LongType)
   | ({ type: "boolean" } & BooleanType)
+  | ({ type: "cipherText" } & CipherTextType)
   | ({ type: "marking" } & MarkingType)
   | ({ type: "unsupported" } & UnsupportedType)
   | ({ type: "array" } & OntologyArrayType)
@@ -2506,6 +2521,13 @@ export interface MaxAggregation {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface ObjectSetInterfaceBaseType {
+  interfaceType: string;
+}
+
+/**
  * Computes the total count of objects.
  *
  * Log Safety: UNSAFE
@@ -2513,13 +2535,6 @@ export interface MaxAggregation {
 export interface CountAggregationV2 {
   name?: AggregationMetricName;
   direction?: OrderByDirection;
-}
-
-/**
- * Log Safety: UNSAFE
- */
-export interface ObjectSetInterfaceBaseType {
-  interfaceType: string;
 }
 
 /**
@@ -3290,6 +3305,11 @@ export interface StreamTimeSeriesValuesResponse {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface AsyncApplyActionOperationResponseV2 {}
+
+/**
    * Returns objects where the specified field contains all of the whitespace separated words in any
 order in the provided value. This query supports fuzzy matching.
    *
@@ -3300,11 +3320,6 @@ export interface ContainsAllTermsQuery {
   value: string;
   fuzzy?: FuzzyV2;
 }
-
-/**
- * Log Safety: SAFE
- */
-export interface AsyncApplyActionOperationResponseV2 {}
 
 /**
    * This status indicates that the PropertyType is an example. It is backed by notional data that should not be
@@ -3668,6 +3683,15 @@ export interface PrefixQuery {
 /**
  * Log Safety: UNSAFE
  */
+export interface MediaMetadata {
+  path?: MediaItemPath;
+  sizeBytes: SizeBytes;
+  mediaType: MediaType;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface ModifyObjectRule {
   objectTypeApiName: ObjectTypeApiName;
 }
@@ -3711,6 +3735,16 @@ export interface UnsupportedType {
  * Log Safety: SAFE
  */
 export type MediaSetRid = LooselyBrandedString<"MediaSetRid">;
+
+/**
+   * A user-specified identifier for a media item within a media set.
+Paths must be less than 256 characters long.
+If multiple items are written to the same media set at the same path, then when retrieving by path the media
+item which was written last is returned.
+   *
+   * Log Safety: UNSAFE
+   */
+export type MediaItemPath = LooselyBrandedString<"MediaItemPath">;
 
 /**
  * Log Safety: SAFE
@@ -3976,6 +4010,11 @@ export type CreatedTime = LooselyBrandedString<"CreatedTime">;
  * Log Safety: UNSAFE
  */
 export type StructFieldName = LooselyBrandedString<"StructFieldName">;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface CipherTextType {}
 
 /**
  * Log Safety: SAFE

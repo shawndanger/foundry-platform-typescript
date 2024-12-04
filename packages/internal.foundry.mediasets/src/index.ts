@@ -14,9 +14,19 @@
  * limitations under the License.
  */
 
-export * as Core from "@osdk/internal.foundry.core";
-export * as Datasets from "@osdk/internal.foundry.datasets";
-export * as Geo from "@osdk/internal.foundry.geo";
-export * as Mediasets from "@osdk/internal.foundry.mediasets";
-export * as Ontologies from "@osdk/internal.foundry.ontologies";
-export * as OntologiesV2 from "@osdk/internal.foundry.ontologiesv2";
+export type {
+  BranchName,
+  BranchRid,
+  GetMediaItemInfoResponse,
+  LogicalTimestamp,
+  MediaAttribution,
+  MediaSet,
+  MediaSetName,
+  PutMediaItemResponse,
+  TransactionId,
+} from "./_components.js";
+export type {
+  ConflictingMediaSetIdentifiers,
+  MediaItemNotFound,
+} from "./_errors.js";
+export * as MediaSets from "./public/MediaSet.js";

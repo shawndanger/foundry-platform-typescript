@@ -81,7 +81,7 @@ export interface FileCountLimitExceeded {
 the .zip archive are within the limit.
 
    *
-   * Log Safety: SAFE
+   * Log Safety: UNSAFE
    */
 export interface FileSizeLimitExceeded {
   errorCode: "INVALID_ARGUMENT";
@@ -90,6 +90,7 @@ export interface FileSizeLimitExceeded {
   parameters: {
     fileSizeBytesLimit: unknown;
     currentFileSizeBytes: unknown;
+    currentFilePath: unknown;
   };
 }
 

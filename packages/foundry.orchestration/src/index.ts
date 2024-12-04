@@ -103,6 +103,7 @@ export type {
   BuildTargetsNotFound,
   BuildTargetsPermissionDenied,
   BuildTargetsResolutionError,
+  CancelBuildPermissionDenied,
   CreateBuildsPermissionDenied,
   CreateSchedulePermissionDenied,
   DeleteSchedulePermissionDenied,

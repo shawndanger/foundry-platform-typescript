@@ -43,7 +43,7 @@ const _create: $FoundryPlatformMethod<
  *
  * @alpha
  *
- * Required Scopes: []
+ * Required Scopes: [api:connectivity-table-import-write]
  * URL: /v2/connectivity/connections/{connectionRid}/tableImports
  */
 export function create(
@@ -72,7 +72,7 @@ const _deleteTableImport: $FoundryPlatformMethod<
  *
  * @alpha
  *
- * Required Scopes: []
+ * Required Scopes: [api:connectivity-table-import-write]
  * URL: /v2/connectivity/connections/{connectionRid}/tableImports/{tableImportRid}
  */
 export function deleteTableImport(
@@ -100,7 +100,7 @@ const _get: $FoundryPlatformMethod<
  *
  * @alpha
  *
- * Required Scopes: []
+ * Required Scopes: [api:connectivity-table-import-read]
  * URL: /v2/connectivity/connections/{connectionRid}/tableImports/{tableImportRid}
  */
 export function get(
@@ -129,7 +129,7 @@ const _execute: $FoundryPlatformMethod<
  *
  * @alpha
  *
- * Required Scopes: []
+ * Required Scopes: [api:connectivity-table-import-execute]
  * URL: /v2/connectivity/connections/{connectionRid}/tableImports/{tableImportRid}/execute
  */
 export function execute(

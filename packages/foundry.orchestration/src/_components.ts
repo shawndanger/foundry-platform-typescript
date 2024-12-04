@@ -69,7 +69,7 @@ export interface Build {
 }
 
 /**
- * The RID of a build
+ * The RID of a build.
  *
  * Log Safety: SAFE
  */
@@ -369,10 +369,11 @@ export interface NewLogicTrigger {
 }
 
 /**
- * Whether to receive a notification at the end of scheduled builds.
- *
- * Log Safety: SAFE
- */
+   * Whether to receive a notification at the end of the build.
+The notification will be sent to the user that has performed the request.
+   *
+   * Log Safety: SAFE
+   */
 export type NotificationsEnabled = boolean;
 
 /**
