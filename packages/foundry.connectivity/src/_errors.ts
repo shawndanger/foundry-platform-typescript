@@ -19,6 +19,38 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+   * Changing of branch name is not supported for imports.
+
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ChangingBranchNameNotSupportedForImports {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ChangingBranchNameNotSupportedForImports";
+  errorInstanceId: string;
+  parameters: {
+    existingBranchName: unknown;
+    newBranchName: unknown;
+  };
+}
+
+/**
+   * Changing of output dataset is not supported for imports.
+
+   *
+   * Log Safety: SAFE
+   */
+export interface ChangingOutputDatasetNotSupportedForImports {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ChangingOutputDatasetNotSupportedForImports";
+  errorInstanceId: string;
+  parameters: {
+    existingOutputDatasetRid: unknown;
+    newOutputDatasetRid: unknown;
+  };
+}
+
+/**
    * Details of the connection (such as which types of import it supports) could not be determined.
 
    *
@@ -289,6 +321,36 @@ export interface FilesCountLimitFilterInvalidLimit {
 }
 
 /**
+   * The parent folder for the specified connection could not be found.
+
+   *
+   * Log Safety: SAFE
+   */
+export interface ParentFolderNotFoundForConnection {
+  errorCode: "NOT_FOUND";
+  errorName: "ParentFolderNotFoundForConnection";
+  errorInstanceId: string;
+  parameters: {
+    connectionRid: unknown;
+  };
+}
+
+/**
+ * Could not replace the FileImport.
+ *
+ * Log Safety: SAFE
+ */
+export interface ReplaceFileImportPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ReplaceFileImportPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    fileImportRid: unknown;
+    connectionRid: unknown;
+  };
+}
+
+/**
    * The secret names provided do not exist on the connection.
 
    *
@@ -355,9 +417,9 @@ export interface TableImportTypeNotSupported {
  *
  * Log Safety: SAFE
  */
-export interface UpdateSecretsConnectionPermissionDenied {
+export interface UpdateSecretsForConnectionPermissionDenied {
   errorCode: "PERMISSION_DENIED";
-  errorName: "UpdateSecretsConnectionPermissionDenied";
+  errorName: "UpdateSecretsForConnectionPermissionDenied";
   errorInstanceId: string;
   parameters: {
     connectionRid: unknown;

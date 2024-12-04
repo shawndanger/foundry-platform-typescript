@@ -1,6 +1,6 @@
 {
-  "name": "@osdk/internal.foundry",
-  "version": "2.6.0",
+  "name": "@osdk/internal.foundry.mediasets",
+  "version": "0.0.0",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -28,11 +28,6 @@
   },
   "dependencies": {
     "@osdk/internal.foundry.core": "workspace:*",
-    "@osdk/internal.foundry.datasets": "workspace:*",
-    "@osdk/internal.foundry.geo": "workspace:*",
-    "@osdk/internal.foundry.mediasets": "workspace:*",
-    "@osdk/internal.foundry.ontologies": "workspace:*",
-    "@osdk/internal.foundry.ontologiesv2": "workspace:*",
     "@osdk/shared.client": "^1.0.1",
     "@osdk/shared.client2": "^1.0.0",
     "@osdk/shared.net.platformapi": "workspace:~"

@@ -42,7 +42,7 @@ const _list: $FoundryPlatformMethod<
  *
  * @alpha
  *
- * Required Scopes: [api:security-read]
+ * Required Scopes: [api:admin-read]
  * URL: /v2/admin/markings
  */
 export function list(
@@ -70,7 +70,7 @@ const _get: $FoundryPlatformMethod<
  *
  * @alpha
  *
- * Required Scopes: [api:security-read]
+ * Required Scopes: [api:admin-read]
  * URL: /v2/admin/markings/{markingId}
  */
 export function get(
@@ -98,7 +98,7 @@ const _getBatch: $FoundryPlatformMethod<
  *
  * @alpha
  *
- * Required Scopes: [api:security-read]
+ * Required Scopes: [api:admin-read]
  * URL: /v2/admin/markings/getBatch
  */
 export function getBatch(

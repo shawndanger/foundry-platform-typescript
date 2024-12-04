@@ -41,7 +41,7 @@ const _create: $FoundryPlatformMethod<
 /**
  * Creates a new branch on the backing streaming dataset, and creates a new stream on that branch.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:streams-write]
  * URL: /v2/streams/datasets/{datasetRid}/streams
@@ -69,7 +69,7 @@ const _get: $FoundryPlatformMethod<
  * Get a stream by its branch name. If the branch does not exist, there is no stream on that branch, or the
  * user does not have permission to access the stream, a 404 error will be returned.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:streams-read]
  * URL: /v2/streams/datasets/{datasetRid}/streams/{streamBranchName}
@@ -99,7 +99,7 @@ const _publishRecord: $FoundryPlatformMethod<
  * Publish a single record to the stream. The record will be validated against the stream's schema, and
  * rejected if it is invalid.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:streams-write]
  * URL: /v2/highScale/streams/datasets/{datasetRid}/streams/{streamBranchName}/publishRecord
@@ -129,7 +129,7 @@ const _publishRecords: $FoundryPlatformMethod<
  * Publish a batch of records to the stream. The records will be validated against the stream's schema, and
  * the batch will be rejected if one or more of the records are invalid.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:streams-write]
  * URL: /v2/highScale/streams/datasets/{datasetRid}/streams/{streamBranchName}/publishRecords
@@ -166,7 +166,7 @@ const _publishBinaryRecord: $FoundryPlatformMethod<
 /**
  * Publish a single binary record to the stream. The stream's schema must be a single binary field.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:streams-write]
  * URL: /v2/highScale/streams/datasets/{datasetRid}/streams/{streamBranchName}/publishBinaryRecord
@@ -204,7 +204,7 @@ const _reset: $FoundryPlatformMethod<
  * This will create a new stream view (as seen by the change of the `viewRid` on the branch),
  * which will be the new stream view that will be written to for the branch.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:streams-write]
  * URL: /v2/streams/datasets/{datasetRid}/streams/{streamBranchName}/reset

@@ -149,7 +149,7 @@ const _getMarkings: $FoundryPlatformMethod<
  *
  * @alpha
  *
- * Required Scopes: [api:security-read]
+ * Required Scopes: [api:admin-read]
  * URL: /v2/admin/users/{userId}/getMarkings
  */
 export function getMarkings(

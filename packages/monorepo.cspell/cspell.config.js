@@ -168,7 +168,7 @@ const cspell = {
 
         // "omni apis"
         "packages/foundry.*/src/**",
-        "packages/internal.foundry.*/src/**",
+        "packages/internal.foundry(.*)?/src/**",
       ],
       dictionaries: [
         // acceptable words in generated code

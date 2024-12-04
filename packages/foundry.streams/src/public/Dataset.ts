@@ -41,7 +41,7 @@ const _create: $FoundryPlatformMethod<
  * default branch ('master' for most enrollments). For more information on streaming datasets, refer to the
  * [streams](https://www.palantir.com/docs/foundry/data-integration/streams/) user documentation.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:streams-write]
  * URL: /v2/streams/datasets/create

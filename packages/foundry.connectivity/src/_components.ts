@@ -16,6 +16,7 @@
 
 import type * as _Core from "@osdk/foundry.core";
 import type * as _Datasets from "@osdk/foundry.datasets";
+import type * as _Filesystem from "@osdk/foundry.filesystem";
 
 export type LooselyBrandedString<T extends string> = string & {
   __LOOSE_BRAND?: T;
@@ -105,6 +106,7 @@ export type CloudIdentityRid = LooselyBrandedString<"CloudIdentityRid">;
  */
 export interface Connection {
   rid: ConnectionRid;
+  parentFolderRid: _Filesystem.FolderRid;
   displayName: ConnectionDisplayName;
   runtimePlatform: RuntimePlatform;
   configuration: ConnectionConfiguration;
@@ -157,7 +159,35 @@ export interface CreateTableImportRequest {
 /**
  * Log Safety: UNSAFE
  */
-export interface CreateTableImportRequestPalantirProvidedDriversImportConfig {
+export interface CreateTableImportRequestJdbcImportConfig {
+  query: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateTableImportRequestMicrosoftAccessImportConfig {
+  query: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateTableImportRequestMicrosoftSqlServerImportConfig {
+  query: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateTableImportRequestOracleImportConfig {
+  query: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateTableImportRequestPostgreSqlImportConfig {
   query: string;
 }
 
@@ -166,9 +196,20 @@ export interface CreateTableImportRequestPalantirProvidedDriversImportConfig {
  *
  * Log Safety: UNSAFE
  */
-export type CreateTableImportRequestTableImportConfig = {
-  type: "microsoftAccessImportConfig";
-} & MicrosoftAccessImportConfig;
+export type CreateTableImportRequestTableImportConfig =
+  | ({ type: "jdbcImportConfig" } & CreateTableImportRequestJdbcImportConfig)
+  | ({
+    type: "microsoftSqlServerImportConfig";
+  } & CreateTableImportRequestMicrosoftSqlServerImportConfig)
+  | ({
+    type: "postgreSqlImportConfig";
+  } & CreateTableImportRequestPostgreSqlImportConfig)
+  | ({
+    type: "microsoftAccessImportConfig";
+  } & CreateTableImportRequestMicrosoftAccessImportConfig)
+  | ({
+    type: "oracleImportConfig";
+  } & CreateTableImportRequestOracleImportConfig);
 
 /**
    * Direct connections enable users to connect
@@ -366,6 +407,15 @@ export interface FilesCountLimitFilter {
 }
 
 /**
+ * The import configuration for a custom JDBC connection.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface JdbcImportConfig {
+  query: string;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface ListFileImportsResponse {
@@ -378,7 +428,18 @@ export interface ListFileImportsResponse {
  *
  * Log Safety: UNSAFE
  */
-export type MicrosoftAccessImportConfig = PalantirProvidedDriversImportConfig;
+export interface MicrosoftAccessImportConfig {
+  query: string;
+}
+
+/**
+ * The import configuration for a Microsoft SQL Server connection.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MicrosoftSqlServerImportConfig {
+  query: string;
+}
 
 /**
  * The Resource Identifier (RID) of a Network Egress Policy.
@@ -402,11 +463,11 @@ export interface Oidc {
 }
 
 /**
- * The configuration for all connectors that are Palantir-provided drivers.
+ * The import configuration for an Oracle Database 21 connection.
  *
  * Log Safety: UNSAFE
  */
-export interface PalantirProvidedDriversImportConfig {
+export interface OracleImportConfig {
   query: string;
 }
 
@@ -414,6 +475,27 @@ export interface PalantirProvidedDriversImportConfig {
  * Log Safety: DO_NOT_LOG
  */
 export type PlaintextValue = LooselyBrandedString<"PlaintextValue">;
+
+/**
+ * The import configuration for a PostgreSQL connection.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface PostgreSqlImportConfig {
+  query: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceFileImportRequest {
+  datasetRid: _Datasets.DatasetRid;
+  importMode: FileImportMode;
+  displayName: FileImportDisplayName;
+  branchName?: _Datasets.BranchName;
+  subfolder?: string;
+  fileImportFilters: Array<FileImportFilter>;
+}
 
 /**
    * The runtime of a Connection, which defines the
@@ -468,9 +550,14 @@ export interface TableImport {
  *
  * Log Safety: UNSAFE
  */
-export type TableImportConfig = {
-  type: "microsoftAccessImportConfig";
-} & MicrosoftAccessImportConfig;
+export type TableImportConfig =
+  | ({ type: "jdbcImportConfig" } & JdbcImportConfig)
+  | ({
+    type: "microsoftSqlServerImportConfig";
+  } & MicrosoftSqlServerImportConfig)
+  | ({ type: "postgreSqlImportConfig" } & PostgreSqlImportConfig)
+  | ({ type: "microsoftAccessImportConfig" } & MicrosoftAccessImportConfig)
+  | ({ type: "oracleImportConfig" } & OracleImportConfig);
 
 /**
  * Log Safety: UNSAFE
@@ -498,6 +585,6 @@ export type TableImportRid = LooselyBrandedString<"TableImportRid">;
 /**
  * Log Safety: DO_NOT_LOG
  */
-export interface UpdateSecretsConnectionRequest {
+export interface UpdateSecretsForConnectionRequest {
   secrets: Record<SecretName, PlaintextValue>;
 }

@@ -21,6 +21,7 @@ export * as ActionTypesV2 from "./public/ActionTypeV2.js";
 export * as Attachments from "./public/Attachment.js";
 export * as AttachmentPropertiesV2 from "./public/AttachmentPropertyV2.js";
 export * as LinkedObjectsV2 from "./public/LinkedObjectV2.js";
+export * as MediaReferenceProperties from "./public/MediaReferenceProperty.js";
 export * as ObjectTypesV2 from "./public/ObjectTypeV2.js";
 export * as OntologyInterfaces from "./public/OntologyInterface.js";
 export * as OntologyObjectSets from "./public/OntologyObjectSet.js";
