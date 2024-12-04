@@ -1,5 +1,11 @@
 # @osdk/internal.foundry.geo
 
+## 2.7.0
+
+### Minor Changes
+
+- 5f8048f: Updating platform APIs to include media APIs.
+
 ## 2.6.0
 
 ### Minor Changes

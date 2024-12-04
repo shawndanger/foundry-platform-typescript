@@ -1,5 +1,16 @@
 # @osdk/foundry.admin
 
+## 2.7.0
+
+### Minor Changes
+
+- 5f8048f: Updating platform APIs to include media APIs.
+
+### Patch Changes
+
+- Updated dependencies [5f8048f]
+  - @osdk/foundry.core@2.7.0
+
 ## 2.6.0
 
 ### Minor Changes

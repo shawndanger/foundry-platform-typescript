@@ -1,5 +1,21 @@
 # @osdk/foundry
 
+## 2.7.0
+
+### Minor Changes
+
+- 5f8048f: Updating platform APIs to include media APIs.
+
+### Patch Changes
+
+- Updated dependencies [5f8048f]
+  - @osdk/internal.foundry.ontologiesv2@2.7.0
+  - @osdk/internal.foundry.ontologies@2.7.0
+  - @osdk/internal.foundry.mediasets@2.7.0
+  - @osdk/internal.foundry.datasets@2.7.0
+  - @osdk/internal.foundry.core@2.7.0
+  - @osdk/internal.foundry.geo@2.7.0
+
 ## 2.6.0
 
 ### Minor Changes
