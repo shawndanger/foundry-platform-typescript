@@ -1,5 +1,12 @@
 # @osdk/foundry.functions
 
+## 2.7.0
+
+### Patch Changes
+
+- Updated dependencies [5f8048f]
+  - @osdk/foundry.core@2.7.0
+
 ## 2.6.0
 
 ### Minor Changes

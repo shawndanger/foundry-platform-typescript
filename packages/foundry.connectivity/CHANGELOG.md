@@ -1,5 +1,19 @@
 # @osdk/foundry.connectivity
 
+## 2.7.0
+
+### Minor Changes
+
+- 5f8048f: Updating platform APIs to include media APIs.
+
+### Patch Changes
+
+- Updated dependencies [5f8048f]
+  - @osdk/foundry.orchestration@2.7.0
+  - @osdk/foundry.filesystem@2.7.0
+  - @osdk/foundry.datasets@2.7.0
+  - @osdk/foundry.core@2.7.0
+
 ## 2.6.0
 
 ### Minor Changes
