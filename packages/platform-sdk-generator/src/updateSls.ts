@@ -69,7 +69,7 @@ export async function updateSls(
     const value = {
       minVersion: dep["minimum-version"],
       maxVersion: dep["maximum-version"],
-      optional: true,
+      optional: false,
     };
     dependencies[key] = value;
   }
