@@ -107,3 +107,37 @@ export function getMediaMetadata(
 ): Promise<_Core.MediaMetadata> {
   return $foundryPlatformFetch($ctx, _getMediaMetadata, ...args);
 }
+
+const _upload: $FoundryPlatformMethod<
+  (
+    ontology: _Core.OntologyIdentifier,
+    objectType: _Core.ObjectTypeApiName,
+    property: _Core.PropertyApiName,
+    $body: Blob,
+    $queryParams?: { mediaItemPath?: _Core.MediaItemPath | undefined },
+  ) => Promise<_Core.MediaReference>
+> = [1, "/v2/ontologies/{0}/objectTypes/{1}/media/{2}/upload", 3, "*/*"];
+
+/**
+ * Uploads a media item to the media set which backs the specified property.  The property must be backed by a single media set and branch, otherwise an error will be thrown.
+ * The body of the request must contain the binary content of the file and the `Content-Type` header must be `application/octet-stream`.
+ *
+ * Third-party applications using this endpoint via OAuth2 must request the following operation scopes: `api:ontologies-read api:mediasets-read api:mediasets-write`.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:ontologies-read, api:mediasets-read, api:mediasets-write]
+ * URL: /v2/ontologies/{ontology}/objectTypes/{objectType}/media/{property}/upload
+ */
+export function upload(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Core.OntologyIdentifier,
+    objectType: _Core.ObjectTypeApiName,
+    property: _Core.PropertyApiName,
+    $body: Blob,
+    $queryParams?: { mediaItemPath?: _Core.MediaItemPath | undefined },
+  ]
+): Promise<_Core.MediaReference> {
+  return $foundryPlatformFetch($ctx, _upload, ...args);
+}
