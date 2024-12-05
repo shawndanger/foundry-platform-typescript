@@ -1,5 +1,11 @@
 # @osdk/foundry.ontologies
 
+## 2.8.0
+
+### Minor Changes
+
+- b025652: Update APIs and make backend dependency non-optional.
+
 ## 2.7.0
 
 ### Minor Changes

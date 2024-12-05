@@ -1,5 +1,21 @@
 # @osdk/foundry
 
+## 2.8.0
+
+### Minor Changes
+
+- b025652: Update APIs and make backend dependency non-optional.
+
+### Patch Changes
+
+- Updated dependencies [b025652]
+  - @osdk/internal.foundry.ontologiesv2@2.8.0
+  - @osdk/internal.foundry.ontologies@2.8.0
+  - @osdk/internal.foundry.mediasets@2.8.0
+  - @osdk/internal.foundry.datasets@2.8.0
+  - @osdk/internal.foundry.core@2.8.0
+  - @osdk/internal.foundry.geo@2.8.0
+
 ## 2.7.0
 
 ### Minor Changes

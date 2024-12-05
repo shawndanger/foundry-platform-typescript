@@ -1,5 +1,11 @@
 # @osdk/platform-sdk-generator
 
+## 0.8.0
+
+### Minor Changes
+
+- b025652: Update APIs and make backend dependency non-optional.
+
 ## 0.7.0
 
 ### Minor Changes
