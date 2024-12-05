@@ -1,5 +1,19 @@
 # @osdk/foundry.connectivity
 
+## 2.8.0
+
+### Minor Changes
+
+- b025652: Update APIs and make backend dependency non-optional.
+
+### Patch Changes
+
+- Updated dependencies [b025652]
+  - @osdk/foundry.orchestration@2.8.0
+  - @osdk/foundry.filesystem@2.8.0
+  - @osdk/foundry.datasets@2.8.0
+  - @osdk/foundry.core@2.8.0
+
 ## 2.7.0
 
 ### Minor Changes
