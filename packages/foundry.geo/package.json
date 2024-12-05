@@ -54,7 +54,7 @@
       "com.palantir.foundry.api:api-gateway": {
         "minVersion": "1.1014.0",
         "maxVersion": "1.x.x",
-        "optional": true
+        "optional": false
       }
     }
   },
