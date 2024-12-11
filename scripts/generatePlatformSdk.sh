@@ -26,7 +26,7 @@ $CODE_GENERATOR generate --v2 --prefix "internal.foundry" --inputFile "${OPENAPI
 
 
 # Generate the API bindings for @oskd/foundry (omni v2)
-OMNIAPI_IR_JSON="${SCRIPT_DIR}/../tmp/api-gateway-ir/v2.json"
+OMNIAPI_IR_JSON="${SCRIPT_DIR}/../tmp/api-gateway-ir/combined.json"
 
 echo "Generating bindings"
 $CODE_GENERATOR generate --v2 --prefix foundry --inputFile "${OMNIAPI_IR_JSON}" --manifestFile "${OPENAPI_MANIFEST_YML}" --outputDir "${OUT_PATH}" 

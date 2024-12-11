@@ -62,6 +62,7 @@ export async function generatePlatformSdkV2(
   for (const ns of model.namespaces) {
     let nsIndexTsContents = `${copyright}\n`;
 
+    const set = new Set<string>();
     for (const r of ns.resources) {
       const resourceDirRelToSrc = "./" // path.join() will strip a single period w do it by hand
         + path.relative(
@@ -70,6 +71,11 @@ export async function generatePlatformSdkV2(
         ).split(path.sep).join("/");
 
       const resourceName = pluralize(r.component);
+      if (set.has(resourceName)) {
+        continue;
+      } else {
+        set.add(resourceName);
+      }
       if (componentsGenerated.get(ns)!.some(c => c === resourceName)) {
         throw new Error(
           `Even the duplicated components aren't unique: ${resourceName}`,

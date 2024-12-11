@@ -105,8 +105,8 @@ export class Model {
   getComponent(locator: ir.Locator): Component {
     const ret = this.#components.get(
       `${
-        locator.namespaceName === "Ontologies" ? "Core" : locator.namespaceName
-      }.${locator.localName}`,
+        // locator.namespaceName === "Ontologies" ? "Core" :
+        locator.namespaceName}.${locator.localName}`,
     );
     if (!ret) {
       throw new Error(
@@ -133,29 +133,29 @@ export class Model {
      * internal.foundry.ontologiesv2 just to depend on types
      * only present in the former.
      */
-    await model.#addNamespace("Core");
-    await model.#addNamespace("Ontologies");
+    // await model.#addNamespace("Core");
+    // await model.#addNamespace("Ontologies");
     for (const ns of ir.namespaces) {
       if (isIgnoredNamespace(ns.name)) continue;
 
-      if (ns.name !== "Core" && ns.name !== "Ontologies") {
-        await model.#addNamespace(ns.name);
-      }
+      // if (ns.name !== "Core" && ns.name !== "Ontologies") {
+      await model.#addNamespace(ns.name);
+      // }
 
       for (const c of ns.components) {
         if (isIgnoredType(c)) continue;
-        if (c.locator.namespaceName === "Ontologies") {
-          c.locator.namespaceName = "Core";
-        }
+        // if (c.locator.namespaceName === "Ontologies") {
+        //   c.locator.namespaceName = "Core";
+        // }
 
         model.#addComponent(c);
       }
 
       for (const e of ns.errors) {
         if (isIgnoredType(e)) continue;
-        if (e.locator.namespaceName === "Ontologies") {
-          e.locator.namespaceName = "Core";
-        }
+        // if (e.locator.namespaceName === "Ontologies") {
+        //   e.locator.namespaceName = "Core";
+        // }
         model.#addError(e);
       }
 
@@ -186,12 +186,15 @@ export class Model {
 
   async #addNamespace(nsName: string) {
     const dir = `${this.#opts.packagePrefix}${
-      nsName === ""
-        ? ".core"
-        : `.${nsName.toLowerCase()}`
-    }`;
+      // nsName === ""
+      //   ? ".core"
+      //   :
+      `.${nsName.toLowerCase()}`}`;
     const packagePath = path.join(this.#opts.outputDir, dir);
     const packageName = `${this.#opts.npmOrg}/${dir}`;
+    if (this.#namespaces.has(nsName)) {
+      return;
+    }
     this.#namespaces.set(nsName, {
       components: [],
       errors: [],
@@ -219,7 +222,11 @@ export class Model {
       ns.packageName,
       c,
     );
-
+    if (
+      this.#components.has(`${c.locator.namespaceName}.${c.locator.localName}`)
+    ) {
+      return;
+    }
     ns.components.push(component);
     this.#components.set(
       `${c.locator.namespaceName}.${c.locator.localName}`,
@@ -228,9 +235,11 @@ export class Model {
   }
 
   #addError(e: ir.Error) {
-    const nsName = (e.locator.namespaceName == null)
-      ? "Core"
-      : e.locator.namespaceName;
+    const nsName =
+      // (e.locator.namespaceName == null)
+      //   ? "Core"
+      //   :
+      e.locator.namespaceName;
     const ns = this.#namespaces.get(nsName);
     if (!ns) {
       throw new Error(
@@ -245,6 +254,10 @@ export class Model {
       ns.packageName,
       e,
     );
+
+    if (this.#errors.has(e.locator.localName)) {
+      return;
+    }
 
     ns.errors.push(error);
     this.#errors.set(e.locator.localName, error);
