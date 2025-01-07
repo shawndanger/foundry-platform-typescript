@@ -24,3 +24,6 @@ SearchArounds
 typeclasses
 workstate
 Buildable
+Mediasets
+Jdbc
+Karp

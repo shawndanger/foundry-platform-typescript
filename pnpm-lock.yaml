@@ -249,6 +249,9 @@ importers:
       '@osdk/foundry.datasets':
         specifier: workspace:*
         version: link:../foundry.datasets
+      '@osdk/foundry.filesystem':
+        specifier: workspace:*
+        version: link:../foundry.filesystem
       '@osdk/foundry.orchestration':
         specifier: workspace:*
         version: link:../foundry.orchestration
@@ -515,6 +518,9 @@ importers:
       '@osdk/internal.foundry.geo':
         specifier: workspace:*
         version: link:../internal.foundry.geo
+      '@osdk/internal.foundry.mediasets':
+        specifier: workspace:*
+        version: link:../internal.foundry.mediasets
       '@osdk/internal.foundry.ontologies':
         specifier: workspace:*
         version: link:../internal.foundry.ontologies
@@ -584,6 +590,28 @@ importers:
 
   packages/internal.foundry.geo:
     dependencies:
+      '@osdk/shared.client':
+        specifier: ^1.0.1
+        version: 1.0.1
+      '@osdk/shared.client2':
+        specifier: ^1.0.0
+        version: 1.0.0
+      '@osdk/shared.net.platformapi':
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
+    devDependencies:
+      '@osdk/monorepo.tsconfig':
+        specifier: workspace:~
+        version: link:../monorepo.tsconfig
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
+
+  packages/internal.foundry.mediasets:
+    dependencies:
+      '@osdk/internal.foundry.core':
+        specifier: workspace:*
+        version: link:../internal.foundry.core
       '@osdk/shared.client':
         specifier: ^1.0.1
         version: 1.0.1

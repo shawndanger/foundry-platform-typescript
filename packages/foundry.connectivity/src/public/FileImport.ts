@@ -41,7 +41,7 @@ const _create: $FoundryPlatformMethod<
 /**
  * Creates a new FileImport.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:connectivity-file-import-write]
  * URL: /v2/connectivity/connections/{connectionRid}/fileImports
@@ -70,7 +70,7 @@ const _deleteFileImport: $FoundryPlatformMethod<
  * Deleting the file import does not delete the destination dataset but the dataset will no longer
  * be updated by this import.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:connectivity-file-import-write]
  * URL: /v2/connectivity/connections/{connectionRid}/fileImports/{fileImportRid}
@@ -102,7 +102,7 @@ const _list: $FoundryPlatformMethod<
  * Lists all file imports defined for this connection.
  * Only file imports that the user has permissions to view will be returned.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:connectivity-file-import-read]
  * URL: /v2/connectivity/connections/{connectionRid}/fileImports
@@ -133,7 +133,7 @@ const _get: $FoundryPlatformMethod<
 /**
  * Get the FileImport with the specified rid.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:connectivity-file-import-read]
  * URL: /v2/connectivity/connections/{connectionRid}/fileImports/{fileImportRid}
@@ -150,6 +150,35 @@ export function get(
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
 
+const _replace: $FoundryPlatformMethod<
+  (
+    connectionRid: _Connectivity.ConnectionRid,
+    fileImportRid: _Connectivity.FileImportRid,
+    $body: _Connectivity.ReplaceFileImportRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Connectivity.FileImport>
+> = [2, "/v2/connectivity/connections/{0}/fileImports/{1}", 3];
+
+/**
+ * Replace the FileImport with the specified rid.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:connectivity-file-import-write]
+ * URL: /v2/connectivity/connections/{connectionRid}/fileImports/{fileImportRid}
+ */
+export function replace(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    connectionRid: _Connectivity.ConnectionRid,
+    fileImportRid: _Connectivity.FileImportRid,
+    $body: _Connectivity.ReplaceFileImportRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Connectivity.FileImport> {
+  return $foundryPlatformFetch($ctx, _replace, ...args);
+}
+
 const _execute: $FoundryPlatformMethod<
   (
     connectionRid: _Connectivity.ConnectionRid,
@@ -162,7 +191,7 @@ const _execute: $FoundryPlatformMethod<
  * Executes the FileImport, which runs asynchronously as a [Foundry Build](https://www.palantir.com/docs/foundry/data-integration/builds/).
  * The returned BuildRid can be used to check the status via the Orchestration API.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:connectivity-file-import-execute]
  * URL: /v2/connectivity/connections/{connectionRid}/fileImports/{fileImportRid}/execute

@@ -1,6 +1,6 @@
 {
   "name": "@osdk/internal.foundry.core",
-  "version": "2.6.0-beta.1",
+  "version": "2.8.0",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -9,11 +9,13 @@
   "exports": {
     ".": {
       "browser": "./build/browser/index.js",
-      "import": "./build/esm/index.js"
+      "import": "./build/esm/index.js",
+      "default": "./build/esm/index.js"
     },
     "./*": {
       "browser": "./build/browser/public/*.js",
-      "import": "./build/esm/public/*.js"
+      "import": "./build/esm/public/*.js",
+      "default": "./build/esm/public/*.js"
     }
   },
   "scripts": {
@@ -51,9 +53,9 @@
   "sls": {
     "dependencies": {
       "com.palantir.foundry.api:api-gateway": {
-        "minVersion": "1.990.0",
+        "minVersion": "1.1014.0",
         "maxVersion": "1.x.x",
-        "optional": true
+        "optional": false
       }
     }
   },

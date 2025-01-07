@@ -1,5 +1,11 @@
 # @osdk/tool.release
 
+## 0.6.0
+
+### Minor Changes
+
+- bd6d407: Adds a "default" export entry
+
 ## 0.5.0
 
 ### Minor Changes

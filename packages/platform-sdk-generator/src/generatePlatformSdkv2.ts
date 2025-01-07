@@ -296,7 +296,7 @@ const BASE_PACKAGE_JSON = {
       "com.palantir.foundry.api:api-gateway": {
         "minVersion": "1.824.0",
         "maxVersion": "1.x.x",
-        "optional": true,
+        "optional": false,
       },
     },
   },

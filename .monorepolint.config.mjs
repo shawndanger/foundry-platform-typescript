@@ -301,13 +301,15 @@ function standardPackageRules(shared, options) {
         entries: {
           exports: {
             ".": {
-              "browser": "./build/browser/index.js",
-              "import": "./build/esm/index.js",
+              browser: "./build/browser/index.js",
+              import: "./build/esm/index.js",
+              default: "./build/esm/index.js",
             },
 
             "./*": {
               browser: "./build/browser/public/*.js",
               import: "./build/esm/public/*.js",
+              default: "./build/esm/public/*.js",
             },
           },
           publishConfig: {

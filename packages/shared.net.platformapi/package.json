@@ -1,6 +1,6 @@
 {
   "name": "@osdk/shared.net.platformapi",
-  "version": "1.2.0-beta.1",
+  "version": "1.2.0",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -9,11 +9,13 @@
   "exports": {
     ".": {
       "browser": "./build/browser/index.js",
-      "import": "./build/esm/index.js"
+      "import": "./build/esm/index.js",
+      "default": "./build/esm/index.js"
     },
     "./*": {
       "browser": "./build/browser/public/*.js",
-      "import": "./build/esm/public/*.js"
+      "import": "./build/esm/public/*.js",
+      "default": "./build/esm/public/*.js"
     }
   },
   "scripts": {

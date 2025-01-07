@@ -120,6 +120,20 @@ export interface BuildTargetsResolutionError {
 }
 
 /**
+ * Could not cancel the Build.
+ *
+ * Log Safety: SAFE
+ */
+export interface CancelBuildPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CancelBuildPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    buildRid: unknown;
+  };
+}
+
+/**
  * Could not create the Build.
  *
  * Log Safety: SAFE

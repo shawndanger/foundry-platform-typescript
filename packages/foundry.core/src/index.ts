@@ -26,6 +26,7 @@ export type {
   CenterPoint,
   CenterPointTypes,
   ChangeDataCaptureConfiguration,
+  CipherTextType,
   ContainsAllTermsInOrderPrefixLastTerm,
   ContainsAllTermsInOrderQuery,
   ContainsAllTermsQuery,

@@ -1,5 +1,18 @@
 # @osdk/platform-sdk-generator
 
+## 0.8.0
+
+### Minor Changes
+
+- b025652: Update APIs and make backend dependency non-optional.
+
+## 0.7.0
+
+### Minor Changes
+
+- bd6d407: Adds a "default" export entry
+- 7e79126: Updates the response type of methods that returned Blob to return Response
+
 ## 0.7.0-beta.0
 
 ### Minor Changes

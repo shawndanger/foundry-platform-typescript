@@ -77,3 +77,29 @@ export function create(
 ): Promise<_Orchestration.Build> {
   return $foundryPlatformFetch($ctx, _create, ...args);
 }
+
+const _cancel: $FoundryPlatformMethod<
+  (
+    buildRid: _Orchestration.BuildRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<void>
+> = [1, "/v2/orchestration/builds/{0}/cancel", 2];
+
+/**
+ * Request a cancellation for all unfinished jobs in a build. The build's status will not update immediately. This endpoint is asynchronous and a success response indicates that the cancellation request has been acknowledged and the build is expected to be canceled soon. If the build has already finished or finishes shortly after the request and before the cancellation, the build will not change.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:orchestration-write]
+ * URL: /v2/orchestration/builds/{buildRid}/cancel
+ */
+export function cancel(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    buildRid: _Orchestration.BuildRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<void> {
+  return $foundryPlatformFetch($ctx, _cancel, ...args);
+}
