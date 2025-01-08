@@ -34,9 +34,15 @@ export async function generatePlatformSdkV2(
   ir: ir.ApiSpec,
   outputDir: string,
   packagePrefix: string,
+  deprecatedIr?: ir.ApiSpec,
 ): Promise<string[]> {
   const npmOrg = "@osdk";
-  const model = await Model.create(ir, { npmOrg, outputDir, packagePrefix });
+  const model = await Model.create(ir, {
+    npmOrg,
+    outputDir,
+    packagePrefix,
+    deprecatedIr,
+  });
 
   const componentsGenerated = new Map<Namespace, string[]>();
   const errorsGenerated = new Map<Namespace, string[]>();
@@ -98,7 +104,7 @@ export async function generatePlatformSdkV2(
 
     for (const comp of ns.components) {
       for (const rc of comp.referencedComponents) {
-        deps.add(rc.namespace);
+        if (!comp.isDeprecated) deps.add(rc.namespace);
       }
     }
 
@@ -162,10 +168,15 @@ export async function generateComponents(
     `export type LooselyBrandedString<T extends string> = string & {__LOOSE_BRAND?: T };
       `;
 
-  for (const component of ns.components) {
+  for (
+    const component of ns.components.sort((a, b) =>
+      a.name.localeCompare(b.name)
+    )
+  ) {
     if (isIgnoredType(component.component)) {
       continue;
     }
+
     out += component.getDeclaration(ns.name);
     ret.push(component.name === "Record" ? "_Record" : component.name);
 
