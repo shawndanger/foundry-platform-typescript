@@ -37,6 +37,7 @@ const _getMediaContent: $FoundryPlatformMethod<
     $queryParams?: {
       artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
       packageName?: _Core.SdkPackageName | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<Response>
 > = [0, "/v2/ontologies/{0}/objects/{1}/{2}/media/{3}/content", 2, , "*/*"];
@@ -46,7 +47,7 @@ const _getMediaContent: $FoundryPlatformMethod<
  *
  * Third-party applications using this endpoint via OAuth2 must request the following operation scopes: `api:ontologies-read api:mediasets-read`.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:ontologies-read, api:mediasets-read]
  * URL: /v2/ontologies/{ontology}/objects/{objectType}/{primaryKey}/media/{property}/content
@@ -62,6 +63,7 @@ export function getMediaContent(
     $queryParams?: {
       artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
       packageName?: _Core.SdkPackageName | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<Response> {
@@ -77,6 +79,7 @@ const _getMediaMetadata: $FoundryPlatformMethod<
     $queryParams?: {
       artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
       packageName?: _Core.SdkPackageName | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Core.MediaMetadata>
 > = [0, "/v2/ontologies/{0}/objects/{1}/{2}/media/{3}/metadata", 2];
@@ -102,6 +105,7 @@ export function getMediaMetadata(
     $queryParams?: {
       artifactRepository?: _Core.ArtifactRepositoryRid | undefined;
       packageName?: _Core.SdkPackageName | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ]
 ): Promise<_Core.MediaMetadata> {
@@ -114,7 +118,10 @@ const _upload: $FoundryPlatformMethod<
     objectType: _Core.ObjectTypeApiName,
     property: _Core.PropertyApiName,
     $body: Blob,
-    $queryParams?: { mediaItemPath?: _Core.MediaItemPath | undefined },
+    $queryParams?: {
+      mediaItemPath?: _Core.MediaItemPath | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ) => Promise<_Core.MediaReference>
 > = [1, "/v2/ontologies/{0}/objectTypes/{1}/media/{2}/upload", 3, "*/*"];
 
@@ -124,7 +131,7 @@ const _upload: $FoundryPlatformMethod<
  *
  * Third-party applications using this endpoint via OAuth2 must request the following operation scopes: `api:ontologies-read api:mediasets-read api:mediasets-write`.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:ontologies-read, api:mediasets-read, api:mediasets-write]
  * URL: /v2/ontologies/{ontology}/objectTypes/{objectType}/media/{property}/upload
@@ -136,7 +143,10 @@ export function upload(
     objectType: _Core.ObjectTypeApiName,
     property: _Core.PropertyApiName,
     $body: Blob,
-    $queryParams?: { mediaItemPath?: _Core.MediaItemPath | undefined },
+    $queryParams?: {
+      mediaItemPath?: _Core.MediaItemPath | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ]
 ): Promise<_Core.MediaReference> {
   return $foundryPlatformFetch($ctx, _upload, ...args);

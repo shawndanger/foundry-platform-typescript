@@ -223,6 +223,85 @@ export type FilePath = LooselyBrandedString<"FilePath">;
 /**
  * Log Safety: SAFE
  */
+export interface FilterBinaryType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterBooleanType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterDateTimeType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterDateType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterDoubleType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterEnumType {
+  values: Array<string>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterFloatType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterIntegerType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterLongType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterRidType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterStringType {}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type FilterType =
+  | ({ type: "dateTime" } & FilterDateTimeType)
+  | ({ type: "date" } & FilterDateType)
+  | ({ type: "boolean" } & FilterBooleanType)
+  | ({ type: "string" } & FilterStringType)
+  | ({ type: "double" } & FilterDoubleType)
+  | ({ type: "binary" } & FilterBinaryType)
+  | ({ type: "integer" } & FilterIntegerType)
+  | ({ type: "float" } & FilterFloatType)
+  | ({ type: "rid" } & FilterRidType)
+  | ({ type: "uuid" } & FilterUuidType)
+  | ({ type: "enum" } & FilterEnumType)
+  | ({ type: "long" } & FilterLongType);
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterUuidType {}
+
+/**
+ * Log Safety: SAFE
+ */
 export interface FloatType {}
 
 /**
@@ -273,6 +352,13 @@ export type MediaSetRid = LooselyBrandedString<"MediaSetRid">;
  * Log Safety: SAFE
  */
 export interface NullType {}
+
+/**
+ * Specifies the ordering direction (can be either ASC or DESC)
+ *
+ * Log Safety: SAFE
+ */
+export type OrderByDirection = "ASC" | "DESC";
 
 /**
  * Log Safety: SAFE
@@ -328,6 +414,15 @@ export type Realm = LooselyBrandedString<"Realm">;
  * Log Safety: SAFE
  */
 export type ReleaseStatus = "ACTIVE" | "EXPERIMENTAL" | "DEPRECATED";
+
+/**
+   * The unique ID for a Role. Roles are sets of permissions that grant different levels of access to resources.
+The default roles in Foundry are: Owner, Editor, Viewer, and Discoverer. See more about
+roles in the user documentation.
+   *
+   * Log Safety: SAFE
+   */
+export type RoleId = LooselyBrandedString<"RoleId">;
 
 /**
  * Log Safety: SAFE

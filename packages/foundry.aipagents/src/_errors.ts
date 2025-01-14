@@ -22,7 +22,6 @@ export type LooselyBrandedString<T extends string> = string & {
    * The Agent was unable to produce an answer in the set number of maximum iterations.
 This can happen if the Agent gets confused or stuck in a loop, or if the query is too complex.
 Try a different query or review the Agent configuration in AIP Agent Studio.
-
    *
    * Log Safety: UNSAFE
    */
@@ -67,18 +66,6 @@ export interface AgentVersionNotFound {
 }
 
 /**
- * Could not allSessions the Agent.
- *
- * Log Safety: SAFE
- */
-export interface AllSessionsAgentsPermissionDenied {
-  errorCode: "PERMISSION_DENIED";
-  errorName: "AllSessionsAgentsPermissionDenied";
-  errorInstanceId: string;
-  parameters: {};
-}
-
-/**
  * Could not blockingContinue the Session.
  *
  * Log Safety: SAFE
@@ -97,13 +84,12 @@ export interface BlockingContinueSessionPermissionDenied {
    * Unable to cancel the requested session exchange as no in-progress exchange was found
 for the provided message identifier.
 This is expected if no exchange was initiated with the provided message identifier
-through a `streamingContinue` request, or if the exchange for this identifier has already completed
+through a streamingContinue request, or if the exchange for this identifier has already completed
 and cannot be canceled, or if the exchange has already been canceled.
 This error can also occur if the cancellation was requested immediately after requesting the exchange
-through a `streamingContinue` request, and the exchange has not started yet.
+through a streamingContinue request, and the exchange has not started yet.
 Clients should handle these errors gracefully, and can reload the session content to get the latest
 conversation state.
-
    *
    * Log Safety: SAFE
    */
@@ -151,7 +137,6 @@ export interface ContentNotFound {
 /**
    * Failed to generate a response for a session because the context size of the LLM has been exceeded.
 Clients should either retry with a shorter message or create a new session and try re-sending the message.
-
    *
    * Log Safety: UNSAFE
    */
@@ -183,7 +168,6 @@ export interface CreateSessionPermissionDenied {
 /**
    * The specified function locator is configured for use by the Agent but could not be found.
 The function type or version may not exist or the client token does not have access.
-
    *
    * Log Safety: UNSAFE
    */
@@ -201,8 +185,7 @@ export interface FunctionLocatorNotFound {
 
 /**
    * The calling user does not have permission to list all sessions across all Agents.
-Listing all sessions across all agents requires the `api:aip-agents-write` scope.
-
+Listing all sessions across all agents requires the api:aip-agents-write scope.
    *
    * Log Safety: SAFE
    */
@@ -214,11 +197,25 @@ export interface GetAllSessionsAgentsPermissionDenied {
 }
 
 /**
-   * The provided version string is not a valid format for an Agent version.
+ * Could not ragContext the Session.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetRagContextForSessionPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetRagContextForSessionPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    agentRid: unknown;
+    sessionRid: unknown;
+  };
+}
 
-   *
-   * Log Safety: SAFE
-   */
+/**
+ * The provided version string is not a valid format for an Agent version.
+ *
+ * Log Safety: SAFE
+ */
 export interface InvalidAgentVersion {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidAgentVersion";
@@ -230,10 +227,9 @@ export interface InvalidAgentVersion {
 }
 
 /**
-   * The provided parameter is not valid for the Agent for this session.
-Check the available parameters for the Agent and version through the API with `getAgent`, or in AIP Agent Studio.
-The Agent version used for the session can be checked through the API with `getSession`.
-
+   * The provided application variable is not valid for the Agent for this session.
+Check the available application variables for the Agent under the parameters property, and version through the API with getAgent, or in AIP Agent Studio.
+The Agent version used for the session can be checked through the API with getSession.
    *
    * Log Safety: UNSAFE
    */
@@ -249,10 +245,9 @@ export interface InvalidParameter {
 }
 
 /**
-   * The provided parameter type does not match the expected type for the parameter configured on the Agent for this session.
-Check the available parameters and their expected types for the Agent and version through the API with `getAgent`, or in AIP Agent Studio.
-The Agent version used for the session can be checked through the API with `getSession`.
-
+   * The provided value does not match the expected type for the application variable configured on the Agent for this session.
+Check the available application variables for the Agent under the parameters property, and version through the API with getAgent, or in AIP Agent Studio.
+The Agent version used for the session can be checked through the API with getSession.
    *
    * Log Safety: UNSAFE
    */
@@ -270,9 +265,20 @@ export interface InvalidParameterType {
 }
 
 /**
+ * Could not allSessions the Agent.
+ *
+ * Log Safety: SAFE
+ */
+export interface ListSessionsForAgentsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ListSessionsForAgentsPermissionDenied";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
    * Failed to retrieve the latest published version of the Agent because the Agent has no published versions.
 Try publishing the Agent in AIP Agent Studio to use the latest published version, or specify the version of the Agent to use.
-
    *
    * Log Safety: SAFE
    */
@@ -288,8 +294,7 @@ export interface NoPublishedAgentVersion {
 /**
    * Some object types are configured for use by the Agent but could not be found.
 The object types either do not exist or the client token does not have access.
-Object types can be checked by listing available object types through the API, or searching in [Ontology Manager](/docs/foundry/ontology-manager/overview/).
-
+Object types can be checked by listing available object types through the API, or searching in Ontology Manager.
    *
    * Log Safety: UNSAFE
    */
@@ -307,8 +312,7 @@ export interface ObjectTypeIdsNotFound {
 /**
    * Some object types are configured for use by the Agent but could not be found.
 The object types either do not exist or the client token does not have access.
-Object types can be checked by listing available object types through the API, or searching in [Ontology Manager](/docs/foundry/ontology-manager/overview/).
-
+Object types can be checked by listing available object types through the API, or searching in Ontology Manager.
    *
    * Log Safety: SAFE
    */
@@ -324,26 +328,10 @@ export interface ObjectTypeRidsNotFound {
 }
 
 /**
- * Could not ragContext the Session.
+ * Failed to generate a response as the model rate limits were exceeded. Clients should wait and retry.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
-export interface RagContextSessionPermissionDenied {
-  errorCode: "PERMISSION_DENIED";
-  errorName: "RagContextSessionPermissionDenied";
-  errorInstanceId: string;
-  parameters: {
-    agentRid: unknown;
-    sessionRid: unknown;
-  };
-}
-
-/**
-   * Failed to generate a response as the model rate limits were exceeded. Clients should wait and retry.
-
-   *
-   * Log Safety: UNSAFE
-   */
 export interface RateLimitExceeded {
   errorCode: "CUSTOM_CLIENT";
   errorName: "RateLimitExceeded";
@@ -356,11 +344,10 @@ export interface RateLimitExceeded {
 }
 
 /**
-   * Failed to generate a response for a session due to an unexpected error.
-
-   *
-   * Log Safety: UNSAFE
-   */
+ * Failed to generate a response for a session due to an unexpected error.
+ *
+ * Log Safety: UNSAFE
+ */
 export interface SessionExecutionFailed {
   errorCode: "INTERNAL";
   errorName: "SessionExecutionFailed";

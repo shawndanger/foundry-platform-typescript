@@ -29,6 +29,38 @@ import type * as _Connectivity from "../_components.js";
 
 //
 
+const _create: $FoundryPlatformMethod<
+  (
+    $body: _Connectivity.CreateConnectionRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Connectivity.Connection>
+> = [1, "/v2/connectivity/connections", 3];
+
+/**
+ * Creates a new Connection.
+ * Any secrets specified in the request body are transmitted over the network encrypted using TLS. Once the
+ * secrets reach Foundry's servers, they will be temporarily decrypted and remain in plaintext in memory to
+ * be processed as needed. They will stay in plaintext in memory until the garbage collection process cleans
+ * up the memory. The secrets are always stored encrypted on our servers.
+ * By using this endpoint, you acknowledge and accept any potential risks associated with the temporary
+ * in-memory handling of secrets. If you do not want your secrets to be temporarily decrypted, you should
+ * use the Foundry UI instead.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:connectivity-connection-write]
+ * URL: /v2/connectivity/connections
+ */
+export function create(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: _Connectivity.CreateConnectionRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Connectivity.Connection> {
+  return $foundryPlatformFetch($ctx, _create, ...args);
+}
+
 const _get: $FoundryPlatformMethod<
   (
     connectionRid: _Connectivity.ConnectionRid,

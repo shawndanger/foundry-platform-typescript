@@ -144,3 +144,43 @@ export function upload(
 ): Promise<_ThirdPartyApplications.Version> {
   return $foundryPlatformFetch($ctx, _upload, ...args);
 }
+
+const _uploadSnapshot: $FoundryPlatformMethod<
+  (
+    thirdPartyApplicationRid: _ThirdPartyApplications.ThirdPartyApplicationRid,
+    $body: Blob,
+    $queryParams: {
+      version: _ThirdPartyApplications.VersionVersion;
+      snapshotIdentifier?: string | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_ThirdPartyApplications.Version>
+> = [
+  1,
+  "/v2/thirdPartyApplications/{0}/website/versions/uploadSnapshot",
+  3,
+  "application/octet-stream",
+];
+
+/**
+ * Upload a snapshot version of the Website. Snapshot versions are automatically deleted after two days.
+ *
+ * @alpha
+ *
+ * Required Scopes: [third-party-application:deploy-application-website]
+ * URL: /v2/thirdPartyApplications/{thirdPartyApplicationRid}/website/versions/uploadSnapshot
+ */
+export function uploadSnapshot(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    thirdPartyApplicationRid: _ThirdPartyApplications.ThirdPartyApplicationRid,
+    $body: Blob,
+    $queryParams: {
+      version: _ThirdPartyApplications.VersionVersion;
+      snapshotIdentifier?: string | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_ThirdPartyApplications.Version> {
+  return $foundryPlatformFetch($ctx, _uploadSnapshot, ...args);
+}

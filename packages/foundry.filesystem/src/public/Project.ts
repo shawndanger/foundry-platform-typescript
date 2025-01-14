@@ -54,3 +54,92 @@ export function get(
 ): Promise<_Filesystem.Project> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
+
+const _addOrganizations: $FoundryPlatformMethod<
+  (
+    projectRid: _Filesystem.ProjectRid,
+    $body: _Filesystem.AddOrganizationsRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<void>
+> = [1, "/v2/filesystem/projects/{0}/addOrganizations", 3];
+
+/**
+ * Adds a list of Organizations to a Project.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:filesystem-write]
+ * URL: /v2/filesystem/projects/{projectRid}/addOrganizations
+ */
+export function addOrganizations(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    projectRid: _Filesystem.ProjectRid,
+    $body: _Filesystem.AddOrganizationsRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<void> {
+  return $foundryPlatformFetch($ctx, _addOrganizations, ...args);
+}
+
+const _removeOrganizations: $FoundryPlatformMethod<
+  (
+    projectRid: _Filesystem.ProjectRid,
+    $body: _Filesystem.RemoveOrganizationsRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<void>
+> = [1, "/v2/filesystem/projects/{0}/removeOrganizations", 3];
+
+/**
+ * Removes Organizations from a Project.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:filesystem-write]
+ * URL: /v2/filesystem/projects/{projectRid}/removeOrganizations
+ */
+export function removeOrganizations(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    projectRid: _Filesystem.ProjectRid,
+    $body: _Filesystem.RemoveOrganizationsRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<void> {
+  return $foundryPlatformFetch($ctx, _removeOrganizations, ...args);
+}
+
+const _organizations: $FoundryPlatformMethod<
+  (
+    projectRid: _Filesystem.ProjectRid,
+    $queryParams?: {
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Filesystem.ListOrganizationsOfProjectResponse>
+> = [0, "/v2/filesystem/projects/{0}/organizations", 2];
+
+/**
+ * List of Organizations directly applied to a Project. The number of Organizations on a Project is
+ * typically small so the `pageSize` and `pageToken` parameters are not required.
+ *
+ * @alpha
+ *
+ * Required Scopes: []
+ * URL: /v2/filesystem/projects/{projectRid}/organizations
+ */
+export function organizations(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    projectRid: _Filesystem.ProjectRid,
+
+    $queryParams?: {
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Filesystem.ListOrganizationsOfProjectResponse> {
+  return $foundryPlatformFetch($ctx, _organizations, ...args);
+}

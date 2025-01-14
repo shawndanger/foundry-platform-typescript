@@ -62,11 +62,10 @@ export interface DeployWebsitePermissionDenied {
 }
 
 /**
-   * The .zip archive contains too many files.
-
-   *
-   * Log Safety: SAFE
-   */
+ * The .zip archive contains too many files.
+ *
+ * Log Safety: SAFE
+ */
 export interface FileCountLimitExceeded {
   errorCode: "INVALID_ARGUMENT";
   errorName: "FileCountLimitExceeded";
@@ -79,7 +78,6 @@ export interface FileCountLimitExceeded {
 /**
    * A file inside the .zip archive is too big. You must ensure that all files inside
 the .zip archive are within the limit.
-
    *
    * Log Safety: UNSAFE
    */
@@ -95,7 +93,7 @@ export interface FileSizeLimitExceeded {
 }
 
 /**
- * The given website version is invalid. Versions must follow semantic versioning with major, minor, and patch versions separate by periods, e.g. `0.1.0` or `1.2.3`.
+ * The given website version is invalid. Versions must follow semantic versioning with major, minor, and patch versions separate by periods, e.g. 0.1.0 or 1.2.3.
  *
  * Log Safety: UNSAFE
  */
@@ -137,6 +135,20 @@ export interface UndeployWebsitePermissionDenied {
 }
 
 /**
+ * Could not uploadSnapshot the Version.
+ *
+ * Log Safety: SAFE
+ */
+export interface UploadSnapshotVersionPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "UploadSnapshotVersionPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    thirdPartyApplicationRid: unknown;
+  };
+}
+
+/**
  * Could not upload the Version.
  *
  * Log Safety: SAFE
@@ -167,7 +179,6 @@ export interface VersionAlreadyExists {
 /**
    * The website contains too many versions. You must delete an old version before
 uploading a new one.
-
    *
    * Log Safety: SAFE
    */

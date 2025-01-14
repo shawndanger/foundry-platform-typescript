@@ -60,6 +60,18 @@ export interface GetSpaceResourceNotSupported {
 }
 
 /**
+ * The provided AND filter should have at least one sub-filter.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidAndFilter {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidAndFilter";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The change data capture configuration is invalid.
  *
  * Log Safety: SAFE
@@ -84,6 +96,34 @@ export interface InvalidFieldSchema {
     fieldName: unknown;
     message: unknown;
   };
+}
+
+/**
+ * The provided filter value is invalid.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidFilterValue {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidFilterValue";
+  errorInstanceId: string;
+  parameters: {
+    field: unknown;
+    value: unknown;
+    expectedType: unknown;
+  };
+}
+
+/**
+ * The provided OR filter should have at least one sub-filter.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidOrFilter {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidOrFilter";
+  errorInstanceId: string;
+  parameters: {};
 }
 
 /**
@@ -115,11 +155,10 @@ export interface InvalidPageToken {
 }
 
 /**
-   * The given parameters are individually valid but cannot be used in the given combination.
-
-   *
-   * Log Safety: SAFE
-   */
+ * The given parameters are individually valid but cannot be used in the given combination.
+ *
+ * Log Safety: SAFE
+ */
 export interface InvalidParameterCombination {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidParameterCombination";
@@ -172,11 +211,10 @@ export interface MissingBatchRequest {
 }
 
 /**
-   * The provided resource name is already in use by another resource in the same folder.
-
-   *
-   * Log Safety: UNSAFE
-   */
+ * The provided resource name is already in use by another resource in the same folder.
+ *
+ * Log Safety: UNSAFE
+ */
 export interface ResourceNameAlreadyExists {
   errorCode: "CONFLICT";
   errorName: "ResourceNameAlreadyExists";

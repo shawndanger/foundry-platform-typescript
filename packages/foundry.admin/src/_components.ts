@@ -36,6 +36,13 @@ export interface AddMarkingMembersRequest {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface AddMarkingRoleAssignmentsRequest {
+  roleAssignments: Array<MarkingRoleUpdate>;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export type AttributeName = LooselyBrandedString<"AttributeName">;
@@ -233,6 +240,14 @@ export interface ListMarkingMembersResponse {
 /**
  * Log Safety: UNSAFE
  */
+export interface ListMarkingRoleAssignmentsResponse {
+  data: Array<MarkingRoleAssignment>;
+  nextPageToken?: _Core.PageToken;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface ListMarkingsResponse {
   data: Array<Marking>;
   nextPageToken?: _Core.PageToken;
@@ -307,6 +322,34 @@ export interface MarkingMember {
 }
 
 /**
+   * Represents the operations that a user can perform with regards to a Marking.
+
+ADMINISTER: The user can add and remove members from the Marking, update Marking Role Assignments, and change Marking metadata.
+DECLASSIFY: The user can remove the Marking from resources in the platform and stop the propagation of the Marking during a transform.
+USE: The user can apply the marking to resources in the platform.
+   *
+   * Log Safety: SAFE
+   */
+export type MarkingRole = "ADMINISTER" | "DECLASSIFY" | "USE";
+
+/**
+ * Log Safety: SAFE
+ */
+export interface MarkingRoleAssignment {
+  principalType: _Core.PrincipalType;
+  principalId: _Core.PrincipalId;
+  role: MarkingRole;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface MarkingRoleUpdate {
+  role: MarkingRole;
+  principalId: _Core.PrincipalId;
+}
+
+/**
  * Log Safety: SAFE
  */
 export type MarkingType = "MANDATORY" | "CBAC";
@@ -328,6 +371,13 @@ export interface RemoveGroupMembersRequest {
  */
 export interface RemoveMarkingMembersRequest {
   principalIds: Array<_Core.PrincipalId>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface RemoveMarkingRoleAssignmentsRequest {
+  roleAssignments: Array<MarkingRoleUpdate>;
 }
 
 /**

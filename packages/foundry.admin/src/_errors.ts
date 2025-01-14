@@ -47,6 +47,35 @@ export interface AddMarkingMembersPermissionDenied {
 }
 
 /**
+ * Could not add the MarkingRoleAssignment.
+ *
+ * Log Safety: SAFE
+ */
+export interface AddMarkingRoleAssignmentsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "AddMarkingRoleAssignmentsPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    markingId: unknown;
+  };
+}
+
+/**
+ * You cannot remove all administrators from a marking.
+ *
+ * Log Safety: SAFE
+ */
+export interface CannotRemoveAllMarkingAdministrators {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "CannotRemoveAllMarkingAdministrators";
+  errorInstanceId: string;
+  parameters: {
+    markingId: unknown;
+    currentAdministrators: unknown;
+  };
+}
+
+/**
  * Could not create the Group.
  *
  * Log Safety: SAFE
@@ -280,6 +309,20 @@ export interface ListMarkingMembersPermissionDenied {
 }
 
 /**
+ * You do not have permission to list assigned roles for this marking.
+ *
+ * Log Safety: SAFE
+ */
+export interface ListMarkingRoleAssignmentsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ListMarkingRoleAssignmentsPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    markingId: unknown;
+  };
+}
+
+/**
  * The given MarkingCategory could not be found.
  *
  * Log Safety: SAFE
@@ -371,6 +414,20 @@ export interface RemoveGroupMembersPermissionDenied {
 export interface RemoveMarkingMembersPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "RemoveMarkingMembersPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    markingId: unknown;
+  };
+}
+
+/**
+ * Could not remove the MarkingRoleAssignment.
+ *
+ * Log Safety: SAFE
+ */
+export interface RemoveMarkingRoleAssignmentsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "RemoveMarkingRoleAssignmentsPermissionDenied";
   errorInstanceId: string;
   parameters: {
     markingId: unknown;

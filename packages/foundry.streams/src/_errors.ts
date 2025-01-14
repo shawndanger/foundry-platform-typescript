@@ -177,11 +177,10 @@ export interface RecordDoesNotMatchStreamSchema {
 }
 
 /**
-   * A record is too large to be published to the stream. On most enrollments, the maximum record size is 1MB.
-
-   *
-   * Log Safety: SAFE
-   */
+ * A record is too large to be published to the stream. On most enrollments, the maximum record size is 1MB.
+ *
+ * Log Safety: SAFE
+ */
 export interface RecordTooLarge {
   errorCode: "REQUEST_ENTITY_TOO_LARGE";
   errorName: "RecordTooLarge";

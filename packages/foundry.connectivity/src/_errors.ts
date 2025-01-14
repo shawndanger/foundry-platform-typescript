@@ -19,11 +19,10 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
-   * Changing of branch name is not supported for imports.
-
-   *
-   * Log Safety: UNSAFE
-   */
+ * Changing of branch name is not supported for imports.
+ *
+ * Log Safety: UNSAFE
+ */
 export interface ChangingBranchNameNotSupportedForImports {
   errorCode: "INVALID_ARGUMENT";
   errorName: "ChangingBranchNameNotSupportedForImports";
@@ -35,11 +34,10 @@ export interface ChangingBranchNameNotSupportedForImports {
 }
 
 /**
-   * Changing of output dataset is not supported for imports.
-
-   *
-   * Log Safety: SAFE
-   */
+ * Changing of output dataset is not supported for imports.
+ *
+ * Log Safety: SAFE
+ */
 export interface ChangingOutputDatasetNotSupportedForImports {
   errorCode: "INVALID_ARGUMENT";
   errorName: "ChangingOutputDatasetNotSupportedForImports";
@@ -51,11 +49,10 @@ export interface ChangingOutputDatasetNotSupportedForImports {
 }
 
 /**
-   * Details of the connection (such as which types of import it supports) could not be determined.
-
-   *
-   * Log Safety: UNSAFE
-   */
+ * Details of the connection (such as which types of import it supports) could not be determined.
+ *
+ * Log Safety: UNSAFE
+ */
 export interface ConnectionDetailsNotDetermined {
   errorCode: "INTERNAL";
   errorName: "ConnectionDetailsNotDetermined";
@@ -81,11 +78,10 @@ export interface ConnectionNotFound {
 }
 
 /**
-   * The specified connection is not yet supported in the Platform API.
-
-   *
-   * Log Safety: UNSAFE
-   */
+ * The specified connection is not yet supported in the Platform API.
+ *
+ * Log Safety: UNSAFE
+ */
 export interface ConnectionTypeNotSupported {
   errorCode: "INTERNAL";
   errorName: "ConnectionTypeNotSupported";
@@ -93,6 +89,18 @@ export interface ConnectionTypeNotSupported {
   parameters: {
     connectionType: unknown;
   };
+}
+
+/**
+ * Could not create the Connection.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateConnectionPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateConnectionPermissionDenied";
+  errorInstanceId: string;
+  parameters: {};
 }
 
 /**
@@ -154,6 +162,20 @@ export interface DeleteTableImportPermissionDenied {
 }
 
 /**
+ * The encrypted property must be specified as a plaintext value.
+ *
+ * Log Safety: SAFE
+ */
+export interface EncryptedPropertyMustBeSpecifiedAsPlaintextValue {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "EncryptedPropertyMustBeSpecifiedAsPlaintextValue";
+  errorInstanceId: string;
+  parameters: {
+    propertyName: unknown;
+  };
+}
+
+/**
  * Could not execute the FileImport.
  *
  * Log Safety: SAFE
@@ -184,11 +206,10 @@ export interface ExecuteTableImportPermissionDenied {
 }
 
 /**
-   * The provided `minFilesCount` field in the FileAtLeastCountFilter must be strictly greater than 0.
-
-   *
-   * Log Safety: SAFE
-   */
+ * The provided minFilesCount property in the FileAtLeastCountFilter must be strictly greater than 0.
+ *
+ * Log Safety: SAFE
+ */
 export interface FileAtLeastCountFilterInvalidMinCount {
   errorCode: "INVALID_ARGUMENT";
   errorName: "FileAtLeastCountFilterInvalidMinCount";
@@ -201,7 +222,6 @@ export interface FileAtLeastCountFilterInvalidMinCount {
 /**
    * Custom file import filters can be fetched but cannot currently be used
 when creating or updating file imports.
-
    *
    * Log Safety: UNSAFE
    */
@@ -230,11 +250,10 @@ export interface FileImportNotFound {
 }
 
 /**
-   * The specified connection does not support file imports.
-
-   *
-   * Log Safety: SAFE
-   */
+ * The specified connection does not support file imports.
+ *
+ * Log Safety: SAFE
+ */
 export interface FileImportNotSupportedForConnection {
   errorCode: "INVALID_ARGUMENT";
   errorName: "FileImportNotSupportedForConnection";
@@ -245,11 +264,10 @@ export interface FileImportNotSupportedForConnection {
 }
 
 /**
-   * The `gt` field in the FileSizeFilter cannot be a negative number.
-
-   *
-   * Log Safety: SAFE
-   */
+ * The gt property in the FileSizeFilter cannot be a negative number.
+ *
+ * Log Safety: SAFE
+ */
 export interface FileSizeFilterGreaterThanCannotBeNegative {
   errorCode: "INVALID_ARGUMENT";
   errorName: "FileSizeFilterGreaterThanCannotBeNegative";
@@ -260,9 +278,8 @@ export interface FileSizeFilterGreaterThanCannotBeNegative {
 }
 
 /**
-   * The provided `gt` and `lt` fields in the FileSizeFilter are invalid. No files will ever
-satisfy the provided range. The value specified for `gt` must be strictly less than `lt - 1`.
-
+   * The provided gt and lt properties in the FileSizeFilter are invalid. No files will ever
+satisfy the provided range. The value specified for gt must be strictly less than lt - 1.
    *
    * Log Safety: SAFE
    */
@@ -277,11 +294,10 @@ export interface FileSizeFilterInvalidGreaterThanAndLessThanRange {
 }
 
 /**
-   * The `lt` field in the FileSizeFilter must be at least 1 byte.
-
-   *
-   * Log Safety: SAFE
-   */
+ * The lt property in the FileSizeFilter must be at least 1 byte.
+ *
+ * Log Safety: SAFE
+ */
 export interface FileSizeFilterLessThanMustBeOneByteOrLarger {
   errorCode: "INVALID_ARGUMENT";
   errorName: "FileSizeFilterLessThanMustBeOneByteOrLarger";
@@ -292,9 +308,8 @@ export interface FileSizeFilterLessThanMustBeOneByteOrLarger {
 }
 
 /**
-   * Both the `gt` and `lt` fields are missing from the FileSizeFilter. At least one of these
-fields must be present
-
+   * Both the gt and lt properties are missing from the FileSizeFilter. At least one of these
+properties must be present
    *
    * Log Safety: SAFE
    */
@@ -306,11 +321,10 @@ export interface FileSizeFilterMissingGreaterThanAndLessThan {
 }
 
 /**
-   * The `filesCount` field in the FilesCountLimitFilter must be strictly greater than 0.
-
-   *
-   * Log Safety: SAFE
-   */
+ * The filesCount property in the FilesCountLimitFilter must be strictly greater than 0.
+ *
+ * Log Safety: SAFE
+ */
 export interface FilesCountLimitFilterInvalidLimit {
   errorCode: "INVALID_ARGUMENT";
   errorName: "FilesCountLimitFilterInvalidLimit";
@@ -321,17 +335,30 @@ export interface FilesCountLimitFilterInvalidLimit {
 }
 
 /**
-   * The parent folder for the specified connection could not be found.
-
-   *
-   * Log Safety: SAFE
-   */
+ * The parent folder for the specified connection could not be found.
+ *
+ * Log Safety: SAFE
+ */
 export interface ParentFolderNotFoundForConnection {
   errorCode: "NOT_FOUND";
   errorName: "ParentFolderNotFoundForConnection";
   errorInstanceId: string;
   parameters: {
     connectionRid: unknown;
+  };
+}
+
+/**
+ * The specified property cannot be blank.
+ *
+ * Log Safety: SAFE
+ */
+export interface PropertyCannotBeBlank {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "PropertyCannotBeBlank";
+  errorInstanceId: string;
+  parameters: {
+    propertyName: unknown;
   };
 }
 
@@ -351,11 +378,10 @@ export interface ReplaceFileImportPermissionDenied {
 }
 
 /**
-   * The secret names provided do not exist on the connection.
-
-   *
-   * Log Safety: UNSAFE
-   */
+ * The secret names provided do not exist on the connection.
+ *
+ * Log Safety: UNSAFE
+ */
 export interface SecretNamesDoNotExist {
   errorCode: "INVALID_ARGUMENT";
   errorName: "SecretNamesDoNotExist";
@@ -382,11 +408,10 @@ export interface TableImportNotFound {
 }
 
 /**
-   * The specified connection does not support creating a table import with the specified config.
-
-   *
-   * Log Safety: UNSAFE
-   */
+ * The specified connection does not support creating a table import with the specified config.
+ *
+ * Log Safety: UNSAFE
+ */
 export interface TableImportNotSupportedForConnection {
   errorCode: "INVALID_ARGUMENT";
   errorName: "TableImportNotSupportedForConnection";
@@ -398,11 +423,10 @@ export interface TableImportNotSupportedForConnection {
 }
 
 /**
-   * The specified table import type is not yet supported in the Platform API.
-
-   *
-   * Log Safety: UNSAFE
-   */
+ * The specified table import type is not yet supported in the Platform API.
+ *
+ * Log Safety: UNSAFE
+ */
 export interface TableImportTypeNotSupported {
   errorCode: "INTERNAL";
   errorName: "TableImportTypeNotSupported";

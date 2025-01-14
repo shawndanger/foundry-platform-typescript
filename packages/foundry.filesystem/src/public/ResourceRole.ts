@@ -25,86 +25,92 @@ import type {
 } from "@osdk/shared.client2";
 import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
 import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
-import type * as _Admin from "../_components.js";
+import type * as _Filesystem from "../_components.js";
 
 //
 
 const _list: $FoundryPlatformMethod<
   (
-    groupId: _Core.PrincipalId,
+    resourceRid: _Filesystem.ResourceRid,
     $queryParams?: {
-      transitive?: boolean | undefined;
+      includeInherited?: boolean | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
-  ) => Promise<_Admin.ListGroupMembersResponse>
-> = [0, "/v2/admin/groups/{0}/groupMembers", 2];
+  ) => Promise<_Filesystem.ListResourceRolesResponse>
+> = [0, "/v2/filesystem/resources/{0}/roles", 2];
 
 /**
- * Lists all members (which can be a User or a Group) of a given Group.
+ * List the roles on a resource.
  *
- * This is a paged endpoint. Each page may be smaller or larger than the requested page size. However,
- * it is guaranteed that if there are more results available, the `nextPageToken` field will be populated.
- * To get the next page, make the same request again, but set the value of the `pageToken` query parameter
- * to be value of the `nextPageToken` value of the previous response. If there is no `nextPageToken` field
- * in the response, you are on the last page.
+ * @alpha
  *
- * @public
- *
- * Required Scopes: [api:admin-read]
- * URL: /v2/admin/groups/{groupId}/groupMembers
+ * Required Scopes: [api:filesystem-read]
+ * URL: /v2/filesystem/resources/{resourceRid}/roles
  */
 export function list(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    groupId: _Core.PrincipalId,
+    resourceRid: _Filesystem.ResourceRid,
 
     $queryParams?: {
-      transitive?: boolean | undefined;
+      includeInherited?: boolean | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ]
-): Promise<_Admin.ListGroupMembersResponse> {
+): Promise<_Filesystem.ListResourceRolesResponse> {
   return $foundryPlatformFetch($ctx, _list, ...args);
 }
 
 const _add: $FoundryPlatformMethod<
   (
-    groupId: _Core.PrincipalId,
-    $body: _Admin.AddGroupMembersRequest,
+    resourceRid: _Filesystem.ResourceRid,
+    $body: _Filesystem.AddResourceRolesRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v2/admin/groups/{0}/groupMembers/add", 1];
+> = [1, "/v2/filesystem/resources/{0}/roles/add", 3];
 
 /**
- * @public
+ * @alpha
  *
- * Required Scopes: [api:admin-write]
- * URL: /v2/admin/groups/{groupId}/groupMembers/add
+ * Required Scopes: [api:filesystem-write]
+ * URL: /v2/filesystem/resources/{resourceRid}/roles/add
  */
 export function add(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [groupId: _Core.PrincipalId, $body: _Admin.AddGroupMembersRequest]
+  ...args: [
+    resourceRid: _Filesystem.ResourceRid,
+    $body: _Filesystem.AddResourceRolesRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _add, ...args);
 }
 
 const _remove: $FoundryPlatformMethod<
   (
-    groupId: _Core.PrincipalId,
-    $body: _Admin.RemoveGroupMembersRequest,
+    resourceRid: _Filesystem.ResourceRid,
+    $body: _Filesystem.RemoveResourceRolesRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v2/admin/groups/{0}/groupMembers/remove", 1];
+> = [1, "/v2/filesystem/resources/{0}/roles/remove", 3];
 
 /**
- * @public
+ * @alpha
  *
- * Required Scopes: [api:admin-write]
- * URL: /v2/admin/groups/{groupId}/groupMembers/remove
+ * Required Scopes: [api:filesystem-write]
+ * URL: /v2/filesystem/resources/{resourceRid}/roles/remove
  */
 export function remove(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [groupId: _Core.PrincipalId, $body: _Admin.RemoveGroupMembersRequest]
+  ...args: [
+    resourceRid: _Filesystem.ResourceRid,
+    $body: _Filesystem.RemoveResourceRolesRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _remove, ...args);
 }

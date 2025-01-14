@@ -232,7 +232,7 @@ const _ragContext: $FoundryPlatformMethod<
   (
     agentRid: _AipAgents.AgentRid,
     sessionRid: _AipAgents.SessionRid,
-    $body: _AipAgents.RagContextSessionRequest,
+    $body: _AipAgents.GetRagContextForSessionRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_AipAgents.AgentSessionRagContextResponse>
 > = [2, "/v2/aipAgents/agents/{0}/sessions/{1}/ragContext", 3];
@@ -251,7 +251,7 @@ export function ragContext(
   ...args: [
     agentRid: _AipAgents.AgentRid,
     sessionRid: _AipAgents.SessionRid,
-    $body: _AipAgents.RagContextSessionRequest,
+    $body: _AipAgents.GetRagContextForSessionRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_AipAgents.AgentSessionRagContextResponse> {

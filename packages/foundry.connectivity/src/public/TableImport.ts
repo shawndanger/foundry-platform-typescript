@@ -87,6 +87,41 @@ export function deleteTableImport(
   return $foundryPlatformFetch($ctx, _deleteTableImport, ...args);
 }
 
+const _list: $FoundryPlatformMethod<
+  (
+    connectionRid: _Connectivity.ConnectionRid,
+    $queryParams?: {
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Connectivity.ListTableImportsResponse>
+> = [0, "/v2/connectivity/connections/{0}/tableImports", 2];
+
+/**
+ * Lists all table imports defined for this connection.
+ * Only table imports that the user has permissions to view will be returned.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:connectivity-table-import-read]
+ * URL: /v2/connectivity/connections/{connectionRid}/tableImports
+ */
+export function list(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    connectionRid: _Connectivity.ConnectionRid,
+
+    $queryParams?: {
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Connectivity.ListTableImportsResponse> {
+  return $foundryPlatformFetch($ctx, _list, ...args);
+}
+
 const _get: $FoundryPlatformMethod<
   (
     connectionRid: _Connectivity.ConnectionRid,

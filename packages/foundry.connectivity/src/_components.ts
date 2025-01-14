@@ -120,6 +120,8 @@ export type ConnectionConfiguration = {
 } & S3ConnectionConfiguration;
 
 /**
+ * The display name of the Connection. The display name must not be blank.
+ *
  * Log Safety: UNSAFE
  */
 export type ConnectionDisplayName = LooselyBrandedString<
@@ -127,11 +129,130 @@ export type ConnectionDisplayName = LooselyBrandedString<
 >;
 
 /**
- * The Resource Identifier (RID) of a Connection (formerly known as a source).
+ * The Resource Identifier (RID) of a Connection (also known as a source).
  *
  * Log Safety: SAFE
  */
 export type ConnectionRid = LooselyBrandedString<"ConnectionRid">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateConnectionRequest {
+  parentFolderRid: _Filesystem.FolderRid;
+  runtimePlatform: CreateConnectionRequestRuntimePlatform;
+  configuration: CreateConnectionRequestConnectionConfiguration;
+  displayName: ConnectionDisplayName;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateConnectionRequestAgentProxyRuntime {
+  agentRids: Array<AgentRid>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateConnectionRequestAgentWorkerRuntime {
+  agentRids: Array<AgentRid>;
+}
+
+/**
+ * Log Safety: DO_NOT_LOG
+ */
+export interface CreateConnectionRequestAsPlaintextValue {
+  value: PlaintextValue;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateConnectionRequestAsSecretName {
+  value: SecretName;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateConnectionRequestAwsAccessKey {
+  accessKeyId: string;
+  secretAccessKey: CreateConnectionRequestEncryptedProperty;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface CreateConnectionRequestCloudIdentity {
+  cloudIdentityRid: CloudIdentityRid;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type CreateConnectionRequestConnectionConfiguration = {
+  type: "s3";
+} & CreateConnectionRequestS3ConnectionConfiguration;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface CreateConnectionRequestDirectConnectionRuntime {
+  networkEgressPolicyRids: Array<NetworkEgressPolicyRid>;
+}
+
+/**
+   * When reading an encrypted property, the secret name representing the encrypted value will be returned.
+When writing to an encrypted property:
+
+If a plaintext value is passed as an input, the plaintext value will be encrypted and saved to the property.
+If a secret name is passed as an input, the secret name must match the existing secret name of the property
+and the property will retain its previously encrypted value.
+   *
+   * Log Safety: UNSAFE
+   */
+export type CreateConnectionRequestEncryptedProperty =
+  | ({ type: "asSecretName" } & CreateConnectionRequestAsSecretName)
+  | ({ type: "asPlaintextValue" } & CreateConnectionRequestAsPlaintextValue);
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateConnectionRequestOidc {
+  audience: string;
+}
+
+/**
+   * The runtime of a Connection, which defines the
+networking configuration and where capabilities are executed.
+   *
+   * Log Safety: UNSAFE
+   */
+export type CreateConnectionRequestRuntimePlatform =
+  | ({
+    type: "directConnectionRuntime";
+  } & CreateConnectionRequestDirectConnectionRuntime)
+  | ({ type: "agentProxyRuntime" } & CreateConnectionRequestAgentProxyRuntime)
+  | ({
+    type: "agentWorkerRuntime";
+  } & CreateConnectionRequestAgentWorkerRuntime);
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type CreateConnectionRequestS3AuthenticationMode =
+  | ({ type: "awsAccessKey" } & CreateConnectionRequestAwsAccessKey)
+  | ({ type: "cloudIdentity" } & CreateConnectionRequestCloudIdentity)
+  | ({ type: "oidc" } & CreateConnectionRequestOidc);
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateConnectionRequestS3ConnectionConfiguration {
+  bucketUrl: string;
+  authenticationMode?: S3AuthenticationMode;
+}
 
 /**
  * Log Safety: UNSAFE
@@ -152,6 +273,7 @@ export interface CreateTableImportRequest {
   datasetRid: _Datasets.DatasetRid;
   importMode: TableImportMode;
   displayName: TableImportDisplayName;
+  allowSchemaChanges?: TableImportAllowSchemaChanges;
   branchName?: _Datasets.BranchName;
   config: CreateTableImportRequestTableImportConfig;
 }
@@ -326,7 +448,7 @@ UPDATE: Replaces existing files from previous import executions based on file na
 export type FileImportMode = "SNAPSHOT" | "APPEND" | "UPDATE";
 
 /**
- * The Resource Identifier (RID) of a FileImport (formerly known as a batch sync).
+ * The Resource Identifier (RID) of a FileImport (also known as a batch sync).
  *
  * Log Safety: SAFE
  */
@@ -420,6 +542,14 @@ export interface JdbcImportConfig {
  */
 export interface ListFileImportsResponse {
   data: Array<FileImport>;
+  nextPageToken?: _Core.PageToken;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ListTableImportsResponse {
+  data: Array<TableImport>;
   nextPageToken?: _Core.PageToken;
 }
 
@@ -542,8 +672,16 @@ export interface TableImport {
   branchName?: _Datasets.BranchName;
   displayName: TableImportDisplayName;
   importMode: TableImportMode;
+  allowSchemaChanges: TableImportAllowSchemaChanges;
   config: TableImportConfig;
 }
+
+/**
+ * Allow the TableImport to succeed if the schema of imported rows does not match the existing dataset's schema. Defaults to false for new table imports.
+ *
+ * Log Safety: SAFE
+ */
+export type TableImportAllowSchemaChanges = boolean;
 
 /**
  * The import configuration for a specific connector type.
@@ -576,7 +714,7 @@ APPEND: Purely additive and yields data from previous import executions in addit
 export type TableImportMode = "SNAPSHOT" | "APPEND";
 
 /**
- * The Resource Identifier (RID) of a TableImport (formerly known as a batch sync).
+ * The Resource Identifier (RID) of a TableImport (also known as a batch sync).
  *
  * Log Safety: SAFE
  */
