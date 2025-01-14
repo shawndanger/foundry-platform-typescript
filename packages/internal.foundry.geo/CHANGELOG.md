@@ -1,5 +1,11 @@
 # @osdk/internal.foundry.geo
 
+## 2.9.0
+
+### Minor Changes
+
+- 70eca2d: Updating platform sdks with new media reference capabilities and other improvements.
+
 ## 2.8.0
 
 ### Minor Changes

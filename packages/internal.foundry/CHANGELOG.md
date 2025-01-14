@@ -1,5 +1,21 @@
 # @osdk/foundry
 
+## 2.9.0
+
+### Minor Changes
+
+- 70eca2d: Updating platform sdks with new media reference capabilities and other improvements.
+
+### Patch Changes
+
+- Updated dependencies [70eca2d]
+  - @osdk/internal.foundry.ontologiesv2@2.9.0
+  - @osdk/internal.foundry.ontologies@2.9.0
+  - @osdk/internal.foundry.mediasets@2.9.0
+  - @osdk/internal.foundry.datasets@2.9.0
+  - @osdk/internal.foundry.core@2.9.0
+  - @osdk/internal.foundry.geo@2.9.0
+
 ## 2.8.0
 
 ### Minor Changes
