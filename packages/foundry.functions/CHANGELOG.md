@@ -1,5 +1,12 @@
 # @osdk/foundry.functions
 
+## 2.9.0
+
+### Patch Changes
+
+- Updated dependencies [70eca2d]
+  - @osdk/foundry.core@2.9.0
+
 ## 2.8.0
 
 ### Patch Changes

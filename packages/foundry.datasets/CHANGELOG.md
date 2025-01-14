@@ -1,5 +1,17 @@
 # @osdk/foundry.datasets
 
+## 2.9.0
+
+### Minor Changes
+
+- 70eca2d: Updating platform sdks with new media reference capabilities and other improvements.
+
+### Patch Changes
+
+- Updated dependencies [70eca2d]
+  - @osdk/foundry.filesystem@2.9.0
+  - @osdk/foundry.core@2.9.0
+
 ## 2.8.0
 
 ### Minor Changes
