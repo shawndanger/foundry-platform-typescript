@@ -31,80 +31,84 @@ import type * as _Admin from "../_components.js";
 
 const _list: $FoundryPlatformMethod<
   (
-    groupId: _Core.PrincipalId,
+    markingId: _Core.MarkingId,
     $queryParams?: {
-      transitive?: boolean | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
-  ) => Promise<_Admin.ListGroupMembersResponse>
-> = [0, "/v2/admin/groups/{0}/groupMembers", 2];
+  ) => Promise<_Admin.ListMarkingRoleAssignmentsResponse>
+> = [0, "/v2/admin/markings/{0}/roleAssignments", 2];
 
 /**
- * Lists all members (which can be a User or a Group) of a given Group.
+ * List all principals who are assigned a role for the given Marking. Ignores the `pageSize` parameter.
  *
- * This is a paged endpoint. Each page may be smaller or larger than the requested page size. However,
- * it is guaranteed that if there are more results available, the `nextPageToken` field will be populated.
- * To get the next page, make the same request again, but set the value of the `pageToken` query parameter
- * to be value of the `nextPageToken` value of the previous response. If there is no `nextPageToken` field
- * in the response, you are on the last page.
- *
- * @public
+ * @beta
  *
  * Required Scopes: [api:admin-read]
- * URL: /v2/admin/groups/{groupId}/groupMembers
+ * URL: /v2/admin/markings/{markingId}/roleAssignments
  */
 export function list(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    groupId: _Core.PrincipalId,
+    markingId: _Core.MarkingId,
 
     $queryParams?: {
-      transitive?: boolean | undefined;
       pageSize?: _Core.PageSize | undefined;
       pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ]
-): Promise<_Admin.ListGroupMembersResponse> {
+): Promise<_Admin.ListMarkingRoleAssignmentsResponse> {
   return $foundryPlatformFetch($ctx, _list, ...args);
 }
 
 const _add: $FoundryPlatformMethod<
   (
-    groupId: _Core.PrincipalId,
-    $body: _Admin.AddGroupMembersRequest,
+    markingId: _Core.MarkingId,
+    $body: _Admin.AddMarkingRoleAssignmentsRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v2/admin/groups/{0}/groupMembers/add", 1];
+> = [1, "/v2/admin/markings/{0}/roleAssignments/add", 3];
 
 /**
- * @public
+ * @beta
  *
  * Required Scopes: [api:admin-write]
- * URL: /v2/admin/groups/{groupId}/groupMembers/add
+ * URL: /v2/admin/markings/{markingId}/roleAssignments/add
  */
 export function add(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [groupId: _Core.PrincipalId, $body: _Admin.AddGroupMembersRequest]
+  ...args: [
+    markingId: _Core.MarkingId,
+    $body: _Admin.AddMarkingRoleAssignmentsRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _add, ...args);
 }
 
 const _remove: $FoundryPlatformMethod<
   (
-    groupId: _Core.PrincipalId,
-    $body: _Admin.RemoveGroupMembersRequest,
+    markingId: _Core.MarkingId,
+    $body: _Admin.RemoveMarkingRoleAssignmentsRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v2/admin/groups/{0}/groupMembers/remove", 1];
+> = [1, "/v2/admin/markings/{0}/roleAssignments/remove", 3];
 
 /**
- * @public
+ * @beta
  *
  * Required Scopes: [api:admin-write]
- * URL: /v2/admin/groups/{groupId}/groupMembers/remove
+ * URL: /v2/admin/markings/{markingId}/roleAssignments/remove
  */
 export function remove(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [groupId: _Core.PrincipalId, $body: _Admin.RemoveGroupMembersRequest]
+  ...args: [
+    markingId: _Core.MarkingId,
+    $body: _Admin.RemoveMarkingRoleAssignmentsRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _remove, ...args);
 }

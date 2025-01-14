@@ -25,7 +25,7 @@ import type {
 } from "@osdk/shared.client2";
 import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
 import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
-import type * as _Mediasets from "../_components.js";
+import type * as _MediaSets from "../_components.js";
 
 //
 
@@ -33,22 +33,28 @@ const _read: $FoundryPlatformMethod<
   (
     mediaSetRid: _Core.MediaSetRid,
     mediaItemRid: _Core.MediaItemRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<Response>
-> = [0, "/v2/mediasets/{0}/items/{1}", , , "*/*"];
+> = [0, "/v2/mediasets/{0}/items/{1}/content", 2, , "*/*"];
 
 /**
  * Gets the content of a media item.
  *
  * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:mediasets-read`.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:mediasets-read]
- * URL: /v2/mediasets/{mediaSetRid}/items/{mediaItemRid}
+ * URL: /v2/mediasets/{mediaSetRid}/items/{mediaItemRid}/content
  */
 export function read(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [mediaSetRid: _Core.MediaSetRid, mediaItemRid: _Core.MediaItemRid]
+  ...args: [
+    mediaSetRid: _Core.MediaSetRid,
+    mediaItemRid: _Core.MediaItemRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
 ): Promise<Response> {
   return $foundryPlatformFetch($ctx, _read, ...args);
 }
@@ -57,23 +63,29 @@ const _info: $FoundryPlatformMethod<
   (
     mediaSetRid: _Core.MediaSetRid,
     mediaItemRid: _Core.MediaItemRid,
-  ) => Promise<_Mediasets.GetMediaItemInfoResponse>
-> = [0, "/v2/mediasets/{0}/items/{1}/info"];
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_MediaSets.GetMediaItemInfoResponse>
+> = [0, "/v2/mediasets/{0}/items/{1}", 2];
 
 /**
  * Gets information about the media item.
  *
  * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:mediasets-read`.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:mediasets-read]
- * URL: /v2/mediasets/{mediaSetRid}/items/{mediaItemRid}/info
+ * URL: /v2/mediasets/{mediaSetRid}/items/{mediaItemRid}
  */
 export function info(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [mediaSetRid: _Core.MediaSetRid, mediaItemRid: _Core.MediaItemRid]
-): Promise<_Mediasets.GetMediaItemInfoResponse> {
+  ...args: [
+    mediaSetRid: _Core.MediaSetRid,
+    mediaItemRid: _Core.MediaItemRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_MediaSets.GetMediaItemInfoResponse> {
   return $foundryPlatformFetch($ctx, _info, ...args);
 }
 
@@ -81,22 +93,28 @@ const _reference: $FoundryPlatformMethod<
   (
     mediaSetRid: _Core.MediaSetRid,
     mediaItemRid: _Core.MediaItemRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Core.MediaReference>
-> = [0, "/v2/mediasets/{0}/items/{1}/reference"];
+> = [0, "/v2/mediasets/{0}/items/{1}/reference", 2];
 
 /**
  * Gets the [media reference](https://www.palantir.com/docs/foundry/data-integration/media-sets/#media-references) for this media item.
  *
  * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:mediasets-read`.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:mediasets-read]
  * URL: /v2/mediasets/{mediaSetRid}/items/{mediaItemRid}/reference
  */
 export function reference(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
-  ...args: [mediaSetRid: _Core.MediaSetRid, mediaItemRid: _Core.MediaItemRid]
+  ...args: [
+    mediaSetRid: _Core.MediaSetRid,
+    mediaItemRid: _Core.MediaItemRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
 ): Promise<_Core.MediaReference> {
   return $foundryPlatformFetch($ctx, _reference, ...args);
 }
@@ -107,12 +125,13 @@ const _upload: $FoundryPlatformMethod<
     $body: Blob,
     $queryParams?: {
       mediaItemPath?: _Core.MediaItemPath | undefined;
-      branchName?: _Mediasets.BranchName | undefined;
-      branchRid?: _Mediasets.BranchRid | undefined;
+      branchName?: _MediaSets.BranchName | undefined;
+      branchRid?: _MediaSets.BranchRid | undefined;
       viewRid?: _Core.MediaSetViewRid | undefined;
-      transactionId?: _Mediasets.TransactionId | undefined;
+      transactionId?: _MediaSets.TransactionId | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
-  ) => Promise<_Mediasets.PutMediaItemResponse>
+  ) => Promise<_MediaSets.PutMediaItemResponse>
 > = [1, "/v2/mediasets/{0}/items", 3, "*/*"];
 
 /**
@@ -122,7 +141,7 @@ const _upload: $FoundryPlatformMethod<
  *
  * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:mediasets-write`.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:mediasets-write]
  * URL: /v2/mediasets/{mediaSetRid}/items
@@ -134,21 +153,25 @@ export function upload(
     $body: Blob,
     $queryParams?: {
       mediaItemPath?: _Core.MediaItemPath | undefined;
-      branchName?: _Mediasets.BranchName | undefined;
-      branchRid?: _Mediasets.BranchRid | undefined;
+      branchName?: _MediaSets.BranchName | undefined;
+      branchRid?: _MediaSets.BranchRid | undefined;
       viewRid?: _Core.MediaSetViewRid | undefined;
-      transactionId?: _Mediasets.TransactionId | undefined;
+      transactionId?: _MediaSets.TransactionId | undefined;
+      preview?: _Core.PreviewMode | undefined;
     },
   ]
-): Promise<_Mediasets.PutMediaItemResponse> {
+): Promise<_MediaSets.PutMediaItemResponse> {
   return $foundryPlatformFetch($ctx, _upload, ...args);
 }
 
 const _create: $FoundryPlatformMethod<
   (
     mediaSetRid: _Core.MediaSetRid,
-    $queryParams?: { branchName?: _Mediasets.BranchName | undefined },
-  ) => Promise<_Mediasets.TransactionId>
+    $queryParams?: {
+      branchName?: _MediaSets.BranchName | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_MediaSets.TransactionId>
 > = [1, "/v2/mediasets/{0}/transactions", 2];
 
 /**
@@ -156,7 +179,7 @@ const _create: $FoundryPlatformMethod<
  *
  * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:mediasets-write`.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:mediasets-write]
  * URL: /v2/mediasets/{mediaSetRid}/transactions
@@ -166,25 +189,29 @@ export function create(
   ...args: [
     mediaSetRid: _Core.MediaSetRid,
 
-    $queryParams?: { branchName?: _Mediasets.BranchName | undefined },
+    $queryParams?: {
+      branchName?: _MediaSets.BranchName | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ]
-): Promise<_Mediasets.TransactionId> {
+): Promise<_MediaSets.TransactionId> {
   return $foundryPlatformFetch($ctx, _create, ...args);
 }
 
 const _commit: $FoundryPlatformMethod<
   (
     mediaSetRid: _Core.MediaSetRid,
-    transactionId: _Mediasets.TransactionId,
+    transactionId: _MediaSets.TransactionId,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v2/mediasets/{0}/transactions/{1}/commit"];
+> = [1, "/v2/mediasets/{0}/transactions/{1}/commit", 2];
 
 /**
  * Commits an open transaction. On success, items uploaded to the media set during this transaction will become available.
  *
  * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:mediasets-write`.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:mediasets-write]
  * URL: /v2/mediasets/{mediaSetRid}/transactions/{transactionId}/commit
@@ -193,7 +220,9 @@ export function commit(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     mediaSetRid: _Core.MediaSetRid,
-    transactionId: _Mediasets.TransactionId,
+    transactionId: _MediaSets.TransactionId,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _commit, ...args);
@@ -202,16 +231,17 @@ export function commit(
 const _abort: $FoundryPlatformMethod<
   (
     mediaSetRid: _Core.MediaSetRid,
-    transactionId: _Mediasets.TransactionId,
+    transactionId: _MediaSets.TransactionId,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v2/mediasets/{0}/transactions/{1}/abort"];
+> = [1, "/v2/mediasets/{0}/transactions/{1}/abort", 2];
 
 /**
  * Aborts an open transaction. Items uploaded to the media set during this transaction will be deleted.
  *
  * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:mediasets-write`.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:mediasets-write]
  * URL: /v2/mediasets/{mediaSetRid}/transactions/{transactionId}/abort
@@ -220,7 +250,9 @@ export function abort(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     mediaSetRid: _Core.MediaSetRid,
-    transactionId: _Mediasets.TransactionId,
+    transactionId: _MediaSets.TransactionId,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _abort, ...args);

@@ -19,6 +19,48 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+ * Could not addMarkings the Resource.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface AddMarkingsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "AddMarkingsPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    resourceRid: unknown;
+  };
+}
+
+/**
+ * Could not addOrganizations the Project.
+ *
+ * Log Safety: SAFE
+ */
+export interface AddOrganizationsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "AddOrganizationsPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    projectRid: unknown;
+  };
+}
+
+/**
+ * Could not add the ResourceRole.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface AddResourceRolesPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "AddResourceRolesPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    resourceRid: unknown;
+  };
+}
+
+/**
  * The given Resource is not a folder.
  *
  * Log Safety: SAFE
@@ -73,6 +115,48 @@ export interface FolderNotFound {
 }
 
 /**
+ * Performing this operation on an autosaved resource is not supported.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ForbiddenOperationOnAutosavedResource {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ForbiddenOperationOnAutosavedResource";
+  errorInstanceId: string;
+  parameters: {
+    resourceRid: unknown;
+  };
+}
+
+/**
+ * Performing this operation on a hidden resource is not supported.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ForbiddenOperationOnHiddenResource {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ForbiddenOperationOnHiddenResource";
+  errorInstanceId: string;
+  parameters: {
+    resourceRid: unknown;
+  };
+}
+
+/**
+ * Could not getAccessRequirements the Resource.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface GetAccessRequirementsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetAccessRequirementsPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    resourceRid: unknown;
+  };
+}
+
+/**
  * Could not getByPath the Resource.
  *
  * Log Safety: SAFE
@@ -85,9 +169,8 @@ export interface GetByPathPermissionDenied {
 }
 
 /**
-   * The display name of a Resource should not be exactly `.` or `..`, contain a forward slash `/` or be
+   * The display name of a Resource should not be exactly . or .., contain a forward slash / or be
 too long.
-
    *
    * Log Safety: UNSAFE
    */
@@ -116,9 +199,7 @@ export interface InvalidFolder {
 
 /**
    * The given path is invalid.
-
-A valid path has all components separated by a single `/`.
-
+A valid path has all components separated by a single /.
    *
    * Log Safety: UNSAFE
    */
@@ -132,6 +213,20 @@ export interface InvalidPath {
 }
 
 /**
+ * A provided marking ID cannot be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface MarkingNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "MarkingNotFound";
+  errorInstanceId: string;
+  parameters: {
+    markingIds: unknown;
+  };
+}
+
+/**
  * A Display Name must be provided.
  *
  * Log Safety: SAFE
@@ -141,6 +236,35 @@ export interface MissingDisplayName {
   errorName: "MissingDisplayName";
   errorInstanceId: string;
   parameters: {};
+}
+
+/**
+   * Adding an organization marking as a regular marking is not supported. Use the organization endpoints on a
+project resource instead.
+   *
+   * Log Safety: SAFE
+   */
+export interface OrganizationMarkingNotSupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "OrganizationMarkingNotSupported";
+  errorInstanceId: string;
+  parameters: {
+    markingIds: unknown;
+  };
+}
+
+/**
+ * The provided organization RID cannot be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface OrganizationNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "OrganizationNotFound";
+  errorInstanceId: string;
+  parameters: {
+    organizationRid: unknown;
+  };
 }
 
 /**
@@ -186,11 +310,52 @@ export interface ProjectNotFound {
 }
 
 /**
-   * The Resource is not directly trashed.
+ * Could not removeMarkings the Resource.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface RemoveMarkingsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "RemoveMarkingsPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    resourceRid: unknown;
+  };
+}
 
-   *
-   * Log Safety: UNSAFE
-   */
+/**
+ * Could not removeOrganizations the Project.
+ *
+ * Log Safety: SAFE
+ */
+export interface RemoveOrganizationsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "RemoveOrganizationsPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    projectRid: unknown;
+  };
+}
+
+/**
+ * Could not remove the ResourceRole.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface RemoveResourceRolesPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "RemoveResourceRolesPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    resourceRid: unknown;
+  };
+}
+
+/**
+ * The Resource is not directly trashed.
+ *
+ * Log Safety: UNSAFE
+ */
 export interface ResourceNotDirectlyTrashed {
   errorCode: "INVALID_ARGUMENT";
   errorName: "ResourceNotDirectlyTrashed";
@@ -215,11 +380,10 @@ export interface ResourceNotFound {
 }
 
 /**
-   * The Resource should be directly trashed before being permanently deleted.
-
-   *
-   * Log Safety: UNSAFE
-   */
+ * The Resource should be directly trashed before being permanently deleted.
+ *
+ * Log Safety: UNSAFE
+ */
 export interface ResourceNotTrashed {
   errorCode: "INVALID_ARGUMENT";
   errorName: "ResourceNotTrashed";

@@ -162,3 +162,119 @@ export function permanentlyDelete(
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _permanentlyDelete, ...args);
 }
+
+const _addMarkings: $FoundryPlatformMethod<
+  (
+    resourceRid: _Filesystem.ResourceRid,
+    $body: _Filesystem.AddMarkingsRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<void>
+> = [1, "/v2/filesystem/resources/{0}/addMarkings", 3];
+
+/**
+ * Adds a list of Markings to a resource.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:filesystem-write]
+ * URL: /v2/filesystem/resources/{resourceRid}/addMarkings
+ */
+export function addMarkings(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    resourceRid: _Filesystem.ResourceRid,
+    $body: _Filesystem.AddMarkingsRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<void> {
+  return $foundryPlatformFetch($ctx, _addMarkings, ...args);
+}
+
+const _removeMarkings: $FoundryPlatformMethod<
+  (
+    resourceRid: _Filesystem.ResourceRid,
+    $body: _Filesystem.RemoveMarkingsRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<void>
+> = [1, "/v2/filesystem/resources/{0}/removeMarkings", 3];
+
+/**
+ * Removes Markings from a resource.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:filesystem-write]
+ * URL: /v2/filesystem/resources/{resourceRid}/removeMarkings
+ */
+export function removeMarkings(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    resourceRid: _Filesystem.ResourceRid,
+    $body: _Filesystem.RemoveMarkingsRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<void> {
+  return $foundryPlatformFetch($ctx, _removeMarkings, ...args);
+}
+
+const _getAccessRequirements: $FoundryPlatformMethod<
+  (
+    resourceRid: _Filesystem.ResourceRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Filesystem.AccessRequirements>
+> = [0, "/v2/filesystem/resources/{0}/getAccessRequirements", 2];
+
+/**
+ * Returns a list of access requirements a user needs in order to view a resource. Access requirements are
+ * composed of Organizations and Markings, and can either be applied directly to the resource or inherited.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:filesystem-read]
+ * URL: /v2/filesystem/resources/{resourceRid}/getAccessRequirements
+ */
+export function getAccessRequirements(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    resourceRid: _Filesystem.ResourceRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Filesystem.AccessRequirements> {
+  return $foundryPlatformFetch($ctx, _getAccessRequirements, ...args);
+}
+
+const _markings: $FoundryPlatformMethod<
+  (
+    resourceRid: _Filesystem.ResourceRid,
+    $queryParams?: {
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Filesystem.ListMarkingsOfResourceResponse>
+> = [0, "/v2/filesystem/resources/{0}/markings", 2];
+
+/**
+ * List of Markings directly applied to a resource. The number of Markings on a resource is typically small
+ * so the `pageSize` and `pageToken` parameters are not required.
+ *
+ * @alpha
+ *
+ * Required Scopes: []
+ * URL: /v2/filesystem/resources/{resourceRid}/markings
+ */
+export function markings(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    resourceRid: _Filesystem.ResourceRid,
+
+    $queryParams?: {
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Filesystem.ListMarkingsOfResourceResponse> {
+  return $foundryPlatformFetch($ctx, _markings, ...args);
+}

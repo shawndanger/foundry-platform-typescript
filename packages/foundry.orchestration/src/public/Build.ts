@@ -55,6 +55,33 @@ export function get(
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
 
+const _getBatch: $FoundryPlatformMethod<
+  (
+    $body: Array<_Orchestration.GetBuildsBatchRequestElement>,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Orchestration.GetBuildsBatchResponse>
+> = [1, "/v2/orchestration/builds/getBatch", 3];
+
+/**
+ * Execute multiple get requests on Build.
+ *
+ * The maximum batch size for this endpoint is 100.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:orchestration-read]
+ * URL: /v2/orchestration/builds/getBatch
+ */
+export function getBatch(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: Array<_Orchestration.GetBuildsBatchRequestElement>,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Orchestration.GetBuildsBatchResponse> {
+  return $foundryPlatformFetch($ctx, _getBatch, ...args);
+}
+
 const _create: $FoundryPlatformMethod<
   (
     $body: _Orchestration.CreateBuildsRequest,
@@ -102,4 +129,29 @@ export function cancel(
   ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _cancel, ...args);
+}
+
+const _search: $FoundryPlatformMethod<
+  (
+    $body: _Orchestration.SearchBuildsRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Orchestration.SearchBuildsResponse>
+> = [1, "/v2/orchestration/builds/search", 3];
+
+/**
+ * Search for Builds.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:orchestration-read]
+ * URL: /v2/orchestration/builds/search
+ */
+export function search(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: _Orchestration.SearchBuildsRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Orchestration.SearchBuildsResponse> {
+  return $foundryPlatformFetch($ctx, _search, ...args);
 }

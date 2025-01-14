@@ -204,3 +204,37 @@ export function unpause(
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _unpause, ...args);
 }
+
+const _runs: $FoundryPlatformMethod<
+  (
+    scheduleRid: _Orchestration.ScheduleRid,
+    $queryParams?: {
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Orchestration.ListRunsOfScheduleResponse>
+> = [0, "/v2/orchestration/schedules/{0}/runs", 2];
+
+/**
+ * Get the most recent runs of a Schedule. If no page size is provided, a page size of 100 will be used.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:orchestration-read]
+ * URL: /v2/orchestration/schedules/{scheduleRid}/runs
+ */
+export function runs(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    scheduleRid: _Orchestration.ScheduleRid,
+
+    $queryParams?: {
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Orchestration.ListRunsOfScheduleResponse> {
+  return $foundryPlatformFetch($ctx, _runs, ...args);
+}

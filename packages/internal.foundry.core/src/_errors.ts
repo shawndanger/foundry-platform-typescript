@@ -742,6 +742,20 @@ export interface AggregationGroupCountExceededLimit {
 }
 
 /**
+ * At least one of the requested derived property API names already exist on the object set.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DerivedPropertyApiNamesNotUnique {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "DerivedPropertyApiNamesNotUnique";
+  errorInstanceId: string;
+  parameters: {
+    derivedPropertyApiNames: unknown;
+  };
+}
+
+/**
    * The Content-Type cannot be inferred from the request content and filename.
 Please check your request content and filename to ensure they are compatible.
    *
@@ -1011,21 +1025,6 @@ export interface OntologyNotFound {
 }
 
 /**
- * The given marketplace installation could not be found or the user does not have access to it.
- *
- * Log Safety: UNSAFE
- */
-export interface MarketplaceInstallationNotFound {
-  errorCode: "NOT_FOUND";
-  errorName: "MarketplaceInstallationNotFound";
-  errorInstanceId: string;
-  parameters: {
-    artifactRepository: unknown;
-    packageName: unknown;
-  };
-}
-
-/**
  * The given property type is not of the expected type.
  *
  * Log Safety: UNSAFE
@@ -1037,6 +1036,21 @@ export interface InvalidPropertyType {
   parameters: {
     propertyBaseType: unknown;
     property: unknown;
+  };
+}
+
+/**
+ * The given marketplace installation could not be found or the user does not have access to it.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MarketplaceInstallationNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "MarketplaceInstallationNotFound";
+  errorInstanceId: string;
+  parameters: {
+    artifactRepository: unknown;
+    packageName: unknown;
   };
 }
 

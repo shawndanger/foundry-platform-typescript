@@ -45,7 +45,7 @@ const _list: $FoundryPlatformMethod<
  * Lists the objects for the given Ontology and object type.
  *
  * This endpoint supports filtering objects.
- * See the [Filtering Objects documentation](https://www.palantir.com/docs/foundry/api/ontology-resources/objects/object-basics/#filtering-objects) for details.
+ * See the [Filtering Objects documentation](https://www.palantir.com/docs/foundry/api/ontology-resources/objects/ontology-object-basics#filter-objects) for details.
  *
  * Note that this endpoint does not guarantee consistency. Changes to the data could result in missing or
  * repeated objects in the response pages.
@@ -134,7 +134,7 @@ const _listLinkedObjects: $FoundryPlatformMethod<
  * Lists the linked objects for a specific object and the given link type.
  *
  * This endpoint supports filtering objects.
- * See the [Filtering Objects documentation](https://www.palantir.com/docs/foundry/api/ontology-resources/objects/object-basics/#filtering-objects) for details.
+ * See the [Filtering Objects documentation](https://www.palantir.com/docs/foundry/api/ontology-resources/objects/ontology-object-basics#filter-objects) for details.
  *
  * Note that this endpoint does not guarantee consistency. Changes to the data could result in missing or
  * repeated objects in the response pages.

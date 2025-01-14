@@ -19,11 +19,10 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
-   * The given build inputs could be found.
-
-   *
-   * Log Safety: SAFE
-   */
+ * The given build inputs could be found.
+ *
+ * Log Safety: SAFE
+ */
 export interface BuildInputsNotFound {
   errorCode: "NOT_FOUND";
   errorName: "BuildInputsNotFound";
@@ -34,11 +33,10 @@ export interface BuildInputsNotFound {
 }
 
 /**
-   * The provided token does not have permission to use the given resources as inputs to the build.
-
-   *
-   * Log Safety: SAFE
-   */
+ * The provided token does not have permission to use the given resources as inputs to the build.
+ *
+ * Log Safety: SAFE
+ */
 export interface BuildInputsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "BuildInputsPermissionDenied";
@@ -77,11 +75,10 @@ export interface BuildTargetsMissingJobSpecs {
 }
 
 /**
-   * The given build targets could not be found.
-
-   *
-   * Log Safety: SAFE
-   */
+ * The given build targets could not be found.
+ *
+ * Log Safety: SAFE
+ */
 export interface BuildTargetsNotFound {
   errorCode: "NOT_FOUND";
   errorName: "BuildTargetsNotFound";
@@ -92,11 +89,10 @@ export interface BuildTargetsNotFound {
 }
 
 /**
-   * The provided token does not have permission to build the given resources.
-
-   *
-   * Log Safety: SAFE
-   */
+ * The provided token does not have permission to build the given resources.
+ *
+ * Log Safety: SAFE
+ */
 export interface BuildTargetsPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "BuildTargetsPermissionDenied";
@@ -107,11 +103,10 @@ export interface BuildTargetsPermissionDenied {
 }
 
 /**
-   * Unable to resolve the given target to a set of targets to build.
-
-   *
-   * Log Safety: SAFE
-   */
+ * Unable to resolve the given target to a set of targets to build.
+ *
+ * Log Safety: SAFE
+ */
 export interface BuildTargetsResolutionError {
   errorCode: "INVALID_ARGUMENT";
   errorName: "BuildTargetsResolutionError";
@@ -368,9 +363,34 @@ export interface ScheduleTriggerResourcesPermissionDenied {
 }
 
 /**
+ * The given ScheduleVersion could not be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface ScheduleVersionNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "ScheduleVersionNotFound";
+  errorInstanceId: string;
+  parameters: {
+    scheduleVersionRid: unknown;
+  };
+}
+
+/**
+ * Could not search the Build.
+ *
+ * Log Safety: SAFE
+ */
+export interface SearchBuildsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "SearchBuildsPermissionDenied";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
    * The schedule target is not supported. The schedule target must be either a connecting target, upstream
 target or list of single dataset targets.
-
    *
    * Log Safety: SAFE
    */

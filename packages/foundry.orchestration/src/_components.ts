@@ -325,6 +325,20 @@ export type FallbackBranches = Array<_Datasets.BranchName>;
 export type ForceBuild = boolean;
 
 /**
+ * Log Safety: SAFE
+ */
+export interface GetBuildsBatchRequestElement {
+  buildRid: BuildRid;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetBuildsBatchResponse {
+  data: Record<BuildRid, Build>;
+}
+
+/**
    * Trigger whenever a job succeeds on the dataset and on the target
 branch.
    *
@@ -333,6 +347,14 @@ branch.
 export interface JobSucceededTrigger {
   datasetRid: _Datasets.DatasetRid;
   branchName: _Datasets.BranchName;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ListRunsOfScheduleResponse {
+  data: Array<ScheduleRun>;
+  nextPageToken?: _Core.PageToken;
 }
 
 /**
@@ -683,10 +705,16 @@ export interface ScheduleSucceededTrigger {
 }
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface ScheduleVersion {
   rid: ScheduleVersionRid;
+  scheduleRid: ScheduleRid;
+  createdTime: _Core.CreatedTime;
+  createdBy: _Core.CreatedBy;
+  trigger?: Trigger;
+  action: Action;
+  scopeMode: ScopeMode;
 }
 
 /**
@@ -704,6 +732,125 @@ export type ScheduleVersionRid = LooselyBrandedString<"ScheduleVersionRid">;
 export type ScopeMode =
   | ({ type: "project" } & ProjectScope)
   | ({ type: "user" } & UserScope);
+
+/**
+ * Returns the Builds where every filter is satisfied.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SearchBuildsAndFilter {
+  items: Array<SearchBuildsFilter>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface SearchBuildsEqualsFilter {
+  field: SearchBuildsEqualsFilterField;
+  value: any;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type SearchBuildsEqualsFilterField =
+  | "CREATED_BY"
+  | "BRANCH_NAME"
+  | "STATUS"
+  | "RID";
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type SearchBuildsFilter =
+  | ({ type: "not" } & SearchBuildsNotFilter)
+  | ({ type: "or" } & SearchBuildsOrFilter)
+  | ({ type: "and" } & SearchBuildsAndFilter)
+  | ({ type: "lt" } & SearchBuildsLtFilter)
+  | ({ type: "gte" } & SearchBuildsGteFilter)
+  | ({ type: "eq" } & SearchBuildsEqualsFilter);
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface SearchBuildsGteFilter {
+  field: SearchBuildsGteFilterField;
+  value: any;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type SearchBuildsGteFilterField = "STARTED_TIME" | "FINISHED_TIME";
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface SearchBuildsLtFilter {
+  field: SearchBuildsLtFilterField;
+  value: any;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type SearchBuildsLtFilterField = "STARTED_TIME" | "FINISHED_TIME";
+
+/**
+ * Returns the Builds where the filter is not satisfied.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SearchBuildsNotFilter {
+  value: SearchBuildsFilter;
+}
+
+/**
+ * Returns the Builds where at least one filter is satisfied.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SearchBuildsOrFilter {
+  items: Array<SearchBuildsFilter>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface SearchBuildsOrderBy {
+  fields: Array<SearchBuildsOrderByItem>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export type SearchBuildsOrderByField = "STARTED_TIME" | "FINISHED_TIME";
+
+/**
+ * Log Safety: SAFE
+ */
+export interface SearchBuildsOrderByItem {
+  field: SearchBuildsOrderByField;
+  direction: _Core.OrderByDirection;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface SearchBuildsRequest {
+  where: SearchBuildsFilter;
+  orderBy?: SearchBuildsOrderBy;
+  pageToken?: _Core.PageToken;
+  pageSize?: _Core.PageSize;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface SearchBuildsResponse {
+  data: Array<Build>;
+  nextPageToken?: _Core.PageToken;
+}
 
 /**
  * Trigger on a time based schedule.

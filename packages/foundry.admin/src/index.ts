@@ -17,6 +17,7 @@
 export type {
   AddGroupMembersRequest,
   AddMarkingMembersRequest,
+  AddMarkingRoleAssignmentsRequest,
   AttributeName,
   AttributeValue,
   AttributeValues,
@@ -44,6 +45,7 @@ export type {
   ListHostsResponse,
   ListMarkingCategoriesResponse,
   ListMarkingMembersResponse,
+  ListMarkingRoleAssignmentsResponse,
   ListMarkingsResponse,
   ListUsersResponse,
   Marking,
@@ -53,10 +55,14 @@ export type {
   MarkingCategoryType,
   MarkingDisplayName,
   MarkingMember,
+  MarkingRole,
+  MarkingRoleAssignment,
+  MarkingRoleUpdate,
   MarkingType,
   PrincipalFilterType,
   RemoveGroupMembersRequest,
   RemoveMarkingMembersRequest,
+  RemoveMarkingRoleAssignmentsRequest,
   SearchGroupsRequest,
   SearchGroupsResponse,
   SearchUsersRequest,
@@ -68,6 +74,8 @@ export type {
 export type {
   AddGroupMembersPermissionDenied,
   AddMarkingMembersPermissionDenied,
+  AddMarkingRoleAssignmentsPermissionDenied,
+  CannotRemoveAllMarkingAdministrators,
   CreateGroupPermissionDenied,
   DeleteGroupPermissionDenied,
   DeleteUserPermissionDenied,
@@ -85,6 +93,7 @@ export type {
   InvalidProfilePicture,
   ListHostsPermissionDenied,
   ListMarkingMembersPermissionDenied,
+  ListMarkingRoleAssignmentsPermissionDenied,
   MarkingCategoryNotFound,
   MarkingNotFound,
   OrganizationNotFound,
@@ -92,6 +101,7 @@ export type {
   ProfilePictureNotFound,
   RemoveGroupMembersPermissionDenied,
   RemoveMarkingMembersPermissionDenied,
+  RemoveMarkingRoleAssignmentsPermissionDenied,
   SearchGroupsPermissionDenied,
   SearchUsersPermissionDenied,
   UserNotFound,
@@ -104,4 +114,5 @@ export * as Hosts from "./public/Host.js";
 export * as Markings from "./public/Marking.js";
 export * as MarkingCategories from "./public/MarkingCategory.js";
 export * as MarkingMembers from "./public/MarkingMember.js";
+export * as MarkingRoleAssignments from "./public/MarkingRoleAssignment.js";
 export * as Users from "./public/User.js";

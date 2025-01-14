@@ -21,12 +21,51 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+   * Access requirements for a resource are composed of Markings and Organizations. Organizations are disjunctive,
+while Markings are conjunctive.
+   *
+   * Log Safety: SAFE
+   */
+export interface AccessRequirements {
+  organizations: Array<Organization>;
+  markings: Array<Marking>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface AddMarkingsRequest {
+  markingIds: Array<_Core.MarkingId>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface AddOrganizationsRequest {
+  organizationRids: Array<_Core.OrganizationRid>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface AddResourceRolesRequest {
+  roles: Array<ResourceRole>;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface CreateFolderRequest {
   parentFolderRid: FolderRid;
   displayName: ResourceDisplayName;
 }
+
+/**
+ * A principal representing all users of the platform.
+ *
+ * Log Safety: SAFE
+ */
+export interface Everyone {}
 
 /**
  * Log Safety: UNSAFE
@@ -65,11 +104,81 @@ Space.
 export type FolderType = "FOLDER" | "SPACE" | "PROJECT";
 
 /**
+   * Boolean flag to indicate if the marking is directly applied to the resource, or if it's applied
+to a parent resource and inherited by the current resource.
+   *
+   * Log Safety: SAFE
+   */
+export type IsDirectlyApplied = boolean;
+
+/**
  * Log Safety: UNSAFE
  */
 export interface ListChildrenOfFolderResponse {
   data: Array<Resource>;
   nextPageToken?: _Core.PageToken;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ListMarkingsOfResourceResponse {
+  data: Array<_Core.MarkingId>;
+  nextPageToken?: _Core.PageToken;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ListOrganizationsOfProjectResponse {
+  data: Array<_Core.OrganizationRid>;
+  nextPageToken?: _Core.PageToken;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ListResourceRolesResponse {
+  data: Array<ResourceRole>;
+  nextPageToken?: _Core.PageToken;
+}
+
+/**
+   * Markings provide an additional level of access control for files,
+folders, and Projects within Foundry. Markings define eligibility criteria that restrict visibility
+and actions to users who meet those criteria. To access a resource, a user must be a member of all
+Markings applied to a resource to access it.
+   *
+   * Log Safety: SAFE
+   */
+export interface Marking {
+  markingId: _Core.MarkingId;
+  isDirectlyApplied: IsDirectlyApplied;
+}
+
+/**
+   * Organizations are access requirements applied to
+Projects that enforce strict silos between groups of users and resources. Every user is a member of only
+one Organization, but can be a guest member of multiple Organizations. In order to meet access requirements,
+users must be a member or guest member of at least one Organization applied to a Project.
+Organizations are inherited via the file hierarchy and direct dependencies.
+   *
+   * Log Safety: SAFE
+   */
+export interface Organization {
+  markingId: _Core.MarkingId;
+  organizationRid: _Core.OrganizationRid;
+  isDirectlyApplied: IsDirectlyApplied;
+}
+
+/**
+ * Represents a user principal or group principal with an ID.
+ *
+ * Log Safety: SAFE
+ */
+export interface PrincipalWithId {
+  principalId: _Core.PrincipalId;
+  principalType: _Core.PrincipalType;
 }
 
 /**
@@ -95,6 +204,27 @@ export interface Project {
  * Log Safety: SAFE
  */
 export type ProjectRid = LooselyBrandedString<"ProjectRid">;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface RemoveMarkingsRequest {
+  markingIds: Array<_Core.MarkingId>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface RemoveOrganizationsRequest {
+  organizationRids: Array<_Core.OrganizationRid>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface RemoveResourceRolesRequest {
+  roles: Array<ResourceRole>;
+}
 
 /**
  * Log Safety: UNSAFE
@@ -136,6 +266,21 @@ export type ResourcePath = LooselyBrandedString<"ResourcePath">;
  * Log Safety: UNSAFE
  */
 export type ResourceRid = LooselyBrandedString<"ResourceRid">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ResourceRole {
+  resourceRolePrincipal: ResourceRolePrincipal;
+  roleId: _Core.RoleId;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type ResourceRolePrincipal =
+  | ({ type: "principalWithId" } & PrincipalWithId)
+  | ({ type: "everyone" } & Everyone);
 
 /**
  * The type of the Resource derived from the Resource Identifier (RID).

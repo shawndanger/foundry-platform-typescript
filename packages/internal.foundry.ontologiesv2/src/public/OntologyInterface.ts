@@ -86,7 +86,7 @@ const _get: $FoundryPlatformMethod<
  * To use this endpoint, add `preview=true` to the request query parameters.
  * :::
  *
- * Gets a specific object type with the given API name.
+ * Gets a specific interface type with the given API name.
  *
  * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
  *

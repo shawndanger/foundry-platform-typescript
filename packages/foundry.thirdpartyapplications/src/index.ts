@@ -33,6 +33,7 @@ export type {
   InvalidVersion,
   ThirdPartyApplicationNotFound,
   UndeployWebsitePermissionDenied,
+  UploadSnapshotVersionPermissionDenied,
   UploadVersionPermissionDenied,
   VersionAlreadyExists,
   VersionLimitExceeded,
