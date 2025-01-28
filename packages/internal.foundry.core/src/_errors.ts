@@ -1052,21 +1052,6 @@ export interface PropertyTypeNotFound {
 }
 
 /**
- * The given marketplace installation could not be found or the user does not have access to it.
- *
- * Log Safety: UNSAFE
- */
-export interface MarketplaceInstallationNotFound {
-  errorCode: "NOT_FOUND";
-  errorName: "MarketplaceInstallationNotFound";
-  errorInstanceId: string;
-  parameters: {
-    artifactRepository: unknown;
-    packageName: unknown;
-  };
-}
-
-/**
  * The given property type is not of the expected type.
  *
  * Log Safety: UNSAFE
@@ -1078,6 +1063,21 @@ export interface InvalidPropertyType {
   parameters: {
     propertyBaseType: unknown;
     property: unknown;
+  };
+}
+
+/**
+ * The given marketplace installation could not be found or the user does not have access to it.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MarketplaceInstallationNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "MarketplaceInstallationNotFound";
+  errorInstanceId: string;
+  parameters: {
+    artifactRepository: unknown;
+    packageName: unknown;
   };
 }
 

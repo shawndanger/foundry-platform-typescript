@@ -245,6 +245,7 @@ export type {
   MediaReferenceType,
   MediaSetRid,
   MediaSetViewItem,
+  MediaSetViewItemWrapper,
   MediaSetViewRid,
   MediaType,
   MethodObjectSet,
