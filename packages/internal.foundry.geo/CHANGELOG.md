@@ -1,5 +1,11 @@
 # @osdk/internal.foundry.geo
 
+## 2.10.0
+
+### Minor Changes
+
+- 19b5edf: Updating platform sdks with semantic search capabilities and other improvements.
+
 ## 2.9.0
 
 ### Minor Changes
