@@ -45,6 +45,70 @@ export interface GetByRidQueriesPermissionDenied {
 }
 
 /**
+   * The value of the given parameter is invalid. See the documentation of DataValue for details on
+how parameters are represented.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface InvalidQueryParameterValue {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidQueryParameterValue";
+  errorInstanceId: string;
+  parameters: {
+    parameterDataType: unknown;
+    parameterId: unknown;
+    parameterValue: unknown;
+  };
+}
+
+/**
+   * Required parameters are missing. Please look at the parameters field to see which required parameters are
+missing from the request.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface MissingParameter {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "MissingParameter";
+  errorInstanceId: string;
+  parameters: {
+    parameters: unknown;
+  };
+}
+
+/**
+   * The authored Query failed to execute because of a user induced error. The message argument
+is meant to be displayed to the user.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface QueryEncounteredUserFacingError {
+  errorCode: "CONFLICT";
+  errorName: "QueryEncounteredUserFacingError";
+  errorInstanceId: string;
+  parameters: {
+    functionRid: unknown;
+    functionVersion: unknown;
+    message: unknown;
+  };
+}
+
+/**
+ * Memory limits were exceeded for the Query execution.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface QueryMemoryExceededLimit {
+  errorCode: "TIMEOUT";
+  errorName: "QueryMemoryExceededLimit";
+  errorInstanceId: string;
+  parameters: {
+    functionRid: unknown;
+    functionVersion: unknown;
+  };
+}
+
+/**
  * The given Query could not be found.
  *
  * Log Safety: UNSAFE
@@ -55,5 +119,83 @@ export interface QueryNotFound {
   errorInstanceId: string;
   parameters: {
     queryApiName: unknown;
+  };
+}
+
+/**
+ * The authored Query failed to execute because of a runtime error.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface QueryRuntimeError {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "QueryRuntimeError";
+  errorInstanceId: string;
+  parameters: {
+    functionRid: unknown;
+    functionVersion: unknown;
+    message: unknown;
+    stacktrace: unknown;
+    parameters: unknown;
+  };
+}
+
+/**
+ * Time limits were exceeded for the Query execution.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface QueryTimeExceededLimit {
+  errorCode: "TIMEOUT";
+  errorName: "QueryTimeExceededLimit";
+  errorInstanceId: string;
+  parameters: {
+    functionRid: unknown;
+    functionVersion: unknown;
+  };
+}
+
+/**
+   * The provided parameters were not found. Please look at the knownParameters field
+to see which ones are available.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface UnknownParameter {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "UnknownParameter";
+  errorInstanceId: string;
+  parameters: {
+    unknownParameters: unknown;
+    expectedParameters: unknown;
+  };
+}
+
+/**
+ * The given ValueType could not be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface ValueTypeNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "ValueTypeNotFound";
+  errorInstanceId: string;
+  parameters: {
+    valueTypeRid: unknown;
+  };
+}
+
+/**
+ * The given VersionId could not be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface VersionIdNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "VersionIdNotFound";
+  errorInstanceId: string;
+  parameters: {
+    valueTypeRid: unknown;
+    versionIdVersionId: unknown;
   };
 }

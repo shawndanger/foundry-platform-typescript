@@ -29,6 +29,7 @@ export type {
   CancelSessionResponse,
   Content,
   CreateSessionRequest,
+  FunctionRetrievedContext,
   GetRagContextForSessionRequest,
   InputContext,
   ListAgentVersionsResponse,

@@ -87,6 +87,18 @@ export interface CreateFolderPermissionDenied {
 }
 
 /**
+ * Could not create the Project.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateProjectPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateProjectPermissionDenied";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * Could not delete the Resource.
  *
  * Log Safety: UNSAFE
@@ -213,6 +225,20 @@ export interface InvalidPath {
 }
 
 /**
+ * A roleId referenced in either default roles or role grants does not exist in the project role set for the space.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidRoleIds {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidRoleIds";
+  errorInstanceId: string;
+  parameters: {
+    requestedRoleIds: unknown;
+  };
+}
+
+/**
  * A provided marking ID cannot be found.
  *
  * Log Safety: SAFE
@@ -239,6 +265,21 @@ export interface MissingDisplayName {
 }
 
 /**
+ * At least one of the organization markings associated with a passed organization is not applied on the requested space.
+ *
+ * Log Safety: SAFE
+ */
+export interface OrganizationMarkingNotOnSpace {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "OrganizationMarkingNotOnSpace";
+  errorInstanceId: string;
+  parameters: {
+    spaceRid: unknown;
+    organizationRids: unknown;
+  };
+}
+
+/**
    * Adding an organization marking as a regular marking is not supported. Use the organization endpoints on a
 project resource instead.
    *
@@ -254,16 +295,16 @@ export interface OrganizationMarkingNotSupported {
 }
 
 /**
- * The provided organization RID cannot be found.
+ * At least one organization RID could not be found.
  *
  * Log Safety: SAFE
  */
-export interface OrganizationNotFound {
+export interface OrganizationsNotFound {
   errorCode: "NOT_FOUND";
-  errorName: "OrganizationNotFound";
+  errorName: "OrganizationsNotFound";
   errorInstanceId: string;
   parameters: {
-    organizationRid: unknown;
+    organizationRids: unknown;
   };
 }
 
@@ -292,6 +333,35 @@ export interface PermanentlyDeleteResourcePermissionDenied {
   errorInstanceId: string;
   parameters: {
     resourceRid: unknown;
+  };
+}
+
+/**
+ * Project creation is not supported in the current user's space.
+ *
+ * Log Safety: SAFE
+ */
+export interface ProjectCreationNotSupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ProjectCreationNotSupported";
+  errorInstanceId: string;
+  parameters: {
+    spaceRid: unknown;
+  };
+}
+
+/**
+ * The requested display name for the created project is already being used in the space.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ProjectNameAlreadyExists {
+  errorCode: "CONFLICT";
+  errorName: "ProjectNameAlreadyExists";
+  errorInstanceId: string;
+  parameters: {
+    displayName: unknown;
+    spaceRid: unknown;
   };
 }
 
@@ -404,6 +474,20 @@ export interface RestoreResourcePermissionDenied {
   errorInstanceId: string;
   parameters: {
     resourceRid: unknown;
+  };
+}
+
+/**
+ * The referenced space cannot be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface SpaceNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "SpaceNotFound";
+  errorInstanceId: string;
+  parameters: {
+    spaceRid: unknown;
   };
 }
 

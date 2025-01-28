@@ -16,16 +16,20 @@
 
 import type * as _Core from "@osdk/foundry.core";
 import type {
+  SharedClient as $OldClient,
+  SharedClientContext as $OldClientContext,
+} from "@osdk/shared.client";
+import type {
   SharedClient as $Client,
   SharedClientContext as $ClientContext,
-} from "@osdk/shared.client";
+} from "@osdk/shared.client2";
 import type { FoundryPlatformMethod as $FoundryPlatformMethod } from "@osdk/shared.net.platformapi";
 import { foundryPlatformFetch as $foundryPlatformFetch } from "@osdk/shared.net.platformapi";
 import type * as _Functions from "../_components.js";
 
 //
 
-const _getQuery: $FoundryPlatformMethod<
+const _get: $FoundryPlatformMethod<
   (
     queryApiName: _Functions.QueryApiName,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
@@ -40,18 +44,18 @@ const _getQuery: $FoundryPlatformMethod<
  * Required Scopes: [api:functions-read]
  * URL: /v2/functions/queries/{queryApiName}
  */
-export function getQuery(
-  $ctx: $Client | $ClientContext,
+export function get(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     queryApiName: _Functions.QueryApiName,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Functions.Query> {
-  return $foundryPlatformFetch($ctx, _getQuery, ...args);
+  return $foundryPlatformFetch($ctx, _get, ...args);
 }
 
-const _getByRidQueries: $FoundryPlatformMethod<
+const _getByRid: $FoundryPlatformMethod<
   (
     $body: _Functions.GetByRidQueriesRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
@@ -66,17 +70,17 @@ const _getByRidQueries: $FoundryPlatformMethod<
  * Required Scopes: [api:functions-read]
  * URL: /v2/functions/queries/getByRid
  */
-export function getByRidQueries(
-  $ctx: $Client | $ClientContext,
+export function getByRid(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     $body: _Functions.GetByRidQueriesRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Functions.Query> {
-  return $foundryPlatformFetch($ctx, _getByRidQueries, ...args);
+  return $foundryPlatformFetch($ctx, _getByRid, ...args);
 }
 
-const _executeQuery: $FoundryPlatformMethod<
+const _execute: $FoundryPlatformMethod<
   (
     queryApiName: _Functions.QueryApiName,
     $body: _Functions.ExecuteQueryRequest,
@@ -94,13 +98,13 @@ const _executeQuery: $FoundryPlatformMethod<
  * Required Scopes: [api:functions-read]
  * URL: /v2/functions/queries/{queryApiName}/execute
  */
-export function executeQuery(
-  $ctx: $Client | $ClientContext,
+export function execute(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
     queryApiName: _Functions.QueryApiName,
     $body: _Functions.ExecuteQueryRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Functions.ExecuteQueryResponse> {
-  return $foundryPlatformFetch($ctx, _executeQuery, ...args);
+  return $foundryPlatformFetch($ctx, _execute, ...args);
 }

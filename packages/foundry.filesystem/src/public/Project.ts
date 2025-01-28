@@ -55,6 +55,31 @@ export function get(
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
 
+const _create: $FoundryPlatformMethod<
+  (
+    $body: _Filesystem.CreateProjectRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Filesystem.Project>
+> = [1, "/v2/filesystem/projects/create", 3];
+
+/**
+ * Creates a project.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:filesystem-write]
+ * URL: /v2/filesystem/projects/create
+ */
+export function create(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: _Filesystem.CreateProjectRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Filesystem.Project> {
+  return $foundryPlatformFetch($ctx, _create, ...args);
+}
+
 const _addOrganizations: $FoundryPlatformMethod<
   (
     projectRid: _Filesystem.ProjectRid,

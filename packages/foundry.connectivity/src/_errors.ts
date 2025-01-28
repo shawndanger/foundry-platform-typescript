@@ -437,7 +437,7 @@ export interface TableImportTypeNotSupported {
 }
 
 /**
- * Could not updateSecrets the Connection.
+ * Could not update secrets for the Connection.
  *
  * Log Safety: SAFE
  */

@@ -58,7 +58,6 @@ export type {
   OpenTransactionAlreadyExists,
   PutSchemaPermissionDenied,
   ReadTableDatasetPermissionDenied,
-  ReadTablePermissionDenied,
   SchemaNotFound,
   TransactionNotCommitted,
   TransactionNotFound,

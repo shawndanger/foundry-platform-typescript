@@ -267,9 +267,9 @@ export interface ListUsersResponse {
 export interface Marking {
   id: _Core.MarkingId;
   categoryId: MarkingCategoryId;
-  displayName: MarkingDisplayName;
+  name: MarkingName;
   description?: string;
-  organizationRid?: _Core.OrganizationRid;
+  organization?: _Core.OrganizationRid;
   createdTime: _Core.CreatedTime;
   createdBy?: _Core.CreatedBy;
 }
@@ -279,7 +279,7 @@ export interface Marking {
  */
 export interface MarkingCategory {
   id: MarkingCategoryId;
-  displayName: MarkingCategoryDisplayName;
+  name: MarkingCategoryName;
   description?: string;
   categoryType: MarkingCategoryType;
   markingType: MarkingType;
@@ -287,13 +287,6 @@ export interface MarkingCategory {
   createdTime: _Core.CreatedTime;
   createdBy?: _Core.CreatedBy;
 }
-
-/**
- * Log Safety: UNSAFE
- */
-export type MarkingCategoryDisplayName = LooselyBrandedString<
-  "MarkingCategoryDisplayName"
->;
 
 /**
    * The ID of a marking category. For user-created categories, this will be a UUID. Markings associated with
@@ -304,14 +297,14 @@ Organizations are placed in a category with ID "Organization".
 export type MarkingCategoryId = LooselyBrandedString<"MarkingCategoryId">;
 
 /**
+ * Log Safety: UNSAFE
+ */
+export type MarkingCategoryName = LooselyBrandedString<"MarkingCategoryName">;
+
+/**
  * Log Safety: SAFE
  */
 export type MarkingCategoryType = "CONJUNCTIVE" | "DISJUNCTIVE";
-
-/**
- * Log Safety: UNSAFE
- */
-export type MarkingDisplayName = LooselyBrandedString<"MarkingDisplayName">;
 
 /**
  * Log Safety: SAFE
@@ -320,6 +313,11 @@ export interface MarkingMember {
   principalType: _Core.PrincipalType;
   principalId: _Core.PrincipalId;
 }
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type MarkingName = LooselyBrandedString<"MarkingName">;
 
 /**
    * Represents the operations that a user can perform with regards to a Marking.

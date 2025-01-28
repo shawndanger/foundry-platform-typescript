@@ -351,27 +351,13 @@ export interface PutSchemaPermissionDenied {
 }
 
 /**
- * Could not readTable the Dataset.
+ * The provided token does not have permission to read the given dataset as a table.
  *
  * Log Safety: SAFE
  */
 export interface ReadTableDatasetPermissionDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ReadTableDatasetPermissionDenied";
-  errorInstanceId: string;
-  parameters: {
-    datasetRid: unknown;
-  };
-}
-
-/**
- * The provided token does not have permission to read the given dataset as a table.
- *
- * Log Safety: SAFE
- */
-export interface ReadTablePermissionDenied {
-  errorCode: "PERMISSION_DENIED";
-  errorName: "ReadTablePermissionDenied";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
