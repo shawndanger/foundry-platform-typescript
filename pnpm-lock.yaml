@@ -218,6 +218,9 @@ importers:
       '@osdk/foundry.core':
         specifier: workspace:*
         version: link:../foundry.core
+      '@osdk/foundry.functions':
+        specifier: workspace:*
+        version: link:../foundry.functions
       '@osdk/shared.client':
         specifier: ^1.0.1
         version: 1.0.1

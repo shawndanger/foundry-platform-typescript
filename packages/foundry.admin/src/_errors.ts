@@ -61,21 +61,6 @@ export interface AddMarkingRoleAssignmentsPermissionDenied {
 }
 
 /**
- * You cannot remove all administrators from a marking.
- *
- * Log Safety: SAFE
- */
-export interface CannotRemoveAllMarkingAdministrators {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "CannotRemoveAllMarkingAdministrators";
-  errorInstanceId: string;
-  parameters: {
-    markingId: unknown;
-    currentAdministrators: unknown;
-  };
-}
-
-/**
  * Could not create the Group.
  *
  * Log Safety: SAFE
@@ -360,7 +345,7 @@ export interface OrganizationNotFound {
   errorName: "OrganizationNotFound";
   errorInstanceId: string;
   parameters: {
-    organizationRid: unknown;
+    organization: unknown;
   };
 }
 
@@ -431,6 +416,21 @@ export interface RemoveMarkingRoleAssignmentsPermissionDenied {
   errorInstanceId: string;
   parameters: {
     markingId: unknown;
+  };
+}
+
+/**
+ * You cannot remove all administrators from a marking.
+ *
+ * Log Safety: SAFE
+ */
+export interface RemoveMarkingRoleAssignmentsRemoveAllAdministratorsNotAllowed {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "RemoveMarkingRoleAssignmentsRemoveAllAdministratorsNotAllowed";
+  errorInstanceId: string;
+  parameters: {
+    markingId: unknown;
+    currentAdministrators: unknown;
   };
 }
 

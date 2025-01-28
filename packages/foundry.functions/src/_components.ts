@@ -193,6 +193,7 @@ export type QueryDataType =
   | ({ type: "null" } & _Core.NullType)
   | ({ type: "array" } & QueryArrayType)
   | ({ type: "twoDimensionalAggregation" } & TwoDimensionalAggregation)
+  | ({ type: "valueTypeReference" } & ValueTypeReference)
   | ({ type: "timestamp" } & _Core.TimestampType);
 
 /**
@@ -247,14 +248,224 @@ export interface ThreeDimensionalAggregation {
 }
 
 /**
- * Log Safety: SAFE
- */
-export interface TimestampType {}
-
-/**
  * Log Safety: UNSAFE
  */
 export interface TwoDimensionalAggregation {
   keyType: QueryAggregationKeyType;
   valueType: QueryAggregationValueType;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ValueType {
+  rid: ValueTypeRid;
+  version: ValueTypeVersion;
+  versionId: ValueTypeVersionId;
+  apiName: ValueTypeApiName;
+  displayName: _Core.DisplayName;
+  description?: ValueTypeDescription;
+  baseType?: ValueTypeDataType;
+}
+
+/**
+ * The registered API name for the value type.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ValueTypeApiName = LooselyBrandedString<"ValueTypeApiName">;
+
+/**
+ * The underlying base type of a value type.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ValueTypeDataType =
+  | ({ type: "date" } & ValueTypeDataTypeDateType)
+  | ({ type: "struct" } & ValueTypeDataTypeStructType)
+  | ({ type: "string" } & ValueTypeDataTypeStringType)
+  | ({ type: "byte" } & ValueTypeDataTypeByteType)
+  | ({ type: "double" } & ValueTypeDataTypeDoubleType)
+  | ({ type: "optional" } & ValueTypeDataTypeOptionalType)
+  | ({ type: "integer" } & ValueTypeDataTypeIntegerType)
+  | ({ type: "union" } & ValueTypeDataTypeUnionType)
+  | ({ type: "float" } & ValueTypeDataTypeFloatType)
+  | ({ type: "long" } & ValueTypeDataTypeLongType)
+  | ({ type: "boolean" } & ValueTypeDataTypeBooleanType)
+  | ({ type: "array" } & ValueTypeDataTypeArrayType)
+  | ({ type: "binary" } & ValueTypeDataTypeBinaryType)
+  | ({ type: "valueTypeReference" } & ValueTypeDataTypeValueTypeReference)
+  | ({ type: "short" } & ValueTypeDataTypeShortType)
+  | ({ type: "decimal" } & ValueTypeDataTypeDecimalType)
+  | ({ type: "map" } & ValueTypeDataTypeMapType)
+  | ({ type: "timestamp" } & ValueTypeDataTypeTimestampType);
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ValueTypeDataTypeArrayType {
+  subType: ValueTypeDataType;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ValueTypeDataTypeBinaryType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ValueTypeDataTypeBooleanType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ValueTypeDataTypeByteType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ValueTypeDataTypeDateType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ValueTypeDataTypeDecimalType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ValueTypeDataTypeDoubleType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ValueTypeDataTypeFloatType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ValueTypeDataTypeIntegerType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ValueTypeDataTypeLongType {}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ValueTypeDataTypeMapType {
+  keyType: ValueTypeDataType;
+  valueType: ValueTypeDataType;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ValueTypeDataTypeOptionalType {
+  wrappedType: ValueTypeDataType;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ValueTypeDataTypeShortType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ValueTypeDataTypeStringType {}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ValueTypeDataTypeStructElement {
+  name: ValueTypeDataTypeStructFieldIdentifier;
+  fieldType: ValueTypeDataType;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type ValueTypeDataTypeStructFieldIdentifier = LooselyBrandedString<
+  "ValueTypeDataTypeStructFieldIdentifier"
+>;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ValueTypeDataTypeStructType {
+  fields: Array<ValueTypeDataTypeStructElement>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ValueTypeDataTypeTimestampType {}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ValueTypeDataTypeUnionType {
+  memberTypes: Array<ValueTypeDataType>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ValueTypeDataTypeValueTypeReference {
+  rid: ValueTypeRid;
+  versionId: ValueTypeVersionId;
+}
+
+/**
+ * A description of the value type.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ValueTypeDescription = LooselyBrandedString<"ValueTypeDescription">;
+
+/**
+ * A reference to a value type that has been registered in the Ontology.
+ *
+ * Log Safety: SAFE
+ */
+export interface ValueTypeReference {
+  rid: ValueTypeRid;
+  versionId: ValueTypeVersionId;
+}
+
+/**
+ * The RID of a value type that has been registered in the Ontology.
+ *
+ * Log Safety: SAFE
+ */
+export type ValueTypeRid = LooselyBrandedString<"ValueTypeRid">;
+
+/**
+ * The version of a value type that has been registered in the Ontology.
+ *
+ * Log Safety: SAFE
+ */
+export type ValueTypeVersion = LooselyBrandedString<"ValueTypeVersion">;
+
+/**
+ * The version ID of a value type that has been registered in the Ontology.
+ *
+ * Log Safety: SAFE
+ */
+export type ValueTypeVersionId = string;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface VersionId {
+  rid: ValueTypeRid;
+  version: ValueTypeVersion;
+  versionId: ValueTypeVersionId;
+  apiName: ValueTypeApiName;
+  displayName: _Core.DisplayName;
+  description?: ValueTypeDescription;
+  baseType?: ValueTypeDataType;
 }

@@ -517,19 +517,19 @@ export interface OntologyStructField {
 }
 
 /**
- * Computes the total count of objects.
- *
- * Log Safety: SAFE
- */
-export interface SelectedPropertyCountAggregation {}
-
-/**
  * Log Safety: UNSAFE
  */
 export interface AddObject {
   primaryKey: PropertyValue;
   objectType: ObjectTypeApiName;
 }
+
+/**
+ * Computes the total count of objects.
+ *
+ * Log Safety: SAFE
+ */
+export interface SelectedPropertyCountAggregation {}
 
 /**
    * Returns objects where the specified field equals any of the provided values. Allows you to
@@ -613,19 +613,19 @@ export interface ListAttachmentsResponseV2 {
 }
 
 /**
- * Log Safety: SAFE
- */
-export interface ObjectSetReferenceType {
-  reference: string;
-}
-
-/**
  * Log Safety: UNSAFE
  */
 export interface ListObjectsResponseV2 {
   nextPageToken?: PageToken;
   data: Array<OntologyObjectV2>;
   totalCount: TotalCount;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ObjectSetReferenceType {
+  reference: string;
 }
 
 /**
@@ -973,6 +973,16 @@ export type StreamMessage =
   | ({ type: "subscribeResponses" } & ObjectSetSubscribeResponses);
 
 /**
+   * The vector to search with. The vector must be of the same dimension as the vectors stored in the provided
+propertyIdentifier.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface DoubleVector {
+  value: Array<number>;
+}
+
+/**
    * The name of the link type in the API. To find the API name for your Link Type, check the Ontology Manager
 application.
    *
@@ -995,11 +1005,12 @@ export interface StructType {
 }
 
 /**
- * Specifies the ordering of search results by a field and an ordering direction.
+ * Specifies the ordering of search results by a field and an ordering direction or by relevance if scores are required in a nearestNeighbors query. By default orderType is set to fields.
  *
  * Log Safety: UNSAFE
  */
 export interface SearchOrderByV2 {
+  orderType?: SearchOrderByType;
   fields: Array<SearchOrderingV2>;
 }
 
@@ -1057,6 +1068,11 @@ export type InterfaceToObjectTypeMappings = Record<
 >;
 
 /**
+ * Log Safety: SAFE
+ */
+export type SearchOrderByType = "fields" | "relevance";
+
+/**
  * Log Safety: UNSAFE
  */
 export interface ListObjectsResponse {
@@ -1103,15 +1119,6 @@ export interface CreateLinkRule {
 }
 
 /**
- * Computes an approximate number of distinct values for the provided field.
- *
- * Log Safety: UNSAFE
- */
-export interface SelectedPropertyApproximateDistinctAggregation {
-  selectedPropertyApiName: PropertyApiName;
-}
-
-/**
  * Log Safety: UNSAFE
  */
 export interface LinkTypeSideV2 {
@@ -1122,6 +1129,15 @@ export interface LinkTypeSideV2 {
   cardinality: LinkTypeSideCardinality;
   foreignKeyPropertyApiName?: PropertyApiName;
   linkTypeRid: LinkTypeRid;
+}
+
+/**
+ * Computes an approximate number of distinct values for the provided field.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SelectedPropertyApproximateDistinctAggregation {
+  selectedPropertyApiName: PropertyApiName;
 }
 
 /**
@@ -1258,6 +1274,16 @@ export interface ObjectType {
 export interface CreateTemporaryObjectSetResponseV2 {
   objectSetRid: ObjectSetRid;
 }
+
+/**
+   * Queries support either a vector matching the embedding model defined on the property, or text that is
+automatically embedded.
+   *
+   * Log Safety: UNSAFE
+   */
+export type NearestNeighborsQuery =
+  | ({ type: "vector" } & DoubleVector)
+  | ({ type: "text" } & NearestNeighborsQueryText);
 
 /**
  * Log Safety: UNSAFE
@@ -1728,6 +1754,13 @@ export interface SelectedPropertyCollectSetAggregation {
 export type QueryApiName = LooselyBrandedString<"QueryApiName">;
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface QueryTwoDimensionalAggregation {
+  groups: Array<QueryAggregation>;
+}
+
+/**
  * Returns objects where the specified field contains the provided value as a substring.
  *
  * Log Safety: UNSAFE
@@ -1735,13 +1768,6 @@ export type QueryApiName = LooselyBrandedString<"QueryApiName">;
 export interface PhraseQuery {
   field: FieldNameV1;
   value: string;
-}
-
-/**
- * Log Safety: UNSAFE
- */
-export interface QueryTwoDimensionalAggregation {
-  groups: Array<QueryAggregation>;
 }
 
 /**
@@ -2006,6 +2032,7 @@ export type ObjectSet =
   | ({ type: "intersect" } & ObjectSetIntersectionType)
   | ({ type: "withProperties" } & ObjectSetWithPropertiesType)
   | ({ type: "subtract" } & ObjectSetSubtractType)
+  | ({ type: "nearestNeighbors" } & ObjectSetNearestNeighborsType)
   | ({ type: "union" } & ObjectSetUnionType)
   | ({ type: "asType" } & ObjectSetAsTypeType)
   | ({ type: "methodInput" } & ObjectSetMethodInputType)
@@ -2543,21 +2570,21 @@ export interface OrQuery {
 }
 
 /**
- * Log Safety: UNSAFE
- */
-export interface ObjectSetStreamSubscribeRequest {
-  objectSet: ObjectSet;
-  propertySet: Array<SelectedPropertyApiName>;
-  referenceSet: Array<SelectedPropertyApiName>;
-}
-
-/**
  * Computes the maximum value for the provided field.
  *
  * Log Safety: UNSAFE
  */
 export interface SelectedPropertyMaxAggregation {
   selectedPropertyApiName: PropertyApiName;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ObjectSetStreamSubscribeRequest {
+  objectSet: ObjectSet;
+  propertySet: Array<SelectedPropertyApiName>;
+  referenceSet: Array<SelectedPropertyApiName>;
 }
 
 /**
@@ -3029,13 +3056,6 @@ export interface QosError {}
 export type SeriesId = LooselyBrandedString<"SeriesId">;
 
 /**
- * Log Safety: UNSAFE
- */
-export type ObjectSetUpdate =
-  | ({ type: "reference" } & ReferenceUpdate)
-  | ({ type: "object" } & ObjectUpdate);
-
-/**
  * The status to indicate whether the PropertyType is either Experimental, Active, Deprecated, or Example.
  *
  * Log Safety: UNSAFE
@@ -3045,6 +3065,25 @@ export type PropertyTypeStatus =
   | ({ type: "active" } & ActivePropertyTypeStatus)
   | ({ type: "experimental" } & ExperimentalPropertyTypeStatus)
   | ({ type: "example" } & ExamplePropertyTypeStatus);
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type ObjectSetUpdate =
+  | ({ type: "reference" } & ReferenceUpdate)
+  | ({ type: "object" } & ObjectUpdate);
+
+/**
+ * The representation of an attachment.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface AttachmentV2 {
+  rid: AttachmentRid;
+  filename: Filename;
+  sizeBytes: SizeBytes;
+  mediaType: MediaType;
+}
 
 /**
    * The updated data value associated with an object instance's external reference. The object instance
@@ -3058,18 +3097,6 @@ export interface ReferenceUpdate {
   primaryKey: ObjectPrimaryKey;
   property: PropertyApiName;
   value: ReferenceValue;
-}
-
-/**
- * The representation of an attachment.
- *
- * Log Safety: UNSAFE
- */
-export interface AttachmentV2 {
-  rid: AttachmentRid;
-  filename: Filename;
-  sizeBytes: SizeBytes;
-  mediaType: MediaType;
 }
 
 /**
@@ -3212,6 +3239,15 @@ export interface BatchApplyActionRequestV2 {
 }
 
 /**
+ * Automatically embed the text in a vector using the embedding model configured for the given propertyIdentifier.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface NearestNeighborsQueryText {
+  value: string;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface ListActionTypesResponse {
@@ -3304,6 +3340,13 @@ export interface ActionType {
 export type ReturnEditsMode = "ALL" | "NONE";
 
 /**
+ * The unique resource identifier of an object, useful for interacting with other Foundry APIs.
+ *
+ * Log Safety: SAFE
+ */
+export type ObjectRid = LooselyBrandedString<"ObjectRid">;
+
+/**
  * Resolved data values pointed to by a reference.
  *
  * Log Safety: UNSAFE
@@ -3311,13 +3354,6 @@ export type ReturnEditsMode = "ALL" | "NONE";
 export type ReferenceValue = {
   type: "geotimeSeriesValue";
 } & GeotimeSeriesValue;
-
-/**
- * The unique resource identifier of an object, useful for interacting with other Foundry APIs.
- *
- * Log Safety: SAFE
- */
-export type ObjectRid = LooselyBrandedString<"ObjectRid">;
 
 /**
    * A combination of a struct property api name and a struct field api name. This is used to select struct fields
@@ -3601,6 +3637,26 @@ export interface LinkedObjectTypeApiName {
 }
 
 /**
+   * ObjectSet containing the top numNeighbors objects with propertyIdentifier nearest to the input vector or
+text. This can only be performed on a property with type vector that has been configured to be searched with
+approximate nearest neighbors using a similarity function configured in the Ontology.
+A non-zero score for each resulting object is returned when the orderType in the orderBy field is set to
+relevance. Note that:
+
+Scores will not be returned if a nearestNeighbors object set is composed through union, subtraction
+or intersection with non-nearestNeighbors object sets.
+If results have scores, the order of the scores will be decreasing (duplicate scores are possible).
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ObjectSetNearestNeighborsType {
+  objectSet: ObjectSet;
+  propertyIdentifier: PropertyIdentifier;
+  numNeighbors: number;
+  query: NearestNeighborsQuery;
+}
+
+/**
  * The subscription has been closed due to an irrecoverable error during its lifecycle.
  *
  * Log Safety: UNSAFE
@@ -3754,13 +3810,6 @@ export interface ActionParameterArrayType {
 }
 
 /**
- * The unique resource identifier of an object type, useful for interacting with other Foundry APIs.
- *
- * Log Safety: SAFE
- */
-export type ObjectTypeRid = LooselyBrandedString<"ObjectTypeRid">;
-
-/**
  * The unique resource identifier of an shared property type, useful for interacting with other Foundry APIs.
  *
  * Log Safety: SAFE
@@ -3770,6 +3819,20 @@ export type SharedPropertyTypeRid = LooselyBrandedString<
 >;
 
 /**
+ * The unique resource identifier of an object type, useful for interacting with other Foundry APIs.
+ *
+ * Log Safety: SAFE
+ */
+export type ObjectTypeRid = LooselyBrandedString<"ObjectTypeRid">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ApplyActionRequest {
+  parameters: Record<ParameterId, DataValue | undefined>;
+}
+
+/**
  * Returns objects where the specified field starts with the provided value.
  *
  * Log Safety: UNSAFE
@@ -3777,13 +3840,6 @@ export type SharedPropertyTypeRid = LooselyBrandedString<
 export interface PrefixQuery {
   field: FieldNameV1;
   value: string;
-}
-
-/**
- * Log Safety: UNSAFE
- */
-export interface ApplyActionRequest {
-  parameters: Record<ParameterId, DataValue | undefined>;
 }
 
 /**
@@ -3978,14 +4034,6 @@ export interface StringType {}
 export interface FloatType {}
 
 /**
-   * The media type of the file or attachment.
-Examples: application/json, application/pdf, application/octet-stream, image/jpeg
-   *
-   * Log Safety: SAFE
-   */
-export type MediaType = LooselyBrandedString<"MediaType">;
-
-/**
  * Log Safety: SAFE
  */
 export type TimeUnit =
@@ -3998,6 +4046,14 @@ export type TimeUnit =
   | "MONTHS"
   | "YEARS"
   | "QUARTERS";
+
+/**
+   * The media type of the file or attachment.
+Examples: application/json, application/pdf, application/octet-stream, image/jpeg
+   *
+   * Log Safety: SAFE
+   */
+export type MediaType = LooselyBrandedString<"MediaType">;
 
 /**
  * The name of a File within Foundry. Examples: my-file.txt, my-file.jpg, dataframe.snappy.parquet.
@@ -4015,6 +4071,13 @@ export interface LocalFilePath {}
  * Log Safety: SAFE
  */
 export interface GeotimeSeriesReferenceType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface MediaSetViewItemWrapper {
+  mediaSetViewItem: MediaSetViewItem;
+}
 
 /**
  * Log Safety: SAFE
@@ -4075,7 +4138,7 @@ export interface MediaReference {
  *
  * Log Safety: UNSAFE
  */
-export type Reference = { type: "mediaSetViewItem" } & MediaSetViewItem;
+export type Reference = { type: "mediaSetViewItem" } & MediaSetViewItemWrapper;
 
 /**
  * The format of an archive file.

@@ -627,6 +627,18 @@ export interface MarketplaceActionMappingNotFound {
 }
 
 /**
+ * The provided propertyIdentifier is not configured with an embedding model in the ontology.
+ *
+ * Log Safety: SAFE
+ */
+export interface PropertyTypeDoesNotSupportNearestNeighbors {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "PropertyTypeDoesNotSupportNearestNeighbors";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
    * The value of the given field does not match the expected pattern. For example, an Ontology object property id
 should be written properties.id.
    *
@@ -1025,6 +1037,21 @@ export interface OntologyNotFound {
 }
 
 /**
+ * The requested property type is not found, or the client token does not have access to it.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface PropertyTypeNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "PropertyTypeNotFound";
+  errorInstanceId: string;
+  parameters: {
+    objectTypeApiName: unknown;
+    propertyApiName: unknown;
+  };
+}
+
+/**
  * The given property type is not of the expected type.
  *
  * Log Safety: UNSAFE
@@ -1371,6 +1398,18 @@ export interface AttachmentSizeExceededLimit {
 }
 
 /**
+ * The dimensions of the provided vector don't match the dimensions of the embedding model being queried.
+ *
+ * Log Safety: SAFE
+ */
+export interface SearchVectorDimensionsDiffer {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "SearchVectorDimensionsDiffer";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The requested object is not found, or the client token does not have access to it.
  *
  * Log Safety: UNSAFE
@@ -1382,6 +1421,20 @@ export interface ObjectNotFound {
   parameters: {
     objectType: unknown;
     primaryKey: unknown;
+  };
+}
+
+/**
+ * This query type does not support the provided order type
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidOrderType {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidOrderType";
+  errorInstanceId: string;
+  parameters: {
+    orderType: unknown;
   };
 }
 
@@ -1399,6 +1452,18 @@ export interface PropertyApiNameNotFound {
     propertyId: unknown;
     propertyBaseType: unknown;
   };
+}
+
+/**
+ * The value of numNeighbors must be in the range 1 <= numNeighbors <= 500.
+ *
+ * Log Safety: SAFE
+ */
+export interface TooManyNearestNeighborsRequested {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "TooManyNearestNeighborsRequested";
+  errorInstanceId: string;
+  parameters: {};
 }
 
 /**

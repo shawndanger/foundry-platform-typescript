@@ -15,6 +15,7 @@
  */
 
 import type * as _Core from "@osdk/foundry.core";
+import type * as _Functions from "@osdk/foundry.functions";
 
 export type LooselyBrandedString<T extends string> = string & {
   __LOOSE_BRAND?: T;
@@ -61,10 +62,11 @@ export type AgentRid = LooselyBrandedString<"AgentRid">;
 /**
  * Context retrieved from an Agent's configured context data sources which was relevant to the supplied user message.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface AgentSessionRagContextResponse {
   objectContexts: Array<ObjectContext>;
+  functionRetrievedContexts: Array<FunctionRetrievedContext>;
 }
 
 /**
@@ -142,6 +144,17 @@ export interface CreateSessionRequest {
 }
 
 /**
+ * Context retrieved from running a function to include as additional context in the prompt to the Agent.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface FunctionRetrievedContext {
+  functionRid: _Functions.FunctionRid;
+  functionVersion: _Functions.FunctionVersion;
+  retrievedPrompt: string;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface GetRagContextForSessionRequest {
@@ -154,7 +167,9 @@ export interface GetRagContextForSessionRequest {
  *
  * Log Safety: UNSAFE
  */
-export type InputContext = { type: "objectContext" } & ObjectContext;
+export type InputContext =
+  | ({ type: "functionRetrievedContext" } & FunctionRetrievedContext)
+  | ({ type: "objectContext" } & ObjectContext);
 
 /**
  * Log Safety: UNSAFE

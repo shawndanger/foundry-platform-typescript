@@ -41,7 +41,7 @@ const _create: $FoundryPlatformMethod<
 /**
  * Creates a new TableImport.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:connectivity-table-import-write]
  * URL: /v2/connectivity/connections/{connectionRid}/tableImports
@@ -70,7 +70,7 @@ const _deleteTableImport: $FoundryPlatformMethod<
  * Deleting the table import does not delete the destination dataset but the dataset will no longer
  * be updated by this import.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:connectivity-table-import-write]
  * URL: /v2/connectivity/connections/{connectionRid}/tableImports/{tableImportRid}
@@ -102,7 +102,7 @@ const _list: $FoundryPlatformMethod<
  * Lists all table imports defined for this connection.
  * Only table imports that the user has permissions to view will be returned.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:connectivity-table-import-read]
  * URL: /v2/connectivity/connections/{connectionRid}/tableImports
@@ -133,7 +133,7 @@ const _get: $FoundryPlatformMethod<
 /**
  * Get the TableImport with the specified rid.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:connectivity-table-import-read]
  * URL: /v2/connectivity/connections/{connectionRid}/tableImports/{tableImportRid}
@@ -162,7 +162,7 @@ const _execute: $FoundryPlatformMethod<
  * Executes the TableImport, which runs asynchronously as a [Foundry Build](https://www.palantir.com/docs/foundry/data-integration/builds/).
  * The returned BuildRid can be used to check the status via the Orchestration API.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:connectivity-table-import-execute]
  * URL: /v2/connectivity/connections/{connectionRid}/tableImports/{tableImportRid}/execute

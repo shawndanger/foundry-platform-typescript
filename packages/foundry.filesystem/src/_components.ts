@@ -61,6 +61,18 @@ export interface CreateFolderRequest {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface CreateProjectRequest {
+  displayName: ResourceDisplayName;
+  description?: string;
+  spaceRid: SpaceRid;
+  roleGrants: Record<_Core.RoleId, Array<PrincipalWithId>>;
+  defaultRoles: Array<_Core.RoleId>;
+  organizationRids: Array<_Core.OrganizationRid>;
+}
+
+/**
  * A principal representing all users of the platform.
  *
  * Log Safety: SAFE
