@@ -1,5 +1,28 @@
 # @osdk/foundry
 
+## 2.10.0
+
+### Minor Changes
+
+- 19b5edf: Updating platform sdks with semantic search capabilities and other improvements.
+
+### Patch Changes
+
+- Updated dependencies [19b5edf]
+  - @osdk/foundry.thirdpartyapplications@2.10.0
+  - @osdk/foundry.orchestration@2.10.0
+  - @osdk/foundry.connectivity@2.10.0
+  - @osdk/foundry.filesystem@2.10.0
+  - @osdk/foundry.ontologies@2.10.0
+  - @osdk/foundry.publicapis@2.10.0
+  - @osdk/foundry.aipagents@2.10.0
+  - @osdk/foundry.functions@2.10.0
+  - @osdk/foundry.datasets@2.10.0
+  - @osdk/foundry.streams@2.10.0
+  - @osdk/foundry.admin@2.10.0
+  - @osdk/foundry.core@2.10.0
+  - @osdk/foundry.geo@2.10.0
+
 ## 2.9.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @osdk/platform-sdk-generator
 
+## 0.9.0
+
+### Minor Changes
+
+- 19b5edf: Updating platform sdks with semantic search capabilities and other improvements.
+
 ## 0.8.0
 
 ### Minor Changes
