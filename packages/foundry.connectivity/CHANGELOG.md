@@ -1,5 +1,16 @@
 # @osdk/foundry.connectivity
 
+## 2.11.0
+
+### Patch Changes
+
+- Updated dependencies [64d5ebb]
+  - @osdk/shared.net.platformapi@1.3.0
+  - @osdk/foundry.core@2.11.0
+  - @osdk/foundry.datasets@2.11.0
+  - @osdk/foundry.filesystem@2.11.0
+  - @osdk/foundry.orchestration@2.11.0
+
 ## 2.10.0
 
 ### Minor Changes

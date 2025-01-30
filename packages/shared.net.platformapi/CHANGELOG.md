@@ -1,5 +1,11 @@
 # @osdk/shared.net.platformapi
 
+## 1.3.0
+
+### Minor Changes
+
+- 64d5ebb: Fix fetch function to now work without trailing slashes.
+
 ## 1.2.0
 
 ### Minor Changes
