@@ -185,16 +185,16 @@ export type HostName = LooselyBrandedString<"HostName">;
 /**
  * Log Safety: UNSAFE
  */
-export interface ListGroupMembersResponse {
-  data: Array<GroupMember>;
+export interface ListGroupMembershipsResponse {
+  data: Array<GroupMembership>;
   nextPageToken?: _Core.PageToken;
 }
 
 /**
  * Log Safety: UNSAFE
  */
-export interface ListGroupMembershipsResponse {
-  data: Array<GroupMembership>;
+export interface ListGroupMembersResponse {
+  data: Array<GroupMember>;
   nextPageToken?: _Core.PageToken;
 }
 
