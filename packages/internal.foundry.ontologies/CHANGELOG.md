@@ -1,5 +1,16 @@
 # @osdk/internal.foundry.ontologies
 
+## 2.12.0
+
+### Minor Changes
+
+- ee52ff3: Updating platform sdks with vector property type and other improvements.
+
+### Patch Changes
+
+- Updated dependencies [ee52ff3]
+  - @osdk/internal.foundry.core@2.12.0
+
 ## 2.11.0
 
 ### Patch Changes

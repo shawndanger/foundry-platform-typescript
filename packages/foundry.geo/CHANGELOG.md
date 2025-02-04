@@ -1,5 +1,11 @@
 # @osdk/foundry.geo
 
+## 2.12.0
+
+### Minor Changes
+
+- ee52ff3: Updating platform sdks with vector property type and other improvements.
+
 ## 2.11.0
 
 ### Patch Changes
