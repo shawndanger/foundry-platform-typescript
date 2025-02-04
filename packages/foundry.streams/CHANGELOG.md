@@ -1,5 +1,18 @@
 # @osdk/foundry.streams
 
+## 2.12.0
+
+### Minor Changes
+
+- ee52ff3: Updating platform sdks with vector property type and other improvements.
+
+### Patch Changes
+
+- Updated dependencies [ee52ff3]
+  - @osdk/foundry.filesystem@2.12.0
+  - @osdk/foundry.datasets@2.12.0
+  - @osdk/foundry.core@2.12.0
+
 ## 2.11.0
 
 ### Patch Changes
