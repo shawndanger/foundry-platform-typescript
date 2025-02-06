@@ -19,20 +19,6 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
- * At least one of requested filters are malformed. Please look at the documentation of PropertyFilter.
- *
- * Log Safety: UNSAFE
- */
-export interface MalformedPropertyFilters {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "MalformedPropertyFilters";
-  errorInstanceId: string;
-  parameters: {
-    malformedPropertyFilter: unknown;
-  };
-}
-
-/**
  * Aggregation value does not conform to the expected underlying type.
  *
  * Log Safety: UNSAFE
@@ -45,6 +31,20 @@ export interface InvalidAggregationRangeValue {
     property: unknown;
     objectType: unknown;
     propertyBaseType: unknown;
+  };
+}
+
+/**
+ * At least one of requested filters are malformed. Please look at the documentation of PropertyFilter.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MalformedPropertyFilters {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "MalformedPropertyFilters";
+  errorInstanceId: string;
+  parameters: {
+    malformedPropertyFilter: unknown;
   };
 }
 
@@ -1052,21 +1052,6 @@ export interface PropertyTypeNotFound {
 }
 
 /**
- * The given property type is not of the expected type.
- *
- * Log Safety: UNSAFE
- */
-export interface InvalidPropertyType {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "InvalidPropertyType";
-  errorInstanceId: string;
-  parameters: {
-    propertyBaseType: unknown;
-    property: unknown;
-  };
-}
-
-/**
  * The given marketplace installation could not be found or the user does not have access to it.
  *
  * Log Safety: UNSAFE
@@ -1078,6 +1063,21 @@ export interface MarketplaceInstallationNotFound {
   parameters: {
     artifactRepository: unknown;
     packageName: unknown;
+  };
+}
+
+/**
+ * The given property type is not of the expected type.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidPropertyType {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidPropertyType";
+  errorInstanceId: string;
+  parameters: {
+    propertyBaseType: unknown;
+    property: unknown;
   };
 }
 

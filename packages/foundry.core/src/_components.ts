@@ -111,8 +111,8 @@ export interface DateType {}
  * Log Safety: SAFE
  */
 export interface DecimalType {
-  scale: number;
-  precision: number;
+  scale?: number;
+  precision?: number;
 }
 
 /**
@@ -315,6 +315,20 @@ export interface FullRowChangeDataCaptureConfiguration {
   deletionFieldName: FieldName;
   orderingFieldName: FieldName;
 }
+
+/**
+ * The display name of a multipass group.
+ *
+ * Log Safety: UNSAFE
+ */
+export type GroupName = LooselyBrandedString<"GroupName">;
+
+/**
+ * The unique resource identifier (RID) of a multipass group.
+ *
+ * Log Safety: UNSAFE
+ */
+export type GroupRid = LooselyBrandedString<"GroupRid">;
 
 /**
  * Log Safety: SAFE
@@ -554,7 +568,8 @@ The last term can be a partial prefix match.
    * Log Safety: UNSAFE
    */
 export interface ContainsAllTermsInOrderPrefixLastTerm {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   value: string;
 }
 
@@ -565,7 +580,8 @@ but they do have to be adjacent to each other.
    * Log Safety: UNSAFE
    */
 export interface ContainsAllTermsInOrderQuery {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   value: string;
 }
 
@@ -576,7 +592,8 @@ order in the provided value. This query supports fuzzy matching.
    * Log Safety: UNSAFE
    */
 export interface ContainsAllTermsQuery {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   value: string;
   fuzzy?: FuzzyV2;
 }
@@ -588,7 +605,8 @@ order in the provided value. This query supports fuzzy matching.
    * Log Safety: UNSAFE
    */
 export interface ContainsAnyTermQuery {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   value: string;
   fuzzy?: FuzzyV2;
 }
@@ -599,7 +617,8 @@ export interface ContainsAnyTermQuery {
  * Log Safety: UNSAFE
  */
 export interface ContainsQueryV2 {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   value: PropertyValue;
 }
 
@@ -609,7 +628,8 @@ export interface ContainsQueryV2 {
  * Log Safety: UNSAFE
  */
 export interface DoesNotIntersectBoundingBoxQuery {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   value: BoundingBoxValue;
 }
 
@@ -619,7 +639,8 @@ export interface DoesNotIntersectBoundingBoxQuery {
  * Log Safety: UNSAFE
  */
 export interface DoesNotIntersectPolygonQuery {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   value: PolygonValue;
 }
 
@@ -629,7 +650,8 @@ export interface DoesNotIntersectPolygonQuery {
  * Log Safety: UNSAFE
  */
 export interface EqualsQueryV2 {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   value: PropertyValue;
 }
 
@@ -646,7 +668,8 @@ export type FuzzyV2 = boolean;
  * Log Safety: UNSAFE
  */
 export interface GtQueryV2 {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   value: PropertyValue;
 }
 
@@ -656,7 +679,8 @@ export interface GtQueryV2 {
  * Log Safety: UNSAFE
  */
 export interface GteQueryV2 {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   value: PropertyValue;
 }
 
@@ -666,7 +690,8 @@ export interface GteQueryV2 {
  * Log Safety: UNSAFE
  */
 export interface InQuery {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   value: Array<PropertyValue>;
 }
 
@@ -676,7 +701,8 @@ export interface InQuery {
  * Log Safety: UNSAFE
  */
 export interface IntersectsBoundingBoxQuery {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   value: BoundingBoxValue;
 }
 
@@ -686,7 +712,8 @@ export interface IntersectsBoundingBoxQuery {
  * Log Safety: UNSAFE
  */
 export interface IntersectsPolygonQuery {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   value: PolygonValue;
 }
 
@@ -696,7 +723,8 @@ export interface IntersectsPolygonQuery {
  * Log Safety: UNSAFE
  */
 export interface IsNullQueryV2 {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   value: boolean;
 }
 
@@ -713,7 +741,8 @@ export type LinkTypeApiName = LooselyBrandedString<"LinkTypeApiName">;
  * Log Safety: UNSAFE
  */
 export interface LtQueryV2 {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   value: PropertyValue;
 }
 
@@ -723,7 +752,8 @@ export interface LtQueryV2 {
  * Log Safety: UNSAFE
  */
 export interface LteQueryV2 {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   value: PropertyValue;
 }
 
@@ -749,14 +779,39 @@ export type ObjectRid = LooselyBrandedString<"ObjectRid">;
  * Log Safety: UNSAFE
  */
 export type ObjectSet =
-  | ({ type: "reference" } & ObjectSetReferenceType)
-  | ({ type: "filter" } & ObjectSetFilterType)
   | ({ type: "searchAround" } & ObjectSetSearchAroundType)
   | ({ type: "static" } & ObjectSetStaticType)
   | ({ type: "intersect" } & ObjectSetIntersectionType)
+  | ({ type: "withProperties" } & ObjectSetWithPropertiesType)
   | ({ type: "subtract" } & ObjectSetSubtractType)
+  | ({ type: "nearestNeighbors" } & ObjectSetNearestNeighborsType)
   | ({ type: "union" } & ObjectSetUnionType)
+  | ({ type: "asType" } & ObjectSetAsTypeType)
+  | ({ type: "methodInput" } & ObjectSetMethodInputType)
+  | ({ type: "reference" } & ObjectSetReferenceType)
+  | ({ type: "filter" } & ObjectSetFilterType)
+  | ({ type: "interfaceBase" } & ObjectSetInterfaceBaseType)
+  | ({ type: "asBaseObjectTypes" } & ObjectSetAsBaseObjectTypesType)
   | ({ type: "base" } & ObjectSetBaseType);
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ObjectSetAsBaseObjectTypesType {
+  objectSet: ObjectSet;
+}
+
+/**
+   * Casts an object set to a specified object type or interface type API name. Any object whose object type does
+not match the object type provided or implement the interface type provided will be dropped from the resulting
+object set. This is currently unsupported and an exception will be thrown if used.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ObjectSetAsTypeType {
+  entityType: string;
+  objectSet: ObjectSet;
+}
 
 /**
  * Log Safety: UNSAFE
@@ -786,6 +841,16 @@ export interface ObjectSetInterfaceBaseType {
 export interface ObjectSetIntersectionType {
   objectSets: Array<ObjectSet>;
 }
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ObjectSetMethodInputType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ObjectSetNearestNeighborsType {}
 
 /**
  * Log Safety: SAFE
@@ -831,6 +896,11 @@ export interface ObjectSetUnionType {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface ObjectSetWithPropertiesType {}
+
+/**
  * The unique identifier (ID) for an object type. This can be viewed in Ontology Manager.
  *
  * Log Safety: UNSAFE
@@ -872,6 +942,24 @@ endpoint or check the Ontology Manager.
    * Log Safety: UNSAFE
    */
 export type PropertyApiName = LooselyBrandedString<"PropertyApiName">;
+
+/**
+ * A property api name that references properties to query on.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface PropertyApiNameSelector {
+  apiName: PropertyApiName;
+}
+
+/**
+ * An identifier used to select properties or struct fields.
+ *
+ * Log Safety: UNSAFE
+ */
+export type PropertyIdentifier =
+  | ({ type: "property" } & PropertyApiNameSelector)
+  | ({ type: "structField" } & StructFieldSelector);
 
 /**
  * The RID for a property type from an ontology object.
@@ -931,8 +1019,28 @@ export type SearchJsonQueryV2 =
  * Log Safety: UNSAFE
  */
 export interface StartsWithQuery {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   value: string;
+}
+
+/**
+ * The name of a struct field in the Ontology.
+ *
+ * Log Safety: UNSAFE
+ */
+export type StructFieldApiName = LooselyBrandedString<"StructFieldApiName">;
+
+/**
+   * A combination of a struct property api name and a struct field api name. This is used to select struct fields
+to query on. Note that you can still select struct properties with only a 'PropertyApiNameSelector'; the queries
+will then become 'OR' queries across the fields of the struct property.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface StructFieldSelector {
+  propertyApiName: PropertyApiName;
+  structFieldApiName: StructFieldApiName;
 }
 
 /**
@@ -946,7 +1054,8 @@ export type WithinBoundingBoxPoint = { type: "Point" } & _Geo.GeoPoint;
  * Log Safety: UNSAFE
  */
 export interface WithinBoundingBoxQuery {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   value: BoundingBoxValue;
 }
 
@@ -956,7 +1065,8 @@ export interface WithinBoundingBoxQuery {
  * Log Safety: UNSAFE
  */
 export interface WithinDistanceOfQuery {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   value: CenterPoint;
 }
 
@@ -966,6 +1076,7 @@ export interface WithinDistanceOfQuery {
  * Log Safety: UNSAFE
  */
 export interface WithinPolygonQuery {
-  field: PropertyApiName;
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
   value: PolygonValue;
 }
