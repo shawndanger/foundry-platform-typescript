@@ -21,38 +21,235 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
- * The format of an archive file.
- *
  * Log Safety: SAFE
  */
-export type ArchiveFileFormat = "ZIP";
-
-/**
- * Log Safety: UNSAFE
- */
-export interface ArrayFieldType {
-  itemsSchema: FieldSchema;
-}
+export type ContentType = LooselyBrandedString<"ContentType">;
 
 /**
  * Log Safety: SAFE
  */
-export interface AttachmentType {}
+export interface StringType {}
 
 /**
- * Log Safety: SAFE
- */
-export interface BinaryType {}
-
-/**
- * Log Safety: SAFE
- */
-export interface BooleanType {}
+   * The page token indicates where to start paging. This should be omitted from the first page's request.
+To fetch the next page, clients should take the value from the nextPageToken field of the previous response
+and use it to populate the pageToken field of the next request.
+   *
+   * Log Safety: UNSAFE
+   */
+export type PageToken = LooselyBrandedString<"PageToken">;
 
 /**
  * Log Safety: SAFE
  */
 export interface ByteType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FloatType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterLongType {}
+
+/**
+ * The Foundry user who last updated this resource
+ *
+ * Log Safety: SAFE
+ */
+export type UpdatedBy = UserId;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface TimeseriesType {
+  itemType?: TimeSeriesItemType;
+}
+
+/**
+ * The release status of the entity.
+ *
+ * Log Safety: SAFE
+ */
+export type ReleaseStatus = "ACTIVE" | "EXPERIMENTAL" | "DEPRECATED";
+
+/**
+   * The media type of the file or attachment.
+Examples: application/json, application/pdf, application/octet-stream, image/jpeg
+   *
+   * Log Safety: SAFE
+   */
+export type MediaType = LooselyBrandedString<"MediaType">;
+
+/**
+ * Log Safety: SAFE
+ */
+export type OrganizationRid = LooselyBrandedString<"OrganizationRid">;
+
+/**
+ * Log Safety: SAFE
+ */
+export type TimeUnit =
+  | "MILLISECONDS"
+  | "SECONDS"
+  | "MINUTES"
+  | "HOURS"
+  | "DAYS"
+  | "WEEKS"
+  | "MONTHS"
+  | "YEARS";
+
+/**
+ * Enables the use of preview functionality.
+ *
+ * Log Safety: SAFE
+ */
+export type PreviewMode = boolean;
+
+/**
+ * A measurement of distance.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface Distance {
+  value: number;
+  unit: DistanceUnit;
+}
+
+/**
+ * The Resource Identifier (RID) of a single View of a Media Set. A Media Set View is an independent collection of Media Items.
+ *
+ * Log Safety: SAFE
+ */
+export type MediaSetViewRid = LooselyBrandedString<"MediaSetViewRid">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface StructFieldType {
+  subFields: Array<Field>;
+}
+
+/**
+ * The Foundry user who created this resource
+ *
+ * Log Safety: SAFE
+ */
+export type CreatedBy = PrincipalId;
+
+/**
+ * The unique resource identifier (RID) of a multipass group.
+ *
+ * Log Safety: UNSAFE
+ */
+export type GroupRid = LooselyBrandedString<"GroupRid">;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface ShortType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface MediaSetViewItem {
+  mediaSetRid: MediaSetRid;
+  mediaSetViewRid: MediaSetViewRid;
+  mediaItemRid: MediaItemRid;
+}
+
+/**
+ * The name of a File within Foundry. Examples: my-file.txt, my-file.jpg, dataframe.snappy.parquet.
+ *
+ * Log Safety: UNSAFE
+ */
+export type Filename = LooselyBrandedString<"Filename">;
+
+/**
+ * The ID of a security marking.
+ *
+ * Log Safety: SAFE
+ */
+export type MarkingId = string;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface MediaReferenceType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface DecimalType {
+  precision?: number;
+  scale?: number;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface LocalFilePath {}
+
+/**
+ * Specifies the ordering direction (can be either ASC or DESC)
+ *
+ * Log Safety: SAFE
+ */
+export type OrderByDirection = "ASC" | "DESC";
+
+/**
+ * Log Safety: SAFE
+ */
+export interface GeotimeSeriesReferenceType {}
+
+/**
+ * The page size to use for the endpoint.
+ *
+ * Log Safety: SAFE
+ */
+export type PageSize = number;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface UnsupportedType {
+  unsupportedType: string;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterEnumType {
+  values: Array<string>;
+}
+
+/**
+ * The ID of a Foundry Group or User.
+ *
+ * Log Safety: SAFE
+ */
+export type PrincipalId = LooselyBrandedString<"PrincipalId">;
+
+/**
+   * Configuration for change data capture which resolves the latest state of the dataset based on new full rows
+being pushed to the stream. For example, if a value for a row is updated, it is only sufficient to publish
+the entire new state of that row to the stream.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface FullRowChangeDataCaptureConfiguration {
+  deletionFieldName: FieldName;
+  orderingFieldName: FieldName;
+}
+
+/**
+ * The Resource Identifier (RID) of a Media Set in Foundry.
+ *
+ * Log Safety: SAFE
+ */
+export type MediaSetRid = LooselyBrandedString<"MediaSetRid">;
 
 /**
    * Configuration for utilizing the stream as a change data capture (CDC) dataset. To configure CDC on a stream, at
@@ -67,28 +264,142 @@ export type ChangeDataCaptureConfiguration = {
 } & FullRowChangeDataCaptureConfiguration;
 
 /**
+   * A user-specified identifier for a media item within a media set.
+Paths must be less than 256 characters long.
+If multiple items are written to the same media set at the same path, then when retrieving by path the media
+item which was written last is returned.
+   *
+   * Log Safety: UNSAFE
+   */
+export type MediaItemPath = LooselyBrandedString<"MediaItemPath">;
+
+/**
  * Log Safety: SAFE
  */
-export interface CipherTextType {
-  defaultCipherChannel?: string;
+export interface MediaSetViewItemWrapper {
+  mediaSetViewItem: MediaSetViewItem;
 }
 
 /**
- * Log Safety: SAFE
+ * The representation of a media reference.
+ *
+ * Log Safety: UNSAFE
  */
-export type ContentLength = string;
+export interface MediaReference {
+  mimeType: MediaType;
+  reference: Reference;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type FieldName = LooselyBrandedString<"FieldName">;
 
 /**
  * Log Safety: SAFE
  */
-export type ContentType = LooselyBrandedString<"ContentType">;
+export interface GeoShapeType {}
 
 /**
- * The Foundry user who created this resource
+ * Log Safety: SAFE
+ */
+export interface FilterRidType {}
+
+/**
+ * A union of the types supported by media reference properties.
+ *
+ * Log Safety: UNSAFE
+ */
+export type Reference = { type: "mediaSetViewItem" } & MediaSetViewItemWrapper;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface BooleanType {}
+
+/**
+ * A model provided by Language Model Service.
  *
  * Log Safety: SAFE
  */
-export type CreatedBy = PrincipalId;
+export interface LmsEmbeddingModel {
+  value: LmsEmbeddingModelValue;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface MapFieldType {
+  keySchema: FieldSchema;
+  valueSchema: FieldSchema;
+}
+
+/**
+   * The unique ID for a Role. Roles are sets of permissions that grant different levels of access to resources.
+The default roles in Foundry are: Owner, Editor, Viewer, and Discoverer. See more about
+roles in the user documentation.
+   *
+   * Log Safety: SAFE
+   */
+export type RoleId = LooselyBrandedString<"RoleId">;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterStringType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface IntegerType {}
+
+/**
+ * The format of an archive file.
+ *
+ * Log Safety: SAFE
+ */
+export type ArchiveFileFormat = "ZIP";
+
+/**
+ * The total number of items across all pages.
+ *
+ * Log Safety: SAFE
+ */
+export type TotalCount = string;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterUuidType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export type LmsEmbeddingModelValue =
+  | "OPENAI_TEXT_EMBEDDING_ADA_002"
+  | "TEXT_EMBEDDING_3_SMALL"
+  | "SNOWFLAKE_ARCTIC_EMBED_M"
+  | "INSTRUCTOR_LARGE"
+  | "BGE_BASE_EN_V1_5";
+
+/**
+ * The time at which the resource was most recently updated.
+ *
+ * Log Safety: SAFE
+ */
+export type UpdatedTime = string;
+
+/**
+ * Log Safety: SAFE
+ */
+export type FolderRid = LooselyBrandedString<"FolderRid">;
+
+/**
+ * The display name of a multipass group.
+ *
+ * Log Safety: UNSAFE
+ */
+export type GroupName = LooselyBrandedString<"GroupName">;
 
 /**
  * The time at which the resource was created.
@@ -98,9 +409,35 @@ export type CreatedBy = PrincipalId;
 export type CreatedTime = string;
 
 /**
+ * Log Safety: SAFE
+ */
+export interface MarkingType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterBinaryType {}
+
+/**
  * Log Safety: UNSAFE
  */
-export type CustomMetadata = Record<string, any>;
+export type EmbeddingModel =
+  | ({ type: "lms" } & LmsEmbeddingModel)
+  | ({ type: "foundryLiveDeployment" } & FoundryLiveDeployment);
+
+/**
+ * The name of a field in a Struct.
+ *
+ * Log Safety: UNSAFE
+ */
+export type StructFieldName = LooselyBrandedString<"StructFieldName">;
+
+/**
+ * The Resource Identifier (RID) of an individual Media Item within a Media Set in Foundry.
+ *
+ * Log Safety: SAFE
+ */
+export type MediaItemRid = LooselyBrandedString<"MediaItemRid">;
 
 /**
  * Log Safety: SAFE
@@ -110,9 +447,149 @@ export interface DateType {}
 /**
  * Log Safety: SAFE
  */
-export interface DecimalType {
-  scale?: number;
-  precision?: number;
+export type EnrollmentRid = LooselyBrandedString<"EnrollmentRid">;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterDoubleType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface BinaryType {}
+
+/**
+ * A union of the types supported by time series properties.
+ *
+ * Log Safety: UNSAFE
+ */
+export type TimeSeriesItemType =
+  | ({ type: "string" } & StringType)
+  | ({ type: "double" } & DoubleType);
+
+/**
+ * A measurement of duration.
+ *
+ * Log Safety: SAFE
+ */
+export interface Duration {
+  value: number;
+  unit: TimeUnit;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterDateTimeType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilesystemResource {}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type FilterType =
+  | ({ type: "dateTime" } & FilterDateTimeType)
+  | ({ type: "date" } & FilterDateType)
+  | ({ type: "boolean" } & FilterBooleanType)
+  | ({ type: "string" } & FilterStringType)
+  | ({ type: "double" } & FilterDoubleType)
+  | ({ type: "binary" } & FilterBinaryType)
+  | ({ type: "integer" } & FilterIntegerType)
+  | ({ type: "float" } & FilterFloatType)
+  | ({ type: "rid" } & FilterRidType)
+  | ({ type: "uuid" } & FilterUuidType)
+  | ({ type: "enum" } & FilterEnumType)
+  | ({ type: "long" } & FilterLongType);
+
+/**
+ * Log Safety: SAFE
+ */
+export interface GeoPointType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface CipherTextType {
+  defaultCipherChannel?: string;
+}
+
+/**
+   * The vector similarity function to support approximate nearest neighbors search. Will result in an index
+specific for the function.
+   *
+   * Log Safety: SAFE
+   */
+export interface VectorSimilarityFunction {
+  value?: VectorSimilarityFunctionValue;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface NullType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterFloatType {}
+
+/**
+ * The size of the file or attachment in bytes.
+ *
+ * Log Safety: SAFE
+ */
+export type SizeBytes = string;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type CustomMetadata = Record<string, any>;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface LongType {}
+
+/**
+ * The specification of the type of a Foundry schema field.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface FieldSchema {
+  nullable: boolean;
+  customMetadata?: CustomMetadata;
+  dataType: FieldDataType;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterIntegerType {}
+
+/**
+   * A field in a Foundry schema. For more information on supported data types, see the
+supported field types user documentation.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface Field {
+  name: FieldName;
+  schema: FieldSchema;
+}
+
+/**
+ * Represents a fixed size vector of floats. These can be used for vector similarity searches.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface VectorType {
+  dimension: number;
+  supportsSearchWith: Array<VectorSimilarityFunction>;
+  embeddingModel?: EmbeddingModel;
 }
 
 /**
@@ -123,14 +600,9 @@ export interface DecimalType {
 export type DisplayName = LooselyBrandedString<"DisplayName">;
 
 /**
- * A measurement of distance.
- *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
-export interface Distance {
-  value: number;
-  unit: DistanceUnit;
-}
+export interface TimestampType {}
 
 /**
  * Log Safety: SAFE
@@ -149,33 +621,27 @@ export type DistanceUnit =
 /**
  * Log Safety: SAFE
  */
-export interface DoubleType {}
+export interface AnyType {}
 
 /**
- * A measurement of duration.
- *
- * Log Safety: SAFE
- */
-export interface Duration {
-  value: number;
-  unit: TimeUnit;
-}
-
-/**
- * Log Safety: SAFE
- */
-export type EnrollmentRid = LooselyBrandedString<"EnrollmentRid">;
-
-/**
-   * A field in a Foundry schema. For more information on supported data types, see the
-supported field types user documentation.
+   * Identifies which Realm a User or Group is a member of.
+The palantir-internal-realm is used for Users or Groups that are created in Foundry by administrators and not associated with any SSO provider.
    *
    * Log Safety: UNSAFE
    */
-export interface Field {
-  name: FieldName;
-  schema: FieldSchema;
-}
+export type Realm = LooselyBrandedString<"Realm">;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface FilterDateType {}
+
+/**
+ * The path to a File within Foundry. Examples: my-file.txt, path/to/my-file.jpg, dataframe.snappy.parquet.
+ *
+ * Log Safety: UNSAFE
+ */
+export type FilePath = LooselyBrandedString<"FilePath">;
 
 /**
  * Log Safety: UNSAFE
@@ -198,32 +664,9 @@ export type FieldDataType =
   | ({ type: "timestamp" } & TimestampType);
 
 /**
- * Log Safety: UNSAFE
- */
-export type FieldName = LooselyBrandedString<"FieldName">;
-
-/**
- * The specification of the type of a Foundry schema field.
- *
- * Log Safety: UNSAFE
- */
-export interface FieldSchema {
-  nullable: boolean;
-  customMetadata?: CustomMetadata;
-  dataType: FieldDataType;
-}
-
-/**
- * The path to a File within Foundry.
- *
- * Log Safety: UNSAFE
- */
-export type FilePath = LooselyBrandedString<"FilePath">;
-
-/**
  * Log Safety: SAFE
  */
-export interface FilterBinaryType {}
+export interface AttachmentType {}
 
 /**
  * Log Safety: SAFE
@@ -231,224 +674,35 @@ export interface FilterBinaryType {}
 export interface FilterBooleanType {}
 
 /**
+ * A string representation of a java.time.ZoneId
+ *
  * Log Safety: SAFE
  */
-export interface FilterDateTimeType {}
+export type ZoneId = LooselyBrandedString<"ZoneId">;
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
-export interface FilterDateType {}
-
-/**
- * Log Safety: SAFE
- */
-export interface FilterDoubleType {}
-
-/**
- * Log Safety: SAFE
- */
-export interface FilterEnumType {
-  values: Array<string>;
+export interface ArrayFieldType {
+  itemsSchema: FieldSchema;
 }
 
 /**
  * Log Safety: SAFE
  */
-export interface FilterFloatType {}
-
-/**
- * Log Safety: SAFE
- */
-export interface FilterIntegerType {}
-
-/**
- * Log Safety: SAFE
- */
-export interface FilterLongType {}
-
-/**
- * Log Safety: SAFE
- */
-export interface FilterRidType {}
-
-/**
- * Log Safety: SAFE
- */
-export interface FilterStringType {}
+export type VectorSimilarityFunctionValue =
+  | "COSINE_SIMILARITY"
+  | "DOT_PRODUCT"
+  | "EUCLIDEAN_DISTANCE";
 
 /**
  * Log Safety: UNSAFE
  */
-export type FilterType =
-  | ({ type: "dateTime" } & FilterDateTimeType)
-  | ({ type: "date" } & FilterDateType)
-  | ({ type: "boolean" } & FilterBooleanType)
-  | ({ type: "string" } & FilterStringType)
-  | ({ type: "double" } & FilterDoubleType)
-  | ({ type: "binary" } & FilterBinaryType)
-  | ({ type: "integer" } & FilterIntegerType)
-  | ({ type: "float" } & FilterFloatType)
-  | ({ type: "rid" } & FilterRidType)
-  | ({ type: "uuid" } & FilterUuidType)
-  | ({ type: "enum" } & FilterEnumType)
-  | ({ type: "long" } & FilterLongType);
-
-/**
- * Log Safety: SAFE
- */
-export interface FilterUuidType {}
-
-/**
- * Log Safety: SAFE
- */
-export interface FloatType {}
-
-/**
-   * Configuration for change data capture which resolves the latest state of the dataset based on new full rows
-being pushed to the stream. For example, if a value for a row is updated, it is only sufficient to publish
-the entire new state of that row to the stream.
-   *
-   * Log Safety: UNSAFE
-   */
-export interface FullRowChangeDataCaptureConfiguration {
-  deletionFieldName: FieldName;
-  orderingFieldName: FieldName;
+export interface FoundryLiveDeployment {
+  rid?: string;
+  inputParamName?: string;
+  outputParamName?: string;
 }
-
-/**
- * The display name of a multipass group.
- *
- * Log Safety: UNSAFE
- */
-export type GroupName = LooselyBrandedString<"GroupName">;
-
-/**
- * The unique resource identifier (RID) of a multipass group.
- *
- * Log Safety: UNSAFE
- */
-export type GroupRid = LooselyBrandedString<"GroupRid">;
-
-/**
- * Log Safety: SAFE
- */
-export interface IntegerType {}
-
-/**
- * Log Safety: SAFE
- */
-export interface LongType {}
-
-/**
- * Log Safety: UNSAFE
- */
-export interface MapFieldType {
-  keySchema: FieldSchema;
-  valueSchema: FieldSchema;
-}
-
-/**
- * The ID of a security marking.
- *
- * Log Safety: SAFE
- */
-export type MarkingId = string;
-
-/**
- * The Resource Identifier (RID) of a Media Set
- *
- * Log Safety: SAFE
- */
-export type MediaSetRid = LooselyBrandedString<"MediaSetRid">;
-
-/**
- * Log Safety: SAFE
- */
-export interface NullType {}
-
-/**
- * Specifies the ordering direction (can be either ASC or DESC)
- *
- * Log Safety: SAFE
- */
-export type OrderByDirection = "ASC" | "DESC";
-
-/**
- * Log Safety: SAFE
- */
-export type OrganizationRid = LooselyBrandedString<"OrganizationRid">;
-
-/**
- * The page size to use for the endpoint.
- *
- * Log Safety: SAFE
- */
-export type PageSize = number;
-
-/**
-   * The page token indicates where to start paging. This should be omitted from the first page's request.
-To fetch the next page, clients should take the value from the nextPageToken field of the previous response
-and use it to populate the pageToken field of the next request.
-   *
-   * Log Safety: UNSAFE
-   */
-export type PageToken = LooselyBrandedString<"PageToken">;
-
-/**
- * Enables the use of preview functionality.
- *
- * Log Safety: SAFE
- */
-export type PreviewMode = boolean;
-
-/**
- * The ID of a Foundry Group or User.
- *
- * Log Safety: SAFE
- */
-export type PrincipalId = LooselyBrandedString<"PrincipalId">;
-
-/**
- * Log Safety: SAFE
- */
-export type PrincipalType = "USER" | "GROUP";
-
-/**
-   * Identifies which Realm a User or Group is a member of.
-The palantir-internal-realm is used for Users or Groups that are created in Foundry by administrators and not associated with any SSO provider.
-   *
-   * Log Safety: UNSAFE
-   */
-export type Realm = LooselyBrandedString<"Realm">;
-
-/**
- * The release status of the entity.
- *
- * Log Safety: SAFE
- */
-export type ReleaseStatus = "ACTIVE" | "EXPERIMENTAL" | "DEPRECATED";
-
-/**
-   * The unique ID for a Role. Roles are sets of permissions that grant different levels of access to resources.
-The default roles in Foundry are: Owner, Editor, Viewer, and Discoverer. See more about
-roles in the user documentation.
-   *
-   * Log Safety: SAFE
-   */
-export type RoleId = LooselyBrandedString<"RoleId">;
-
-/**
- * Log Safety: SAFE
- */
-export interface ShortType {}
-
-/**
- * The size of the file or attachment in bytes.
- *
- * Log Safety: SAFE
- */
-export type SizeBytes = string;
 
 /**
  * The schema for a Foundry stream. Records pushed to this stream must match this schema.
@@ -462,57 +716,6 @@ export interface StreamSchema {
 }
 
 /**
- * Log Safety: SAFE
- */
-export interface StringType {}
-
-/**
- * Log Safety: UNSAFE
- */
-export interface StructFieldType {
-  subFields: Array<Field>;
-}
-
-/**
- * Log Safety: SAFE
- */
-export type TimeUnit =
-  | "MILLISECONDS"
-  | "SECONDS"
-  | "MINUTES"
-  | "HOURS"
-  | "DAYS"
-  | "WEEKS"
-  | "MONTHS"
-  | "YEARS";
-
-/**
- * Log Safety: SAFE
- */
-export interface TimestampType {}
-
-/**
- * Log Safety: SAFE
- */
-export interface UnsupportedType {
-  unsupportedType: string;
-}
-
-/**
- * The Foundry user who last updated this resource
- *
- * Log Safety: SAFE
- */
-export type UpdatedBy = UserId;
-
-/**
- * The time at which the resource was most recently updated.
- *
- * Log Safety: SAFE
- */
-export type UpdatedTime = string;
-
-/**
  * A Foundry User ID.
  *
  * Log Safety: SAFE
@@ -520,11 +723,19 @@ export type UpdatedTime = string;
 export type UserId = string;
 
 /**
- * A string representation of a java.time.ZoneId
- *
  * Log Safety: SAFE
  */
-export type ZoneId = LooselyBrandedString<"ZoneId">;
+export interface DoubleType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export type ContentLength = string;
+
+/**
+ * Log Safety: SAFE
+ */
+export type PrincipalType = "USER" | "GROUP";
 
 /**
  * @deprecated Use `AndQueryV2` in the `foundry.ontologies` package

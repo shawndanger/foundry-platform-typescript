@@ -19,44 +19,16 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
- * The provided resource name is already in use by another resource in the same folder.
+ * The provided page token is invalid.
  *
  * Log Safety: UNSAFE
  */
-export interface ResourceNameAlreadyExists {
-  errorCode: "CONFLICT";
-  errorName: "ResourceNameAlreadyExists";
+export interface InvalidPageToken {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidPageToken";
   errorInstanceId: string;
   parameters: {
-    parentFolderRid: unknown;
-    resourceName: unknown;
-  };
-}
-
-/**
-   * This feature is only supported in preview mode. Please use preview=true in the query
-parameters to call this endpoint.
-   *
-   * Log Safety: SAFE
-   */
-export interface ApiFeaturePreviewUsageOnly {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "ApiFeaturePreviewUsageOnly";
-  errorInstanceId: string;
-  parameters: {};
-}
-
-/**
- * The provided page size was zero or negative. Page sizes must be greater than zero.
- *
- * Log Safety: SAFE
- */
-export interface InvalidPageSize {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "InvalidPageSize";
-  errorInstanceId: string;
-  parameters: {
-    pageSize: unknown;
+    pageToken: unknown;
   };
 }
 
@@ -75,42 +47,125 @@ export interface FolderNotFound {
 }
 
 /**
- * The provided page token could not be used to retrieve the next page of results.
+ * The field schema failed validations
  *
  * Log Safety: UNSAFE
  */
-export interface InvalidPageToken {
+export interface InvalidFieldSchema {
   errorCode: "INVALID_ARGUMENT";
-  errorName: "InvalidPageToken";
+  errorName: "InvalidFieldSchema";
   errorInstanceId: string;
   parameters: {
-    pageToken: unknown;
+    fieldName: unknown;
+    message: unknown;
   };
 }
 
 /**
- * An unknown distance unit was provided.
+ * The provided filter value is invalid.
  *
  * Log Safety: UNSAFE
  */
-export interface UnknownDistanceUnit {
+export interface InvalidFilterValue {
   errorCode: "INVALID_ARGUMENT";
-  errorName: "UnknownDistanceUnit";
+  errorName: "InvalidFilterValue";
   errorInstanceId: string;
   parameters: {
-    unknownUnit: unknown;
-    knownUnits: unknown;
+    field: unknown;
+    value: unknown;
+    expectedType: unknown;
   };
 }
 
 /**
- * A post body is required for this endpoint, but was not found in the request.
+ * The time zone is invalid.
  *
  * Log Safety: SAFE
  */
-export interface MissingPostBody {
+export interface InvalidTimeZone {
   errorCode: "INVALID_ARGUMENT";
-  errorName: "MissingPostBody";
+  errorName: "InvalidTimeZone";
+  errorInstanceId: string;
+  parameters: {
+    timeZone: unknown;
+  };
+}
+
+/**
+ * The schema failed validations
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidSchema {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidSchema";
+  errorInstanceId: string;
+  parameters: {
+    errorType: unknown;
+    message: unknown;
+  };
+}
+
+/**
+   * This feature is only supported in preview mode. Please use preview=true in the query
+parameters to call this endpoint.
+   *
+   * Log Safety: SAFE
+   */
+export interface ApiFeaturePreviewUsageOnly {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ApiFeaturePreviewUsageOnly";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * The submitted batch request was too large.
+ *
+ * Log Safety: SAFE
+ */
+export interface BatchRequestSizeExceededLimit {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "BatchRequestSizeExceededLimit";
+  errorInstanceId: string;
+  parameters: {
+    MaximumBatchSize: unknown;
+    ProvidedBatchSize: unknown;
+  };
+}
+
+/**
+ * The change data capture configuration is invalid.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidChangeDataCaptureConfiguration {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidChangeDataCaptureConfiguration";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * The requested schema could not be converted into a stream schema.
+ *
+ * Log Safety: SAFE
+ */
+export interface SchemaIsNotStreamSchema {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "SchemaIsNotStreamSchema";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * The provided OR filter should have at least one sub-filter.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidOrFilter {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidOrFilter";
   errorInstanceId: string;
   parameters: {};
 }
@@ -131,6 +186,18 @@ export interface InvalidParameterCombination {
 }
 
 /**
+ * The provided AND filter should have at least one sub-filter.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidAndFilter {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidAndFilter";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * You are not allowed to use Palantir APIs.
  *
  * Log Safety: SAFE
@@ -138,6 +205,59 @@ export interface InvalidParameterCombination {
 export interface ApiUsageDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ApiUsageDenied";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * An unknown distance unit was provided.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface UnknownDistanceUnit {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "UnknownDistanceUnit";
+  errorInstanceId: string;
+  parameters: {
+    unknownUnit: unknown;
+    knownUnits: unknown;
+  };
+}
+
+/**
+ * Batch requests must contain at least one element.
+ *
+ * Log Safety: SAFE
+ */
+export interface MissingBatchRequest {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "MissingBatchRequest";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * The provided page size was zero or negative. Page sizes must be greater than zero.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidPageSize {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidPageSize";
+  errorInstanceId: string;
+  parameters: {
+    pageSize: unknown;
+  };
+}
+
+/**
+ * A post body is required for this endpoint, but was not found in the request.
+ *
+ * Log Safety: SAFE
+ */
+export interface MissingPostBody {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "MissingPostBody";
   errorInstanceId: string;
   parameters: {};
 }
