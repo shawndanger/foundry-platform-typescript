@@ -29,7 +29,7 @@ $CODE_GENERATOR generate --v2 --prefix "internal.foundry" --inputFile "${OPENAPI
 OMNIAPI_IR_JSON="${SCRIPT_DIR}/../tmp/api-gateway-ir/v2.json"
 
 echo "Generating bindings"
-#$CODE_GENERATOR generate --v2 --prefix foundry --inputFile "${OMNIAPI_IR_JSON}" --manifestFile "${OPENAPI_MANIFEST_YML}" --outputDir "${OUT_PATH}"  --deprecatedFile "${SCRIPT_DIR}/../packages/deprecated/foundry.core/core.json"
+$CODE_GENERATOR generate --v2 --prefix foundry --inputFile "${OMNIAPI_IR_JSON}" --manifestFile "${OPENAPI_MANIFEST_YML}" --outputDir "${OUT_PATH}"  --deprecatedFile "${SCRIPT_DIR}/../packages/deprecated/foundry.core/core.json"
 
 echo
 echo pnpm install to make align deps
