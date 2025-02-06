@@ -120,12 +120,17 @@ export class Model {
     outputDir: string;
     packagePrefix: string;
     npmOrg: string;
+    endpointVersion: string;
     deprecatedIr?: ir.ApiSpec;
   }): Promise<Model> {
     const model = new Model(opts);
 
     for (const ns of ir.namespaces) {
       if (isIgnoredNamespace(ns.name)) continue;
+      if (
+        ns.version !== opts.endpointVersion && ns.name !== "Core"
+        && ns.name !== "Geo"
+      ) continue;
 
       await model.#addNamespace(ns.name, ns);
 

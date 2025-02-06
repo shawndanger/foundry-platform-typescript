@@ -34,6 +34,7 @@ export async function generatePlatformSdkV2(
   ir: ir.ApiSpec,
   outputDir: string,
   packagePrefix: string,
+  endpointVersion: string,
   deprecatedIr?: ir.ApiSpec,
 ): Promise<string[]> {
   const npmOrg = "@osdk";
@@ -42,6 +43,7 @@ export async function generatePlatformSdkV2(
     outputDir,
     packagePrefix,
     deprecatedIr,
+    endpointVersion,
   });
 
   const componentsGenerated = new Map<Namespace, string[]>();
@@ -166,6 +168,7 @@ export async function generateComponents(
     if (isIgnoredType(component.component)) {
       continue;
     }
+
     out += component.getDeclaration(ns.name);
     ret.push(component.name === "Record" ? "_Record" : component.name);
 
