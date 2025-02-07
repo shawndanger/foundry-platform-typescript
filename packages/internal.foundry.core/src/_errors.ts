@@ -19,6 +19,8 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+ * @deprecated Use `ActionContainsDuplicateEdits` in the `foundry.ontologies` package
+ *
  * The given action request has multiple edits on the same object.
  *
  * Log Safety: SAFE
@@ -31,6 +33,8 @@ export interface ActionContainsDuplicateEdits {
 }
 
 /**
+* @deprecated Use `ActionEditedPropertiesNotFound` in the `foundry.ontologies` package
+*
    * Actions attempted to edit properties that could not be found on the object type.
 Please contact the Ontology administrator to resolve this issue.
    *
@@ -44,6 +48,8 @@ export interface ActionEditedPropertiesNotFound {
 }
 
 /**
+ * @deprecated Use `ActionEditsReadOnlyEntity` in the `foundry.ontologies` package
+ *
  * The given action request performs edits on a type that is read-only or does not allow edits.
  *
  * Log Safety: SAFE
@@ -58,6 +64,8 @@ export interface ActionEditsReadOnlyEntity {
 }
 
 /**
+ * @deprecated Use `ActionNotFound` in the `foundry.ontologies` package
+ *
  * The action is not found, or the user does not have access to it.
  *
  * Log Safety: SAFE
@@ -72,6 +80,8 @@ export interface ActionNotFound {
 }
 
 /**
+ * @deprecated Use `ActionParameterInterfaceTypeNotFound` in the `foundry.ontologies` package
+ *
  * The parameter references an interface type that could not be found, or the client token does not have access to it.
  *
  * Log Safety: UNSAFE
@@ -86,6 +96,8 @@ export interface ActionParameterInterfaceTypeNotFound {
 }
 
 /**
+ * @deprecated Use `ActionParameterObjectNotFound` in the `foundry.ontologies` package
+ *
  * The parameter object reference or parameter default value is not found, or the client token does not have access to it.
  *
  * Log Safety: UNSAFE
@@ -100,6 +112,8 @@ export interface ActionParameterObjectNotFound {
 }
 
 /**
+ * @deprecated Use `ActionParameterObjectTypeNotFound` in the `foundry.ontologies` package
+ *
  * The parameter references an object type that could not be found, or the client token does not have access to it.
  *
  * Log Safety: UNSAFE
@@ -114,6 +128,8 @@ export interface ActionParameterObjectTypeNotFound {
 }
 
 /**
+ * @deprecated Use `ActionTypeNotFound` in the `foundry.ontologies` package
+ *
  * The action type is not found, or the user does not have access to it.
  *
  * Log Safety: UNSAFE
@@ -129,6 +145,8 @@ export interface ActionTypeNotFound {
 }
 
 /**
+* @deprecated Use `ActionValidationFailed` in the `foundry.ontologies` package
+*
    * The validation failed for the given action parameters. Please use the validateAction endpoint for more
 details.
    *
@@ -144,6 +162,8 @@ export interface ActionValidationFailed {
 }
 
 /**
+* @deprecated Use `AggregationGroupCountExceededLimit` in the `foundry.ontologies` package
+*
    * The number of groups in the aggregations grouping exceeded the allowed limit. This can typically be fixed by
 adjusting your query to reduce the number of groups created by your aggregation. For instance:
 
@@ -164,6 +184,8 @@ export interface AggregationGroupCountExceededLimit {
 }
 
 /**
+* @deprecated Use `AggregationMemoryExceededLimit` in the `foundry.ontologies` package
+*
    * The amount of memory used in the request exceeded the limit. This can typically be fixed by
 adjusting your query to reduce the number of groups created by your aggregation. For instance:
 
@@ -184,6 +206,8 @@ export interface AggregationMemoryExceededLimit {
 }
 
 /**
+* @deprecated Use `AggregationNestedObjectSetSizeExceededLimit` in the `foundry.ontologies` package
+*
    * A nested object set within the aggregation exceeded the allowed limit.
 This can be fixed by aggregating over fewer objects, such as by applying a filter.
    *
@@ -225,6 +249,8 @@ export interface ApiUsageDenied {
 }
 
 /**
+ * @deprecated Use `ApplyActionFailed` in the `foundry.ontologies` package
+ *
  * Log Safety: SAFE
  */
 export interface ApplyActionFailed {
@@ -235,6 +261,8 @@ export interface ApplyActionFailed {
 }
 
 /**
+* @deprecated Use `AttachmentNotFound` in the `foundry.ontologies` package
+*
    * The requested attachment is not found, or the client token does not have access to it.
 Attachments that are not attached to any objects are deleted after two weeks.
 Attachments that have not been attached to an object can only be viewed by the user who uploaded them.
@@ -252,6 +280,8 @@ export interface AttachmentNotFound {
 }
 
 /**
+* @deprecated Use `AttachmentSizeExceededLimit` in the `foundry.ontologies` package
+*
    * The file is too large to be uploaded as an attachment.
 The maximum attachment size is 200MB.
    *
@@ -268,6 +298,8 @@ export interface AttachmentSizeExceededLimit {
 }
 
 /**
+* @deprecated Use `CompositePrimaryKeyNotSupported` in the `foundry.ontologies` package
+*
    * Primary keys consisting of multiple properties are not supported by this API. If you need support for this,
 please reach out to Palantir Support.
    *
@@ -284,6 +316,8 @@ export interface CompositePrimaryKeyNotSupported {
 }
 
 /**
+ * @deprecated Use `DerivedPropertyApiNamesNotUnique` in the `foundry.ontologies` package
+ *
  * At least one of the requested derived property API names already exist on the object set.
  *
  * Log Safety: UNSAFE
@@ -298,6 +332,8 @@ export interface DerivedPropertyApiNamesNotUnique {
 }
 
 /**
+ * @deprecated Use `DuplicateOrderBy` in the `foundry.ontologies` package
+ *
  * The requested sort order includes duplicate properties.
  *
  * Log Safety: UNSAFE
@@ -312,6 +348,8 @@ export interface DuplicateOrderBy {
 }
 
 /**
+ * @deprecated Use `EditObjectPermissionDenied` in the `foundry.ontologies` package
+ *
  * The user does not have permission to edit this ObjectType.
  *
  * Log Safety: SAFE
@@ -338,6 +376,8 @@ export interface FolderNotFound {
 }
 
 /**
+* @deprecated Use `FunctionEncounteredUserFacingError` in the `foundry.ontologies` package
+*
    * The authored function failed to execute because of a user induced error. The message argument
 is meant to be displayed to the user.
    *
@@ -355,6 +395,8 @@ export interface FunctionEncounteredUserFacingError {
 }
 
 /**
+ * @deprecated Use `FunctionExecutionFailed` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface FunctionExecutionFailed {
@@ -370,6 +412,8 @@ export interface FunctionExecutionFailed {
 }
 
 /**
+ * @deprecated Use `FunctionExecutionTimedOut` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface FunctionExecutionTimedOut {
@@ -383,6 +427,8 @@ export interface FunctionExecutionTimedOut {
 }
 
 /**
+ * @deprecated Use `FunctionInvalidInput` in the `foundry.ontologies` package
+ *
  * Log Safety: UNSAFE
  */
 export interface FunctionInvalidInput {
@@ -396,6 +442,8 @@ export interface FunctionInvalidInput {
 }
 
 /**
+ * @deprecated Use `InterfaceTypeNotFound` in the `foundry.ontologies` package
+ *
  * The requested interface type is not found, or the client token does not have access to it.
  *
  * Log Safety: UNSAFE
@@ -411,6 +459,8 @@ export interface InterfaceTypeNotFound {
 }
 
 /**
+ * @deprecated Use `InterfaceTypesNotFound` in the `foundry.ontologies` package
+ *
  * The requested interface types were not found, or the client token does not have access to it.
  *
  * Log Safety: UNSAFE
@@ -426,6 +476,8 @@ export interface InterfaceTypesNotFound {
 }
 
 /**
+ * @deprecated Use `InvalidAggregationOrdering` in the `foundry.ontologies` package
+ *
  * Aggregation ordering can only be applied to metrics with exactly one groupBy clause.
  *
  * Log Safety: SAFE
@@ -438,6 +490,8 @@ export interface InvalidAggregationOrdering {
 }
 
 /**
+ * @deprecated Use `InvalidAggregationRange` in the `foundry.ontologies` package
+ *
  * Aggregation range should include one lt or lte and one gt or gte.
  *
  * Log Safety: SAFE
@@ -450,6 +504,8 @@ export interface InvalidAggregationRange {
 }
 
 /**
+ * @deprecated Use `InvalidAggregationRangePropertyType` in the `foundry.ontologies` package
+ *
  * Range group by is not supported by property type.
  *
  * Log Safety: UNSAFE
@@ -466,6 +522,8 @@ export interface InvalidAggregationRangePropertyType {
 }
 
 /**
+ * @deprecated Use `InvalidAggregationRangeValue` in the `foundry.ontologies` package
+ *
  * Aggregation value does not conform to the expected underlying type.
  *
  * Log Safety: UNSAFE
@@ -482,6 +540,8 @@ export interface InvalidAggregationRangeValue {
 }
 
 /**
+ * @deprecated Use `InvalidApplyActionOptionCombination` in the `foundry.ontologies` package
+ *
  * The given options are individually valid but cannot be used in the given combination.
  *
  * Log Safety: SAFE
@@ -496,6 +556,8 @@ export interface InvalidApplyActionOptionCombination {
 }
 
 /**
+ * @deprecated Use `InvalidContentLength` in the `foundry.ontologies` package
+ *
  * A Content-Length header is required for all uploads, but was missing or invalid.
  *
  * Log Safety: SAFE
@@ -508,6 +570,8 @@ export interface InvalidContentLength {
 }
 
 /**
+* @deprecated Use `InvalidContentType` in the `foundry.ontologies` package
+*
    * The Content-Type cannot be inferred from the request content and filename.
 Please check your request content and filename to ensure they are compatible.
    *
@@ -521,6 +585,8 @@ export interface InvalidContentType {
 }
 
 /**
+ * @deprecated Use `InvalidDurationGroupByPropertyType` in the `foundry.ontologies` package
+ *
  * Invalid property type for duration groupBy.
  *
  * Log Safety: UNSAFE
@@ -537,6 +603,8 @@ export interface InvalidDurationGroupByPropertyType {
 }
 
 /**
+* @deprecated Use `InvalidDurationGroupByValue` in the `foundry.ontologies` package
+*
    * Duration groupBy value is invalid. Units larger than day must have value 1 and date properties do not support
 filtering on units smaller than day. As examples, neither bucketing by every two weeks nor bucketing a date by
 every two hours are allowed.
@@ -551,6 +619,8 @@ export interface InvalidDurationGroupByValue {
 }
 
 /**
+* @deprecated Use `InvalidFields` in the `foundry.ontologies` package
+*
    * The value of the given field does not match the expected pattern. For example, an Ontology object property id
 should be written properties.id.
    *
@@ -566,6 +636,8 @@ export interface InvalidFields {
 }
 
 /**
+ * @deprecated Use `InvalidGroupId` in the `foundry.ontologies` package
+ *
  * The provided value for a group id must be a UUID.
  *
  * Log Safety: UNSAFE
@@ -580,6 +652,8 @@ export interface InvalidGroupId {
 }
 
 /**
+ * @deprecated Use `InvalidOrderType` in the `foundry.ontologies` package
+ *
  * This query type does not support the provided order type
  *
  * Log Safety: SAFE
@@ -637,6 +711,8 @@ export interface InvalidParameterCombination {
 }
 
 /**
+* @deprecated Use `InvalidParameterValue` in the `foundry.ontologies` package
+*
    * The value of the given parameter is invalid. See the documentation of DataValue for details on
 how parameters are represented.
    *
@@ -655,6 +731,8 @@ export interface InvalidParameterValue {
 }
 
 /**
+ * @deprecated Use `InvalidPropertyFiltersCombination` in the `foundry.ontologies` package
+ *
  * The provided filters cannot be used together.
  *
  * Log Safety: UNSAFE
@@ -670,6 +748,8 @@ export interface InvalidPropertyFiltersCombination {
 }
 
 /**
+* @deprecated Use `InvalidPropertyFilterValue` in the `foundry.ontologies` package
+*
    * The value of the given property filter is invalid. For instance, 2 is an invalid value for
 isNull in properties.address.isNull=2 because the isNull filter expects a value of boolean type.
    *
@@ -688,6 +768,8 @@ export interface InvalidPropertyFilterValue {
 }
 
 /**
+ * @deprecated Use `InvalidPropertyType` in the `foundry.ontologies` package
+ *
  * The given property type is not of the expected type.
  *
  * Log Safety: UNSAFE
@@ -703,6 +785,8 @@ export interface InvalidPropertyType {
 }
 
 /**
+* @deprecated Use `InvalidPropertyValue` in the `foundry.ontologies` package
+*
    * The value of the given property is invalid. See the documentation of PropertyValue for details on
 how properties are represented.
    *
@@ -720,6 +804,8 @@ export interface InvalidPropertyValue {
 }
 
 /**
+* @deprecated Use `InvalidQueryParameterValue` in the `foundry.ontologies` package
+*
    * The value of the given parameter is invalid. See the documentation of DataValue for details on
 how parameters are represented.
    *
@@ -737,6 +823,8 @@ export interface InvalidQueryParameterValue {
 }
 
 /**
+ * @deprecated Use `InvalidRangeQuery` in the `foundry.ontologies` package
+ *
  * The specified query range filter is invalid.
  *
  * Log Safety: UNSAFE
@@ -755,6 +843,8 @@ export interface InvalidRangeQuery {
 }
 
 /**
+* @deprecated Use `InvalidSortOrder` in the `foundry.ontologies` package
+*
    * The requested sort order of one or more properties is invalid. Valid sort orders are 'asc' or 'desc'. Sort
 order can also be omitted, and defaults to 'asc'.
    *
@@ -770,6 +860,8 @@ export interface InvalidSortOrder {
 }
 
 /**
+ * @deprecated Use `InvalidSortType` in the `foundry.ontologies` package
+ *
  * The requested sort type of one or more clauses is invalid. Valid sort types are 'p' or 'properties'.
  *
  * Log Safety: SAFE
@@ -784,6 +876,8 @@ export interface InvalidSortType {
 }
 
 /**
+ * @deprecated Use `InvalidUserId` in the `foundry.ontologies` package
+ *
  * The provided value for a user id must be a UUID.
  *
  * Log Safety: UNSAFE
@@ -798,6 +892,8 @@ export interface InvalidUserId {
 }
 
 /**
+ * @deprecated Use `LinkAlreadyExists` in the `foundry.ontologies` package
+ *
  * The link the user is attempting to create already exists.
  *
  * Log Safety: SAFE
@@ -810,6 +906,8 @@ export interface LinkAlreadyExists {
 }
 
 /**
+ * @deprecated Use `LinkedObjectNotFound` in the `foundry.ontologies` package
+ *
  * The linked object with the given primary key is not found, or the user does not have access to it.
  *
  * Log Safety: UNSAFE
@@ -826,6 +924,8 @@ export interface LinkedObjectNotFound {
 }
 
 /**
+ * @deprecated Use `LinkTypeNotFound` in the `foundry.ontologies` package
+ *
  * The link type is not found, or the user does not have access to it.
  *
  * Log Safety: UNSAFE
@@ -841,6 +941,8 @@ export interface LinkTypeNotFound {
 }
 
 /**
+ * @deprecated Use `MalformedPropertyFilters` in the `foundry.ontologies` package
+ *
  * At least one of requested filters are malformed. Please look at the documentation of PropertyFilter.
  *
  * Log Safety: UNSAFE
@@ -855,6 +957,8 @@ export interface MalformedPropertyFilters {
 }
 
 /**
+ * @deprecated Use `MarketplaceActionMappingNotFound` in the `foundry.ontologies` package
+ *
  * The given action could not be mapped to a Marketplace installation.
  *
  * Log Safety: UNSAFE
@@ -871,6 +975,8 @@ export interface MarketplaceActionMappingNotFound {
 }
 
 /**
+ * @deprecated Use `MarketplaceInstallationNotFound` in the `foundry.ontologies` package
+ *
  * The given marketplace installation could not be found or the user does not have access to it.
  *
  * Log Safety: UNSAFE
@@ -886,6 +992,8 @@ export interface MarketplaceInstallationNotFound {
 }
 
 /**
+ * @deprecated Use `MarketplaceLinkMappingNotFound` in the `foundry.ontologies` package
+ *
  * The given link could not be mapped to a Marketplace installation.
  *
  * Log Safety: UNSAFE
@@ -902,6 +1010,8 @@ export interface MarketplaceLinkMappingNotFound {
 }
 
 /**
+ * @deprecated Use `MarketplaceObjectMappingNotFound` in the `foundry.ontologies` package
+ *
  * The given object could not be mapped to a Marketplace installation.
  *
  * Log Safety: UNSAFE
@@ -918,6 +1028,8 @@ export interface MarketplaceObjectMappingNotFound {
 }
 
 /**
+ * @deprecated Use `MarketplaceQueryMappingNotFound` in the `foundry.ontologies` package
+ *
  * The given query could not be mapped to a Marketplace installation.
  *
  * Log Safety: UNSAFE
@@ -934,6 +1046,8 @@ export interface MarketplaceQueryMappingNotFound {
 }
 
 /**
+* @deprecated Use `MissingParameter` in the `foundry.ontologies` package
+*
    * Required parameters are missing. Please look at the parameters field to see which required parameters are
 missing from the request.
    *
@@ -961,6 +1075,8 @@ export interface MissingPostBody {
 }
 
 /**
+ * @deprecated Use `MultipleGroupByOnFieldNotSupported` in the `foundry.ontologies` package
+ *
  * Aggregation cannot group by on the same field multiple times.
  *
  * Log Safety: UNSAFE
@@ -975,6 +1091,8 @@ export interface MultipleGroupByOnFieldNotSupported {
 }
 
 /**
+* @deprecated Use `MultiplePropertyValuesNotSupported` in the `foundry.ontologies` package
+*
    * One of the requested property filters does not support multiple values. Please include only a single value for
 it.
    *
@@ -991,6 +1109,8 @@ export interface MultiplePropertyValuesNotSupported {
 }
 
 /**
+ * @deprecated Use `ObjectAlreadyExists` in the `foundry.ontologies` package
+ *
  * The object the user is attempting to create already exists.
  *
  * Log Safety: SAFE
@@ -1003,6 +1123,8 @@ export interface ObjectAlreadyExists {
 }
 
 /**
+ * @deprecated Use `ObjectChanged` in the `foundry.ontologies` package
+ *
  * An object used by this Action was changed by someone else while the Action was running.
  *
  * Log Safety: SAFE
@@ -1015,6 +1137,8 @@ export interface ObjectChanged {
 }
 
 /**
+ * @deprecated Use `ObjectNotFound` in the `foundry.ontologies` package
+ *
  * The requested object is not found, or the client token does not have access to it.
  *
  * Log Safety: UNSAFE
@@ -1030,6 +1154,8 @@ export interface ObjectNotFound {
 }
 
 /**
+ * @deprecated Use `ObjectSetNotFound` in the `foundry.ontologies` package
+ *
  * The requested object set is not found, or the client token does not have access to it.
  *
  * Log Safety: SAFE
@@ -1044,6 +1170,8 @@ export interface ObjectSetNotFound {
 }
 
 /**
+* @deprecated Use `ObjectsExceededLimit` in the `foundry.ontologies` package
+*
    * There are more objects, but they cannot be returned by this API. Only 10,000 objects are available through this
 API for a given request.
    *
@@ -1057,6 +1185,8 @@ export interface ObjectsExceededLimit {
 }
 
 /**
+ * @deprecated Use `ObjectTypeNotFound` in the `foundry.ontologies` package
+ *
  * The requested object type is not found, or the client token does not have access to it.
  *
  * Log Safety: UNSAFE
@@ -1072,6 +1202,8 @@ export interface ObjectTypeNotFound {
 }
 
 /**
+* @deprecated Use `ObjectTypeNotSynced` in the `foundry.ontologies` package
+*
    * The requested object type is not synced into the ontology. Please reach out to your Ontology
 Administrator to re-index the object type in Ontology Management Application.
    *
@@ -1087,6 +1219,8 @@ export interface ObjectTypeNotSynced {
 }
 
 /**
+* @deprecated Use `ObjectTypesNotSynced` in the `foundry.ontologies` package
+*
    * One or more of the requested object types are not synced into the ontology. Please reach out to your Ontology
 Administrator to re-index the object type(s) in Ontology Management Application.
    *
@@ -1102,6 +1236,8 @@ export interface ObjectTypesNotSynced {
 }
 
 /**
+ * @deprecated Use `OntologyApiNameNotUnique` in the `foundry.ontologies` package
+ *
  * The given Ontology API name is not unique. Use the Ontology RID in place of the Ontology API name.
  *
  * Log Safety: UNSAFE
@@ -1116,6 +1252,8 @@ export interface OntologyApiNameNotUnique {
 }
 
 /**
+* @deprecated Use `OntologyEditsExceededLimit` in the `foundry.ontologies` package
+*
    * The number of edits to the Ontology exceeded the allowed limit.
 This may happen because of the request or because the Action is modifying too many objects.
 Please change the size of your request or contact the Ontology administrator.
@@ -1133,6 +1271,8 @@ export interface OntologyEditsExceededLimit {
 }
 
 /**
+ * @deprecated Use `OntologyNotFound` in the `foundry.ontologies` package
+ *
  * The requested Ontology is not found, or the client token does not have access to it.
  *
  * Log Safety: UNSAFE
@@ -1148,6 +1288,8 @@ export interface OntologyNotFound {
 }
 
 /**
+* @deprecated Use `OntologySyncing` in the `foundry.ontologies` package
+*
    * The requested object type has been changed in the Ontology Manager and changes are currently being applied. Wait a
 few seconds and try again.
    *
@@ -1163,6 +1305,8 @@ export interface OntologySyncing {
 }
 
 /**
+* @deprecated Use `OntologySyncingObjectTypes` in the `foundry.ontologies` package
+*
    * One or more requested object types have been changed in the Ontology Manager and changes are currently being
 applied. Wait a few seconds and try again.
    *
@@ -1178,6 +1322,8 @@ export interface OntologySyncingObjectTypes {
 }
 
 /**
+ * @deprecated Use `ParameterObjectNotFound` in the `foundry.ontologies` package
+ *
  * The parameter object reference or parameter default value is not found, or the client token does not have access to it.
  *
  * Log Safety: UNSAFE
@@ -1193,6 +1339,8 @@ export interface ParameterObjectNotFound {
 }
 
 /**
+ * @deprecated Use `ParameterObjectSetRidNotFound` in the `foundry.ontologies` package
+ *
  * The parameter object set RID is not found, or the client token does not have access to it.
  *
  * Log Safety: SAFE
@@ -1207,6 +1355,8 @@ export interface ParameterObjectSetRidNotFound {
 }
 
 /**
+* @deprecated Use `ParametersNotFound` in the `foundry.ontologies` package
+*
    * The provided parameter ID was not found for the action. Please look at the configuredParameterIds field
 to see which ones are available.
    *
@@ -1224,6 +1374,8 @@ export interface ParametersNotFound {
 }
 
 /**
+* @deprecated Use `ParameterTypeNotSupported` in the `foundry.ontologies` package
+*
    * The type of the requested parameter is not currently supported by this API. If you need support for this,
 please reach out to Palantir Support.
    *
@@ -1240,6 +1392,8 @@ export interface ParameterTypeNotSupported {
 }
 
 /**
+ * @deprecated Use `ParentAttachmentPermissionDenied` in the `foundry.ontologies` package
+ *
  * The user does not have permission to parent attachments.
  *
  * Log Safety: SAFE
@@ -1252,6 +1406,8 @@ export interface ParentAttachmentPermissionDenied {
 }
 
 /**
+ * @deprecated Use `PropertiesHaveDifferentIds` in the `foundry.ontologies` package
+ *
  * Properties used in ordering must have the same ids. Temporary restriction imposed due to OSS limitations.
  *
  * Log Safety: UNSAFE
@@ -1266,6 +1422,8 @@ export interface PropertiesHaveDifferentIds {
 }
 
 /**
+* @deprecated Use `PropertiesNotFilterable` in the `foundry.ontologies` package
+*
    * Results could not be filtered by the requested properties. Please mark the properties as Searchable and
 Selectable in the Ontology Manager to be able to filter on those properties. There may be a short delay
 between the time a property is marked Searchable and Selectable and when it can be used.
@@ -1282,6 +1440,8 @@ export interface PropertiesNotFilterable {
 }
 
 /**
+ * @deprecated Use `PropertiesNotFound` in the `foundry.ontologies` package
+ *
  * The requested properties are not found on the object type.
  *
  * Log Safety: UNSAFE
@@ -1297,6 +1457,8 @@ export interface PropertiesNotFound {
 }
 
 /**
+* @deprecated Use `PropertiesNotSearchable` in the `foundry.ontologies` package
+*
    * Search is not enabled on the specified properties. Please mark the properties as Searchable
 in the Ontology Manager to enable search on them. There may be a short delay
 between the time a property is marked Searchable and when it can be used.
@@ -1313,6 +1475,8 @@ export interface PropertiesNotSearchable {
 }
 
 /**
+* @deprecated Use `PropertiesNotSortable` in the `foundry.ontologies` package
+*
    * Results could not be ordered by the requested properties. Please mark the properties as Searchable and
 Sortable in the Ontology Manager to enable their use in orderBy parameters. There may be a short delay
 between the time a property is set to Searchable and Sortable and when it can be used.
@@ -1329,6 +1493,8 @@ export interface PropertiesNotSortable {
 }
 
 /**
+* @deprecated Use `PropertyApiNameNotFound` in the `foundry.ontologies` package
+*
    * A property that was required to have an API name, such as a primary key, is missing one. You can set an API
 name for it using the Ontology Manager.
    *
@@ -1345,6 +1511,8 @@ export interface PropertyApiNameNotFound {
 }
 
 /**
+* @deprecated Use `PropertyBaseTypeNotSupported` in the `foundry.ontologies` package
+*
    * The type of the requested property is not currently supported by this API. If you need support for this,
 please reach out to Palantir Support.
    *
@@ -1362,6 +1530,8 @@ export interface PropertyBaseTypeNotSupported {
 }
 
 /**
+* @deprecated Use `PropertyFiltersNotSupported` in the `foundry.ontologies` package
+*
    * At least one of the requested property filters are not supported. See the documentation of PropertyFilter for
 a list of supported property filters.
    *
@@ -1378,6 +1548,8 @@ export interface PropertyFiltersNotSupported {
 }
 
 /**
+ * @deprecated Use `PropertyNotFound` in the `foundry.ontologies` package
+ *
  * Failed to find a provided property for a given object.
  *
  * Log Safety: SAFE
@@ -1390,6 +1562,8 @@ export interface PropertyNotFound {
 }
 
 /**
+ * @deprecated Use `PropertyTypeDoesNotSupportNearestNeighbors` in the `foundry.ontologies` package
+ *
  * The provided propertyIdentifier is not configured with an embedding model in the ontology.
  *
  * Log Safety: SAFE
@@ -1402,6 +1576,8 @@ export interface PropertyTypeDoesNotSupportNearestNeighbors {
 }
 
 /**
+ * @deprecated Use `PropertyTypeNotFound` in the `foundry.ontologies` package
+ *
  * The requested property type is not found, or the client token does not have access to it.
  *
  * Log Safety: UNSAFE
@@ -1417,6 +1593,8 @@ export interface PropertyTypeNotFound {
 }
 
 /**
+* @deprecated Use `PropertyTypesSearchNotSupported` in the `foundry.ontologies` package
+*
    * The search on the property types are not supported. See the Search Objects documentation for
 a list of supported search queries on different property types.
    *
@@ -1432,6 +1610,8 @@ export interface PropertyTypesSearchNotSupported {
 }
 
 /**
+* @deprecated Use `QueryEncounteredUserFacingError` in the `foundry.ontologies` package
+*
    * The authored Query failed to execute because of a user induced error. The message argument
 is meant to be displayed to the user.
    *
@@ -1449,6 +1629,8 @@ export interface QueryEncounteredUserFacingError {
 }
 
 /**
+ * @deprecated Use `QueryMemoryExceededLimit` in the `foundry.ontologies` package
+ *
  * Memory limits were exceeded for the Query execution.
  *
  * Log Safety: UNSAFE
@@ -1464,6 +1646,8 @@ export interface QueryMemoryExceededLimit {
 }
 
 /**
+ * @deprecated Use `QueryNotFound` in the `foundry.ontologies` package
+ *
  * The query is not found, or the user does not have access to it.
  *
  * Log Safety: UNSAFE
@@ -1478,6 +1662,8 @@ export interface QueryNotFound {
 }
 
 /**
+ * @deprecated Use `QueryRuntimeError` in the `foundry.ontologies` package
+ *
  * The authored Query failed to execute because of a runtime error.
  *
  * Log Safety: UNSAFE
@@ -1496,6 +1682,8 @@ export interface QueryRuntimeError {
 }
 
 /**
+ * @deprecated Use `QueryTimeExceededLimit` in the `foundry.ontologies` package
+ *
  * Time limits were exceeded for the Query execution.
  *
  * Log Safety: UNSAFE
@@ -1526,6 +1714,8 @@ export interface ResourceNameAlreadyExists {
 }
 
 /**
+ * @deprecated Use `SearchVectorDimensionsDiffer` in the `foundry.ontologies` package
+ *
  * The dimensions of the provided vector don't match the dimensions of the embedding model being queried.
  *
  * Log Safety: SAFE
@@ -1538,6 +1728,8 @@ export interface SearchVectorDimensionsDiffer {
 }
 
 /**
+ * @deprecated Use `SharedPropertiesNotFound` in the `foundry.ontologies` package
+ *
  * The requested shared property types are not present on every object type.
  *
  * Log Safety: UNSAFE
@@ -1553,6 +1745,8 @@ export interface SharedPropertiesNotFound {
 }
 
 /**
+ * @deprecated Use `SharedPropertyTypeNotFound` in the `foundry.ontologies` package
+ *
  * The requested shared property type is not found, or the client token does not have access to it.
  *
  * Log Safety: UNSAFE
@@ -1568,6 +1762,8 @@ export interface SharedPropertyTypeNotFound {
 }
 
 /**
+ * @deprecated Use `TooManyNearestNeighborsRequested` in the `foundry.ontologies` package
+ *
  * The value of numNeighbors must be in the range 1 <= numNeighbors <= 500.
  *
  * Log Safety: SAFE
@@ -1595,6 +1791,8 @@ export interface UnknownDistanceUnit {
 }
 
 /**
+* @deprecated Use `UnknownParameter` in the `foundry.ontologies` package
+*
    * The provided parameters were not found. Please look at the knownParameters field
 to see which ones are available.
    *
@@ -1611,6 +1809,8 @@ export interface UnknownParameter {
 }
 
 /**
+ * @deprecated Use `UnsupportedObjectSet` in the `foundry.ontologies` package
+ *
  * The requested object set is not supported.
  *
  * Log Safety: SAFE
@@ -1623,6 +1823,8 @@ export interface UnsupportedObjectSet {
 }
 
 /**
+* @deprecated Use `ViewObjectPermissionDenied` in the `foundry.ontologies` package
+*
    * The provided token does not have permission to view any data sources backing this object type. Ensure the object
 type has backing data sources configured and visible.
    *
