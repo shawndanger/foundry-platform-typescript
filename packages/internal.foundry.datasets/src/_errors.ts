@@ -19,20 +19,6 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
- * The provided token does not have permission to read the given dataset as a table.
- *
- * Log Safety: SAFE
- */
-export interface ReadTablePermissionDenied {
-  errorCode: "PERMISSION_DENIED";
-  errorName: "ReadTablePermissionDenied";
-  errorInstanceId: string;
-  parameters: {
-    datasetRid: unknown;
-  };
-}
-
-/**
  * The provided token does not have permission to abort the given transaction on the given dataset.
  *
  * Log Safety: SAFE
@@ -48,18 +34,46 @@ export interface AbortTransactionPermissionDenied {
 }
 
 /**
- * The requested file could not be found on the given branch, or the client token does not have access to it.
+ * The branch cannot be created because a branch with that name already exists.
  *
  * Log Safety: UNSAFE
  */
-export interface FileNotFoundOnBranch {
-  errorCode: "NOT_FOUND";
-  errorName: "FileNotFoundOnBranch";
+export interface BranchAlreadyExists {
+  errorCode: "CONFLICT";
+  errorName: "BranchAlreadyExists";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
     branchId: unknown;
-    path: unknown;
+  };
+}
+
+/**
+ * The requested branch could not be found, or the client token does not have access to it.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface BranchNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "BranchNotFound";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
+    branchId: unknown;
+  };
+}
+
+/**
+ * The dataset contains column types that are not supported.
+ *
+ * Log Safety: SAFE
+ */
+export interface ColumnTypesNotSupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ColumnTypesNotSupported";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
   };
 }
 
@@ -79,50 +93,75 @@ export interface CommitTransactionPermissionDenied {
 }
 
 /**
- * The requested transaction could not be found on the dataset, or the client token does not have access to it.
- *
- * Log Safety: SAFE
- */
-export interface TransactionNotFound {
-  errorCode: "NOT_FOUND";
-  errorName: "TransactionNotFound";
-  errorInstanceId: string;
-  parameters: {
-    datasetRid: unknown;
-    transactionRid: unknown;
-  };
-}
-
-/**
- * The requested file could not be found on the given transaction range, or the client token does not have access to it.
+ * The provided token does not have permission to create a branch of this dataset.
  *
  * Log Safety: UNSAFE
  */
-export interface FileNotFoundOnTransactionRange {
-  errorCode: "NOT_FOUND";
-  errorName: "FileNotFoundOnTransactionRange";
+export interface CreateBranchPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateBranchPermissionDenied";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
-    startTransactionRid: unknown;
-    endTransactionRid: unknown;
-    path: unknown;
+    branchId: unknown;
   };
 }
 
 /**
- * The given transaction type is not valid. Valid transaction types are SNAPSHOT, UPDATE, APPEND, and DELETE.
+ * The provided token does not have permission to create a dataset in this folder.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
-export interface InvalidTransactionType {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "InvalidTransactionType";
+export interface CreateDatasetPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateDatasetPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    parentFolderRid: unknown;
+    name: unknown;
+  };
+}
+
+/**
+ * The provided token does not have permission to create a transaction on this dataset.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface CreateTransactionPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateTransactionPermissionDenied";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
-    transactionRid: unknown;
-    transactionType: unknown;
+    branchId: unknown;
+  };
+}
+
+/**
+ * The requested dataset could not be found, or the client token does not have access to it.
+ *
+ * Log Safety: SAFE
+ */
+export interface DatasetNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "DatasetNotFound";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
+  };
+}
+
+/**
+ * The dataset does not support being read.
+ *
+ * Log Safety: SAFE
+ */
+export interface DatasetReadNotSupported {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "DatasetReadNotSupported";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
   };
 }
 
@@ -158,56 +197,13 @@ export interface DeleteSchemaPermissionDenied {
 }
 
 /**
- * A transaction is already open on this dataset and branch. A branch of a dataset can only have one open transaction at a time.
+ * The given file path already exists in the dataset and transaction.
  *
  * Log Safety: UNSAFE
  */
-export interface OpenTransactionAlreadyExists {
-  errorCode: "CONFLICT";
-  errorName: "OpenTransactionAlreadyExists";
-  errorInstanceId: string;
-  parameters: {
-    datasetRid: unknown;
-    branchId: unknown;
-  };
-}
-
-/**
- * The dataset does not support being read.
- *
- * Log Safety: SAFE
- */
-export interface DatasetReadNotSupported {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "DatasetReadNotSupported";
-  errorInstanceId: string;
-  parameters: {
-    datasetRid: unknown;
-  };
-}
-
-/**
- * The requested dataset could not be found, or the client token does not have access to it.
- *
- * Log Safety: SAFE
- */
-export interface DatasetNotFound {
+export interface FileAlreadyExists {
   errorCode: "NOT_FOUND";
-  errorName: "DatasetNotFound";
-  errorInstanceId: string;
-  parameters: {
-    datasetRid: unknown;
-  };
-}
-
-/**
- * The provided token does not have permission to upload the given file to the given dataset and transaction.
- *
- * Log Safety: UNSAFE
- */
-export interface UploadFilePermissionDenied {
-  errorCode: "PERMISSION_DENIED";
-  errorName: "UploadFilePermissionDenied";
+  errorName: "FileAlreadyExists";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -217,43 +213,76 @@ export interface UploadFilePermissionDenied {
 }
 
 /**
- * The provided token does not have permission to create a transaction on this dataset.
+ * The requested file could not be found on the given branch, or the client token does not have access to it.
  *
  * Log Safety: UNSAFE
  */
-export interface CreateTransactionPermissionDenied {
-  errorCode: "PERMISSION_DENIED";
-  errorName: "CreateTransactionPermissionDenied";
+export interface FileNotFoundOnBranch {
+  errorCode: "NOT_FOUND";
+  errorName: "FileNotFoundOnBranch";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
+    branchId: unknown;
+    path: unknown;
+  };
+}
+
+/**
+ * The requested file could not be found on the given transaction range, or the client token does not have access to it.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface FileNotFoundOnTransactionRange {
+  errorCode: "NOT_FOUND";
+  errorName: "FileNotFoundOnTransactionRange";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
+    startTransactionRid: unknown;
+    endTransactionRid: unknown;
+    path: unknown;
+  };
+}
+
+/**
+ * The requested branch name cannot be used. Branch names cannot be empty and must not look like RIDs or UUIDs.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidBranchId {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidBranchId";
+  errorInstanceId: string;
+  parameters: {
     branchId: unknown;
   };
 }
 
 /**
- * The branch cannot be created because a branch with that name already exists.
+ * The given transaction type is not valid. Valid transaction types are SNAPSHOT, UPDATE, APPEND, and DELETE.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidTransactionType {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidTransactionType";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
+    transactionRid: unknown;
+    transactionType: unknown;
+  };
+}
+
+/**
+ * A transaction is already open on this dataset and branch. A branch of a dataset can only have one open transaction at a time.
  *
  * Log Safety: UNSAFE
  */
-export interface BranchAlreadyExists {
+export interface OpenTransactionAlreadyExists {
   errorCode: "CONFLICT";
-  errorName: "BranchAlreadyExists";
-  errorInstanceId: string;
-  parameters: {
-    datasetRid: unknown;
-    branchId: unknown;
-  };
-}
-
-/**
- * The provided token does not have permission to create a branch of this dataset.
- *
- * Log Safety: UNSAFE
- */
-export interface CreateBranchPermissionDenied {
-  errorCode: "PERMISSION_DENIED";
-  errorName: "CreateBranchPermissionDenied";
+  errorName: "OpenTransactionAlreadyExists";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -277,63 +306,16 @@ export interface PutSchemaPermissionDenied {
 }
 
 /**
- * The provided token does not have permission to create a dataset in this folder.
- *
- * Log Safety: UNSAFE
- */
-export interface CreateDatasetPermissionDenied {
-  errorCode: "PERMISSION_DENIED";
-  errorName: "CreateDatasetPermissionDenied";
-  errorInstanceId: string;
-  parameters: {
-    parentFolderRid: unknown;
-    name: unknown;
-  };
-}
-
-/**
- * The given file path already exists in the dataset and transaction.
- *
- * Log Safety: UNSAFE
- */
-export interface FileAlreadyExists {
-  errorCode: "NOT_FOUND";
-  errorName: "FileAlreadyExists";
-  errorInstanceId: string;
-  parameters: {
-    datasetRid: unknown;
-    transactionRid: unknown;
-    path: unknown;
-  };
-}
-
-/**
- * The given transaction has not been committed.
+ * The provided token does not have permission to read the given dataset as a table.
  *
  * Log Safety: SAFE
  */
-export interface TransactionNotCommitted {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "TransactionNotCommitted";
+export interface ReadTablePermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ReadTablePermissionDenied";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
-    transactionRid: unknown;
-    transactionStatus: unknown;
-  };
-}
-
-/**
- * The requested branch name cannot be used. Branch names cannot be empty and must not look like RIDs or UUIDs.
- *
- * Log Safety: UNSAFE
- */
-export interface InvalidBranchId {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "InvalidBranchId";
-  errorInstanceId: string;
-  parameters: {
-    branchId: unknown;
   };
 }
 
@@ -354,17 +336,33 @@ export interface SchemaNotFound {
 }
 
 /**
- * The requested branch could not be found, or the client token does not have access to it.
+ * The given transaction has not been committed.
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
-export interface BranchNotFound {
-  errorCode: "NOT_FOUND";
-  errorName: "BranchNotFound";
+export interface TransactionNotCommitted {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "TransactionNotCommitted";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
-    branchId: unknown;
+    transactionRid: unknown;
+    transactionStatus: unknown;
+  };
+}
+
+/**
+ * The requested transaction could not be found on the dataset, or the client token does not have access to it.
+ *
+ * Log Safety: SAFE
+ */
+export interface TransactionNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "TransactionNotFound";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
+    transactionRid: unknown;
   };
 }
 
@@ -385,15 +383,17 @@ export interface TransactionNotOpen {
 }
 
 /**
- * The dataset contains column types that are not supported.
+ * The provided token does not have permission to upload the given file to the given dataset and transaction.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
-export interface ColumnTypesNotSupported {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "ColumnTypesNotSupported";
+export interface UploadFilePermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "UploadFilePermissionDenied";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
+    transactionRid: unknown;
+    path: unknown;
   };
 }

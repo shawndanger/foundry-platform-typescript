@@ -21,14 +21,6 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
- * Log Safety: SAFE
- */
-export interface MediaAttribution {
-  creatorId: _Core.UserId;
-  creationTimestamp: string;
-}
-
-/**
    * A name for a media set branch. Valid branch names must be (a) non-empty, (b) less than 256 characters, and
 (c) not a valid ResourceIdentifier.
    *
@@ -37,14 +29,11 @@ export interface MediaAttribution {
 export type BranchName = LooselyBrandedString<"BranchName">;
 
 /**
-   * A number representing a logical ordering to be used for transactions, etc.
-This can be interpreted as a timestamp in microseconds, but may differ slightly from system clock time due
-to clock drift and slight adjustments for the sake of ordering.
-Only positive timestamps (representing times after epoch) are supported.
-   *
-   * Log Safety: SAFE
-   */
-export type LogicalTimestamp = string;
+ * A resource identifier that identifies a branch of a media set.
+ *
+ * Log Safety: SAFE
+ */
+export type BranchRid = LooselyBrandedString<"BranchRid">;
 
 /**
  * Log Safety: UNSAFE
@@ -57,30 +46,22 @@ export interface GetMediaItemInfoResponse {
 }
 
 /**
- * Log Safety: UNSAFE
- */
-export type MediaSetName = LooselyBrandedString<"MediaSetName">;
+   * A number representing a logical ordering to be used for transactions, etc.
+This can be interpreted as a timestamp in microseconds, but may differ slightly from system clock time due
+to clock drift and slight adjustments for the sake of ordering.
+Only positive timestamps (representing times after epoch) are supported.
+   *
+   * Log Safety: SAFE
+   */
+export type LogicalTimestamp = string;
 
 /**
- * An identifier which represents a transaction on a media set.
- *
  * Log Safety: SAFE
  */
-export type TransactionId = string;
-
-/**
- * Log Safety: SAFE
- */
-export interface PutMediaItemResponse {
-  mediaItemRid: _Core.MediaItemRid;
+export interface MediaAttribution {
+  creatorId: _Core.UserId;
+  creationTimestamp: string;
 }
-
-/**
- * A resource identifier that identifies a branch of a media set.
- *
- * Log Safety: SAFE
- */
-export type BranchRid = LooselyBrandedString<"BranchRid">;
 
 /**
  * Log Safety: UNSAFE
@@ -90,3 +71,22 @@ export interface MediaSet {
   name: MediaSetName;
   parentFolderRid: _Core.FolderRid;
 }
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type MediaSetName = LooselyBrandedString<"MediaSetName">;
+
+/**
+ * Log Safety: SAFE
+ */
+export interface PutMediaItemResponse {
+  mediaItemRid: _Core.MediaItemRid;
+}
+
+/**
+ * An identifier which represents a transaction on a media set.
+ *
+ * Log Safety: SAFE
+ */
+export type TransactionId = string;

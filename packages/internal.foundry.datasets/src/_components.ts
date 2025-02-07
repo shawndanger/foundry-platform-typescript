@@ -21,6 +21,16 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+ * A Branch of a Dataset.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface Branch {
+  branchId: BranchId;
+  transactionRid?: TransactionRid;
+}
+
+/**
  * The identifier (name) of a Branch.
  *
  * Log Safety: UNSAFE
@@ -28,31 +38,27 @@ export type LooselyBrandedString<T extends string> = string & {
 export type BranchId = LooselyBrandedString<"BranchId">;
 
 /**
- * The type of a Transaction.
- *
- * Log Safety: SAFE
- */
-export type TransactionType = "APPEND" | "UPDATE" | "SNAPSHOT" | "DELETE";
-
-/**
  * Log Safety: UNSAFE
  */
-export interface ListBranchesResponse {
-  nextPageToken?: _Core.PageToken;
-  data: Array<Branch>;
+export interface CreateBranchRequest {
+  branchId: BranchId;
+  transactionRid?: TransactionRid;
 }
 
 /**
- * The Resource Identifier (RID) of a Dataset.
- *
- * Log Safety: SAFE
- */
-export type DatasetRid = LooselyBrandedString<"DatasetRid">;
-
-/**
  * Log Safety: UNSAFE
  */
-export type DatasetName = LooselyBrandedString<"DatasetName">;
+export interface CreateDatasetRequest {
+  name: DatasetName;
+  parentFolderRid: _Core.FolderRid;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface CreateTransactionRequest {
+  transactionType?: TransactionType;
+}
 
 /**
  * Log Safety: UNSAFE
@@ -66,10 +72,56 @@ export interface Dataset {
 /**
  * Log Safety: UNSAFE
  */
-export interface CreateBranchRequest {
-  branchId: BranchId;
-  transactionRid?: TransactionRid;
+export type DatasetName = LooselyBrandedString<"DatasetName">;
+
+/**
+ * The Resource Identifier (RID) of a Dataset.
+ *
+ * Log Safety: SAFE
+ */
+export type DatasetRid = LooselyBrandedString<"DatasetRid">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface File {
+  path: _Core.FilePath;
+  transactionRid: TransactionRid;
+  sizeBytes?: string;
+  updatedTime: string;
 }
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ListBranchesResponse {
+  nextPageToken?: _Core.PageToken;
+  data: Array<Branch>;
+}
+
+/**
+ * A page of Files and an optional page token that can be used to retrieve the next page.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ListFilesResponse {
+  nextPageToken?: _Core.PageToken;
+  data: Array<File>;
+}
+
+/**
+ * A path in the Foundry file tree.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ResourcePath = LooselyBrandedString<"ResourcePath">;
+
+/**
+ * Format for tabular dataset export.
+ *
+ * Log Safety: SAFE
+ */
+export type TableExportFormat = "ARROW" | "CSV";
 
 /**
  * An operation that modifies the files within a dataset.
@@ -85,36 +137,11 @@ export interface Transaction {
 }
 
 /**
- * Log Safety: UNSAFE
- */
-export interface File {
-  path: _Core.FilePath;
-  transactionRid: TransactionRid;
-  sizeBytes?: string;
-  updatedTime: string;
-}
-
-/**
  * The Resource Identifier (RID) of a Transaction.
  *
  * Log Safety: SAFE
  */
 export type TransactionRid = LooselyBrandedString<"TransactionRid">;
-
-/**
- * Format for tabular dataset export.
- *
- * Log Safety: SAFE
- */
-export type TableExportFormat = "ARROW" | "CSV";
-
-/**
- * Log Safety: UNSAFE
- */
-export interface CreateDatasetRequest {
-  name: DatasetName;
-  parentFolderRid: _Core.FolderRid;
-}
 
 /**
  * The status of a Transaction.
@@ -124,35 +151,8 @@ export interface CreateDatasetRequest {
 export type TransactionStatus = "ABORTED" | "COMMITTED" | "OPEN";
 
 /**
- * A Branch of a Dataset.
+ * The type of a Transaction.
  *
- * Log Safety: UNSAFE
- */
-export interface Branch {
-  branchId: BranchId;
-  transactionRid?: TransactionRid;
-}
-
-/**
- * A page of Files and an optional page token that can be used to retrieve the next page.
- *
- * Log Safety: UNSAFE
- */
-export interface ListFilesResponse {
-  nextPageToken?: _Core.PageToken;
-  data: Array<File>;
-}
-
-/**
  * Log Safety: SAFE
  */
-export interface CreateTransactionRequest {
-  transactionType?: TransactionType;
-}
-
-/**
- * A path in the Foundry file tree.
- *
- * Log Safety: UNSAFE
- */
-export type ResourcePath = LooselyBrandedString<"ResourcePath">;
+export type TransactionType = "APPEND" | "UPDATE" | "SNAPSHOT" | "DELETE";

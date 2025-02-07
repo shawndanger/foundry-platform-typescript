@@ -70,6 +70,17 @@ export interface AgentSessionRagContextResponse {
 }
 
 /**
+   * A page of results for sessions across all accessible Agents for the calling user.
+Sessions are returned in order of most recently updated first.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface AgentsSessionsPage {
+  nextPageToken?: _Core.PageToken;
+  data: Array<Session>;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface AgentVersion {
@@ -93,17 +104,6 @@ export interface AgentVersionDetails {
  * Log Safety: SAFE
  */
 export type AgentVersionString = LooselyBrandedString<"AgentVersionString">;
-
-/**
-   * A page of results for sessions across all accessible Agents for the calling user.
-Sessions are returned in order of most recently updated first.
-   *
-   * Log Safety: UNSAFE
-   */
-export interface AgentsSessionsPage {
-  nextPageToken?: _Core.PageToken;
-  data: Array<Session>;
-}
 
 /**
  * Log Safety: UNSAFE

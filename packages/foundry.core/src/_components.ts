@@ -21,6 +21,15 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+ * Returns objects where every query is satisfied.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface AndQueryV2 {
+  value: Array<SearchJsonQueryV2>;
+}
+
+/**
  * The format of an archive file.
  *
  * Log Safety: SAFE
@@ -50,9 +59,34 @@ export interface BinaryType {}
 export interface BooleanType {}
 
 /**
+ * The top left and bottom right coordinate points that make up the bounding box.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface BoundingBoxValue {
+  topLeft: WithinBoundingBoxPoint;
+  bottomRight: WithinBoundingBoxPoint;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface ByteType {}
+
+/**
+ * The coordinate point to use as the center of the distance query.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface CenterPoint {
+  center: CenterPointTypes;
+  distance: Distance;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type CenterPointTypes = { type: "Point" } & _Geo.GeoPoint;
 
 /**
    * Configuration for utilizing the stream as a change data capture (CDC) dataset. To configure CDC on a stream, at
@@ -71,6 +105,68 @@ export type ChangeDataCaptureConfiguration = {
  */
 export interface CipherTextType {
   defaultCipherChannel?: string;
+}
+
+/**
+   * Returns objects where the specified field contains all of the terms in the order provided,
+but they do have to be adjacent to each other.
+The last term can be a partial prefix match.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ContainsAllTermsInOrderPrefixLastTerm {
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
+  value: string;
+}
+
+/**
+   * Returns objects where the specified field contains all of the terms in the order provided,
+but they do have to be adjacent to each other.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ContainsAllTermsInOrderQuery {
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
+  value: string;
+}
+
+/**
+   * Returns objects where the specified field contains all of the whitespace separated words in any
+order in the provided value. This query supports fuzzy matching.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ContainsAllTermsQuery {
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
+  value: string;
+  fuzzy?: FuzzyV2;
+}
+
+/**
+   * Returns objects where the specified field contains any of the whitespace separated words in any
+order in the provided value. This query supports fuzzy matching.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ContainsAnyTermQuery {
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
+  value: string;
+  fuzzy?: FuzzyV2;
+}
+
+/**
+ * Returns objects where the specified array contains a value.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ContainsQueryV2 {
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
+  value: PropertyValue;
 }
 
 /**
@@ -147,6 +243,28 @@ export type DistanceUnit =
   | "NAUTICAL_MILES";
 
 /**
+ * Returns objects where the specified field does not intersect the bounding box provided.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DoesNotIntersectBoundingBoxQuery {
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
+  value: BoundingBoxValue;
+}
+
+/**
+ * Returns objects where the specified field does not intersect the polygon provided.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DoesNotIntersectPolygonQuery {
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
+  value: PolygonValue;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface DoubleType {}
@@ -165,6 +283,17 @@ export interface Duration {
  * Log Safety: SAFE
  */
 export type EnrollmentRid = LooselyBrandedString<"EnrollmentRid">;
+
+/**
+ * Returns objects where the specified field is equal to a value.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface EqualsQueryV2 {
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
+  value: PropertyValue;
+}
 
 /**
    * A field in a Foundry schema. For more information on supported data types, see the
@@ -317,6 +446,13 @@ export interface FullRowChangeDataCaptureConfiguration {
 }
 
 /**
+ * Setting fuzzy to true allows approximate matching in search queries that support it.
+ *
+ * Log Safety: SAFE
+ */
+export type FuzzyV2 = boolean;
+
+/**
  * The display name of a multipass group.
  *
  * Log Safety: UNSAFE
@@ -331,336 +467,15 @@ export type GroupName = LooselyBrandedString<"GroupName">;
 export type GroupRid = LooselyBrandedString<"GroupRid">;
 
 /**
- * Log Safety: SAFE
- */
-export interface IntegerType {}
-
-/**
- * Log Safety: SAFE
- */
-export interface LongType {}
-
-/**
- * Log Safety: UNSAFE
- */
-export interface MapFieldType {
-  keySchema: FieldSchema;
-  valueSchema: FieldSchema;
-}
-
-/**
- * The ID of a security marking.
- *
- * Log Safety: SAFE
- */
-export type MarkingId = string;
-
-/**
- * The Resource Identifier (RID) of a Media Set
- *
- * Log Safety: SAFE
- */
-export type MediaSetRid = LooselyBrandedString<"MediaSetRid">;
-
-/**
- * Log Safety: SAFE
- */
-export interface NullType {}
-
-/**
- * Specifies the ordering direction (can be either ASC or DESC)
- *
- * Log Safety: SAFE
- */
-export type OrderByDirection = "ASC" | "DESC";
-
-/**
- * Log Safety: SAFE
- */
-export type OrganizationRid = LooselyBrandedString<"OrganizationRid">;
-
-/**
- * The page size to use for the endpoint.
- *
- * Log Safety: SAFE
- */
-export type PageSize = number;
-
-/**
-   * The page token indicates where to start paging. This should be omitted from the first page's request.
-To fetch the next page, clients should take the value from the nextPageToken field of the previous response
-and use it to populate the pageToken field of the next request.
-   *
-   * Log Safety: UNSAFE
-   */
-export type PageToken = LooselyBrandedString<"PageToken">;
-
-/**
- * Enables the use of preview functionality.
- *
- * Log Safety: SAFE
- */
-export type PreviewMode = boolean;
-
-/**
- * The ID of a Foundry Group or User.
- *
- * Log Safety: SAFE
- */
-export type PrincipalId = LooselyBrandedString<"PrincipalId">;
-
-/**
- * Log Safety: SAFE
- */
-export type PrincipalType = "USER" | "GROUP";
-
-/**
-   * Identifies which Realm a User or Group is a member of.
-The palantir-internal-realm is used for Users or Groups that are created in Foundry by administrators and not associated with any SSO provider.
-   *
-   * Log Safety: UNSAFE
-   */
-export type Realm = LooselyBrandedString<"Realm">;
-
-/**
- * The release status of the entity.
- *
- * Log Safety: SAFE
- */
-export type ReleaseStatus = "ACTIVE" | "EXPERIMENTAL" | "DEPRECATED";
-
-/**
-   * The unique ID for a Role. Roles are sets of permissions that grant different levels of access to resources.
-The default roles in Foundry are: Owner, Editor, Viewer, and Discoverer. See more about
-roles in the user documentation.
-   *
-   * Log Safety: SAFE
-   */
-export type RoleId = LooselyBrandedString<"RoleId">;
-
-/**
- * Log Safety: SAFE
- */
-export interface ShortType {}
-
-/**
- * The size of the file or attachment in bytes.
- *
- * Log Safety: SAFE
- */
-export type SizeBytes = string;
-
-/**
- * The schema for a Foundry stream. Records pushed to this stream must match this schema.
+ * Returns objects where the specified field is greater than or equal to a value.
  *
  * Log Safety: UNSAFE
  */
-export interface StreamSchema {
-  fields: Array<Field>;
-  keyFieldNames?: Array<FieldName>;
-  changeDataCapture?: ChangeDataCaptureConfiguration;
-}
-
-/**
- * Log Safety: SAFE
- */
-export interface StringType {}
-
-/**
- * Log Safety: UNSAFE
- */
-export interface StructFieldType {
-  subFields: Array<Field>;
-}
-
-/**
- * Log Safety: SAFE
- */
-export type TimeUnit =
-  | "MILLISECONDS"
-  | "SECONDS"
-  | "MINUTES"
-  | "HOURS"
-  | "DAYS"
-  | "WEEKS"
-  | "MONTHS"
-  | "YEARS";
-
-/**
- * Log Safety: SAFE
- */
-export interface TimestampType {}
-
-/**
- * Log Safety: SAFE
- */
-export interface UnsupportedType {
-  unsupportedType: string;
-}
-
-/**
- * The Foundry user who last updated this resource
- *
- * Log Safety: SAFE
- */
-export type UpdatedBy = UserId;
-
-/**
- * The time at which the resource was most recently updated.
- *
- * Log Safety: SAFE
- */
-export type UpdatedTime = string;
-
-/**
- * A Foundry User ID.
- *
- * Log Safety: SAFE
- */
-export type UserId = string;
-
-/**
- * A string representation of a java.time.ZoneId
- *
- * Log Safety: SAFE
- */
-export type ZoneId = LooselyBrandedString<"ZoneId">;
-
-/**
- * Returns objects where every query is satisfied.
- *
- * Log Safety: UNSAFE
- */
-export interface AndQueryV2 {
-  value: Array<SearchJsonQueryV2>;
-}
-
-/**
- * The top left and bottom right coordinate points that make up the bounding box.
- *
- * Log Safety: UNSAFE
- */
-export interface BoundingBoxValue {
-  topLeft: WithinBoundingBoxPoint;
-  bottomRight: WithinBoundingBoxPoint;
-}
-
-/**
- * The coordinate point to use as the center of the distance query.
- *
- * Log Safety: UNSAFE
- */
-export interface CenterPoint {
-  center: CenterPointTypes;
-  distance: Distance;
-}
-
-/**
- * Log Safety: UNSAFE
- */
-export type CenterPointTypes = { type: "Point" } & _Geo.GeoPoint;
-
-/**
-   * Returns objects where the specified field contains all of the terms in the order provided,
-but they do have to be adjacent to each other.
-The last term can be a partial prefix match.
-   *
-   * Log Safety: UNSAFE
-   */
-export interface ContainsAllTermsInOrderPrefixLastTerm {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: string;
-}
-
-/**
-   * Returns objects where the specified field contains all of the terms in the order provided,
-but they do have to be adjacent to each other.
-   *
-   * Log Safety: UNSAFE
-   */
-export interface ContainsAllTermsInOrderQuery {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: string;
-}
-
-/**
-   * Returns objects where the specified field contains all of the whitespace separated words in any
-order in the provided value. This query supports fuzzy matching.
-   *
-   * Log Safety: UNSAFE
-   */
-export interface ContainsAllTermsQuery {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: string;
-  fuzzy?: FuzzyV2;
-}
-
-/**
-   * Returns objects where the specified field contains any of the whitespace separated words in any
-order in the provided value. This query supports fuzzy matching.
-   *
-   * Log Safety: UNSAFE
-   */
-export interface ContainsAnyTermQuery {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: string;
-  fuzzy?: FuzzyV2;
-}
-
-/**
- * Returns objects where the specified array contains a value.
- *
- * Log Safety: UNSAFE
- */
-export interface ContainsQueryV2 {
+export interface GteQueryV2 {
   field?: PropertyApiName;
   propertyIdentifier?: PropertyIdentifier;
   value: PropertyValue;
 }
-
-/**
- * Returns objects where the specified field does not intersect the bounding box provided.
- *
- * Log Safety: UNSAFE
- */
-export interface DoesNotIntersectBoundingBoxQuery {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: BoundingBoxValue;
-}
-
-/**
- * Returns objects where the specified field does not intersect the polygon provided.
- *
- * Log Safety: UNSAFE
- */
-export interface DoesNotIntersectPolygonQuery {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: PolygonValue;
-}
-
-/**
- * Returns objects where the specified field is equal to a value.
- *
- * Log Safety: UNSAFE
- */
-export interface EqualsQueryV2 {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: PropertyValue;
-}
-
-/**
- * Setting fuzzy to true allows approximate matching in search queries that support it.
- *
- * Log Safety: SAFE
- */
-export type FuzzyV2 = boolean;
 
 /**
  * Returns objects where the specified field is greater than a value.
@@ -668,17 +483,6 @@ export type FuzzyV2 = boolean;
  * Log Safety: UNSAFE
  */
 export interface GtQueryV2 {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: PropertyValue;
-}
-
-/**
- * Returns objects where the specified field is greater than or equal to a value.
- *
- * Log Safety: UNSAFE
- */
-export interface GteQueryV2 {
   field?: PropertyApiName;
   propertyIdentifier?: PropertyIdentifier;
   value: PropertyValue;
@@ -694,6 +498,11 @@ export interface InQuery {
   propertyIdentifier?: PropertyIdentifier;
   value: Array<PropertyValue>;
 }
+
+/**
+ * Log Safety: SAFE
+ */
+export interface IntegerType {}
 
 /**
  * Returns objects where the specified field intersects the bounding box provided.
@@ -736,15 +545,9 @@ export interface IsNullQueryV2 {
 export type LinkTypeApiName = LooselyBrandedString<"LinkTypeApiName">;
 
 /**
- * Returns objects where the specified field is less than a value.
- *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
-export interface LtQueryV2 {
-  field?: PropertyApiName;
-  propertyIdentifier?: PropertyIdentifier;
-  value: PropertyValue;
-}
+export interface LongType {}
 
 /**
  * Returns objects where the specified field is less than or equal to a value.
@@ -758,6 +561,39 @@ export interface LteQueryV2 {
 }
 
 /**
+ * Returns objects where the specified field is less than a value.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface LtQueryV2 {
+  field?: PropertyApiName;
+  propertyIdentifier?: PropertyIdentifier;
+  value: PropertyValue;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface MapFieldType {
+  keySchema: FieldSchema;
+  valueSchema: FieldSchema;
+}
+
+/**
+ * The ID of a security marking.
+ *
+ * Log Safety: SAFE
+ */
+export type MarkingId = string;
+
+/**
+ * The Resource Identifier (RID) of a Media Set
+ *
+ * Log Safety: SAFE
+ */
+export type MediaSetRid = LooselyBrandedString<"MediaSetRid">;
+
+/**
  * Returns objects where the query is not satisfied.
  *
  * Log Safety: UNSAFE
@@ -765,6 +601,11 @@ export interface LteQueryV2 {
 export interface NotQueryV2 {
   value: SearchJsonQueryV2;
 }
+
+/**
+ * Log Safety: SAFE
+ */
+export interface NullType {}
 
 /**
  * The Resource Identifier (RID) for an ontology object instance.
@@ -922,6 +763,18 @@ export type ObjectTypeRid = LooselyBrandedString<"ObjectTypeRid">;
 export type OntologyIdentifier = LooselyBrandedString<"OntologyIdentifier">;
 
 /**
+ * Specifies the ordering direction (can be either ASC or DESC)
+ *
+ * Log Safety: SAFE
+ */
+export type OrderByDirection = "ASC" | "DESC";
+
+/**
+ * Log Safety: SAFE
+ */
+export type OrganizationRid = LooselyBrandedString<"OrganizationRid">;
+
+/**
  * Returns objects where at least 1 query is satisfied.
  *
  * Log Safety: UNSAFE
@@ -931,9 +784,44 @@ export interface OrQueryV2 {
 }
 
 /**
+ * The page size to use for the endpoint.
+ *
+ * Log Safety: SAFE
+ */
+export type PageSize = number;
+
+/**
+   * The page token indicates where to start paging. This should be omitted from the first page's request.
+To fetch the next page, clients should take the value from the nextPageToken field of the previous response
+and use it to populate the pageToken field of the next request.
+   *
+   * Log Safety: UNSAFE
+   */
+export type PageToken = LooselyBrandedString<"PageToken">;
+
+/**
  * Log Safety: UNSAFE
  */
 export type PolygonValue = { type: "Polygon" } & _Geo.Polygon;
+
+/**
+ * Enables the use of preview functionality.
+ *
+ * Log Safety: SAFE
+ */
+export type PreviewMode = boolean;
+
+/**
+ * The ID of a Foundry Group or User.
+ *
+ * Log Safety: SAFE
+ */
+export type PrincipalId = LooselyBrandedString<"PrincipalId">;
+
+/**
+ * Log Safety: SAFE
+ */
+export type PrincipalType = "USER" | "GROUP";
 
 /**
    * The name of the property in the API. To find the API name for your property, use the Get object type
@@ -984,6 +872,30 @@ Note that for backwards compatibility, the Boolean, Byte, Double, Float, Integer
 export type PropertyValue = any;
 
 /**
+   * Identifies which Realm a User or Group is a member of.
+The palantir-internal-realm is used for Users or Groups that are created in Foundry by administrators and not associated with any SSO provider.
+   *
+   * Log Safety: UNSAFE
+   */
+export type Realm = LooselyBrandedString<"Realm">;
+
+/**
+ * The release status of the entity.
+ *
+ * Log Safety: SAFE
+ */
+export type ReleaseStatus = "ACTIVE" | "EXPERIMENTAL" | "DEPRECATED";
+
+/**
+   * The unique ID for a Role. Roles are sets of permissions that grant different levels of access to resources.
+The default roles in Foundry are: Owner, Editor, Viewer, and Discoverer. See more about
+roles in the user documentation.
+   *
+   * Log Safety: SAFE
+   */
+export type RoleId = LooselyBrandedString<"RoleId">;
+
+/**
  * Log Safety: UNSAFE
  */
 export type SearchJsonQueryV2 =
@@ -1014,6 +926,18 @@ export type SearchJsonQueryV2 =
   | ({ type: "startsWith" } & StartsWithQuery);
 
 /**
+ * Log Safety: SAFE
+ */
+export interface ShortType {}
+
+/**
+ * The size of the file or attachment in bytes.
+ *
+ * Log Safety: SAFE
+ */
+export type SizeBytes = string;
+
+/**
  * Returns objects where the specified field starts with the provided value.
  *
  * Log Safety: UNSAFE
@@ -1023,6 +947,22 @@ export interface StartsWithQuery {
   propertyIdentifier?: PropertyIdentifier;
   value: string;
 }
+
+/**
+ * The schema for a Foundry stream. Records pushed to this stream must match this schema.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface StreamSchema {
+  fields: Array<Field>;
+  keyFieldNames?: Array<FieldName>;
+  changeDataCapture?: ChangeDataCaptureConfiguration;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface StringType {}
 
 /**
  * The name of a struct field in the Ontology.
@@ -1042,6 +982,59 @@ export interface StructFieldSelector {
   propertyApiName: PropertyApiName;
   structFieldApiName: StructFieldApiName;
 }
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface StructFieldType {
+  subFields: Array<Field>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface TimestampType {}
+
+/**
+ * Log Safety: SAFE
+ */
+export type TimeUnit =
+  | "MILLISECONDS"
+  | "SECONDS"
+  | "MINUTES"
+  | "HOURS"
+  | "DAYS"
+  | "WEEKS"
+  | "MONTHS"
+  | "YEARS";
+
+/**
+ * Log Safety: SAFE
+ */
+export interface UnsupportedType {
+  unsupportedType: string;
+}
+
+/**
+ * The Foundry user who last updated this resource
+ *
+ * Log Safety: SAFE
+ */
+export type UpdatedBy = UserId;
+
+/**
+ * The time at which the resource was most recently updated.
+ *
+ * Log Safety: SAFE
+ */
+export type UpdatedTime = string;
+
+/**
+ * A Foundry User ID.
+ *
+ * Log Safety: SAFE
+ */
+export type UserId = string;
 
 /**
  * Log Safety: UNSAFE
@@ -1080,3 +1073,10 @@ export interface WithinPolygonQuery {
   propertyIdentifier?: PropertyIdentifier;
   value: PolygonValue;
 }
+
+/**
+ * A string representation of a java.time.ZoneId
+ *
+ * Log Safety: SAFE
+ */
+export type ZoneId = LooselyBrandedString<"ZoneId">;

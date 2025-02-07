@@ -264,6 +264,20 @@ export interface FileImportNotSupportedForConnection {
 }
 
 /**
+ * The filesCount property in the FilesCountLimitFilter must be strictly greater than 0.
+ *
+ * Log Safety: SAFE
+ */
+export interface FilesCountLimitFilterInvalidLimit {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "FilesCountLimitFilterInvalidLimit";
+  errorInstanceId: string;
+  parameters: {
+    filesCount: unknown;
+  };
+}
+
+/**
  * The gt property in the FileSizeFilter cannot be a negative number.
  *
  * Log Safety: SAFE
@@ -318,20 +332,6 @@ export interface FileSizeFilterMissingGreaterThanAndLessThan {
   errorName: "FileSizeFilterMissingGreaterThanAndLessThan";
   errorInstanceId: string;
   parameters: {};
-}
-
-/**
- * The filesCount property in the FilesCountLimitFilter must be strictly greater than 0.
- *
- * Log Safety: SAFE
- */
-export interface FilesCountLimitFilterInvalidLimit {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "FilesCountLimitFilterInvalidLimit";
-  errorInstanceId: string;
-  parameters: {
-    filesCount: unknown;
-  };
 }
 
 /**

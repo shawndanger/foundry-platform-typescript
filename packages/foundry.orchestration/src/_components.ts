@@ -69,6 +69,14 @@ export interface Build {
 }
 
 /**
+   * The Resource Identifier (RID) of a Resource that can be built. For example, this is a Dataset RID, Media Set
+RID or Restricted View RID.
+   *
+   * Log Safety: SAFE
+   */
+export type BuildableRid = LooselyBrandedString<"BuildableRid">;
+
+/**
  * The RID of a build.
  *
  * Log Safety: SAFE
@@ -91,14 +99,6 @@ export type BuildTarget =
   | ({ type: "upstream" } & UpstreamTarget)
   | ({ type: "manual" } & ManualTarget)
   | ({ type: "connecting" } & ConnectingTarget);
-
-/**
-   * The Resource Identifier (RID) of a Resource that can be built. For example, this is a Dataset RID, Media Set
-RID or Restricted View RID.
-   *
-   * Log Safety: SAFE
-   */
-export type BuildableRid = LooselyBrandedString<"BuildableRid">;
 
 /**
    * All datasets between the input datasets (exclusive) and the
@@ -806,15 +806,6 @@ export interface SearchBuildsNotFilter {
 }
 
 /**
- * Returns the Builds where at least one filter is satisfied.
- *
- * Log Safety: UNSAFE
- */
-export interface SearchBuildsOrFilter {
-  items: Array<SearchBuildsFilter>;
-}
-
-/**
  * Log Safety: SAFE
  */
 export interface SearchBuildsOrderBy {
@@ -832,6 +823,15 @@ export type SearchBuildsOrderByField = "STARTED_TIME" | "FINISHED_TIME";
 export interface SearchBuildsOrderByItem {
   field: SearchBuildsOrderByField;
   direction: _Core.OrderByDirection;
+}
+
+/**
+ * Returns the Builds where at least one filter is satisfied.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SearchBuildsOrFilter {
+  items: Array<SearchBuildsFilter>;
 }
 
 /**
