@@ -5021,11 +5021,11 @@ type, use the List interface types endpoint or check the Ontology Manager.
 export type InterfaceTypeApiName = LooselyBrandedString<"InterfaceTypeApiName">;
 
 /**
- * @deprecated Use `ListCoreV2Response` in the `foundry.ontologies` package
+ * @deprecated Use `ListOntologiesV2Response` in the `foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
-export interface ListCoreV2Response {
+export interface ListOntologiesV2Response {
   data: Array<OntologyV2>;
 }
 

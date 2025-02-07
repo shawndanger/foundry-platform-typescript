@@ -24323,7 +24323,7 @@
     }, {
       "locator": {
         "namespaceName": "Core",
-        "localName": "ListCoreV2Response"
+        "localName": "ListOntologiesV2Response"
       },
       "type": {
         "type": "object",
