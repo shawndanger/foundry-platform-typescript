@@ -43,6 +43,12 @@ export async function generatePlatformSdkV2(
 
   // We need to make sure the components are all populated before we generate the resources
   for (const ns of model.namespaces) {
+    ns.components.sort((a, b) =>
+      a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
+    );
+    ns.errors.sort((a, b) =>
+      a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
+    );
     componentsGenerated.set(ns, await generateComponents(ns, ns.paths.srcDir));
     errorsGenerated.set(ns, await generateErrors(ns, ns.paths.srcDir));
   }
