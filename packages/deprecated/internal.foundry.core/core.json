@@ -64,7 +64,7 @@
                         "reference": {
                           "locator": {
                             "namespaceName": "Core",
-                            "localName": "ListCoreResponse"
+                            "localName": "ListOntologiesResponse"
                           }
                         }
                       },
@@ -21435,7 +21435,7 @@
     }, {
       "locator": {
         "namespaceName": "Core",
-        "localName": "ListCoreResponse"
+        "localName": "ListOntologiesResponse"
       },
       "type": {
         "type": "object",

@@ -4343,11 +4343,11 @@ export interface ObjectSetBaseType {
 }
 
 /**
- * @deprecated Use `ListCoreResponse` in the `foundry.ontologies` package
+ * @deprecated Use `ListOntologiesResponse` in the `foundry.ontologies` package
  *
  * Log Safety: UNSAFE
  */
-export interface ListCoreResponse {
+export interface ListOntologiesResponse {
   data: Array<Ontology>;
 }
 
