@@ -1,5 +1,12 @@
 # @osdk/foundry.geo
 
+## 2.13.0
+
+### Minor Changes
+
+- 0d34388: Migrates components and errors from Core to Ontologies namespaces, and deprecates old components.
+- b61dd32: Release a new version of the SDKs
+
 ## 2.12.0
 
 ### Minor Changes
