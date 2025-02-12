@@ -35,6 +35,19 @@ export type Compressed = boolean;
 /**
  * Log Safety: UNSAFE
  */
+export interface CreateStreamingDatasetRequest {
+  name: _Datasets.DatasetName;
+  parentFolderRid: _Filesystem.FolderRid;
+  schema: _Core.StreamSchema;
+  branchName?: _Datasets.BranchName;
+  partitionsCount?: PartitionsCount;
+  streamType?: StreamType;
+  compressed?: Compressed;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface CreateStreamRequest {
   schema: CreateStreamRequestStreamSchema;
   partitionsCount?: PartitionsCount;
@@ -75,19 +88,6 @@ export interface CreateStreamRequestStreamSchema {
 /**
  * Log Safety: UNSAFE
  */
-export interface CreateStreamingDatasetRequest {
-  name: _Datasets.DatasetName;
-  parentFolderRid: _Filesystem.FolderRid;
-  schema: _Core.StreamSchema;
-  branchName?: _Datasets.BranchName;
-  partitionsCount?: PartitionsCount;
-  streamType?: StreamType;
-  compressed?: Compressed;
-}
-
-/**
- * Log Safety: UNSAFE
- */
 export interface Dataset {
   rid: _Datasets.DatasetRid;
   name: _Datasets.DatasetName;
@@ -104,16 +104,16 @@ export type PartitionsCount = number;
 /**
  * Log Safety: DO_NOT_LOG
  */
-export interface PublishRecordToStreamRequest {
-  record: _Record;
+export interface PublishRecordsToStreamRequest {
+  records: Array<_Record>;
   viewRid?: ViewRid;
 }
 
 /**
  * Log Safety: DO_NOT_LOG
  */
-export interface PublishRecordsToStreamRequest {
-  records: Array<_Record>;
+export interface PublishRecordToStreamRequest {
+  record: _Record;
   viewRid?: ViewRid;
 }
 

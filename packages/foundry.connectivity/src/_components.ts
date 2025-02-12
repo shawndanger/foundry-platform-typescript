@@ -572,6 +572,17 @@ export interface FilePathNotMatchesFilter {
 export type FileProperty = "LAST_MODIFIED" | "SIZE";
 
 /**
+   * Only retain filesCount number of files in each transaction.
+The choice of files to retain is made without any guarantee of order.
+This option can increase the reliability of incremental syncs.
+   *
+   * Log Safety: SAFE
+   */
+export interface FilesCountLimitFilter {
+  filesCount: number;
+}
+
+/**
    * Only import files whose size is between the specified minimum and maximum values.
 At least one of gt or lt should be present.
 If both are present, the value specified for gt must be strictly less than lt - 1.
@@ -581,17 +592,6 @@ If both are present, the value specified for gt must be strictly less than lt - 
 export interface FileSizeFilter {
   gt?: _Core.SizeBytes;
   lt?: _Core.SizeBytes;
-}
-
-/**
-   * Only retain filesCount number of files in each transaction.
-The choice of files to retain is made without any guarantee of order.
-This option can increase the reliability of incremental syncs.
-   *
-   * Log Safety: SAFE
-   */
-export interface FilesCountLimitFilter {
-  filesCount: number;
 }
 
 /**

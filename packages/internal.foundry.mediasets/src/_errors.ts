@@ -19,6 +19,18 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+ * Client provided more than one of branch name, branch rid, or view rid as arguments.  Only one may be specified.
+ *
+ * Log Safety: SAFE
+ */
+export interface ConflictingMediaSetIdentifiers {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ConflictingMediaSetIdentifiers";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The requested media item could not be found, or the client token does not have access to it.
  *
  * Log Safety: SAFE
@@ -31,16 +43,4 @@ export interface MediaItemNotFound {
     mediaSetRid: unknown;
     mediaItemRid: unknown;
   };
-}
-
-/**
- * Client provided more than one of branch name, branch rid, or view rid as arguments.  Only one may be specified.
- *
- * Log Safety: SAFE
- */
-export interface ConflictingMediaSetIdentifiers {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "ConflictingMediaSetIdentifiers";
-  errorInstanceId: string;
-  parameters: {};
 }

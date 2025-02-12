@@ -47,6 +47,18 @@ export interface CannotWriteToTrashedStream {
 }
 
 /**
+ * Could not create the Dataset.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateStreamingDatasetPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateStreamingDatasetPermissionDenied";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * Could not create the Stream.
  *
  * Log Safety: UNSAFE
@@ -59,18 +71,6 @@ export interface CreateStreamPermissionDenied {
     datasetRid: unknown;
     streamBranchName: unknown;
   };
-}
-
-/**
- * Could not create the Dataset.
- *
- * Log Safety: SAFE
- */
-export interface CreateStreamingDatasetPermissionDenied {
-  errorCode: "PERMISSION_DENIED";
-  errorName: "CreateStreamingDatasetPermissionDenied";
-  errorInstanceId: string;
-  parameters: {};
 }
 
 /**
@@ -131,13 +131,13 @@ export interface PublishBinaryRecordToStreamPermissionDenied {
 }
 
 /**
- * Could not publishRecord the Stream.
+ * Could not publishRecords the Stream.
  *
  * Log Safety: UNSAFE
  */
-export interface PublishRecordToStreamPermissionDenied {
+export interface PublishRecordsToStreamPermissionDenied {
   errorCode: "PERMISSION_DENIED";
-  errorName: "PublishRecordToStreamPermissionDenied";
+  errorName: "PublishRecordsToStreamPermissionDenied";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;
@@ -146,13 +146,13 @@ export interface PublishRecordToStreamPermissionDenied {
 }
 
 /**
- * Could not publishRecords the Stream.
+ * Could not publishRecord the Stream.
  *
  * Log Safety: UNSAFE
  */
-export interface PublishRecordsToStreamPermissionDenied {
+export interface PublishRecordToStreamPermissionDenied {
   errorCode: "PERMISSION_DENIED";
-  errorName: "PublishRecordsToStreamPermissionDenied";
+  errorName: "PublishRecordToStreamPermissionDenied";
   errorInstanceId: string;
   parameters: {
     datasetRid: unknown;

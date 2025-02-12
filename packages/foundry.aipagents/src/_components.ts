@@ -16,6 +16,7 @@
 
 import type * as _Core from "@osdk/foundry.core";
 import type * as _Functions from "@osdk/foundry.functions";
+import type * as _Ontologies from "@osdk/foundry.ontologies";
 
 export type LooselyBrandedString<T extends string> = string & {
   __LOOSE_BRAND?: T;
@@ -70,6 +71,17 @@ export interface AgentSessionRagContextResponse {
 }
 
 /**
+   * A page of results for sessions across all accessible Agents for the calling user.
+Sessions are returned in order of most recently updated first.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface AgentsSessionsPage {
+  nextPageToken?: _Core.PageToken;
+  data: Array<Session>;
+}
+
+/**
  * Log Safety: SAFE
  */
 export interface AgentVersion {
@@ -93,17 +105,6 @@ export interface AgentVersionDetails {
  * Log Safety: SAFE
  */
 export type AgentVersionString = LooselyBrandedString<"AgentVersionString">;
-
-/**
-   * A page of results for sessions across all accessible Agents for the calling user.
-Sessions are returned in order of most recently updated first.
-   *
-   * Log Safety: UNSAFE
-   */
-export interface AgentsSessionsPage {
-  nextPageToken?: _Core.PageToken;
-  data: Array<Session>;
-}
 
 /**
  * Log Safety: UNSAFE
@@ -201,15 +202,15 @@ export type MessageId = string;
  * Log Safety: SAFE
  */
 export interface ObjectContext {
-  objectRids: Array<_Core.ObjectRid>;
-  propertyTypeRids: Array<_Core.PropertyTypeRid>;
+  objectRids: Array<_Ontologies.ObjectRid>;
+  propertyTypeRids: Array<_Ontologies.PropertyTypeRid>;
 }
 
 /**
  * Log Safety: UNSAFE
  */
 export interface ObjectSetParameter {
-  expectedObjectTypes: Array<_Core.ObjectTypeId>;
+  expectedObjectTypes: Array<_Ontologies.ObjectTypeId>;
 }
 
 /**
@@ -218,15 +219,15 @@ export interface ObjectSetParameter {
  * Log Safety: UNSAFE
  */
 export interface ObjectSetParameterValue {
-  objectSet: _Core.ObjectSet;
-  ontology: _Core.OntologyIdentifier;
+  objectSet: _Ontologies.ObjectSet;
+  ontology: _Ontologies.OntologyIdentifier;
 }
 
 /**
  * Log Safety: SAFE
  */
 export interface ObjectSetParameterValueUpdate {
-  value: _Core.ObjectSetRid;
+  value: _Ontologies.ObjectSetRid;
 }
 
 /**

@@ -34,15 +34,27 @@ export async function generatePlatformSdkV2(
   ir: ir.ApiSpec,
   outputDir: string,
   packagePrefix: string,
+  deprecatedIr?: ir.ApiSpec,
 ): Promise<string[]> {
   const npmOrg = "@osdk";
-  const model = await Model.create(ir, { npmOrg, outputDir, packagePrefix });
+  const model = await Model.create(ir, {
+    npmOrg,
+    outputDir,
+    packagePrefix,
+    deprecatedIr,
+  });
 
   const componentsGenerated = new Map<Namespace, string[]>();
   const errorsGenerated = new Map<Namespace, string[]>();
 
   // We need to make sure the components are all populated before we generate the resources
   for (const ns of model.namespaces) {
+    ns.components.sort((a, b) =>
+      a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
+    );
+    ns.errors.sort((a, b) =>
+      a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
+    );
     componentsGenerated.set(ns, await generateComponents(ns, ns.paths.srcDir));
     errorsGenerated.set(ns, await generateErrors(ns, ns.paths.srcDir));
   }
@@ -92,7 +104,7 @@ export async function generatePlatformSdkV2(
 
     for (const comp of ns.components) {
       for (const rc of comp.referencedComponents) {
-        deps.add(rc.namespace);
+        if (!comp.isDeprecated) deps.add(rc.namespace);
       }
     }
 

@@ -19,46 +19,42 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
- * Log Safety: UNSAFE
- */
-export interface MultiPolygon {
-  coordinates: Array<Array<LinearRing>>;
-  bbox?: BBox;
-}
-
-/**
-   * A linear ring is a closed LineString with four or more positions.
-The first and last positions are equivalent, and they MUST contain
-identical values; their representation SHOULD also be identical.
-A linear ring is the boundary of a surface or the boundary of a hole in
-a surface.
-A linear ring MUST follow the right-hand rule with respect to the area
-it bounds, i.e., exterior rings are counterclockwise, and holes are
-clockwise.
+   * A GeoJSON object MAY have a member named "bbox" to include
+information on the coordinate range for its Geometries, Features, or
+FeatureCollections. The value of the bbox member MUST be an array of
+length 2*n where n is the number of dimensions represented in the
+contained geometries, with all axes of the most southwesterly point
+followed by all axes of the more northeasterly point. The axes order
+of a bbox follows the axes order of geometries.
    *
    * Log Safety: UNSAFE
    */
-export type LinearRing = Array<Position>;
-
-/**
-   * GeoJSon geometry collection
-GeometryCollections composed of a single part or a number of parts of a
-single type SHOULD be avoided when that single part or a single object
-of multipart type (MultiPoint, MultiLineString, or MultiPolygon) could
-be used instead.
-   *
-   * Log Safety: UNSAFE
-   */
-export interface GeometryCollection {
-  geometries: Array<Geometry>;
-  bbox?: BBox;
-}
+export type BBox = Array<Coordinate>;
 
 /**
  * Log Safety: UNSAFE
  */
-export interface GeoPoint {
-  coordinates: Position;
+export type Coordinate = number;
+
+/**
+ * GeoJSon 'Feature' object
+ *
+ * Log Safety: UNSAFE
+ */
+export interface Feature {
+  geometry?: Geometry;
+  properties: Record<FeaturePropertyKey, any>;
+  id?: any;
+  bbox?: BBox;
+}
+
+/**
+ * GeoJSon 'FeatureCollection' object
+ *
+ * Log Safety: UNSAFE
+ */
+export interface FeatureCollection {
+  features: Array<FeatureCollectionTypes>;
   bbox?: BBox;
 }
 
@@ -66,6 +62,11 @@ export interface GeoPoint {
  * Log Safety: UNSAFE
  */
 export type FeatureCollectionTypes = { type: "Feature" } & Feature;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type FeaturePropertyKey = LooselyBrandedString<"FeaturePropertyKey">;
 
 /**
    * GeoJSon object
@@ -94,6 +95,103 @@ export type GeoJsonObject =
   | ({ type: "Feature" } & Feature);
 
 /**
+ * Abstract type for all GeoJSon object except Feature and FeatureCollection
+ *
+ * Log Safety: UNSAFE
+ */
+export type Geometry =
+  | ({ type: "MultiPoint" } & MultiPoint)
+  | ({ type: "GeometryCollection" } & GeometryCollection)
+  | ({ type: "MultiLineString" } & MultiLineString)
+  | ({ type: "LineString" } & LineString)
+  | ({ type: "MultiPolygon" } & MultiPolygon)
+  | ({ type: "Point" } & GeoPoint)
+  | ({ type: "Polygon" } & Polygon);
+
+/**
+   * GeoJSon geometry collection
+GeometryCollections composed of a single part or a number of parts of a
+single type SHOULD be avoided when that single part or a single object
+of multipart type (MultiPoint, MultiLineString, or MultiPolygon) could
+be used instead.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface GeometryCollection {
+  geometries: Array<Geometry>;
+  bbox?: BBox;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GeoPoint {
+  coordinates: Position;
+  bbox?: BBox;
+}
+
+/**
+   * A linear ring is a closed LineString with four or more positions.
+The first and last positions are equivalent, and they MUST contain
+identical values; their representation SHOULD also be identical.
+A linear ring is the boundary of a surface or the boundary of a hole in
+a surface.
+A linear ring MUST follow the right-hand rule with respect to the area
+it bounds, i.e., exterior rings are counterclockwise, and holes are
+clockwise.
+   *
+   * Log Safety: UNSAFE
+   */
+export type LinearRing = Array<Position>;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface LineString {
+  coordinates?: LineStringCoordinates;
+  bbox?: BBox;
+}
+
+/**
+ * GeoJSon fundamental geometry construct, array of two or more positions.
+ *
+ * Log Safety: UNSAFE
+ */
+export type LineStringCoordinates = Array<Position>;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface MultiLineString {
+  coordinates: Array<LineStringCoordinates>;
+  bbox?: BBox;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface MultiPoint {
+  coordinates: Array<Position>;
+  bbox?: BBox;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface MultiPolygon {
+  coordinates: Array<Array<LinearRing>>;
+  bbox?: BBox;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface Polygon {
+  coordinates: Array<LinearRing>;
+  bbox?: BBox;
+}
+
+/**
    * GeoJSon fundamental geometry construct.
 A position is an array of numbers. There MUST be two or more elements.
 The first two elements are longitude and latitude, precisely in that order and using decimal numbers.
@@ -110,101 +208,3 @@ elements MAY be ignored by parsers.
    * Log Safety: UNSAFE
    */
 export type Position = Array<Coordinate>;
-
-/**
- * Abstract type for all GeoJSon object except Feature and FeatureCollection
- *
- * Log Safety: UNSAFE
- */
-export type Geometry =
-  | ({ type: "MultiPoint" } & MultiPoint)
-  | ({ type: "GeometryCollection" } & GeometryCollection)
-  | ({ type: "MultiLineString" } & MultiLineString)
-  | ({ type: "LineString" } & LineString)
-  | ({ type: "MultiPolygon" } & MultiPolygon)
-  | ({ type: "Point" } & GeoPoint)
-  | ({ type: "Polygon" } & Polygon);
-
-/**
- * Log Safety: UNSAFE
- */
-export interface MultiLineString {
-  coordinates: Array<LineStringCoordinates>;
-  bbox?: BBox;
-}
-
-/**
- * GeoJSon 'Feature' object
- *
- * Log Safety: UNSAFE
- */
-export interface Feature {
-  geometry?: Geometry;
-  properties: Record<FeaturePropertyKey, any>;
-  id?: any;
-  bbox?: BBox;
-}
-
-/**
-   * A GeoJSON object MAY have a member named "bbox" to include
-information on the coordinate range for its Geometries, Features, or
-FeatureCollections. The value of the bbox member MUST be an array of
-length 2*n where n is the number of dimensions represented in the
-contained geometries, with all axes of the most southwesterly point
-followed by all axes of the more northeasterly point. The axes order
-of a bbox follows the axes order of geometries.
-   *
-   * Log Safety: UNSAFE
-   */
-export type BBox = Array<Coordinate>;
-
-/**
- * Log Safety: UNSAFE
- */
-export interface Polygon {
-  coordinates: Array<LinearRing>;
-  bbox?: BBox;
-}
-
-/**
- * Log Safety: UNSAFE
- */
-export interface LineString {
-  coordinates?: LineStringCoordinates;
-  bbox?: BBox;
-}
-
-/**
- * Log Safety: UNSAFE
- */
-export type FeaturePropertyKey = LooselyBrandedString<"FeaturePropertyKey">;
-
-/**
- * Log Safety: UNSAFE
- */
-export type Coordinate = number;
-
-/**
- * GeoJSon fundamental geometry construct, array of two or more positions.
- *
- * Log Safety: UNSAFE
- */
-export type LineStringCoordinates = Array<Position>;
-
-/**
- * Log Safety: UNSAFE
- */
-export interface MultiPoint {
-  coordinates: Array<Position>;
-  bbox?: BBox;
-}
-
-/**
- * GeoJSon 'FeatureCollection' object
- *
- * Log Safety: UNSAFE
- */
-export interface FeatureCollection {
-  features: Array<FeatureCollectionTypes>;
-  bbox?: BBox;
-}
