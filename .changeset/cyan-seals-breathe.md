@@ -1,5 +1,5 @@
 ---
-"@osdk/foundry.mediasets": major
+"@osdk/foundry.mediasets": minor
 ---
 
 Release public mediasets endpoints. Migrated from internal.foundry.mediasets
