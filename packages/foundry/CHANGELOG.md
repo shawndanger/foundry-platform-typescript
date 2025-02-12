@@ -1,5 +1,33 @@
 # @osdk/foundry
 
+## 2.13.0
+
+### Minor Changes
+
+- 0d34388: Migrates components and errors from Core to Ontologies namespaces, and deprecates old components.
+- b61dd32: Release a new version of the SDKs
+
+### Patch Changes
+
+- Updated dependencies [b61dd32]
+- Updated dependencies [0d34388]
+- Updated dependencies [b61dd32]
+- Updated dependencies [b61dd32]
+  - @osdk/foundry.mediasets@2.13.0
+  - @osdk/foundry.thirdpartyapplications@2.13.0
+  - @osdk/foundry.orchestration@2.13.0
+  - @osdk/foundry.connectivity@2.13.0
+  - @osdk/foundry.filesystem@2.13.0
+  - @osdk/foundry.ontologies@2.13.0
+  - @osdk/foundry.publicapis@2.13.0
+  - @osdk/foundry.aipagents@2.13.0
+  - @osdk/foundry.functions@2.13.0
+  - @osdk/foundry.datasets@2.13.0
+  - @osdk/foundry.streams@2.13.0
+  - @osdk/foundry.admin@2.13.0
+  - @osdk/foundry.core@2.13.0
+  - @osdk/foundry.geo@2.13.0
+
 ## 2.12.0
 
 ### Minor Changes
