@@ -380,6 +380,21 @@ export interface ReadTableError {
 }
 
 /**
+   * The request to read the table generates a result that exceeds the allowed number of rows. For datasets not
+stored as Parquet there is a limit of 1 million rows. For datasets stored as Parquet there is no limit.
+   *
+   * Log Safety: SAFE
+   */
+export interface ReadTableRowLimitExceeded {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ReadTableRowLimitExceeded";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
+  };
+}
+
+/**
  * The request to read the table timed out.
  *
  * Log Safety: SAFE

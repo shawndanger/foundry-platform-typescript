@@ -320,6 +320,7 @@ export type {
   QueryApiName,
   QueryArrayType,
   QueryDataType,
+  QueryMapType,
   QueryOutputV2,
   QueryParameterV2,
   QueryRuntimeErrorParameter,

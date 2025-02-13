@@ -59,6 +59,7 @@ export type {
   PutSchemaPermissionDenied,
   ReadTableDatasetPermissionDenied,
   ReadTableError,
+  ReadTableRowLimitExceeded,
   ReadTableTimeout,
   SchemaNotFound,
   TransactionNotCommitted,

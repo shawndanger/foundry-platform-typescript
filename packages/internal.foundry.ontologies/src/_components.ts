@@ -972,7 +972,8 @@ export type CustomTypeId = LooselyBrandedString<"CustomTypeId">;
 | Struct                              | JSON object                                           | {"name": "John Doe", "age": 42}                                                                                                                             |
 | TwoDimensionalAggregation           | JSON object                                           | {"groups": [{"key": "alpha", "value": 100}, {"key": "beta", "value": 101}]}                                                                                 |
 | ThreeDimensionalAggregation         | JSON object                                           | {"groups": [{"key": "NYC", "groups": [{"key": "Engineer", "value" : 100}]}]}                                                                                |
-| Timestamp                           | ISO 8601 extended offset date-time string in UTC zone | "2021-01-04T05:00:00Z"                                                                                                                                      |
+| Timestamp                           | ISO 8601 extended offset date-time string in UTC zone | "2021-01-04T05:00:00Z"
+| Query Map                           | array of JSON objects                                 | [{"key": "EMP1234", "value": "true"}, {"key": "EMP4444", "value": "false"}]
    *
    * Log Safety: UNSAFE
    */
@@ -2933,8 +2934,17 @@ export type QueryDataType =
   | ({ type: "array" } & QueryArrayType)
   | ({ type: "objectSet" } & OntologyObjectSetType)
   | ({ type: "twoDimensionalAggregation" } & TwoDimensionalAggregation)
+  | ({ type: "map" } & QueryMapType)
   | ({ type: "object" } & OntologyObjectType)
   | ({ type: "timestamp" } & _Core.TimestampType);
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface QueryMapType {
+  keyType: QueryDataType;
+  valueType: QueryDataType;
+}
 
 /**
  * Details about the output of a query.
