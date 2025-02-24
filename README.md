@@ -2,6 +2,73 @@
 
 The Foundry Platform SDK for Typescript is an SDK for the APIs listed in the [Foundry API documentation](https://www.palantir.com/docs/foundry/api/). Packages are available on NPM for each API namespace as [`@osdk/foundry.{namespace}`](https://www.npmjs.com/search?q=%40osdk%2Ffoundry). The SDK can be used either with an [Ontology SDK](https://www.palantir.com/docs/foundry/ontology-sdk/overview/) client (for easy use alongside a generated Ontology SDK) or with a standalone platform SDK client.
 
+## Using the Platform SDKs
+
+### Installation
+
+You can install the package for a specific namespace.
+
+```bash
+npm install @osdk/foundry.{namespace}
+```
+
+Alternatively, you can install all API namespaces from a single package.
+
+```bash
+npm install @osdk/foundry
+```
+
+### Creating the Client
+
+All of the Platform SDK endpoints will require a client to be passed in. The client can be created via a method exported from the `@osdk/client` npm package.
+
+To create your client, you will need to create an application in the Developer Console app on your Foundry stack. You will need the client ID as well as the base url of your foundry stack and a redirect URL that you can configure in Developer Console.
+
+Note that creating a client this way means that your client is not tied to a specific ontology, and can be used across different ontologies on your stack.
+
+```typescript
+import { createPlatformClient } from "@osdk/client";
+import { createPublicOauthClient } from "@osdk/oauth";
+
+const stack =
+  "<TODO: hostname of your Foundry instance, e.g. https://foundry.example.com>";
+
+// Your OAuth2 client ID from Developer Console.
+const clientId =
+  "<TODO: OAuth2 client ID from the Developer Console overview page>";
+
+// The URL of your app you want to redirect to
+const redirectUrl = "http://localhost:8080";
+
+const auth = createPublicOauthClient(clientId, stack, redirectUrl);
+const client = createPlatformClient(stack, auth);
+```
+
+Alternatively, if you want to create a client to be used alongside the TypeScript [Ontology SDK](https://www.palantir.com/docs/foundry/ontology-sdk/overview/), you will need an ontology RID as well.
+
+```typescript
+import { createClient } from "@osdk/client";
+
+const ontologyRid =
+  "<TODO: The RID of your ontology. You can find this in the Ontology Manager application>";
+
+const client = createClient(stack, ontologyRid, auth);
+```
+
+### Using the Platform SDKs
+
+Below is an example of how to use your installed SDK and client to hit a Foundry endpoint.
+
+```typescript
+import { Users } from "@osdk/foundry.admin"
+
+const client = //Client created above
+
+const currentUser = await Users.getCurrent(client, { preview: true });
+
+console.log(currentUser)
+```
+
 ## Hello world example
 
 The following is a complete, annotated example of a "hello, world" web app using the Platform SDK to greet users by name.
@@ -93,7 +160,6 @@ To run this example, do the following:
 6. Add a changeset
 
    > 📘 Note
-   >
    > **Follow semver rules here.**
    1. Assuming you've run `pnpm install`, run `changeset` (or `pnpm exec changeset`).
    2. The tool will split things into changed vs unchanged packages (which you may need if you decide to add changeset logs in a future PR for past features)
@@ -103,7 +169,6 @@ To run this example, do the following:
    6. Enter a change (or press enter on empty to open your editor.)
 
    > Info
-   >
    > Full docs on the `changesets` tool can be found at the [changesets/changesets github repo](https://github.com/changesets/changesets).
 7. If you're curious what the final build output might look like you can run `pnpm build` from root.
 8. Run all lint rules and tests with `pnpm check` from root.
