@@ -78,6 +78,13 @@ export interface BoundingBoxValue {
 }
 
 /**
+ * The RID of a Build.
+ *
+ * Log Safety: SAFE
+ */
+export type BuildRid = LooselyBrandedString<"BuildRid">;
+
+/**
  * Log Safety: SAFE
  */
 export interface ByteType {}
@@ -629,6 +636,13 @@ export interface IsNullQueryV2 {
 }
 
 /**
+ * The RID of a Job.
+ *
+ * Log Safety: SAFE
+ */
+export type JobRid = LooselyBrandedString<"JobRid">;
+
+/**
  * @deprecated Use `LinkTypeApiName` in the `foundry.ontologies` package
  *
  * The name of the link type in the API. To find the API name for your Link Type, check the Ontology Manager.
@@ -723,6 +737,13 @@ item which was written last is returned.
 export type MediaItemPath = LooselyBrandedString<"MediaItemPath">;
 
 /**
+ * A token that grants access to read specific media items.
+ *
+ * Log Safety: UNSAFE
+ */
+export type MediaItemReadToken = LooselyBrandedString<"MediaItemReadToken">;
+
+/**
  * The Resource Identifier (RID) of an individual Media Item within a Media Set in Foundry.
  *
  * Log Safety: SAFE
@@ -752,16 +773,17 @@ export interface MediaReferenceType {}
 export type MediaSetRid = LooselyBrandedString<"MediaSetRid">;
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface MediaSetViewItem {
   mediaSetRid: MediaSetRid;
   mediaSetViewRid: MediaSetViewRid;
   mediaItemRid: MediaItemRid;
+  token?: MediaItemReadToken;
 }
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface MediaSetViewItemWrapper {
   mediaSetViewItem: MediaSetViewItem;
@@ -994,6 +1016,11 @@ export type ObjectTypeRid = LooselyBrandedString<"ObjectTypeRid">;
 export type OntologyIdentifier = LooselyBrandedString<"OntologyIdentifier">;
 
 /**
+ * Log Safety: SAFE
+ */
+export type OperationScope = LooselyBrandedString<"OperationScope">;
+
+/**
  * Specifies the ordering direction (can be either ASC or DESC)
  *
  * Log Safety: SAFE
@@ -1136,7 +1163,11 @@ export type Reference = { type: "mediaSetViewItem" } & MediaSetViewItemWrapper;
  *
  * Log Safety: SAFE
  */
-export type ReleaseStatus = "ACTIVE" | "EXPERIMENTAL" | "DEPRECATED";
+export type ReleaseStatus =
+  | "ACTIVE"
+  | "ENDORSED"
+  | "EXPERIMENTAL"
+  | "DEPRECATED";
 
 /**
    * The unique ID for a Role. Roles are sets of permissions that grant different levels of access to resources.

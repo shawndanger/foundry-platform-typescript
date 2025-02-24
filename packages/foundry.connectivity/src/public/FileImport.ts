@@ -15,7 +15,6 @@
  */
 
 import type * as _Core from "@osdk/foundry.core";
-import type * as _Orchestration from "@osdk/foundry.orchestration";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -184,7 +183,7 @@ const _execute: $FoundryPlatformMethod<
     connectionRid: _Connectivity.ConnectionRid,
     fileImportRid: _Connectivity.FileImportRid,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
-  ) => Promise<_Orchestration.BuildRid>
+  ) => Promise<_Core.BuildRid>
 > = [1, "/v2/connectivity/connections/{0}/fileImports/{1}/execute", 2];
 
 /**
@@ -204,6 +203,6 @@ export function execute(
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
-): Promise<_Orchestration.BuildRid> {
+): Promise<_Core.BuildRid> {
   return $foundryPlatformFetch($ctx, _execute, ...args);
 }
