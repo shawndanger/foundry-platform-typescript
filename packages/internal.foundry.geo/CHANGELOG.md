@@ -1,5 +1,11 @@
 # @osdk/internal.foundry.geo
 
+## 2.14.0
+
+### Minor Changes
+
+- c9a5da6: Regenerate Platform SDKs
+
 ## 2.13.0
 
 ### Minor Changes

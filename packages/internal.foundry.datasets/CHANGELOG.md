@@ -1,5 +1,16 @@
 # @osdk/internal.foundry.datasets
 
+## 2.14.0
+
+### Minor Changes
+
+- c9a5da6: Regenerate Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [c9a5da6]
+  - @osdk/internal.foundry.core@2.14.0
+
 ## 2.13.0
 
 ### Minor Changes
