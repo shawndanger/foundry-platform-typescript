@@ -94,6 +94,13 @@ export interface CreateProjectRequest {
 export interface Everyone {}
 
 /**
+ * The ID of the filesystem that will be used for all projects in the Space.
+ *
+ * Log Safety: SAFE
+ */
+export type FileSystemId = LooselyBrandedString<"FileSystemId">;
+
+/**
  * Log Safety: UNSAFE
  */
 export interface Folder {
@@ -166,6 +173,14 @@ export interface ListOrganizationsOfProjectResponse {
  */
 export interface ListResourceRolesResponse {
   data: Array<ResourceRole>;
+  nextPageToken?: _Core.PageToken;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ListSpacesResponse {
+  data: Array<Space>;
   nextPageToken?: _Core.PageToken;
 }
 
@@ -341,8 +356,10 @@ export type ResourceRolePrincipal =
 export type ResourceType =
   | "ARTIFACTS_REPOSITORY"
   | "BELLASO_CIPHER_CHANNEL"
+  | "BLOBSTER_CODE"
   | "BLOBSTER_DOCUMENT"
   | "BLOBSTER_IMAGE"
+  | "BLOBSTER_SPREADSHEET"
   | "CARBON_WORKSPACE"
   | "COMPASS_FOLDER"
   | "COMPASS_WEB_LINK"
@@ -387,10 +404,16 @@ export type ResourceType =
   | "WORKSHOP_MODULE";
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface Space {
   rid: SpaceRid;
+  displayName: ResourceDisplayName;
+  description?: string;
+  path: ResourcePath;
+  fileSystemId?: FileSystemId;
+  usageAccountRid?: UsageAccountRid;
+  organizations: Array<_Core.OrganizationRid>;
 }
 
 /**
@@ -407,3 +430,10 @@ export type TrashStatus =
   | "DIRECTLY_TRASHED"
   | "ANCESTOR_TRASHED"
   | "NOT_TRASHED";
+
+/**
+ * The unique resource identifier (RID) of the usage account that will be used as a default on project creation.
+ *
+ * Log Safety: SAFE
+ */
+export type UsageAccountRid = LooselyBrandedString<"UsageAccountRid">;

@@ -37,7 +37,7 @@ const _createTemporary: $FoundryPlatformMethod<
 > = [1, "/v2/ontologies/{0}/objectSets/createTemporary", 1];
 
 /**
- * Creates a temporary `ObjectSet` from the given definition.
+ * Creates a temporary `ObjectSet` from the given definition. This `ObjectSet` expires after one hour.
  *
  * Third-party applications using this endpoint via OAuth2 must request the
  * following operation scopes: `api:ontologies-read api:ontologies-write`.

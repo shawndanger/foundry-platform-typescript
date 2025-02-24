@@ -115,6 +115,19 @@ export interface BuildTargetsResolutionError {
 }
 
 /**
+   * The build targets are up to date and no Build was created. To rebuild the targets regardless,
+use the force build option when creating the Build.
+   *
+   * Log Safety: SAFE
+   */
+export interface BuildTargetsUpToDate {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "BuildTargetsUpToDate";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * Could not cancel the Build.
  *
  * Log Safety: SAFE
@@ -239,6 +252,20 @@ export interface InvalidTimeTrigger {
   errorInstanceId: string;
   parameters: {
     cronExpression: unknown;
+  };
+}
+
+/**
+ * The given Job could not be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface JobNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "JobNotFound";
+  errorInstanceId: string;
+  parameters: {
+    jobRid: unknown;
   };
 }
 

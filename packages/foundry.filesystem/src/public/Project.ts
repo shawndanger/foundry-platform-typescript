@@ -63,9 +63,13 @@ const _create: $FoundryPlatformMethod<
 > = [1, "/v2/filesystem/projects/create", 3];
 
 /**
- * Creates a project.
+ * Creates a new Project.
  *
- * @alpha
+ * Note that third-party applications using this endpoint via OAuth2 cannot be associated with an
+ * Ontology SDK as this will reduce the scope of operations to only those within specified projects.
+ * When creating the application, select "No, I won't use an Ontology SDK" on the Resources page.
+ *
+ * @beta
  *
  * Required Scopes: [api:filesystem-write]
  * URL: /v2/filesystem/projects/create

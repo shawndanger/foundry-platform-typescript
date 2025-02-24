@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import type * as _Core from "@osdk/foundry.core";
 import type {
   SharedClient as $OldClient,
   SharedClientContext as $OldClientContext,
@@ -130,4 +131,64 @@ export function abort(
   ]
 ): Promise<_Datasets.Transaction> {
   return $foundryPlatformFetch($ctx, _abort, ...args);
+}
+
+const _build: $FoundryPlatformMethod<
+  (
+    datasetRid: _Datasets.DatasetRid,
+    transactionRid: _Datasets.TransactionRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Core.BuildRid | undefined>
+> = [0, "/v2/datasets/{0}/transactions/{1}/build", 2];
+
+/**
+ * Get the [Build](https://www.palantir.com/docs/foundry/data-integration/builds#builds) that computed the
+ * given Transaction. Not all Transactions have an associated Build. For example, if a Dataset
+ * is updated by a User uploading a CSV file into the browser, no Build will be tied to the Transaction.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:datasets-read, api:orchestration-read]
+ * URL: /v2/datasets/{datasetRid}/transactions/{transactionRid}/build
+ */
+export function build(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    datasetRid: _Datasets.DatasetRid,
+    transactionRid: _Datasets.TransactionRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Core.BuildRid | undefined> {
+  return $foundryPlatformFetch($ctx, _build, ...args);
+}
+
+const _job: $FoundryPlatformMethod<
+  (
+    datasetRid: _Datasets.DatasetRid,
+    transactionRid: _Datasets.TransactionRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Core.JobRid | undefined>
+> = [0, "/v2/datasets/{0}/transactions/{1}/job", 2];
+
+/**
+ * Get the [Job](https://www.palantir.com/docs/foundry/data-integration/builds#jobs-and-jobspecs) that computed the
+ * given Transaction. Not all Transactions have an associated Job. For example, if a Dataset
+ * is updated by a User uploading a CSV file into the browser, no Job will be tied to the Transaction.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:datasets-read]
+ * URL: /v2/datasets/{datasetRid}/transactions/{transactionRid}/job
+ */
+export function job(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    datasetRid: _Datasets.DatasetRid,
+    transactionRid: _Datasets.TransactionRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Core.JobRid | undefined> {
+  return $foundryPlatformFetch($ctx, _job, ...args);
 }

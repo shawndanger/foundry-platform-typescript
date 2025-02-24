@@ -34,8 +34,9 @@ const _read: $FoundryPlatformMethod<
     mediaSetRid: _Core.MediaSetRid,
     mediaItemRid: _Core.MediaItemRid,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
   ) => Promise<Response>
-> = [0, "/v2/mediasets/{0}/items/{1}/content", 2, , "*/*"];
+> = [0, "/v2/mediasets/{0}/items/{1}/content", 6, , "*/*"];
 
 /**
  * Gets the content of a media item.
@@ -54,6 +55,7 @@ export function read(
     mediaItemRid: _Core.MediaItemRid,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
   ]
 ): Promise<Response> {
   return $foundryPlatformFetch($ctx, _read, ...args);
@@ -64,8 +66,9 @@ const _info: $FoundryPlatformMethod<
     mediaSetRid: _Core.MediaSetRid,
     mediaItemRid: _Core.MediaItemRid,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
   ) => Promise<_MediaSets.GetMediaItemInfoResponse>
-> = [0, "/v2/mediasets/{0}/items/{1}", 2];
+> = [0, "/v2/mediasets/{0}/items/{1}", 6];
 
 /**
  * Gets information about the media item.
@@ -84,6 +87,7 @@ export function info(
     mediaItemRid: _Core.MediaItemRid,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
   ]
 ): Promise<_MediaSets.GetMediaItemInfoResponse> {
   return $foundryPlatformFetch($ctx, _info, ...args);
@@ -94,8 +98,9 @@ const _reference: $FoundryPlatformMethod<
     mediaSetRid: _Core.MediaSetRid,
     mediaItemRid: _Core.MediaItemRid,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
   ) => Promise<_Core.MediaReference>
-> = [0, "/v2/mediasets/{0}/items/{1}/reference", 2];
+> = [0, "/v2/mediasets/{0}/items/{1}/reference", 6];
 
 /**
  * Gets the [media reference](https://www.palantir.com/docs/foundry/data-integration/media-sets/#media-references) for this media item.
@@ -114,6 +119,7 @@ export function reference(
     mediaItemRid: _Core.MediaItemRid,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
   ]
 ): Promise<_Core.MediaReference> {
   return $foundryPlatformFetch($ctx, _reference, ...args);

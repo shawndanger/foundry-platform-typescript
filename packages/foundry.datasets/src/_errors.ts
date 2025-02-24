@@ -64,6 +64,21 @@ export interface BranchNotFound {
 }
 
 /**
+ * Could not build the Transaction.
+ *
+ * Log Safety: SAFE
+ */
+export interface BuildTransactionPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "BuildTransactionPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
+    transactionRid: unknown;
+  };
+}
+
+/**
  * The dataset contains column types that are not supported.
  *
  * Log Safety: SAFE
@@ -321,6 +336,21 @@ export interface InvalidTransactionType {
 }
 
 /**
+ * Could not job the Transaction.
+ *
+ * Log Safety: SAFE
+ */
+export interface JobTransactionPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "JobTransactionPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
+    transactionRid: unknown;
+  };
+}
+
+/**
  * A transaction is already open on this dataset and branch. A branch of a dataset can only have one open transaction at a time.
  *
  * Log Safety: UNSAFE
@@ -376,6 +406,21 @@ export interface ReadTableError {
   parameters: {
     datasetRid: unknown;
     message: unknown;
+  };
+}
+
+/**
+   * The request to read the table generates a result that exceeds the allowed number of rows. For datasets not
+stored as Parquet there is a limit of 1 million rows. For datasets stored as Parquet there is no limit.
+   *
+   * Log Safety: SAFE
+   */
+export interface ReadTableRowLimitExceeded {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "ReadTableRowLimitExceeded";
+  errorInstanceId: string;
+  parameters: {
+    datasetRid: unknown;
   };
 }
 
