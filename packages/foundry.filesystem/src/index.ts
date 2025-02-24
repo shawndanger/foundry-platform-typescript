@@ -23,6 +23,7 @@ export type {
   CreateProjectFromTemplateRequest,
   CreateProjectRequest,
   Everyone,
+  FileSystemId,
   Folder,
   FolderRid,
   FolderType,
@@ -31,6 +32,7 @@ export type {
   ListMarkingsOfResourceResponse,
   ListOrganizationsOfProjectResponse,
   ListResourceRolesResponse,
+  ListSpacesResponse,
   Marking,
   Organization,
   PrincipalWithId,
@@ -52,6 +54,7 @@ export type {
   Space,
   SpaceRid,
   TrashStatus,
+  UsageAccountRid,
 } from "./_components.js";
 export type {
   AddGroupToParentGroupPermissionDenied,
@@ -116,3 +119,4 @@ export * as Folders from "./public/Folder.js";
 export * as Projects from "./public/Project.js";
 export * as Resources from "./public/Resource.js";
 export * as ResourceRoles from "./public/ResourceRole.js";
+export * as Spaces from "./public/Space.js";

@@ -57,7 +57,7 @@ export interface AndTrigger {
  * Log Safety: UNSAFE
  */
 export interface Build {
-  rid: BuildRid;
+  rid: _Core.BuildRid;
   branchName: _Datasets.BranchName;
   createdTime: _Core.CreatedTime;
   createdBy: _Core.CreatedBy;
@@ -75,13 +75,6 @@ RID or Restricted View RID.
    * Log Safety: SAFE
    */
 export type BuildableRid = LooselyBrandedString<"BuildableRid">;
-
-/**
- * The RID of a build.
- *
- * Log Safety: SAFE
- */
-export type BuildRid = LooselyBrandedString<"BuildRid">;
 
 /**
  * The status of the build.
@@ -328,14 +321,22 @@ export type ForceBuild = boolean;
  * Log Safety: SAFE
  */
 export interface GetBuildsBatchRequestElement {
-  buildRid: BuildRid;
+  buildRid: _Core.BuildRid;
 }
 
 /**
  * Log Safety: UNSAFE
  */
 export interface GetBuildsBatchResponse {
-  data: Record<BuildRid, Build>;
+  data: Record<_Core.BuildRid, Build>;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface Job {
+  rid: _Core.JobRid;
+  buildRid: _Core.BuildRid;
 }
 
 /**
@@ -691,7 +692,7 @@ export type ScheduleRunRid = LooselyBrandedString<"ScheduleRunRid">;
  * Log Safety: SAFE
  */
 export interface ScheduleRunSubmitted {
-  buildRid: BuildRid;
+  buildRid: _Core.BuildRid;
 }
 
 /**

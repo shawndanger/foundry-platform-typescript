@@ -956,8 +956,9 @@ export type CustomTypeId = LooselyBrandedString<"CustomTypeId">;
 | CipherText                          | string                                                | "CIPHER::ri.bellaso.main.cipher-channel.e414ab9e-b606-499a-a0e1-844fa296ba7e::unzjs3VifsTxuIpf1fH1CJ7OaPBr2bzMMdozPaZJtCii8vVG60yXIEmzoOJaEl9mfFFe::CIPHER" |
 | Date                                | ISO 8601 extended local date string                   | "2021-05-01"                                                                                                                                                |
 | Decimal                             | string                                                | "2.718281828"                                                                                                                                               |
-| Float                               | number                                                | 3.14159265                                                                                                                                                  |
 | Double                              | number                                                | 3.14159265                                                                                                                                                  |
+| EntrySet                            | array of JSON objects                                 | [{"key": "EMP1234", "value": "true"}, {"key": "EMP4444", "value": "false"}]                                                                                 |
+| Float                               | number                                                | 3.14159265                                                                                                                                                  |
 | Integer                             | number                                                | 238940                                                                                                                                                      |
 | Long                                | string                                                | "58319870951433"                                                                                                                                            |
 | Marking                             | string                                                | "MU"                                                                                                                                                        |
@@ -1084,6 +1085,14 @@ export interface DoubleVector {
  * Log Safety: UNSAFE
  */
 export type Duration = LooselyBrandedString<"Duration">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface EntrySetType {
+  keyType: QueryDataType;
+  valueType: QueryDataType;
+}
 
 /**
  * Returns objects where the specified field is equal to a value.
@@ -2927,6 +2936,7 @@ export type QueryDataType =
   | ({ type: "struct" } & QueryStructType)
   | ({ type: "set" } & QuerySetType)
   | ({ type: "string" } & _Core.StringType)
+  | ({ type: "entrySet" } & EntrySetType)
   | ({ type: "double" } & _Core.DoubleType)
   | ({ type: "integer" } & _Core.IntegerType)
   | ({ type: "threeDimensionalAggregation" } & ThreeDimensionalAggregation)

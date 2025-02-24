@@ -245,7 +245,9 @@ export interface ApiUsageDenied {
   errorCode: "PERMISSION_DENIED";
   errorName: "ApiUsageDenied";
   errorInstanceId: string;
-  parameters: {};
+  parameters: {
+    missingScope: unknown;
+  };
 }
 
 /**

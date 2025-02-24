@@ -130,6 +130,7 @@ export type {
   DoesNotIntersectPolygonQuery,
   DoubleVector,
   Duration,
+  EntrySetType,
   EqualsQuery,
   EqualsQueryV2,
   Error,

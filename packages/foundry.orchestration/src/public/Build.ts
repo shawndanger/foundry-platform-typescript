@@ -31,7 +31,7 @@ import type * as _Orchestration from "../_components.js";
 
 const _get: $FoundryPlatformMethod<
   (
-    buildRid: _Orchestration.BuildRid,
+    buildRid: _Core.BuildRid,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Orchestration.Build>
 > = [0, "/v2/orchestration/builds/{0}", 2];
@@ -47,7 +47,7 @@ const _get: $FoundryPlatformMethod<
 export function get(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    buildRid: _Orchestration.BuildRid,
+    buildRid: _Core.BuildRid,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
@@ -107,7 +107,7 @@ export function create(
 
 const _cancel: $FoundryPlatformMethod<
   (
-    buildRid: _Orchestration.BuildRid,
+    buildRid: _Core.BuildRid,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
 > = [1, "/v2/orchestration/builds/{0}/cancel", 2];
@@ -123,7 +123,7 @@ const _cancel: $FoundryPlatformMethod<
 export function cancel(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    buildRid: _Orchestration.BuildRid,
+    buildRid: _Core.BuildRid,
 
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]

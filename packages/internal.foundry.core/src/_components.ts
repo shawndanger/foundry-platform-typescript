@@ -2439,6 +2439,13 @@ item which was written last is returned.
 export type MediaItemPath = LooselyBrandedString<"MediaItemPath">;
 
 /**
+ * A token that grants access to read specific media items.
+ *
+ * Log Safety: UNSAFE
+ */
+export type MediaItemReadToken = LooselyBrandedString<"MediaItemReadToken">;
+
+/**
  * The Resource Identifier (RID) of an individual Media Item within a Media Set in Foundry.
  *
  * Log Safety: SAFE
@@ -2488,16 +2495,17 @@ export interface MediaReferenceType {}
 export type MediaSetRid = LooselyBrandedString<"MediaSetRid">;
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface MediaSetViewItem {
   mediaSetRid: MediaSetRid;
   mediaSetViewRid: MediaSetViewRid;
   mediaItemRid: MediaItemRid;
+  token?: MediaItemReadToken;
 }
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface MediaSetViewItemWrapper {
   mediaSetViewItem: MediaSetViewItem;
@@ -3340,6 +3348,11 @@ export interface OntologyV2 {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export type OperationScope = LooselyBrandedString<"OperationScope">;
+
+/**
 * @deprecated Use `OrderBy` in the `internal.foundry.ontologies` package
 *
    * A command representing the list of properties to order by. Properties should be delimited by commas and
@@ -4099,7 +4112,11 @@ export type RelativeTimeSeriesTimeUnit =
  *
  * Log Safety: SAFE
  */
-export type ReleaseStatus = "ACTIVE" | "EXPERIMENTAL" | "DEPRECATED";
+export type ReleaseStatus =
+  | "ACTIVE"
+  | "ENDORSED"
+  | "EXPERIMENTAL"
+  | "DEPRECATED";
 
 /**
  * @deprecated Use `RequestId` in the `internal.foundry.ontologies` package

@@ -20,7 +20,6 @@ export type {
   AndTrigger,
   Build,
   BuildableRid,
-  BuildRid,
   BuildStatus,
   BuildTarget,
   ConnectingTarget,
@@ -50,6 +49,7 @@ export type {
   ForceBuild,
   GetBuildsBatchRequestElement,
   GetBuildsBatchResponse,
+  Job,
   JobSucceededTrigger,
   ListRunsOfScheduleResponse,
   ManualTarget,
@@ -121,6 +121,7 @@ export type {
   BuildTargetsNotFound,
   BuildTargetsPermissionDenied,
   BuildTargetsResolutionError,
+  BuildTargetsUpToDate,
   CancelBuildPermissionDenied,
   CreateBuildsPermissionDenied,
   CreateSchedulePermissionDenied,
@@ -131,6 +132,7 @@ export type {
   InvalidScheduleDescription,
   InvalidScheduleName,
   InvalidTimeTrigger,
+  JobNotFound,
   MissingBuildTargets,
   MissingConnectingBuildInputs,
   MissingTrigger,
@@ -146,5 +148,6 @@ export type {
   UnpauseSchedulePermissionDenied,
 } from "./_errors.js";
 export * as Builds from "./public/Build.js";
+export * as Jobs from "./public/Job.js";
 export * as Schedules from "./public/Schedule.js";
 export * as ScheduleVersions from "./public/ScheduleVersion.js";
