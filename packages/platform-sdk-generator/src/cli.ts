@@ -14,14 +14,15 @@
  * limitations under the License.
  */
 
+import type { ApiSpec } from "@osdk/platform-docs-spec";
 import fs from "node:fs/promises";
 import * as process from "node:process";
 import { parse as parseYaml } from "yaml";
 import type { Arguments, Argv, CommandModule } from "yargs";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
+import { generateDocsPackage } from "./generateDocsPackage.js";
 import { generatePlatformSdkV2 } from "./generatePlatformSdkv2.js";
-import type { ApiSpec } from "./ir/index.js";
 import { updateSls } from "./updateSls.js";
 
 export async function cli(
@@ -43,6 +44,7 @@ export interface Options {
   prefix: string;
   deprecatedFile?: string;
   endpointVersion: string;
+  mode: "docs" | "docs-and-sdks" | "sdks";
 }
 
 export class GenerateCommand implements CommandModule<{}, Options> {
@@ -84,6 +86,13 @@ export class GenerateCommand implements CommandModule<{}, Options> {
           "The endpoint versions to generate with. Matches this version to the version listed for the namespace in the IR.",
         type: "string",
         demandOption: true,
+      })
+      .option("mode", {
+        describe:
+          "Whether to generate Platform SDKs, Platform SDK documentation specification, or both.",
+        type: "string",
+        choices: ["docs", "docs-and-sdks", "sdks"] as const,
+        demandOption: true,
       });
   }
 
@@ -115,13 +124,22 @@ export class GenerateCommand implements CommandModule<{}, Options> {
       const deprecatedIrSpec: ApiSpec | undefined = deprecatedIr
         ? JSON.parse(deprecatedIr)
         : undefined;
-      const pkgDirs = await generatePlatformSdkV2(
-        irSpec,
-        output,
-        args.prefix,
-        args.endpointVersion,
-        deprecatedIrSpec,
-      );
+      const pkgDirs = [
+        ...(args.mode === "docs-and-sdks"
+            || args.mode === "sdks"
+          ? await generatePlatformSdkV2(
+            irSpec,
+            output,
+            args.prefix,
+            args.endpointVersion,
+            deprecatedIrSpec,
+          )
+          : []),
+        ...(args.mode === "docs-and-sdks"
+            || args.mode === "docs"
+          ? [await generateDocsPackage(irSpec, output)]
+          : []),
+      ];
       for (const pkgDir of pkgDirs) {
         await updateSls(manifest, pkgDir);
       }

@@ -133,6 +133,15 @@ importers:
         specifier: ^2.1.2
         version: 2.1.2(@types/node@22.7.4)
 
+  packages/docs-spec-core:
+    devDependencies:
+      '@osdk/monorepo.tsconfig':
+        specifier: workspace:~
+        version: link:../monorepo.tsconfig
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
+
   packages/foundry:
     dependencies:
       '@osdk/foundry.admin':
@@ -745,8 +754,27 @@ importers:
         specifier: ^8.3.0
         version: 8.3.0(@microsoft/api-extractor@7.47.0(@types/node@22.7.4))(jiti@1.21.6)(postcss@8.4.39)(typescript@5.5.4)(yaml@2.5.1)
 
+  packages/platform-docs-spec:
+    dependencies:
+      '@osdk/docs-spec-core':
+        specifier: workspace:*
+        version: link:../docs-spec-core
+    devDependencies:
+      '@osdk/monorepo.tsconfig':
+        specifier: workspace:~
+        version: link:../monorepo.tsconfig
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
+
   packages/platform-sdk-generator:
     dependencies:
+      '@osdk/docs-spec-core':
+        specifier: workspace:*
+        version: link:../docs-spec-core
+      '@osdk/platform-docs-spec':
+        specifier: workspace:*
+        version: link:../platform-docs-spec
       find-up:
         specifier: ^7.0.0
         version: 7.0.0
