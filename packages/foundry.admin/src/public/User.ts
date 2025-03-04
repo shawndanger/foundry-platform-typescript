@@ -185,6 +185,8 @@ const _search: $FoundryPlatformMethod<
 > = [1, "/v2/admin/users/search", 1];
 
 /**
+ * Perform a case-insensitive prefix search for users based on username, given name and family name.
+ *
  * @public
  *
  * Required Scopes: [api:admin-read]

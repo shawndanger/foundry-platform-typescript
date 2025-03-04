@@ -123,3 +123,30 @@ export function updateSecrets(
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _updateSecrets, ...args);
 }
+
+const _getConfiguration: $FoundryPlatformMethod<
+  (
+    connectionRid: _Connectivity.ConnectionRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Connectivity.ConnectionConfiguration>
+> = [0, "/v2/connectivity/connections/{0}/getConfiguration", 2];
+
+/**
+ * Retrieves the ConnectionConfiguration of the [Connection](https://www.palantir.com/docs/foundry/data-connection/set-up-source/) itself.
+ * This operation is intended for use when other Connection data is not required, providing a lighter-weight alternative to `getConnection` operation.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:connectivity-connection-read]
+ * URL: /v2/connectivity/connections/{connectionRid}/getConfiguration
+ */
+export function getConfiguration(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    connectionRid: _Connectivity.ConnectionRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Connectivity.ConnectionConfiguration> {
+  return $foundryPlatformFetch($ctx, _getConfiguration, ...args);
+}

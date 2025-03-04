@@ -57,6 +57,17 @@ export interface AgentWorkerRuntime {
 }
 
 /**
+   * The API key used to authenticate to the external system.
+This can be configured as a header or query parameter.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface ApiKeyAuthentication {
+  location: RestRequestApiKeyLocation;
+  apiKey: EncryptedProperty;
+}
+
+/**
  * Log Safety: DO_NOT_LOG
  */
 export interface AsPlaintextValue {
@@ -93,6 +104,15 @@ export interface BasicCredentials {
 }
 
 /**
+ * The bearer token used to authenticate to the external system.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface BearerToken {
+  bearerToken: EncryptedProperty;
+}
+
+/**
    * Cloud identities allow you to authenticate to
 cloud provider resources without the use of static credentials.
    *
@@ -123,9 +143,9 @@ export interface Connection {
 /**
  * Log Safety: UNSAFE
  */
-export type ConnectionConfiguration = {
-  type: "s3";
-} & S3ConnectionConfiguration;
+export type ConnectionConfiguration =
+  | ({ type: "s3" } & S3ConnectionConfiguration)
+  | ({ type: "rest" } & RestConnectionConfiguration);
 
 /**
  * The display name of the Connection. The display name must not be blank.
@@ -207,9 +227,9 @@ export interface CreateConnectionRequestCloudIdentity {
 /**
  * Log Safety: UNSAFE
  */
-export type CreateConnectionRequestConnectionConfiguration = {
-  type: "s3";
-} & CreateConnectionRequestS3ConnectionConfiguration;
+export type CreateConnectionRequestConnectionConfiguration =
+  | ({ type: "s3" } & CreateConnectionRequestS3ConnectionConfiguration)
+  | ({ type: "rest" } & CreateConnectionRequestRestConnectionConfiguration);
 
 /**
  * Log Safety: SAFE
@@ -245,6 +265,27 @@ export type CreateConnectionRequestEncryptedProperty =
  */
 export interface CreateConnectionRequestOidc {
   audience: string;
+}
+
+/**
+   * When creating or updating additional secrets, use SecretsWithPlaintextValues.
+When fetching the RestConnectionConfiguration, SecretsNames will be provided.
+   *
+   * Log Safety: UNSAFE
+   */
+export type CreateConnectionRequestRestConnectionAdditionalSecrets =
+  | ({
+    type: "asSecretsWithPlaintextValues";
+  } & CreateConnectionRequestSecretsWithPlaintextValues)
+  | ({ type: "asSecretsNames" } & CreateConnectionRequestSecretsNames);
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface CreateConnectionRequestRestConnectionConfiguration {
+  additionalSecrets: CreateConnectionRequestRestConnectionAdditionalSecrets;
+  oauth2ClientRid?: string;
+  domains: Array<Domain>;
 }
 
 /**
@@ -307,6 +348,18 @@ export interface CreateConnectionRequestS3ProxyConfiguration {
   port: number;
   credentials?: BasicCredentials;
   host: string;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface CreateConnectionRequestSecretsNames {}
+
+/**
+ * Log Safety: DO_NOT_LOG
+ */
+export interface CreateConnectionRequestSecretsWithPlaintextValues {
+  secrets: Record<SecretName, PlaintextValue>;
 }
 
 /**
@@ -409,6 +462,18 @@ This is the preferred source connection method if the data source is accessible 
    */
 export interface DirectConnectionRuntime {
   networkEgressPolicyRids: Array<NetworkEgressPolicyRid>;
+}
+
+/**
+ * The domain that the connection is allowed to access.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface Domain {
+  scheme?: UriScheme;
+  host: string;
+  port?: number;
+  auth?: RestAuthenticationMode;
 }
 
 /**
@@ -595,6 +660,13 @@ export interface FileSizeFilter {
 }
 
 /**
+ * Log Safety: SAFE
+ */
+export interface HeaderApiKey {
+  headerName: string;
+}
+
+/**
  * The import configuration for a custom JDBC connection.
  *
  * Log Safety: UNSAFE
@@ -689,6 +761,13 @@ export interface PostgreSqlImportConfig {
 export type Protocol = "HTTP" | "HTTPS";
 
 /**
+ * Log Safety: SAFE
+ */
+export interface QueryParameterApiKey {
+  queryParameterName: string;
+}
+
+/**
  * The region of the external system.
  *
  * Log Safety: UNSAFE
@@ -706,6 +785,55 @@ export interface ReplaceFileImportRequest {
   subfolder?: string;
   fileImportFilters: Array<FileImportFilter>;
 }
+
+/**
+ * The method of authentication for connecting to an external REST system.
+ *
+ * Log Safety: UNSAFE
+ */
+export type RestAuthenticationMode =
+  | ({ type: "bearerToken" } & BearerToken)
+  | ({ type: "apiKey" } & ApiKeyAuthentication)
+  | ({ type: "basic" } & BasicCredentials)
+  | ({ type: "oauth2" } & RestConnectionOAuth2);
+
+/**
+   * When creating or updating additional secrets, use SecretsWithPlaintextValues.
+When fetching the RestConnectionConfiguration, SecretsNames will be provided.
+   *
+   * Log Safety: UNSAFE
+   */
+export type RestConnectionAdditionalSecrets =
+  | ({ type: "asSecretsWithPlaintextValues" } & SecretsWithPlaintextValues)
+  | ({ type: "asSecretsNames" } & SecretsNames);
+
+/**
+ * The configuration needed to connect to a REST external system.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface RestConnectionConfiguration {
+  domains: Array<Domain>;
+  additionalSecrets: RestConnectionAdditionalSecrets;
+  oauth2ClientRid?: string;
+}
+
+/**
+   * In order to use OAuth2 you must have an Outbound application configured in the Foundry Control Panel Organization settings.
+The RID of the Outbound application must be configured in the RestConnectionConfiguration in the oauth2ClientRid field.
+   *
+   * Log Safety: SAFE
+   */
+export interface RestConnectionOAuth2 {}
+
+/**
+ * The location of the API key in the request.
+ *
+ * Log Safety: UNSAFE
+ */
+export type RestRequestApiKeyLocation =
+  | ({ type: "header" } & HeaderApiKey)
+  | ({ type: "queryParameter" } & QueryParameterApiKey);
 
 /**
    * The runtime of a Connection, which defines the
@@ -772,6 +900,26 @@ export interface S3ProxyConfiguration {
  * Log Safety: UNSAFE
  */
 export type SecretName = LooselyBrandedString<"SecretName">;
+
+/**
+   * A list of secret names that can be referenced in code and webhook configurations.
+This will be provided to the client when fetching the RestConnectionConfiguration.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface SecretsNames {
+  secretNames: Array<SecretName>;
+}
+
+/**
+   * A map representing secret name to plaintext secret value pairs.
+This should be used when creating or updating additional secrets for a REST connection.
+   *
+   * Log Safety: DO_NOT_LOG
+   */
+export interface SecretsWithPlaintextValues {
+  secrets: Record<SecretName, PlaintextValue>;
+}
 
 /**
  * Log Safety: UNSAFE
@@ -848,3 +996,10 @@ export type TableImportRid = LooselyBrandedString<"TableImportRid">;
 export interface UpdateSecretsForConnectionRequest {
   secrets: Record<SecretName, PlaintextValue>;
 }
+
+/**
+ * Defines supported URI schemes to be used for external connections.
+ *
+ * Log Safety: SAFE
+ */
+export type UriScheme = "HTTP" | "HTTPS";

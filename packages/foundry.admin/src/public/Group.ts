@@ -143,6 +143,8 @@ const _search: $FoundryPlatformMethod<
 > = [1, "/v2/admin/groups/search", 1];
 
 /**
+ * Perform a case-insensitive prefix search for groups based on group name.
+ *
  * @public
  *
  * Required Scopes: [api:admin-read]

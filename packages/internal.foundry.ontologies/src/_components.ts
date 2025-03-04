@@ -726,6 +726,33 @@ export interface AvgAggregationV2 {
 /**
  * Log Safety: UNSAFE
  */
+export type BatchActionObjectEdit =
+  | ({ type: "modifyObject" } & ModifyObject)
+  | ({ type: "addObject" } & AddObject)
+  | ({ type: "addLink" } & AddLink);
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface BatchActionObjectEdits {
+  edits: Array<BatchActionObjectEdit>;
+  addedObjectCount: number;
+  modifiedObjectsCount: number;
+  deletedObjectsCount: number;
+  addedLinksCount: number;
+  deletedLinksCount: number;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export type BatchActionResults =
+  | ({ type: "edits" } & BatchActionObjectEdits)
+  | ({ type: "largeScaleEdits" } & ObjectTypeEdits);
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface BatchApplyActionRequest {
   requests: Array<ApplyActionRequest>;
 }
@@ -741,7 +768,7 @@ export interface BatchApplyActionRequestItem {
  * Log Safety: SAFE
  */
 export interface BatchApplyActionRequestOptions {
-  returnEdits?: ReturnEditsMode;
+  returnEdits?: BatchReturnEditsMode;
 }
 
 /**
@@ -761,8 +788,13 @@ export interface BatchApplyActionResponse {}
  * Log Safety: UNSAFE
  */
 export interface BatchApplyActionResponseV2 {
-  edits?: ActionResults;
+  edits?: BatchActionResults;
 }
+
+/**
+ * Log Safety: SAFE
+ */
+export type BatchReturnEditsMode = "ALL" | "NONE";
 
 /**
  * Log Safety: UNSAFE
@@ -989,11 +1021,29 @@ export interface DeleteInterfaceObjectRule {
 /**
  * Log Safety: UNSAFE
  */
+export interface DeleteLink {
+  linkTypeApiNameAtoB: LinkTypeApiName;
+  linkTypeApiNameBtoA: LinkTypeApiName;
+  aSideObject: LinkSideObject;
+  bSideObject: LinkSideObject;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface DeleteLinkRule {
   linkTypeApiNameAtoB: LinkTypeApiName;
   linkTypeApiNameBtoA: LinkTypeApiName;
   aSideObjectTypeApiName: ObjectTypeApiName;
   bSideObjectTypeApiName: ObjectTypeApiName;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface DeleteObject {
+  primaryKey: PropertyValue;
+  objectType: ObjectTypeApiName;
 }
 
 /**
@@ -1381,6 +1431,21 @@ export type InterfaceLinkTypeLinkedEntityApiName =
 export type InterfaceLinkTypeRid = LooselyBrandedString<"InterfaceLinkTypeRid">;
 
 /**
+   * A shared property type with an additional field to indicate whether the property must be included on every
+object type that implements the interface, or whether it is optional.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface InterfaceSharedPropertyType {
+  rid: SharedPropertyTypeRid;
+  apiName: SharedPropertyTypeApiName;
+  displayName: _Core.DisplayName;
+  description?: string;
+  dataType: ObjectPropertyType;
+  required: boolean;
+}
+
+/**
  * Represents an implementation of an interface (the mapping of interface property to local property).
  *
  * Log Safety: UNSAFE
@@ -1410,8 +1475,8 @@ export interface InterfaceType {
   apiName: InterfaceTypeApiName;
   displayName: _Core.DisplayName;
   description?: string;
-  properties: Record<SharedPropertyTypeApiName, SharedPropertyType>;
-  allProperties: Record<SharedPropertyTypeApiName, SharedPropertyType>;
+  properties: Record<SharedPropertyTypeApiName, InterfaceSharedPropertyType>;
+  allProperties: Record<SharedPropertyTypeApiName, InterfaceSharedPropertyType>;
   extendsInterfaces: Array<InterfaceTypeApiName>;
   allExtendsInterfaces: Array<InterfaceTypeApiName>;
   implementedByObjectTypes: Array<ObjectTypeApiName>;
@@ -1960,7 +2025,9 @@ export interface NotQueryV2 {
  */
 export type ObjectEdit =
   | ({ type: "modifyObject" } & ModifyObject)
+  | ({ type: "deleteObject" } & DeleteObject)
   | ({ type: "addObject" } & AddObject)
+  | ({ type: "deleteLink" } & DeleteLink)
   | ({ type: "addLink" } & AddLink);
 
 /**
@@ -3154,7 +3221,7 @@ export type RequestId = string;
 /**
  * Log Safety: SAFE
  */
-export type ReturnEditsMode = "ALL" | "NONE";
+export type ReturnEditsMode = "ALL" | "ALL_V2_WITH_DELETIONS" | "NONE";
 
 /**
  * Log Safety: UNSAFE
