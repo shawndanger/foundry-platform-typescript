@@ -1,5 +1,19 @@
 # @osdk/platform-sdk-generator
 
+## 0.11.0
+
+### Minor Changes
+
+- d7161f2: Platform docs spec
+
+### Patch Changes
+
+- Updated dependencies [85f2000]
+- Updated dependencies [d7161f2]
+- Updated dependencies [cde3ab6]
+  - @osdk/docs-spec-core@0.1.0
+  - @osdk/platform-docs-spec@0.1.0
+
 ## 0.10.0
 
 ### Minor Changes

@@ -1,5 +1,30 @@
 # @osdk/foundry
 
+## 2.15.0
+
+### Minor Changes
+
+- cde3ab6: Updates API Gateway version and regenerates SDK
+
+### Patch Changes
+
+- Updated dependencies [cde3ab6]
+  - @osdk/foundry.thirdpartyapplications@2.15.0
+  - @osdk/foundry.orchestration@2.15.0
+  - @osdk/foundry.connectivity@2.15.0
+  - @osdk/foundry.filesystem@2.15.0
+  - @osdk/foundry.ontologies@2.15.0
+  - @osdk/foundry.publicapis@2.15.0
+  - @osdk/foundry.sqlqueries@2.15.0
+  - @osdk/foundry.aipagents@2.15.0
+  - @osdk/foundry.functions@2.15.0
+  - @osdk/foundry.mediasets@2.15.0
+  - @osdk/foundry.datasets@2.15.0
+  - @osdk/foundry.streams@2.15.0
+  - @osdk/foundry.admin@2.15.0
+  - @osdk/foundry.core@2.15.0
+  - @osdk/foundry.geo@2.15.0
+
 ## 2.14.0
 
 ### Minor Changes
