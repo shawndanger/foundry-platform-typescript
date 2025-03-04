@@ -1,5 +1,16 @@
 # @osdk/foundry.admin
 
+## 2.15.0
+
+### Minor Changes
+
+- cde3ab6: Updates API Gateway version and regenerates SDK
+
+### Patch Changes
+
+- Updated dependencies [cde3ab6]
+  - @osdk/foundry.core@2.15.0
+
 ## 2.14.0
 
 ### Minor Changes
