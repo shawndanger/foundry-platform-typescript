@@ -180,6 +180,9 @@ importers:
       '@osdk/foundry.publicapis':
         specifier: workspace:*
         version: link:../foundry.publicapis
+      '@osdk/foundry.sqlqueries':
+        specifier: workspace:*
+        version: link:../foundry.sqlqueries
       '@osdk/foundry.streams':
         specifier: workspace:*
         version: link:../foundry.streams
@@ -486,6 +489,31 @@ importers:
       '@osdk/foundry.core':
         specifier: workspace:*
         version: link:../foundry.core
+      '@osdk/shared.client':
+        specifier: ^1.0.1
+        version: 1.0.1
+      '@osdk/shared.client2':
+        specifier: ^1.0.0
+        version: 1.0.0
+      '@osdk/shared.net.platformapi':
+        specifier: workspace:~
+        version: link:../shared.net.platformapi
+    devDependencies:
+      '@osdk/monorepo.tsconfig':
+        specifier: workspace:~
+        version: link:../monorepo.tsconfig
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
+
+  packages/foundry.sqlqueries:
+    dependencies:
+      '@osdk/foundry.core':
+        specifier: workspace:*
+        version: link:../foundry.core
+      '@osdk/foundry.datasets':
+        specifier: workspace:*
+        version: link:../foundry.datasets
       '@osdk/shared.client':
         specifier: ^1.0.1
         version: 1.0.1

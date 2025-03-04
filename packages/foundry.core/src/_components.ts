@@ -1147,7 +1147,7 @@ export type PropertyValue = any;
    * Identifies which Realm a User or Group is a member of.
 The palantir-internal-realm is used for Users or Groups that are created in Foundry by administrators and not associated with any SSO provider.
    *
-   * Log Safety: UNSAFE
+   * Log Safety: SAFE
    */
 export type Realm = LooselyBrandedString<"Realm">;
 

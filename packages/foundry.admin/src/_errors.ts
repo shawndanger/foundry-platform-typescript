@@ -61,9 +61,24 @@ export interface AddMarkingRoleAssignmentsPermissionDenied {
 }
 
 /**
+ * The given AuthenticationProvider could not be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface AuthenticationProviderNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "AuthenticationProviderNotFound";
+  errorInstanceId: string;
+  parameters: {
+    enrollmentRid: unknown;
+    authenticationProviderRid: unknown;
+  };
+}
+
+/**
  * Provider information for Principals in this Realm cannot be replaced.
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface CannotReplaceProviderInfoForPrincipalInProtectedRealm {
   errorCode: "INVALID_ARGUMENT";
@@ -207,7 +222,7 @@ export interface GetGroupProviderInfoPermissionDenied {
 }
 
 /**
- * You do not have permission to view the marking category.
+ * The provided token does not have permission to view the marking category.
  *
  * Log Safety: SAFE
  */
@@ -221,7 +236,7 @@ export interface GetMarkingCategoryPermissionDenied {
 }
 
 /**
- * You do not have permission to view the marking.
+ * The provided token does not have permission to view the marking.
  *
  * Log Safety: SAFE
  */
@@ -336,7 +351,7 @@ export interface InvalidGroupMembershipExpiration {
 }
 
 /**
- * You must provide at least one Organization RID for a group
+ * At least one Organization RID must be provided for a group
  *
  * Log Safety: SAFE
  */
@@ -390,7 +405,7 @@ export interface ListHostsPermissionDenied {
 }
 
 /**
- * You do not have permission to list the members of this marking.
+ * The provided token does not have permission to list the members of this marking.
  *
  * Log Safety: SAFE
  */
@@ -404,7 +419,7 @@ export interface ListMarkingMembersPermissionDenied {
 }
 
 /**
- * You do not have permission to list assigned roles for this marking.
+ * The provided token does not have permission to list assigned roles for this marking.
  *
  * Log Safety: SAFE
  */
@@ -456,6 +471,36 @@ export interface OrganizationNotFound {
   errorInstanceId: string;
   parameters: {
     organizationRid: unknown;
+  };
+}
+
+/**
+ * Could not preregisterGroup the AuthenticationProvider.
+ *
+ * Log Safety: SAFE
+ */
+export interface PreregisterGroupPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "PreregisterGroupPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    enrollmentRid: unknown;
+    authenticationProviderRid: unknown;
+  };
+}
+
+/**
+ * Could not preregisterUser the AuthenticationProvider.
+ *
+ * Log Safety: SAFE
+ */
+export interface PreregisterUserPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "PreregisterUserPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    enrollmentRid: unknown;
+    authenticationProviderRid: unknown;
   };
 }
 

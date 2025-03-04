@@ -19,6 +19,18 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+ * The additional secrets must be specified as a plaintext value map.
+ *
+ * Log Safety: SAFE
+ */
+export interface AdditionalSecretsMustBeSpecifiedAsPlaintextValueMap {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "AdditionalSecretsMustBeSpecifiedAsPlaintextValueMap";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * Changing of branch name is not supported for imports.
  *
  * Log Safety: UNSAFE
@@ -83,7 +95,7 @@ export interface ConnectionNotFound {
  * Log Safety: UNSAFE
  */
 export interface ConnectionTypeNotSupported {
-  errorCode: "INTERNAL";
+  errorCode: "INVALID_ARGUMENT";
   errorName: "ConnectionTypeNotSupported";
   errorInstanceId: string;
   parameters: {
@@ -159,6 +171,18 @@ export interface DeleteTableImportPermissionDenied {
     tableImportRid: unknown;
     connectionRid: unknown;
   };
+}
+
+/**
+ * The domain must use HTTPS if authentication is required.
+ *
+ * Log Safety: SAFE
+ */
+export interface DomainMustUseHttpsWithAuthentication {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "DomainMustUseHttpsWithAuthentication";
+  errorInstanceId: string;
+  parameters: {};
 }
 
 /**
@@ -335,6 +359,20 @@ export interface FileSizeFilterMissingGreaterThanAndLessThan {
 }
 
 /**
+ * Could not getConfiguration the Connection.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetConfigurationPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetConfigurationPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    connectionRid: unknown;
+  };
+}
+
+/**
  * The parent folder for the specified connection could not be found.
  *
  * Log Safety: SAFE
@@ -356,6 +394,20 @@ export interface ParentFolderNotFoundForConnection {
 export interface PropertyCannotBeBlank {
   errorCode: "INVALID_ARGUMENT";
   errorName: "PropertyCannotBeBlank";
+  errorInstanceId: string;
+  parameters: {
+    propertyName: unknown;
+  };
+}
+
+/**
+ * The specified property cannot be empty.
+ *
+ * Log Safety: SAFE
+ */
+export interface PropertyCannotBeEmpty {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "PropertyCannotBeEmpty";
   errorInstanceId: string;
   parameters: {
     propertyName: unknown;

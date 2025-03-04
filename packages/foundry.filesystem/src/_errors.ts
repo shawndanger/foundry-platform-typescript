@@ -327,10 +327,12 @@ export interface InvalidFolder {
 }
 
 /**
- * The project created from template would have either no organizations in a marked space, or an organization which is not on the space.
- *
- * Log Safety: SAFE
- */
+   * Organizations on a project must also exist on the parent space. This error is thrown if the configuration
+of a project's organizations (on creation or subsequently) results in the project being marked with either
+no organizations in a marked space, or with an organization that is not present on the parent space.
+   *
+   * Log Safety: SAFE
+   */
 export interface InvalidOrganizationHierarchy {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidOrganizationHierarchy";
@@ -473,6 +475,21 @@ export interface MissingVariableValue {
 export interface NotAuthorizedToApplyOrganization {
   errorCode: "INVALID_ARGUMENT";
   errorName: "NotAuthorizedToApplyOrganization";
+  errorInstanceId: string;
+  parameters: {
+    organizationRids: unknown;
+  };
+}
+
+/**
+   * An organization cannot be removed from a project if it would result in a project with no organizations
+under a space marked with an organization.
+   *
+   * Log Safety: SAFE
+   */
+export interface OrganizationCannotBeRemoved {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "OrganizationCannotBeRemoved";
   errorInstanceId: string;
   parameters: {
     organizationRids: unknown;

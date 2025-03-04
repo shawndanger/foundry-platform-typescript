@@ -357,6 +357,18 @@ export interface FunctionInvalidInput {
 }
 
 /**
+ * High-scale compute was required for this Ontology query but is not enabled on this enrollment.
+ *
+ * Log Safety: SAFE
+ */
+export interface HighScaleComputationNotEnabled {
+  errorCode: "TIMEOUT";
+  errorName: "HighScaleComputationNotEnabled";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The requested interface type is not found, or the client token does not have access to it.
  *
  * Log Safety: UNSAFE

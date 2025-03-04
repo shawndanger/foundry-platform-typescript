@@ -259,6 +259,35 @@ export const PLATFORM_API_DOCS_SPEC = {
         "preview": "required",
       },
     },
+    "v2.Admin.AuthenticationProvider.listAuthenticationProviders": {
+      "variables": {
+        "enrollmentRid": "required",
+        "preview": "required",
+      },
+    },
+    "v2.Admin.AuthenticationProvider.getAuthenticationProvider": {
+      "variables": {
+        "enrollmentRid": "required",
+        "authenticationProviderRid": "required",
+        "preview": "required",
+      },
+    },
+    "v2.Admin.AuthenticationProvider.preregisterUser": {
+      "variables": {
+        "requestBody": "required",
+        "enrollmentRid": "required",
+        "authenticationProviderRid": "required",
+        "preview": "required",
+      },
+    },
+    "v2.Admin.AuthenticationProvider.preregisterGroup": {
+      "variables": {
+        "requestBody": "required",
+        "enrollmentRid": "required",
+        "authenticationProviderRid": "required",
+        "preview": "required",
+      },
+    },
     "v2.Datasets.Dataset.createDataset": {
       "variables": {
         "requestBody": "required",
@@ -615,6 +644,12 @@ export const PLATFORM_API_DOCS_SPEC = {
         "preview": "required",
       },
     },
+    "v2.Connectivity.Connection.getConfiguration": {
+      "variables": {
+        "connectionRid": "required",
+        "preview": "required",
+      },
+    },
     "v2.Connectivity.FileImport.createFileImport": {
       "variables": {
         "requestBody": "required",
@@ -939,6 +974,30 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {
         "valueTypeRid": "required",
         "versionIdVersionId": "required",
+        "preview": "required",
+      },
+    },
+    "v2.SqlQueries.Query.executeQuery": {
+      "variables": {
+        "requestBody": "required",
+        "preview": "required",
+      },
+    },
+    "v2.SqlQueries.Query.getStatus": {
+      "variables": {
+        "queryId": "required",
+        "preview": "required",
+      },
+    },
+    "v2.SqlQueries.Query.cancelQuery": {
+      "variables": {
+        "queryId": "required",
+        "preview": "required",
+      },
+    },
+    "v2.SqlQueries.Query.getResults": {
+      "variables": {
+        "queryId": "required",
         "preview": "required",
       },
     },

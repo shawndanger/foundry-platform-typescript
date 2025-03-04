@@ -91,6 +91,7 @@ export type {
   MissingDisplayName,
   MissingVariableValue,
   NotAuthorizedToApplyOrganization,
+  OrganizationCannotBeRemoved,
   OrganizationMarkingNotOnSpace,
   OrganizationMarkingNotSupported,
   OrganizationsNotFound,
