@@ -44,7 +44,7 @@ const _list: $FoundryPlatformMethod<
 /**
  * List the roles on a resource.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:filesystem-read]
  * URL: /v2/filesystem/resources/{resourceRid}/roles
@@ -74,7 +74,7 @@ const _add: $FoundryPlatformMethod<
 > = [1, "/v2/filesystem/resources/{0}/roles/add", 3];
 
 /**
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:filesystem-write]
  * URL: /v2/filesystem/resources/{resourceRid}/roles/add
@@ -99,7 +99,7 @@ const _remove: $FoundryPlatformMethod<
 > = [1, "/v2/filesystem/resources/{0}/roles/remove", 3];
 
 /**
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:filesystem-write]
  * URL: /v2/filesystem/resources/{resourceRid}/roles/remove

@@ -2161,6 +2161,7 @@ export interface ObjectSetFilterType {
  */
 export interface ObjectSetInterfaceBaseType {
   interfaceType: string;
+  includeAllBaseObjectProperties?: boolean;
 }
 
 /**
