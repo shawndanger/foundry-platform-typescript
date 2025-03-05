@@ -40,7 +40,7 @@ const _deleteResource: $FoundryPlatformMethod<
  * Move the given resource to the trash. Following this operation, the resource can be restored, using the
  * `restore` operation, or permanently deleted using the `permanentlyDelete` operation.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:filesystem-write]
  * URL: /v2/filesystem/resources/{resourceRid}
@@ -66,7 +66,7 @@ const _get: $FoundryPlatformMethod<
 /**
  * Get the Resource with the specified rid.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:filesystem-read]
  * URL: /v2/filesystem/resources/{resourceRid}
@@ -92,7 +92,7 @@ const _getByPath: $FoundryPlatformMethod<
 /**
  * Get a Resource by its absolute path.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:filesystem-read]
  * URL: /v2/filesystem/resources/getByPath
@@ -120,7 +120,7 @@ const _restore: $FoundryPlatformMethod<
  * Restore the given resource and any directly trashed ancestors from the trash. If the resource is not
  * trashed, this operation will be ignored.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:filesystem-write]
  * URL: /v2/filesystem/resources/{resourceRid}/restore
@@ -147,7 +147,7 @@ const _permanentlyDelete: $FoundryPlatformMethod<
  * Permanently delete the given resource from the trash. If the Resource is not directly trashed, a
  * `ResourceNotTrashed` error will be thrown.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:filesystem-write]
  * URL: /v2/filesystem/resources/{resourceRid}/permanentlyDelete
@@ -174,7 +174,7 @@ const _addMarkings: $FoundryPlatformMethod<
 /**
  * Adds a list of Markings to a resource.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:filesystem-write]
  * URL: /v2/filesystem/resources/{resourceRid}/addMarkings
@@ -201,7 +201,7 @@ const _removeMarkings: $FoundryPlatformMethod<
 /**
  * Removes Markings from a resource.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:filesystem-write]
  * URL: /v2/filesystem/resources/{resourceRid}/removeMarkings
@@ -228,7 +228,7 @@ const _getAccessRequirements: $FoundryPlatformMethod<
  * Returns a list of access requirements a user needs in order to view a resource. Access requirements are
  * composed of Organizations and Markings, and can either be applied directly to the resource or inherited.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:filesystem-read]
  * URL: /v2/filesystem/resources/{resourceRid}/getAccessRequirements
@@ -259,7 +259,7 @@ const _markings: $FoundryPlatformMethod<
  * List of Markings directly applied to a resource. The number of Markings on a resource is typically small
  * so the `pageSize` and `pageToken` parameters are not required.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: []
  * URL: /v2/filesystem/resources/{resourceRid}/markings

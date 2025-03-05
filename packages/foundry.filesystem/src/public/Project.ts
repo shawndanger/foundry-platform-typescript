@@ -39,7 +39,7 @@ const _get: $FoundryPlatformMethod<
 /**
  * Get the Project with the specified rid.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:filesystem-read]
  * URL: /v2/filesystem/projects/{projectRid}
@@ -120,7 +120,7 @@ const _addOrganizations: $FoundryPlatformMethod<
 /**
  * Adds a list of Organizations to a Project.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:filesystem-write]
  * URL: /v2/filesystem/projects/{projectRid}/addOrganizations
@@ -147,7 +147,7 @@ const _removeOrganizations: $FoundryPlatformMethod<
 /**
  * Removes Organizations from a Project.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:filesystem-write]
  * URL: /v2/filesystem/projects/{projectRid}/removeOrganizations
@@ -178,7 +178,7 @@ const _organizations: $FoundryPlatformMethod<
  * List of Organizations directly applied to a Project. The number of Organizations on a Project is
  * typically small so the `pageSize` and `pageToken` parameters are not required.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: []
  * URL: /v2/filesystem/projects/{projectRid}/organizations

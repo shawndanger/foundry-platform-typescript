@@ -283,7 +283,7 @@ export type CreateConnectionRequestRestConnectionAdditionalSecrets =
  * Log Safety: UNSAFE
  */
 export interface CreateConnectionRequestRestConnectionConfiguration {
-  additionalSecrets: CreateConnectionRequestRestConnectionAdditionalSecrets;
+  additionalSecrets?: RestConnectionAdditionalSecrets;
   oauth2ClientRid?: string;
   domains: Array<Domain>;
 }
@@ -814,7 +814,7 @@ export type RestConnectionAdditionalSecrets =
  */
 export interface RestConnectionConfiguration {
   domains: Array<Domain>;
-  additionalSecrets: RestConnectionAdditionalSecrets;
+  additionalSecrets?: RestConnectionAdditionalSecrets;
   oauth2ClientRid?: string;
 }
 
