@@ -1,5 +1,30 @@
 # @osdk/foundry
 
+## 2.16.0
+
+### Minor Changes
+
+- 45b549f: Bumping to include new flag on interface object sets.
+
+### Patch Changes
+
+- Updated dependencies [45b549f]
+  - @osdk/foundry.thirdpartyapplications@2.16.0
+  - @osdk/foundry.orchestration@2.16.0
+  - @osdk/foundry.connectivity@2.16.0
+  - @osdk/foundry.filesystem@2.16.0
+  - @osdk/foundry.ontologies@2.16.0
+  - @osdk/foundry.publicapis@2.16.0
+  - @osdk/foundry.sqlqueries@2.16.0
+  - @osdk/foundry.aipagents@2.16.0
+  - @osdk/foundry.functions@2.16.0
+  - @osdk/foundry.mediasets@2.16.0
+  - @osdk/foundry.datasets@2.16.0
+  - @osdk/foundry.streams@2.16.0
+  - @osdk/foundry.admin@2.16.0
+  - @osdk/foundry.core@2.16.0
+  - @osdk/foundry.geo@2.16.0
+
 ## 2.15.0
 
 ### Minor Changes
