@@ -1,5 +1,19 @@
 # @osdk/foundry.connectivity
 
+## 2.16.0
+
+### Minor Changes
+
+- 45b549f: Bumping to include new flag on interface object sets.
+
+### Patch Changes
+
+- Updated dependencies [45b549f]
+  - @osdk/foundry.orchestration@2.16.0
+  - @osdk/foundry.filesystem@2.16.0
+  - @osdk/foundry.datasets@2.16.0
+  - @osdk/foundry.core@2.16.0
+
 ## 2.15.0
 
 ### Minor Changes

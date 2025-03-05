@@ -1,5 +1,11 @@
 # @osdk/foundry.geo
 
+## 2.16.0
+
+### Minor Changes
+
+- 45b549f: Bumping to include new flag on interface object sets.
+
 ## 2.15.0
 
 ### Minor Changes
