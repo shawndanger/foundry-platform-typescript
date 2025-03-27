@@ -494,6 +494,21 @@ export interface InvalidContentType {
 }
 
 /**
+ * Derived property definition was invalid due to shape of query or type checking.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface InvalidDerivedPropertyDefinition {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidDerivedPropertyDefinition";
+  errorInstanceId: string;
+  parameters: {
+    objectType: unknown;
+    derivedProperty: unknown;
+  };
+}
+
+/**
  * Invalid property type for duration groupBy.
  *
  * Log Safety: UNSAFE

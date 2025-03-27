@@ -374,6 +374,13 @@ export interface StringParameterValue {
 /**
  * Log Safety: UNSAFE
  */
+export interface UpdateSessionTitleRequest {
+  title: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface UserTextInput {
   text: string;
 }

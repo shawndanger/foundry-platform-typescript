@@ -32,6 +32,15 @@ export interface AbsoluteTimeRange {
 }
 
 /**
+ * Calculates absolute value of a numeric value.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface AbsoluteValuePropertyExpression {
+  property: DerivedPropertyDefinition;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export type Action = LooselyBrandedString<"Action">;
@@ -77,6 +86,7 @@ export type ActionParameterType =
  * Log Safety: UNSAFE
  */
 export interface ActionParameterV2 {
+  displayName: _Core.DisplayName;
   description?: string;
   dataType: ActionParameterType;
   required: boolean;
@@ -168,6 +178,15 @@ export interface AddObject {
 }
 
 /**
+ * Adds two or more numeric values.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface AddPropertyExpression {
+  properties: Array<DerivedPropertyDefinition>;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export interface AggregateObjectSetRequestV2 {
@@ -228,6 +247,14 @@ export interface AggregateObjectsResponseV2 {
   excludedItems?: number;
   accuracy: AggregationAccuracy;
   data: Array<AggregateObjectsResponseItemV2>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface AggregateTimeSeries {
+  method: TimeSeriesAggregationMethod;
+  strategy: TimeSeriesAggregationStrategy;
 }
 
 /**
@@ -1079,9 +1106,18 @@ export type DerivedPropertyApiName = LooselyBrandedString<
  *
  * Log Safety: UNSAFE
  */
-export type DerivedPropertyDefinition = {
-  type: "selection";
-} & SelectedPropertyDefinition;
+export type DerivedPropertyDefinition =
+  | ({ type: "add" } & AddPropertyExpression)
+  | ({ type: "absoluteValue" } & AbsoluteValuePropertyExpression)
+  | ({ type: "extract" } & ExtractPropertyExpression)
+  | ({ type: "selection" } & SelectedPropertyExpression)
+  | ({ type: "negate" } & NegatePropertyExpression)
+  | ({ type: "subtract" } & SubtractPropertyExpression)
+  | ({ type: "property" } & PropertyApiNameSelector)
+  | ({ type: "least" } & LeastPropertyExpression)
+  | ({ type: "divide" } & DividePropertyExpression)
+  | ({ type: "multiply" } & MultiplyPropertyExpression)
+  | ({ type: "greatest" } & GreatestPropertyExpression);
 
 /**
  * The representation of a time series property backed by a derived time series calculated with a formula.
@@ -1091,6 +1127,16 @@ export type DerivedPropertyDefinition = {
 export interface DerivedTimeSeriesProperty {
   templateRid: TimeseriesTemplateRid;
   templateVersion?: TimeseriesTemplateVersion;
+}
+
+/**
+ * Divides the left numeric value by the right numeric value.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface DividePropertyExpression {
+  left: DerivedPropertyDefinition;
+  right: DerivedPropertyDefinition;
 }
 
 /**
@@ -1220,6 +1266,21 @@ export interface ExecuteQueryResponse {
 export interface ExperimentalPropertyTypeStatus {}
 
 /**
+ * Log Safety: SAFE
+ */
+export type ExtractDatePart = "DAYS" | "MONTHS" | "QUARTERS" | "YEARS";
+
+/**
+ * Extracts the specified date part from a date or timestamp.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ExtractPropertyExpression {
+  property: DerivedPropertyDefinition;
+  part: ExtractDatePart;
+}
+
+/**
  * A reference to an Ontology object property with the form properties.{propertyApiName}.
  *
  * Log Safety: UNSAFE
@@ -1308,6 +1369,15 @@ Use collectList or collectSet which will return a list of values in that case.
    */
 export interface GetSelectedPropertyOperation {
   selectedPropertyApiName: PropertyApiName;
+}
+
+/**
+ * Finds greatest of two or more numeric, date or timestamp values.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface GreatestPropertyExpression {
+  properties: Array<DerivedPropertyDefinition>;
 }
 
 /**
@@ -1543,6 +1613,15 @@ export interface IsNullQueryV2 {
   field?: PropertyApiName;
   propertyIdentifier?: PropertyIdentifier;
   value: boolean;
+}
+
+/**
+ * Finds least of two or more numeric, date or timestamp values.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface LeastPropertyExpression {
+  properties: Array<DerivedPropertyDefinition>;
 }
 
 /**
@@ -1976,6 +2055,15 @@ export interface ModifyObjectRule {
 }
 
 /**
+ * Multiplies two or more numeric values.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface MultiplyPropertyExpression {
+  properties: Array<DerivedPropertyDefinition>;
+}
+
+/**
    * Queries support either a vector matching the embedding model defined on the property, or text that is
 automatically embedded.
    *
@@ -1992,6 +2080,15 @@ export type NearestNeighborsQuery =
  */
 export interface NearestNeighborsQueryText {
   value: string;
+}
+
+/**
+ * Negates a numeric value.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface NegatePropertyExpression {
+  property: DerivedPropertyDefinition;
 }
 
 /**
@@ -2727,6 +2824,29 @@ export interface PhraseQuery {
 export type PolygonValue = { type: "Polygon" } & _Geo.Polygon;
 
 /**
+ * A measurement of duration.
+ *
+ * Log Safety: SAFE
+ */
+export interface PreciseDuration {
+  value: number;
+  unit: PreciseTimeUnit;
+}
+
+/**
+ * The unit of a fixed-width duration. Each day is 24 hours and each week is 7 days.
+ *
+ * Log Safety: SAFE
+ */
+export type PreciseTimeUnit =
+  | "NANOSECONDS"
+  | "SECONDS"
+  | "MINUTES"
+  | "HOURS"
+  | "DAYS"
+  | "WEEKS";
+
+/**
  * Returns objects where the specified field starts with the provided value.
  *
  * Log Safety: UNSAFE
@@ -3225,6 +3345,15 @@ export type RequestId = string;
 export type ReturnEditsMode = "ALL" | "ALL_V2_WITH_DELETIONS" | "NONE";
 
 /**
+ * Number of points in each window.
+ *
+ * Log Safety: SAFE
+ */
+export interface RollingAggregateWindowPoints {
+  count: number;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export type SdkPackageName = LooselyBrandedString<"SdkPackageName">;
@@ -3461,22 +3590,22 @@ export interface SelectedPropertyCollectSetAggregation {
 export interface SelectedPropertyCountAggregation {}
 
 /**
- * Definition for a selected property over a MethodObjectSet.
- *
- * Log Safety: UNSAFE
- */
-export interface SelectedPropertyDefinition {
-  objectSet: MethodObjectSet;
-  operation: SelectedPropertyOperation;
-}
-
-/**
  * Computes an exact number of distinct values for the provided field. May be slower than an approximate distinct aggregation.
  *
  * Log Safety: UNSAFE
  */
 export interface SelectedPropertyExactDistinctAggregation {
   selectedPropertyApiName: PropertyApiName;
+}
+
+/**
+ * Definition for a selected property over a MethodObjectSet.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SelectedPropertyExpression {
+  objectSet: MethodObjectSet;
+  operation: SelectedPropertyOperation;
 }
 
 /**
@@ -3601,6 +3730,7 @@ export type StreamMessage =
  */
 export interface StreamTimeSeriesPointsRequest {
   range?: TimeRange;
+  aggregate?: AggregateTimeSeries;
 }
 
 /**
@@ -3655,9 +3785,10 @@ export interface StringRegexMatchConstraint {
 export type StructFieldApiName = LooselyBrandedString<"StructFieldApiName">;
 
 /**
-   * A combination of a struct property api name and a struct field api name. This is used to select struct fields
-to query on. Note that you can still select struct properties with only a 'PropertyApiNameSelector'; the queries
-will then become 'OR' queries across the fields of the struct property.
+   * A combination of a property API name and a struct field API name used to select struct fields. Note that you can
+still select struct properties with only a 'PropertyApiNameSelector'; the queries will then become 'OR' queries
+across the fields of the struct property, and derived property expressions will operate on the whole struct
+where applicable.
    *
    * Log Safety: UNSAFE
    */
@@ -3732,6 +3863,16 @@ export interface SubscriptionSuccess {
 }
 
 /**
+ * Subtracts the right numeric value from the left numeric value.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface SubtractPropertyExpression {
+  left: DerivedPropertyDefinition;
+  right: DerivedPropertyDefinition;
+}
+
+/**
  * Computes the sum of values for the provided field.
  *
  * Log Safety: UNSAFE
@@ -3778,6 +3919,45 @@ export type TimeRange =
   | ({ type: "relative" } & RelativeTimeRange);
 
 /**
+ * The aggregation function to use for aggregating time series data.
+ *
+ * Log Safety: SAFE
+ */
+export type TimeSeriesAggregationMethod =
+  | "SUM"
+  | "MEAN"
+  | "STANDARD_DEVIATION"
+  | "MAX"
+  | "MIN"
+  | "PERCENT_CHANGE"
+  | "DIFFERENCE"
+  | "PRODUCT"
+  | "COUNT"
+  | "FIRST"
+  | "LAST";
+
+/**
+   * CUMULATIVE aggregates all points up to the current point.
+ROLLING aggregates all points in a rolling window whose size is either the specified number of points or
+time duration.
+PERIODIC aggregates all points in specified time windows.
+   *
+   * Log Safety: UNSAFE
+   */
+export type TimeSeriesAggregationStrategy =
+  | ({ type: "rolling" } & TimeSeriesRollingAggregate)
+  | ({ type: "periodic" } & TimeSeriesPeriodicAggregate)
+  | ({ type: "cumulative" } & TimeSeriesCumulativeAggregate);
+
+/**
+   * The cumulative aggregate is calculated progressively for each point in the input time series,
+considering all preceding points up to and including the current point.
+   *
+   * Log Safety: SAFE
+   */
+export interface TimeSeriesCumulativeAggregate {}
+
+/**
  * A time and value pair.
  *
  * Log Safety: UNSAFE
@@ -3785,6 +3965,23 @@ export type TimeRange =
 export interface TimeseriesEntry {
   time: string;
   value: any;
+}
+
+/**
+   * Aggregates values over discrete, periodic windows for a given time series.
+A periodic window divides the time series into windows of fixed durations.
+For each window, an aggregate function is applied to the points within that window. The result is a time series
+with values representing the aggregate for each window. Windows with no data points are not included
+in the output.
+Periodic aggregation is useful for downsampling a continuous stream of data to larger granularities such as
+hourly, daily, monthly.
+   *
+   * Log Safety: SAFE
+   */
+export interface TimeSeriesPeriodicAggregate {
+  windowSize: PreciseDuration;
+  alignmentTimestamp?: string;
+  windowType: TimeSeriesWindowType;
 }
 
 /**
@@ -3801,6 +3998,26 @@ export interface TimeSeriesPoint {
  * Log Safety: UNSAFE
  */
 export type TimeSeriesPropertyV2 = LooselyBrandedString<"TimeSeriesPropertyV2">;
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface TimeSeriesRollingAggregate {
+  windowSize: TimeSeriesRollingAggregateWindow;
+}
+
+/**
+   * A rolling window is a moving subset of data points that ends at the current timestamp (inclusive)
+and spans a specified duration (window size). As new data points are added, old points fall out of the
+window if they are outside the specified duration.
+Rolling windows are commonly used for smoothing data, detecting trends, and reducing noise
+in time series analysis.
+   *
+   * Log Safety: UNSAFE
+   */
+export type TimeSeriesRollingAggregateWindow =
+  | ({ type: "duration" } & PreciseDuration)
+  | ({ type: "pointsCount" } & RollingAggregateWindowPoints);
 
 /**
  * The RID identifying a time series sync.
@@ -3833,6 +4050,11 @@ export type TimeseriesTemplateVersion = LooselyBrandedString<
 export type TimeSeriesValueBankProperty = LooselyBrandedString<
   "TimeSeriesValueBankProperty"
 >;
+
+/**
+ * Log Safety: SAFE
+ */
+export type TimeSeriesWindowType = "START" | "END";
 
 /**
  * Log Safety: SAFE

@@ -92,3 +92,30 @@ export function get(
 ): Promise<_Ontologies.ActionTypeV2> {
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
+
+const _getByRid: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    actionTypeRid: _Ontologies.ActionTypeRid,
+  ) => Promise<_Ontologies.ActionTypeV2>
+> = [0, "/v2/ontologies/{0}/actionTypes/byRid/{1}"];
+
+/**
+ * Gets a specific action type with the given RID.
+ *
+ * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:ontologies-read`.
+ *
+ * @public
+ *
+ * Required Scopes: [api:ontologies-read]
+ * URL: /v2/ontologies/{ontology}/actionTypes/byRid/{actionTypeRid}
+ */
+export function getByRid(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+    actionTypeRid: _Ontologies.ActionTypeRid,
+  ]
+): Promise<_Ontologies.ActionTypeV2> {
+  return $foundryPlatformFetch($ctx, _getByRid, ...args);
+}

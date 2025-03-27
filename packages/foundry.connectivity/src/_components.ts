@@ -23,38 +23,11 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
-   * The agent proxy runtime is used to connect
-to data sources not accessible over the Internet. The agent acts as an inverting network proxy, forwarding
-network traffic originating in Foundry into the network where the agent is deployed, and relaying traffic
-back to Foundry. This allows capabilities in Foundry to work almost exactly the same as when using a
-direct connection but without requiring you to allow inbound network traffic to your systems originating
-from Foundry's IP addresses.
-   *
-   * Log Safety: UNSAFE
-   */
-export interface AgentProxyRuntime {
-  agentRids: Array<AgentRid>;
-}
-
-/**
  * The Resource Identifier (RID) of an Agent.
  *
  * Log Safety: UNSAFE
  */
 export type AgentRid = LooselyBrandedString<"AgentRid">;
-
-/**
-   * The agent worker runtime is used to
-connect to data sources not accessible over the Internet. An agent worker should only be used when the desired
-connector does not support the agent proxy runtime. Agent worker runtimes are associated with a single or
-multiple agents that store the source configuration and credentials locally in an encrypted format,
-and run source capabilities on the agent itself.
-   *
-   * Log Safety: UNSAFE
-   */
-export interface AgentWorkerRuntime {
-  agentRids: Array<AgentRid>;
-}
 
 /**
    * The API key used to authenticate to the external system.
@@ -93,6 +66,18 @@ secret access key together to authenticate your requests.
 export interface AwsAccessKey {
   accessKeyId: string;
   secretAccessKey: EncryptedProperty;
+}
+
+/**
+   * OpenID Connect (OIDC) is an open authentication protocol that allows
+you to authenticate to external system resources without the use of static credentials.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface AwsOidcAuthentication {
+  audience: string;
+  issuerUrl: string;
+  subject: ConnectionRid;
 }
 
 /**
@@ -136,7 +121,6 @@ export interface Connection {
   rid: ConnectionRid;
   parentFolderRid: _Filesystem.FolderRid;
   displayName: ConnectionDisplayName;
-  runtimePlatform: RuntimePlatform;
   configuration: ConnectionConfiguration;
 }
 
@@ -145,7 +129,8 @@ export interface Connection {
  */
 export type ConnectionConfiguration =
   | ({ type: "s3" } & S3ConnectionConfiguration)
-  | ({ type: "rest" } & RestConnectionConfiguration);
+  | ({ type: "rest" } & RestConnectionConfiguration)
+  | ({ type: "jdbc" } & JdbcConnectionConfiguration);
 
 /**
  * The display name of the Connection. The display name must not be blank.
@@ -168,23 +153,8 @@ export type ConnectionRid = LooselyBrandedString<"ConnectionRid">;
  */
 export interface CreateConnectionRequest {
   parentFolderRid: _Filesystem.FolderRid;
-  runtimePlatform: CreateConnectionRequestRuntimePlatform;
   configuration: CreateConnectionRequestConnectionConfiguration;
   displayName: ConnectionDisplayName;
-}
-
-/**
- * Log Safety: UNSAFE
- */
-export interface CreateConnectionRequestAgentProxyRuntime {
-  agentRids: Array<AgentRid>;
-}
-
-/**
- * Log Safety: UNSAFE
- */
-export interface CreateConnectionRequestAgentWorkerRuntime {
-  agentRids: Array<AgentRid>;
 }
 
 /**
@@ -212,6 +182,13 @@ export interface CreateConnectionRequestAwsAccessKey {
 /**
  * Log Safety: UNSAFE
  */
+export interface CreateConnectionRequestAwsOidcAuthentication {
+  audience: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface CreateConnectionRequestBasicCredentials {
   password: CreateConnectionRequestEncryptedProperty;
   username: string;
@@ -229,14 +206,8 @@ export interface CreateConnectionRequestCloudIdentity {
  */
 export type CreateConnectionRequestConnectionConfiguration =
   | ({ type: "s3" } & CreateConnectionRequestS3ConnectionConfiguration)
-  | ({ type: "rest" } & CreateConnectionRequestRestConnectionConfiguration);
-
-/**
- * Log Safety: SAFE
- */
-export interface CreateConnectionRequestDirectConnectionRuntime {
-  networkEgressPolicyRids: Array<NetworkEgressPolicyRid>;
-}
+  | ({ type: "rest" } & CreateConnectionRequestRestConnectionConfiguration)
+  | ({ type: "jdbc" } & CreateConnectionRequestJdbcConnectionConfiguration);
 
 /**
  * Log Safety: SAFE
@@ -263,8 +234,11 @@ export type CreateConnectionRequestEncryptedProperty =
 /**
  * Log Safety: UNSAFE
  */
-export interface CreateConnectionRequestOidc {
-  audience: string;
+export interface CreateConnectionRequestJdbcConnectionConfiguration {
+  credentials?: BasicCredentials;
+  driverClass: string;
+  jdbcProperties: Record<string, string>;
+  url: string;
 }
 
 /**
@@ -289,27 +263,12 @@ export interface CreateConnectionRequestRestConnectionConfiguration {
 }
 
 /**
-   * The runtime of a Connection, which defines the
-networking configuration and where capabilities are executed.
-   *
-   * Log Safety: UNSAFE
-   */
-export type CreateConnectionRequestRuntimePlatform =
-  | ({
-    type: "directConnectionRuntime";
-  } & CreateConnectionRequestDirectConnectionRuntime)
-  | ({ type: "agentProxyRuntime" } & CreateConnectionRequestAgentProxyRuntime)
-  | ({
-    type: "agentWorkerRuntime";
-  } & CreateConnectionRequestAgentWorkerRuntime);
-
-/**
  * Log Safety: UNSAFE
  */
 export type CreateConnectionRequestS3AuthenticationMode =
   | ({ type: "awsAccessKey" } & CreateConnectionRequestAwsAccessKey)
   | ({ type: "cloudIdentity" } & CreateConnectionRequestCloudIdentity)
-  | ({ type: "oidc" } & CreateConnectionRequestOidc);
+  | ({ type: "oidc" } & CreateConnectionRequestAwsOidcAuthentication);
 
 /**
  * Log Safety: UNSAFE
@@ -451,18 +410,6 @@ export type CreateTableImportRequestTableImportConfig =
   | ({
     type: "oracleImportConfig";
   } & CreateTableImportRequestOracleImportConfig);
-
-/**
-   * Direct connections enable users to connect
-to data sources accessible over the Internet without needing to set up an agent. If your Foundry stack is
-hosted on-premises, you can also connect to data sources within your on-premises network.
-This is the preferred source connection method if the data source is accessible over the Internet.
-   *
-   * Log Safety: SAFE
-   */
-export interface DirectConnectionRuntime {
-  networkEgressPolicyRids: Array<NetworkEgressPolicyRid>;
-}
 
 /**
  * The domain that the connection is allowed to access.
@@ -667,6 +614,18 @@ export interface HeaderApiKey {
 }
 
 /**
+ * The configuration needed to connect to an external system using the JDBC protocol.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface JdbcConnectionConfiguration {
+  url: string;
+  driverClass: string;
+  jdbcProperties: Record<string, string>;
+  credentials?: BasicCredentials;
+}
+
+/**
  * The import configuration for a custom JDBC connection.
  *
  * Log Safety: UNSAFE
@@ -717,18 +676,6 @@ export interface MicrosoftSqlServerImportConfig {
 export type NetworkEgressPolicyRid = LooselyBrandedString<
   "NetworkEgressPolicyRid"
 >;
-
-/**
-   * OpenID Connect (OIDC) is an open authentication protocol that allows
-you to authenticate to external system resources without the use of static credentials.
-   *
-   * Log Safety: UNSAFE
-   */
-export interface Oidc {
-  audience: string;
-  issuerUrl: string;
-  subject: ConnectionRid;
-}
 
 /**
  * The import configuration for an Oracle Database 21 connection.
@@ -836,23 +783,12 @@ export type RestRequestApiKeyLocation =
   | ({ type: "queryParameter" } & QueryParameterApiKey);
 
 /**
-   * The runtime of a Connection, which defines the
-networking configuration and where capabilities are executed.
-   *
-   * Log Safety: UNSAFE
-   */
-export type RuntimePlatform =
-  | ({ type: "directConnectionRuntime" } & DirectConnectionRuntime)
-  | ({ type: "agentProxyRuntime" } & AgentProxyRuntime)
-  | ({ type: "agentWorkerRuntime" } & AgentWorkerRuntime);
-
-/**
  * Log Safety: UNSAFE
  */
 export type S3AuthenticationMode =
   | ({ type: "awsAccessKey" } & AwsAccessKey)
   | ({ type: "cloudIdentity" } & CloudIdentity)
-  | ({ type: "oidc" } & Oidc);
+  | ({ type: "oidc" } & AwsOidcAuthentication);
 
 /**
    * The configuration needed to connect to an AWS S3 external system (or any other S3-like external systems that

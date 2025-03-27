@@ -5,6 +5,7 @@ backlink
 codegen
 devx
 Discoverability
+downsampling
 duplicative
 gantt
 geofence
@@ -19,6 +20,7 @@ onwarn
 pypi
 retryable
 rsort
+semver
 streamutils
 tsdoc
 typecheck
@@ -28,6 +30,5 @@ uncapitalize
 unevaluable
 ungroup
 unioned
-semver
 unresolve
 webapi

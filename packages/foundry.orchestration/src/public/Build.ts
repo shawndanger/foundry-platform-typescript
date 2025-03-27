@@ -84,7 +84,7 @@ export function getBatch(
 
 const _create: $FoundryPlatformMethod<
   (
-    $body: _Orchestration.CreateBuildsRequest,
+    $body: _Orchestration.CreateBuildRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<_Orchestration.Build>
 > = [1, "/v2/orchestration/builds/create", 3];
@@ -98,7 +98,7 @@ const _create: $FoundryPlatformMethod<
 export function create(
   $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
   ...args: [
-    $body: _Orchestration.CreateBuildsRequest,
+    $body: _Orchestration.CreateBuildRequest,
     $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<_Orchestration.Build> {
@@ -154,4 +154,38 @@ export function search(
   ]
 ): Promise<_Orchestration.SearchBuildsResponse> {
   return $foundryPlatformFetch($ctx, _search, ...args);
+}
+
+const _jobs: $FoundryPlatformMethod<
+  (
+    buildRid: _Core.BuildRid,
+    $queryParams?: {
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_Orchestration.ListJobsOfBuildResponse>
+> = [0, "/v2/orchestration/builds/{0}/jobs", 2];
+
+/**
+ * Get the Jobs in the Build.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:orchestration-read]
+ * URL: /v2/orchestration/builds/{buildRid}/jobs
+ */
+export function jobs(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    buildRid: _Core.BuildRid,
+
+    $queryParams?: {
+      pageSize?: _Core.PageSize | undefined;
+      pageToken?: _Core.PageToken | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_Orchestration.ListJobsOfBuildResponse> {
+  return $foundryPlatformFetch($ctx, _jobs, ...args);
 }

@@ -31,6 +31,7 @@
     "@osdk/foundry.aipagents": "workspace:*",
     "@osdk/foundry.connectivity": "workspace:*",
     "@osdk/foundry.core": "workspace:*",
+    "@osdk/foundry.datahealth": "workspace:*",
     "@osdk/foundry.datasets": "workspace:*",
     "@osdk/foundry.filesystem": "workspace:*",
     "@osdk/foundry.functions": "workspace:*",
@@ -42,6 +43,7 @@
     "@osdk/foundry.sqlqueries": "workspace:*",
     "@osdk/foundry.streams": "workspace:*",
     "@osdk/foundry.thirdpartyapplications": "workspace:*",
+    "@osdk/foundry.widgets": "workspace:*",
     "@osdk/shared.client": "^1.0.1",
     "@osdk/shared.client2": "^1.0.0",
     "@osdk/shared.net.platformapi": "workspace:~"
@@ -67,7 +69,7 @@
   "sls": {
     "dependencies": {
       "com.palantir.foundry.api:api-gateway": {
-        "minVersion": "1.1099.0",
+        "minVersion": "1.1124.0",
         "maxVersion": "1.x.x",
         "optional": false
       }

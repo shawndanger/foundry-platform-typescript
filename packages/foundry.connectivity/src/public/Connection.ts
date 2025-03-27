@@ -37,7 +37,8 @@ const _create: $FoundryPlatformMethod<
 > = [1, "/v2/connectivity/connections", 3];
 
 /**
- * Creates a new Connection.
+ * Creates a new Connection with a [direct connection](https://www.palantir.com/docs/foundry/data-connection/core-concepts/#direct-connection) runtime.
+ *
  * Any secrets specified in the request body are transmitted over the network encrypted using TLS. Once the
  * secrets reach Foundry's servers, they will be temporarily decrypted and remain in plaintext in memory to
  * be processed as needed. They will stay in plaintext in memory until the garbage collection process cleans

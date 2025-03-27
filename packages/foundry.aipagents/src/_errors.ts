@@ -389,3 +389,18 @@ export interface StreamingContinueSessionPermissionDenied {
     sessionRid: unknown;
   };
 }
+
+/**
+ * Could not updateTitle the Session.
+ *
+ * Log Safety: SAFE
+ */
+export interface UpdateSessionTitlePermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "UpdateSessionTitlePermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    agentRid: unknown;
+    sessionRid: unknown;
+  };
+}

@@ -1,11 +1,18 @@
 # These are all words that are acceptable in wire apis
 actiontype
+Buildable
 checkpointed
 deindexed
+DREDDIE
 entitymetadata
 frontends
+granularities
+HYPERAUTO
+Jdbc
+Karp
 loggable
 lucene
+Mediasets
 mergable
 Mergeable
 Metadatas
@@ -23,7 +30,3 @@ schemamigrations
 SearchArounds
 typeclasses
 workstate
-Buildable
-Mediasets
-Jdbc
-Karp
