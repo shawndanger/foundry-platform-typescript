@@ -146,9 +146,9 @@ export interface CancelBuildPermissionDenied {
  *
  * Log Safety: SAFE
  */
-export interface CreateBuildsPermissionDenied {
+export interface CreateBuildPermissionDenied {
   errorCode: "PERMISSION_DENIED";
-  errorName: "CreateBuildsPermissionDenied";
+  errorName: "CreateBuildPermissionDenied";
   errorInstanceId: string;
   parameters: {};
 }

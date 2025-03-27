@@ -61,6 +61,38 @@ export function read(
   return $foundryPlatformFetch($ctx, _read, ...args);
 }
 
+const _readOriginal: $FoundryPlatformMethod<
+  (
+    mediaSetRid: _Core.MediaSetRid,
+    mediaItemRid: _Core.MediaItemRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
+  ) => Promise<Response>
+> = [0, "/v2/mediasets/{0}/items/{1}/original", 6, , "*/*"];
+
+/**
+ * Gets the content of an original file uploaded to the media item, even if it was transformed on upload due to being an additional input format.
+ *
+ * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:mediasets-read`.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:mediasets-read]
+ * URL: /v2/mediasets/{mediaSetRid}/items/{mediaItemRid}/original
+ */
+export function readOriginal(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    mediaSetRid: _Core.MediaSetRid,
+    mediaItemRid: _Core.MediaItemRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $headerParams?: { ReadToken?: _Core.MediaItemReadToken | undefined },
+  ]
+): Promise<Response> {
+  return $foundryPlatformFetch($ctx, _readOriginal, ...args);
+}
+
 const _info: $FoundryPlatformMethod<
   (
     mediaSetRid: _Core.MediaSetRid,

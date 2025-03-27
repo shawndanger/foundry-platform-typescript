@@ -257,3 +257,33 @@ export function ragContext(
 ): Promise<_AipAgents.AgentSessionRagContextResponse> {
   return $foundryPlatformFetch($ctx, _ragContext, ...args);
 }
+
+const _updateTitle: $FoundryPlatformMethod<
+  (
+    agentRid: _AipAgents.AgentRid,
+    sessionRid: _AipAgents.SessionRid,
+    $body: _AipAgents.UpdateSessionTitleRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<void>
+> = [2, "/v2/aipAgents/agents/{0}/sessions/{1}/updateTitle", 3];
+
+/**
+ * Update the title for a session.
+ * Use this to set a custom title for a session to help identify it in the list of sessions with an Agent.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:aip-agents-write]
+ * URL: /v2/aipAgents/agents/{agentRid}/sessions/{sessionRid}/updateTitle
+ */
+export function updateTitle(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    agentRid: _AipAgents.AgentRid,
+    sessionRid: _AipAgents.SessionRid,
+    $body: _AipAgents.UpdateSessionTitleRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<void> {
+  return $foundryPlatformFetch($ctx, _updateTitle, ...args);
+}

@@ -54,6 +54,7 @@ export type {
   StreamingContinueSessionRequest,
   StringParameter,
   StringParameterValue,
+  UpdateSessionTitleRequest,
   UserTextInput,
 } from "./_components.js";
 export type {
@@ -80,6 +81,7 @@ export type {
   SessionExecutionFailed,
   SessionNotFound,
   StreamingContinueSessionPermissionDenied,
+  UpdateSessionTitlePermissionDenied,
 } from "./_errors.js";
 export * as Agents from "./public/Agent.js";
 export * as AgentVersions from "./public/AgentVersion.js";

@@ -62,6 +62,7 @@ export interface Build {
   createdTime: _Core.CreatedTime;
   createdBy: _Core.CreatedBy;
   fallbackBranches: FallbackBranches;
+  jobRids: Array<_Core.JobRid>;
   retryCount: RetryCount;
   retryBackoffDuration: RetryBackoffDuration;
   abortOnFailure: AbortOnFailure;
@@ -108,7 +109,7 @@ export interface ConnectingTarget {
 /**
  * Log Safety: UNSAFE
  */
-export interface CreateBuildsRequest {
+export interface CreateBuildRequest {
   target: BuildTarget;
   branchName?: _Datasets.BranchName;
   fallbackBranches: FallbackBranches;
@@ -292,6 +293,14 @@ and day of week.
 export type CronExpression = LooselyBrandedString<"CronExpression">;
 
 /**
+ * Log Safety: SAFE
+ */
+export interface DatasetJobOutput {
+  datasetRid: _Datasets.DatasetRid;
+  outputTransactionRid?: _Datasets.TransactionRid;
+}
+
+/**
    * Trigger whenever a new transaction is committed to the
 dataset on the target branch.
    *
@@ -334,10 +343,59 @@ export interface GetBuildsBatchResponse {
 /**
  * Log Safety: SAFE
  */
+export interface GetJobsBatchRequestElement {
+  jobRid: _Core.JobRid;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface GetJobsBatchResponse {
+  data: Record<_Core.JobRid, Job>;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
 export interface Job {
   rid: _Core.JobRid;
   buildRid: _Core.BuildRid;
+  startedTime: JobStartedTime;
+  finishedTime?: string;
+  jobStatus: JobStatus;
+  outputs: Array<JobOutput>;
 }
+
+/**
+ * Other types of Job Outputs exist in Foundry. Currently, only Dataset and Media Set are supported by the API.
+ *
+ * Log Safety: UNSAFE
+ */
+export type JobOutput =
+  | ({ type: "datasetJobOutput" } & DatasetJobOutput)
+  | ({
+    type: "transactionalMediaSetJobOutput";
+  } & TransactionalMediaSetJobOutput);
+
+/**
+ * The time this job started waiting for the dependencies to be resolved.
+ *
+ * Log Safety: SAFE
+ */
+export type JobStartedTime = string;
+
+/**
+ * The status of the job.
+ *
+ * Log Safety: SAFE
+ */
+export type JobStatus =
+  | "WAITING"
+  | "RUNNING"
+  | "SUCCEEDED"
+  | "FAILED"
+  | "CANCELED"
+  | "DID_NOT_RUN";
 
 /**
    * Trigger whenever a job succeeds on the dataset and on the target
@@ -348,6 +406,14 @@ branch.
 export interface JobSucceededTrigger {
   datasetRid: _Datasets.DatasetRid;
   branchName: _Datasets.BranchName;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ListJobsOfBuildResponse {
+  data: Array<Job>;
+  nextPageToken?: _Core.PageToken;
 }
 
 /**
@@ -861,6 +927,14 @@ export interface SearchBuildsResponse {
 export interface TimeTrigger {
   cronExpression: CronExpression;
   timeZone: _Core.ZoneId;
+}
+
+/**
+ * Log Safety: SAFE
+ */
+export interface TransactionalMediaSetJobOutput {
+  mediaSetRid: _Core.MediaSetRid;
+  transactionId?: string;
 }
 
 /**

@@ -39,7 +39,7 @@ const _get: $FoundryPlatformMethod<
 /**
  * Get the Job with the specified rid.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:orchestration-read]
  * URL: /v2/orchestration/jobs/{jobRid}
@@ -53,4 +53,31 @@ export function get(
   ]
 ): Promise<_Orchestration.Job> {
   return $foundryPlatformFetch($ctx, _get, ...args);
+}
+
+const _getBatch: $FoundryPlatformMethod<
+  (
+    $body: Array<_Orchestration.GetJobsBatchRequestElement>,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Orchestration.GetJobsBatchResponse>
+> = [1, "/v2/orchestration/jobs/getBatch", 3];
+
+/**
+ * Execute multiple get requests on Job.
+ *
+ * The maximum batch size for this endpoint is 500.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:orchestration-read]
+ * URL: /v2/orchestration/jobs/getBatch
+ */
+export function getBatch(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: Array<_Orchestration.GetJobsBatchRequestElement>,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Orchestration.GetJobsBatchResponse> {
+  return $foundryPlatformFetch($ctx, _getBatch, ...args);
 }
