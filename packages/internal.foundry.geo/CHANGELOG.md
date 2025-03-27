@@ -1,5 +1,11 @@
 # @osdk/internal.foundry.geo
 
+## 2.17.0
+
+### Minor Changes
+
+- db7ee48: Update Platform SDKs
+
 ## 2.16.0
 
 ### Minor Changes
