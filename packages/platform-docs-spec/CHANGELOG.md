@@ -1,5 +1,11 @@
 # @osdk/platform-docs-spec
 
+## 0.3.0
+
+### Minor Changes
+
+- db7ee48: Update Platform SDKs
+
 ## 0.2.0
 
 ### Minor Changes

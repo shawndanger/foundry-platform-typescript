@@ -1,5 +1,19 @@
 # @osdk/foundry.connectivity
 
+## 2.17.0
+
+### Minor Changes
+
+- db7ee48: Update Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [db7ee48]
+  - @osdk/foundry.orchestration@2.17.0
+  - @osdk/foundry.filesystem@2.17.0
+  - @osdk/foundry.datasets@2.17.0
+  - @osdk/foundry.core@2.17.0
+
 ## 2.16.0
 
 ### Minor Changes
