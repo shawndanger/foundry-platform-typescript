@@ -1,5 +1,19 @@
 # @osdk/platform-docs-spec
 
+## 0.4.0
+
+### Minor Changes
+
+- 0965559: Fix types in docs packages
+- f355209: Update helpers for platform docs and drop variables in platform docs spec
+
+### Patch Changes
+
+- Updated dependencies [0965559]
+- Updated dependencies [f355209]
+- Updated dependencies [38b4379]
+  - @osdk/docs-spec-core@0.3.0
+
 ## 0.3.0
 
 ### Minor Changes

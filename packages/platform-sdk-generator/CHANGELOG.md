@@ -1,5 +1,19 @@
 # @osdk/platform-sdk-generator
 
+## 0.14.0
+
+### Minor Changes
+
+- f355209: Update helpers for platform docs and drop variables in platform docs spec
+
+### Patch Changes
+
+- Updated dependencies [0965559]
+- Updated dependencies [f355209]
+- Updated dependencies [38b4379]
+  - @osdk/platform-docs-spec@0.4.0
+  - @osdk/docs-spec-core@0.3.0
+
 ## 0.13.0
 
 ### Patch Changes
