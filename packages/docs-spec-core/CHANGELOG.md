@@ -1,5 +1,13 @@
 # @osdk/docs-spec-core
 
+## 0.3.0
+
+### Minor Changes
+
+- 0965559: Fix types in docs packages
+- f355209: Update helpers for platform docs and drop variables in platform docs spec
+- 38b4379: Support helpers in snippets
+
 ## 0.2.0
 
 ### Minor Changes
