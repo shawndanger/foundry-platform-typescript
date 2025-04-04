@@ -80,7 +80,7 @@ type ComputedVariablesType<S extends DocsSnippetsSpec> = Record<
         any
       >
     >,
-  ) => string
+  ) => any
 >;
 
 export type SdkSnippets<S extends DocsSnippetsSpec> = {
