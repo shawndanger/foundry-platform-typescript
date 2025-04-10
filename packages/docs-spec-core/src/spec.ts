@@ -87,9 +87,13 @@ export type SdkSnippets<S extends DocsSnippetsSpec> = {
   kind: "sdk";
   versions: {
     [version: string]: {
-      snippets: {
-        [name in SnippetNames<S>]?: SdkSnippet[];
-      };
+      snippets:
+        & {
+          [name in SnippetNames<S>]?: SdkSnippet[];
+        }
+        & {
+          [name: string]: SdkSnippet[];
+        };
     };
   };
   computedVariables?: ComputedVariablesType<S>;
@@ -109,9 +113,13 @@ export type ApiSnippets<S extends DocsSnippetsSpec> = {
   kind: "api";
   versions: {
     [version: string]: {
-      snippets: {
-        [name in SnippetNames<S>]?: ApiSnippet[];
-      };
+      snippets:
+        & {
+          [name in SnippetNames<S>]?: ApiSnippet[];
+        }
+        & {
+          [name: string]: SdkSnippet[];
+        };
     };
   };
   computedVariables?: ComputedVariablesType<S>;

@@ -59,6 +59,16 @@ export interface LongType {
   long: {};
 }
 
+export interface DecimalType {
+  type: "decimal";
+  decimal: {};
+}
+
+export interface DateType {
+  type: "date";
+  date: {};
+}
+
 export type PrimitiveType =
   | StringType
   | RidType
@@ -68,4 +78,6 @@ export type PrimitiveType =
   | DoubleType
   | UUIDType
   | LongType
-  | AnyType;
+  | AnyType
+  | DecimalType
+  | DateType;
