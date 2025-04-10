@@ -25,6 +25,8 @@ export function convertIrPrimitiveTypeToTsTypeReference(
     case "datetime":
     case "uuid":
     case "long":
+    case "decimal":
+    case "date":
       return "string";
 
     case "any":
