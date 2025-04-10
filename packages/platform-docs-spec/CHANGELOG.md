@@ -1,5 +1,17 @@
 # @osdk/platform-docs-spec
 
+## 0.6.0
+
+### Minor Changes
+
+- 98ec492: Update Platform SDKs
+- d41a131: Update docs spec
+
+### Patch Changes
+
+- Updated dependencies [d41a131]
+  - @osdk/docs-spec-core@0.5.0
+
 ## 0.5.0
 
 ### Patch Changes

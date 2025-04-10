@@ -1,5 +1,16 @@
 # @osdk/internal.foundry.core
 
+## 2.18.0
+
+### Minor Changes
+
+- 98ec492: Update Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [98ec492]
+  - @osdk/internal.foundry.geo@2.18.0
+
 ## 2.17.0
 
 ### Minor Changes

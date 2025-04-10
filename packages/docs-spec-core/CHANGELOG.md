@@ -1,5 +1,11 @@
 # @osdk/docs-spec-core
 
+## 0.5.0
+
+### Minor Changes
+
+- d41a131: Update docs spec
+
 ## 0.4.0
 
 ### Minor Changes
