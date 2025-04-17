@@ -15,6 +15,9 @@
  */
 
 export type {
+  DevModeSettings,
+  DevModeStatus,
+  FilePath,
   ListReleasesResponse,
   Release,
   ReleaseLocator,
@@ -22,23 +25,46 @@ export type {
   Repository,
   RepositoryRid,
   RepositoryVersion,
+  ScriptEntrypoint,
+  ScriptType,
+  SetWidgetSetDevModeSettingsByIdRequest,
+  SetWidgetSetDevModeSettingsRequest,
+  StylesheetEntrypoint,
+  WidgetDevModeSettings,
+  WidgetId,
+  WidgetRid,
   WidgetSet,
+  WidgetSetDevModeSettings,
+  WidgetSetDevModeSettingsById,
   WidgetSetRid,
 } from "./_components.js";
 export type {
   DeleteReleasePermissionDenied,
+  DevModeSettingsNotFound,
+  DisableDevModeSettingsPermissionDenied,
+  EnableDevModeSettingsPermissionDenied,
   FileCountLimitExceeded,
   FileSizeLimitExceeded,
+  GetDevModeSettingsPermissionDenied,
+  InvalidDevModeBaseHref,
+  InvalidDevModeFilePath,
+  InvalidDevModeWidgetSettingsCount,
+  InvalidEntrypointCssCount,
+  InvalidEntrypointJsCount,
   InvalidManifest,
   InvalidPublishRepository,
   InvalidVersion,
+  PauseDevModeSettingsPermissionDenied,
   PublishReleasePermissionDenied,
   ReleaseNotFound,
   RepositoryNotFound,
+  SetWidgetSetDevModeSettingsByIdPermissionDenied,
+  SetWidgetSetDevModeSettingsPermissionDenied,
   VersionAlreadyExists,
   VersionLimitExceeded,
   WidgetSetNotFound,
 } from "./_errors.js";
+export * as WidgetsDevModeSettings from "./public/DevModeSettings.js";
 export * as Releases from "./public/Release.js";
 export * as Repositories from "./public/Repository.js";
 export * as WidgetSets from "./public/WidgetSet.js";

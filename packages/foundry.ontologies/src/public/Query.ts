@@ -34,6 +34,7 @@ const _execute: $FoundryPlatformMethod<
     queryApiName: _Ontologies.QueryApiName,
     $body: _Ontologies.ExecuteQueryRequest,
     $queryParams?: {
+      version?: _Ontologies.FunctionVersion | undefined;
       artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
       packageName?: _Ontologies.SdkPackageName | undefined;
     },
@@ -60,6 +61,7 @@ export function execute(
     queryApiName: _Ontologies.QueryApiName,
     $body: _Ontologies.ExecuteQueryRequest,
     $queryParams?: {
+      version?: _Ontologies.FunctionVersion | undefined;
       artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
       packageName?: _Ontologies.SdkPackageName | undefined;
     },

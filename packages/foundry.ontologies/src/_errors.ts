@@ -758,6 +758,21 @@ export interface InvalidUserId {
 }
 
 /**
+ * The dimensions of the provided vector don't match the dimensions of the embedding model being queried.
+ *
+ * Log Safety: SAFE
+ */
+export interface InvalidVectorDimension {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidVectorDimension";
+  errorInstanceId: string;
+  parameters: {
+    expectedSize: unknown;
+    providedSize: unknown;
+  };
+}
+
+/**
  * The link the user is attempting to create already exists.
  *
  * Log Safety: SAFE
@@ -1475,6 +1490,21 @@ export interface QueryTimeExceededLimit {
 }
 
 /**
+ * The query could not be found at the provided version.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface QueryVersionNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "QueryVersionNotFound";
+  errorInstanceId: string;
+  parameters: {
+    apiName: unknown;
+    version: unknown;
+  };
+}
+
+/**
  * Unable to decrypt this CipherText because the available rate limits in Cipher licenses were reached.
  *
  * Log Safety: SAFE
@@ -1486,18 +1516,6 @@ export interface RateLimitReached {
   parameters: {
     cipherChannel: unknown;
   };
-}
-
-/**
- * The dimensions of the provided vector don't match the dimensions of the embedding model being queried.
- *
- * Log Safety: SAFE
- */
-export interface SearchVectorDimensionsDiffer {
-  errorCode: "INVALID_ARGUMENT";
-  errorName: "SearchVectorDimensionsDiffer";
-  errorInstanceId: string;
-  parameters: {};
 }
 
 /**
@@ -1539,7 +1557,10 @@ export interface TooManyNearestNeighborsRequested {
   errorCode: "INVALID_ARGUMENT";
   errorName: "TooManyNearestNeighborsRequested";
   errorInstanceId: string;
-  parameters: {};
+  parameters: {
+    requestedNumNeighbors: unknown;
+    maxNumNeighbors: unknown;
+  };
 }
 
 /**

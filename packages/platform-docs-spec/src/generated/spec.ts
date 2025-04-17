@@ -337,6 +337,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getTableImport": {
       "variables": {},
     },
+    "v2.replaceTableImport": {
+      "variables": {},
+    },
     "v2.executeTableImport": {
       "variables": {},
     },
@@ -641,6 +644,24 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.publishRelease": {
+      "variables": {},
+    },
+    "v2.getDevModeSettings": {
+      "variables": {},
+    },
+    "v2.enableDevModeSettings": {
+      "variables": {},
+    },
+    "v2.pauseDevModeSettings": {
+      "variables": {},
+    },
+    "v2.disableDevModeSettings": {
+      "variables": {},
+    },
+    "v2.setWidgetSetDevModeSettings": {
+      "variables": {},
+    },
+    "v2.setWidgetSetDevModeSettingsById": {
       "variables": {},
     },
     "v2.getAgent": {

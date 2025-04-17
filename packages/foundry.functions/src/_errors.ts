@@ -156,6 +156,21 @@ export interface QueryTimeExceededLimit {
 }
 
 /**
+ * The query could not be found at the provided version.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface QueryVersionNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "QueryVersionNotFound";
+  errorInstanceId: string;
+  parameters: {
+    apiName: unknown;
+    version: unknown;
+  };
+}
+
+/**
    * The provided parameters were not found. Please look at the knownParameters field
 to see which ones are available.
    *

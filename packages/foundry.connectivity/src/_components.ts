@@ -915,6 +915,169 @@ export interface ReplaceFileImportRequest {
 }
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceTableImportRequest {
+  datasetRid: _Datasets.DatasetRid;
+  importMode: TableImportMode;
+  displayName: TableImportDisplayName;
+  allowSchemaChanges?: TableImportAllowSchemaChanges;
+  branchName?: _Datasets.BranchName;
+  config: ReplaceTableImportRequestTableImportConfig;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceTableImportRequestDateColumnInitialIncrementalState {
+  currentValue: string;
+  columnName: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceTableImportRequestDecimalColumnInitialIncrementalState {
+  currentValue: string;
+  columnName: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceTableImportRequestIntegerColumnInitialIncrementalState {
+  currentValue: number;
+  columnName: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceTableImportRequestJdbcTableImportConfig {
+  initialIncrementalState?: TableImportInitialIncrementalState;
+  query: TableImportQuery;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceTableImportRequestLongColumnInitialIncrementalState {
+  currentValue: string;
+  columnName: string;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceTableImportRequestMicrosoftAccessTableImportConfig {
+  initialIncrementalState?: TableImportInitialIncrementalState;
+  query: TableImportQuery;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceTableImportRequestMicrosoftSqlServerTableImportConfig {
+  initialIncrementalState?: TableImportInitialIncrementalState;
+  query: TableImportQuery;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceTableImportRequestOracleTableImportConfig {
+  initialIncrementalState?: TableImportInitialIncrementalState;
+  query: TableImportQuery;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceTableImportRequestPostgreSqlTableImportConfig {
+  initialIncrementalState?: TableImportInitialIncrementalState;
+  query: TableImportQuery;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceTableImportRequestSnowflakeTableImportConfig {
+  initialIncrementalState?: TableImportInitialIncrementalState;
+  query: TableImportQuery;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceTableImportRequestStringColumnInitialIncrementalState {
+  currentValue: string;
+  columnName: string;
+}
+
+/**
+ * The import configuration for a specific connector type.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ReplaceTableImportRequestTableImportConfig =
+  | ({
+    type: "jdbcImportConfig";
+  } & ReplaceTableImportRequestJdbcTableImportConfig)
+  | ({
+    type: "microsoftSqlServerImportConfig";
+  } & ReplaceTableImportRequestMicrosoftSqlServerTableImportConfig)
+  | ({
+    type: "postgreSqlImportConfig";
+  } & ReplaceTableImportRequestPostgreSqlTableImportConfig)
+  | ({
+    type: "microsoftAccessImportConfig";
+  } & ReplaceTableImportRequestMicrosoftAccessTableImportConfig)
+  | ({
+    type: "snowflakeImportConfig";
+  } & ReplaceTableImportRequestSnowflakeTableImportConfig)
+  | ({
+    type: "oracleImportConfig";
+  } & ReplaceTableImportRequestOracleTableImportConfig);
+
+/**
+   * The incremental configuration for a table import enables append-style transactions from the same table without duplication of data.
+You must provide a monotonically increasing column such as a timestamp or id and an initial value for this column.
+An incremental table import will import rows where the value is greater than the largest already imported.
+You can use the '?' character to reference the incremental state value when constructing your query.
+Normally this would be used in a WHERE clause or similar filter applied in order to only sync data with an incremental column value
+larger than the previously observed maximum value stored in the incremental state.
+   *
+   * Log Safety: UNSAFE
+   */
+export type ReplaceTableImportRequestTableImportInitialIncrementalState =
+  | ({
+    type: "stringColumnInitialIncrementalState";
+  } & ReplaceTableImportRequestStringColumnInitialIncrementalState)
+  | ({
+    type: "dateColumnInitialIncrementalState";
+  } & ReplaceTableImportRequestDateColumnInitialIncrementalState)
+  | ({
+    type: "integerColumnInitialIncrementalState";
+  } & ReplaceTableImportRequestIntegerColumnInitialIncrementalState)
+  | ({
+    type: "timestampColumnInitialIncrementalState";
+  } & ReplaceTableImportRequestTimestampColumnInitialIncrementalState)
+  | ({
+    type: "longColumnInitialIncrementalState";
+  } & ReplaceTableImportRequestLongColumnInitialIncrementalState)
+  | ({
+    type: "decimalColumnInitialIncrementalState";
+  } & ReplaceTableImportRequestDecimalColumnInitialIncrementalState);
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ReplaceTableImportRequestTimestampColumnInitialIncrementalState {
+  currentValue: string;
+  columnName: string;
+}
+
+/**
  * The method of authentication for connecting to an external REST system.
  *
  * Log Safety: UNSAFE
