@@ -257,6 +257,7 @@ export class Model {
         component: r.component.localName,
         namespace: r.component.namespaceName,
         operations: r.operations.map(so => new Operation(so, this)),
+        pluralName: r.pluralName,
       });
   }
 }

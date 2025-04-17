@@ -83,7 +83,7 @@ export async function generatePlatformSdkV2(
           ns.paths.resourcesDir,
         ).split(path.sep).join("/");
 
-      const resourceName = pluralize(r.component);
+      const resourceName = r.pluralName;
       if (componentsGenerated.get(ns)!.some(c => c === resourceName)) {
         throw new Error(
           `Even the duplicated components aren't unique: ${resourceName}`,
