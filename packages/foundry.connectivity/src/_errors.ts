@@ -430,6 +430,21 @@ export interface ReplaceFileImportPermissionDenied {
 }
 
 /**
+ * Could not replace the TableImport.
+ *
+ * Log Safety: SAFE
+ */
+export interface ReplaceTableImportPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "ReplaceTableImportPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    tableImportRid: unknown;
+    connectionRid: unknown;
+  };
+}
+
+/**
  * The secret names provided do not exist on the connection.
  *
  * Log Safety: UNSAFE
@@ -460,7 +475,7 @@ export interface TableImportNotFound {
 }
 
 /**
- * The specified connection does not support creating a table import with the specified config.
+ * The specified connection does not support creating or replacing a table import with the specified config.
  *
  * Log Safety: UNSAFE
  */

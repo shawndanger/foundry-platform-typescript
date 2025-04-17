@@ -32,12 +32,15 @@ import type * as _Functions from "../_components.js";
 const _get: $FoundryPlatformMethod<
   (
     queryApiName: _Functions.QueryApiName,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams?: {
+      version?: _Functions.FunctionVersion | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ) => Promise<_Functions.Query>
 > = [0, "/v2/functions/queries/{0}", 2];
 
 /**
- * Gets a specific query type with the given API name.
+ * Gets a specific query type with the given API name. By default, this gets the latest version of the query.
  *
  * @alpha
  *
@@ -49,7 +52,10 @@ export function get(
   ...args: [
     queryApiName: _Functions.QueryApiName,
 
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+    $queryParams?: {
+      version?: _Functions.FunctionVersion | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
   ]
 ): Promise<_Functions.Query> {
   return $foundryPlatformFetch($ctx, _get, ...args);
@@ -63,7 +69,7 @@ const _getByRid: $FoundryPlatformMethod<
 > = [1, "/v2/functions/queries/getByRid", 3];
 
 /**
- * Gets a specific query type with the given RID.
+ * Gets a specific query type with the given RID.By default, this gets the latest version of the query.
  *
  * @alpha
  *
@@ -89,7 +95,7 @@ const _execute: $FoundryPlatformMethod<
 > = [1, "/v2/functions/queries/{0}/execute", 3];
 
 /**
- * Executes a Query using the given parameters.
+ * Executes a Query using the given parameters. By default, this executes the latest version of the query.
  *
  * Optional parameters do not need to be supplied.
  *

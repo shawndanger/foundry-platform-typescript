@@ -79,6 +79,7 @@ export type {
   QueryNotFound,
   QueryRuntimeError,
   QueryTimeExceededLimit,
+  QueryVersionNotFound,
   UnknownParameter,
   ValueTypeNotFound,
   VersionIdNotFound,

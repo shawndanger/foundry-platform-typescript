@@ -15,6 +15,7 @@ groupable
 importmap
 inbetween
 isModifierable
+JUPYTERNOTEBOOK
 objs
 onwarn
 pypi

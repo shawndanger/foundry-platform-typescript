@@ -22,4 +22,5 @@ export interface Error {
   errorType: string;
   parameters: Record<string, ParameterValue>;
   documentation: Documentation;
+  useCheckedException?: boolean;
 }

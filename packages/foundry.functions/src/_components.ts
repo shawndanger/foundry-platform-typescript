@@ -53,6 +53,7 @@ export type DataValue = any;
  */
 export interface ExecuteQueryRequest {
   parameters: Record<ParameterId, DataValue | undefined>;
+  version?: FunctionVersion;
 }
 
 /**
@@ -78,10 +79,11 @@ Examples: 1.2.3, 1.2.3-rc1.
 export type FunctionVersion = LooselyBrandedString<"FunctionVersion">;
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface GetByRidQueriesRequest {
   rid: FunctionRid;
+  version?: FunctionVersion;
 }
 
 /**

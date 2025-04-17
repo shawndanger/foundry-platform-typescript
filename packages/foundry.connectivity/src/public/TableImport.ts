@@ -149,6 +149,35 @@ export function get(
   return $foundryPlatformFetch($ctx, _get, ...args);
 }
 
+const _replace: $FoundryPlatformMethod<
+  (
+    connectionRid: _Connectivity.ConnectionRid,
+    tableImportRid: _Connectivity.TableImportRid,
+    $body: _Connectivity.ReplaceTableImportRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_Connectivity.TableImport>
+> = [2, "/v2/connectivity/connections/{0}/tableImports/{1}", 3];
+
+/**
+ * Replace the TableImport with the specified rid.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:connectivity-table-import-write]
+ * URL: /v2/connectivity/connections/{connectionRid}/tableImports/{tableImportRid}
+ */
+export function replace(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    connectionRid: _Connectivity.ConnectionRid,
+    tableImportRid: _Connectivity.TableImportRid,
+    $body: _Connectivity.ReplaceTableImportRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_Connectivity.TableImport> {
+  return $foundryPlatformFetch($ctx, _replace, ...args);
+}
+
 const _execute: $FoundryPlatformMethod<
   (
     connectionRid: _Connectivity.ConnectionRid,

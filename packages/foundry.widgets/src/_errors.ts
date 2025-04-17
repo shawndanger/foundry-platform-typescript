@@ -34,6 +34,42 @@ export interface DeleteReleasePermissionDenied {
 }
 
 /**
+ * The given DevModeSettings could not be found.
+ *
+ * Log Safety: SAFE
+ */
+export interface DevModeSettingsNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "DevModeSettingsNotFound";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * Could not disable the DevModeSettings.
+ *
+ * Log Safety: SAFE
+ */
+export interface DisableDevModeSettingsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "DisableDevModeSettingsPermissionDenied";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * Could not enable the DevModeSettings.
+ *
+ * Log Safety: SAFE
+ */
+export interface EnableDevModeSettingsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "EnableDevModeSettingsPermissionDenied";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
  * The .zip archive contains too many files.
  *
  * Log Safety: SAFE
@@ -65,6 +101,96 @@ export interface FileSizeLimitExceeded {
 }
 
 /**
+ * The provided token does not have permission to access dev mode settings.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetDevModeSettingsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetDevModeSettingsPermissionDenied";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+   * The base href in the dev mode settings is invalid. It must be a valid localhost URL
+with an optional port.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface InvalidDevModeBaseHref {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidDevModeBaseHref";
+  errorInstanceId: string;
+  parameters: {
+    baseHref: unknown;
+  };
+}
+
+/**
+   * The dev mode settings contains an invalid entrypoint file path. The file path must be a
+valid localhost URL with an optional port and a file path.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface InvalidDevModeFilePath {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidDevModeFilePath";
+  errorInstanceId: string;
+  parameters: {
+    filePath: unknown;
+  };
+}
+
+/**
+   * The dev mode settings contains too many widget settings. You must limit the number of
+widget settings to the maximum allowed.
+   *
+   * Log Safety: SAFE
+   */
+export interface InvalidDevModeWidgetSettingsCount {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidDevModeWidgetSettingsCount";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
+    widgetSettingsCount: unknown;
+  };
+}
+
+/**
+   * The dev mode settings contains too many CSS entrypoints. You must limit the number
+of CSS entrypoints to the maximum allowed.
+   *
+   * Log Safety: SAFE
+   */
+export interface InvalidEntrypointCssCount {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidEntrypointCssCount";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
+    entrypointCssCount: unknown;
+  };
+}
+
+/**
+   * The dev mode settings contains too many JavaScript entrypoints. You must limit the number
+of JavaScript entrypoints to the maximum allowed.
+   *
+   * Log Safety: SAFE
+   */
+export interface InvalidEntrypointJsCount {
+  errorCode: "INVALID_ARGUMENT";
+  errorName: "InvalidEntrypointJsCount";
+  errorInstanceId: string;
+  parameters: {
+    reason: unknown;
+    entrypointJsCount: unknown;
+  };
+}
+
+/**
    * The manifest file in the .zip archive at the path .palantir/widgets.config.json
 could not be found or is not well formed.
    *
@@ -92,10 +218,11 @@ export interface InvalidPublishRepository {
 }
 
 /**
- * The given version is invalid. Versions must follow semantic versioning with major, minor, and patch versions separate by periods, e.g. 0.1.0 or 1.2.3.
- *
- * Log Safety: UNSAFE
- */
+   * The given version is invalid. Versions must follow semantic versioning with major, minor,
+and patch versions separate by periods, e.g. 0.1.0 or 1.2.3.
+   *
+   * Log Safety: UNSAFE
+   */
 export interface InvalidVersion {
   errorCode: "INVALID_ARGUMENT";
   errorName: "InvalidVersion";
@@ -103,6 +230,18 @@ export interface InvalidVersion {
   parameters: {
     version: unknown;
   };
+}
+
+/**
+ * Could not pause the DevModeSettings.
+ *
+ * Log Safety: SAFE
+ */
+export interface PauseDevModeSettingsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "PauseDevModeSettingsPermissionDenied";
+  errorInstanceId: string;
+  parameters: {};
 }
 
 /**
@@ -146,6 +285,30 @@ export interface RepositoryNotFound {
   parameters: {
     repositoryRid: unknown;
   };
+}
+
+/**
+ * Could not setWidgetSetById the DevModeSettings.
+ *
+ * Log Safety: SAFE
+ */
+export interface SetWidgetSetDevModeSettingsByIdPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "SetWidgetSetDevModeSettingsByIdPermissionDenied";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * Could not setWidgetSet the DevModeSettings.
+ *
+ * Log Safety: SAFE
+ */
+export interface SetWidgetSetDevModeSettingsPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "SetWidgetSetDevModeSettingsPermissionDenied";
+  errorInstanceId: string;
+  parameters: {};
 }
 
 /**
