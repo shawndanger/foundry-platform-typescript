@@ -17,7 +17,6 @@
 import type { ApiSpec } from "@osdk/platform-docs-spec";
 import fs from "node:fs/promises";
 import * as path from "node:path";
-import pluralizeWord from "pluralize";
 import { addPackagesToPackageJson } from "./addPackagesToPackageJson.js";
 import { copyright } from "./copyright.js";
 import { generateImports, SKIP } from "./generateImports.js";
@@ -83,7 +82,7 @@ export async function generatePlatformSdkV2(
           ns.paths.resourcesDir,
         ).split(path.sep).join("/");
 
-      const resourceName = pluralize(r.component);
+      const resourceName = r.pluralName;
       if (componentsGenerated.get(ns)!.some(c => c === resourceName)) {
         throw new Error(
           `Even the duplicated components aren't unique: ${resourceName}`,
@@ -324,17 +323,4 @@ async function createPackageJson(outputDir: string, name: string) {
       2,
     ),
   );
-}
-
-export function pluralize(s: string): string {
-  const parts = s.split(/(?=[A-Z])/);
-  if (!parts) throw new Error("Failed to pluralize");
-
-  const lastPart = parts[parts.length - 1] === "V2"
-    ? parts.length - 2
-    : parts.length - 1;
-
-  parts[lastPart] = pluralizeWord(parts[lastPart]);
-
-  return parts.join("");
 }
