@@ -307,10 +307,11 @@ export interface SessionExchange {
 /**
  * Retrieved context which was passed to the Agent as input for the exchange.
  *
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface SessionExchangeContexts {
   objectContexts: Array<ObjectContext>;
+  functionRetrievedContexts: Array<FunctionRetrievedContext>;
 }
 
 /**
