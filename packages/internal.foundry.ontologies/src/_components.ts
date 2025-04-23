@@ -1930,6 +1930,19 @@ export interface LoadObjectSetV2ObjectsOrInterfacesResponse {
 }
 
 /**
+ * The Ontology metadata (i.e., object, link, action, query, and interface types) to load.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface LoadOntologyMetadataRequest {
+  objectTypes: Array<ObjectTypeApiName>;
+  linkTypes: Array<LinkTypeApiName>;
+  actionTypes: Array<ActionTypeApiName>;
+  queryTypes: Array<VersionedQueryTypeApiName>;
+  interfaceTypes: Array<InterfaceTypeApiName>;
+}
+
+/**
  * Log Safety: UNSAFE
  */
 export type LogicRule =
@@ -2591,7 +2604,7 @@ export interface OntologyFullMetadata {
   ontology: OntologyV2;
   objectTypes: Record<ObjectTypeApiName, ObjectTypeFullMetadata>;
   actionTypes: Record<ActionTypeApiName, ActionTypeV2>;
-  queryTypes: Record<QueryApiName, QueryTypeV2>;
+  queryTypes: Record<VersionedQueryTypeApiName, QueryTypeV2>;
   interfaceTypes: Record<InterfaceTypeApiName, InterfaceType>;
   sharedPropertyTypes: Record<SharedPropertyTypeApiName, SharedPropertyType>;
 }
@@ -4173,6 +4186,20 @@ structs.
    * Log Safety: SAFE
    */
 export type ValueType = LooselyBrandedString<"ValueType">;
+
+/**
+   * The name of the Query in the API and an optional version identifier separated by a colon.
+If the API name contains a colon, then a version identifier of either "latest" or a semantic version must
+be included.
+If the API does not contain a colon, then either the version identifier must be excluded or a version
+identifier of a semantic version must be included.
+Examples: 'myGroup:myFunction:latest', 'myGroup:myFunction:1.0.0', 'myFunction', 'myFunction:2.0.0'
+   *
+   * Log Safety: UNSAFE
+   */
+export type VersionedQueryTypeApiName = LooselyBrandedString<
+  "VersionedQueryTypeApiName"
+>;
 
 /**
  * Log Safety: UNSAFE

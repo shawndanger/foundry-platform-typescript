@@ -487,6 +487,9 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getOntologyFullMetadata": {
       "variables": {},
     },
+    "v2.loadOntologyMetadata": {
+      "variables": {},
+    },
     "v2.listActionTypesV2": {
       "variables": {},
     },

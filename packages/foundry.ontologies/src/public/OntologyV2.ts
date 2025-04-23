@@ -90,3 +90,28 @@ export function getFullMetadata(
 ): Promise<_Ontologies.OntologyFullMetadata> {
   return $foundryPlatformFetch($ctx, _getFullMetadata, ...args);
 }
+
+const _loadMetadata: $FoundryPlatformMethod<
+  (
+    ontology: _Ontologies.OntologyIdentifier,
+    $body: _Ontologies.LoadOntologyMetadataRequest,
+  ) => Promise<_Ontologies.OntologyFullMetadata>
+> = [1, "/v2/ontologies/{0}/metadata", 1];
+
+/**
+ * Load Ontology metadata for the requested object, link, action, query, and interface types.
+ *
+ * @alpha
+ *
+ * Required Scopes: [api:ontologies-read]
+ * URL: /v2/ontologies/{ontology}/metadata
+ */
+export function loadMetadata(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    ontology: _Ontologies.OntologyIdentifier,
+    $body: _Ontologies.LoadOntologyMetadataRequest,
+  ]
+): Promise<_Ontologies.OntologyFullMetadata> {
+  return $foundryPlatformFetch($ctx, _loadMetadata, ...args);
+}
