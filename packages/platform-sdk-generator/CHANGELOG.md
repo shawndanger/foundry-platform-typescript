@@ -1,5 +1,17 @@
 # @osdk/platform-sdk-generator
 
+## 0.17.0
+
+### Minor Changes
+
+- d89bef7: Use the pluralName field on the IR instead of relying on pluralize to name resources
+- 539c731: Regenerate Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [539c731]
+  - @osdk/platform-docs-spec@0.7.0
+
 ## 0.16.0
 
 ### Minor Changes

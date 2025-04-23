@@ -1,5 +1,17 @@
 # @osdk/foundry.sqlqueries
 
+## 2.19.0
+
+### Minor Changes
+
+- 539c731: Regenerate Platform SDKs
+
+### Patch Changes
+
+- Updated dependencies [539c731]
+  - @osdk/foundry.datasets@2.19.0
+  - @osdk/foundry.core@2.19.0
+
 ## 2.18.0
 
 ### Minor Changes
