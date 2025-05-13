@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Palantir Technologies, Inc. All rights reserved.
+ * Copyright 2025 Palantir Technologies, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,13 @@
  * limitations under the License.
  */
 
-import type * as ir from "@osdk/docs-spec-platform";
-import { convertIrPrimitiveTypeToTsTypeReference } from "../convertIrPrimitiveTypeToTsTypeReference.js";
-import { SimpleType } from "./Type.js";
-
-export class BuiltinType extends SimpleType {
-  constructor(public primitiveType: ir.PrimitiveType) {
-    super();
-  }
-
-  getDeclaration(): string {
-    return convertIrPrimitiveTypeToTsTypeReference(
-      this.primitiveType,
-    );
-  }
-}
+export type {
+  ActionParameterSampleValuesIR,
+  ActionParameterSampleValueTypeIR,
+  FunctionSampleParametersIR,
+  FunctionSampleValueTypeIR,
+  PropertySampleIR,
+  PropertySampleValueTypeIR,
+} from "./commonIr.js";
+export type { OsdkSnippetName, VariablesForOsdkSnippet } from "./spec.js";
+export { OSDK_SNIPPETS_SPEC } from "./spec.js";
