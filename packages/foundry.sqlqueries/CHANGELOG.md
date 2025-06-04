@@ -1,5 +1,17 @@
 # @osdk/foundry.sqlqueries
 
+## 2.21.0
+
+### Minor Changes
+
+- 90311af: Add new private beta APIs and move SQL Queries APIs to public beta
+
+### Patch Changes
+
+- Updated dependencies [90311af]
+  - @osdk/foundry.datasets@2.21.0
+  - @osdk/foundry.core@2.21.0
+
 ## 2.20.0
 
 ### Minor Changes

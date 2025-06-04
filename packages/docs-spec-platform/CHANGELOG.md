@@ -1,5 +1,11 @@
 # @osdk/docs-spec-platform
 
+## 0.9.0
+
+### Minor Changes
+
+- 90311af: Add new private beta APIs and move SQL Queries APIs to public beta
+
 ## 0.8.0
 
 ### Minor Changes
