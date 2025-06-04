@@ -1,5 +1,12 @@
 # @osdk/tool.release
 
+## 0.7.0
+
+### Minor Changes
+
+- 99daa8e: Bump @changesets/config from 3.0.2 to 3.1.1
+- 57f095d: Bump package-json from 10.0.0 to 10.0.1
+
 ## 0.6.0
 
 ### Minor Changes

@@ -1,5 +1,21 @@
 # @osdk/foundry
 
+## 2.21.0
+
+### Minor Changes
+
+- 90311af: Add new private beta APIs and move SQL Queries APIs to public beta
+
+### Patch Changes
+
+- Updated dependencies [90311af]
+  - @osdk/internal.foundry.ontologies@2.21.0
+  - @osdk/internal.foundry.datasets@2.21.0
+  - @osdk/internal.foundry.core@2.21.0
+  - @osdk/internal.foundry.geo@2.21.0
+  - @osdk/internal.foundry.ontologiesv2@2.21.0
+  - @osdk/internal.foundry.mediasets@2.21.0
+
 ## 2.20.0
 
 ### Minor Changes
