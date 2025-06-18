@@ -1,5 +1,11 @@
 # @osdk/docs-spec-platform
 
+## 0.11.0
+
+### Minor Changes
+
+- da76626: Adding new platform sdks.
+
 ## 0.10.0
 
 ### Minor Changes

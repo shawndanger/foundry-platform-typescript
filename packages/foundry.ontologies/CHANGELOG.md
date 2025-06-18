@@ -1,5 +1,17 @@
 # @osdk/foundry.ontologies
 
+## 2.23.0
+
+### Minor Changes
+
+- da76626: Adding new platform sdks.
+
+### Patch Changes
+
+- Updated dependencies [da76626]
+  - @osdk/foundry.core@2.23.0
+  - @osdk/foundry.geo@2.23.0
+
 ## 2.22.0
 
 ### Minor Changes
