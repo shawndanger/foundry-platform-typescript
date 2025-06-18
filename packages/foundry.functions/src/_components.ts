@@ -120,7 +120,7 @@ export interface Query {
 /**
  * A union of all the types supported by query aggregation keys.
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export type QueryAggregationKeyType =
   | ({ type: "date" } & _Core.DateType)
@@ -134,7 +134,7 @@ export type QueryAggregationKeyType =
 /**
  * A union of all the types supported by query aggregation ranges.
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export type QueryAggregationRangeSubType =
   | ({ type: "date" } & _Core.DateType)
@@ -143,7 +143,7 @@ export type QueryAggregationRangeSubType =
   | ({ type: "timestamp" } & _Core.TimestampType);
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface QueryAggregationRangeType {
   subType: QueryAggregationRangeSubType;
@@ -152,7 +152,7 @@ export interface QueryAggregationRangeType {
 /**
  * A union of all the types supported by query aggregation keys.
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export type QueryAggregationValueType =
   | ({ type: "date" } & _Core.DateType)
@@ -242,7 +242,7 @@ export interface QueryUnionType {
 export type StructFieldName = LooselyBrandedString<"StructFieldName">;
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface ThreeDimensionalAggregation {
   keyType: QueryAggregationKeyType;
@@ -250,7 +250,7 @@ export interface ThreeDimensionalAggregation {
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface TwoDimensionalAggregation {
   keyType: QueryAggregationKeyType;

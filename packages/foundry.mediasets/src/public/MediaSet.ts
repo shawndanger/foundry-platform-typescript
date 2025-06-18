@@ -157,6 +157,46 @@ export function reference(
   return $foundryPlatformFetch($ctx, _reference, ...args);
 }
 
+const _getRidByPath: $FoundryPlatformMethod<
+  (
+    mediaSetRid: _Core.MediaSetRid,
+    $queryParams: {
+      mediaItemPath: _Core.MediaItemPath;
+      branchName?: _MediaSets.BranchName | undefined;
+      branchRid?: _MediaSets.BranchRid | undefined;
+      viewRid?: _Core.MediaSetViewRid | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ) => Promise<_MediaSets.GetMediaItemRidByPathResponse>
+> = [0, "/v2/mediasets/{0}/items/getRidByPath", 2];
+
+/**
+ * Returns the media item RID for the media item with the specified path.
+ *
+ * Third-party applications using this endpoint via OAuth2 must request the following operation scope: `api:mediasets-read`.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:mediasets-read]
+ * URL: /v2/mediasets/{mediaSetRid}/items/getRidByPath
+ */
+export function getRidByPath(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    mediaSetRid: _Core.MediaSetRid,
+
+    $queryParams: {
+      mediaItemPath: _Core.MediaItemPath;
+      branchName?: _MediaSets.BranchName | undefined;
+      branchRid?: _MediaSets.BranchRid | undefined;
+      viewRid?: _Core.MediaSetViewRid | undefined;
+      preview?: _Core.PreviewMode | undefined;
+    },
+  ]
+): Promise<_MediaSets.GetMediaItemRidByPathResponse> {
+  return $foundryPlatformFetch($ctx, _getRidByPath, ...args);
+}
+
 const _upload: $FoundryPlatformMethod<
   (
     mediaSetRid: _Core.MediaSetRid,

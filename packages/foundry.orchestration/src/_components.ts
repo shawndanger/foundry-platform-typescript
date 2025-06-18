@@ -87,7 +87,7 @@ export type BuildStatus = "RUNNING" | "SUCCEEDED" | "FAILED" | "CANCELED";
 /**
  * The targets of the build.
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export type BuildTarget =
   | ({ type: "upstream" } & UpstreamTarget)
@@ -155,7 +155,7 @@ export interface CreateScheduleRequestAndTrigger {
 /**
  * The targets of the build.
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export type CreateScheduleRequestBuildTarget =
   | ({ type: "upstream" } & CreateScheduleRequestUpstreamTarget)
@@ -247,7 +247,7 @@ export interface CreateScheduleRequestScheduleSucceededTrigger {
 /**
  * The boundaries for the schedule build.
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export type CreateScheduleRequestScopeMode =
   | ({ type: "project" } & CreateScheduleRequestProjectScope)
@@ -354,14 +354,14 @@ export interface GetJobsBatchRequestElement {
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface GetJobsBatchResponse {
   data: Record<_Core.JobRid, Job>;
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface Job {
   rid: _Core.JobRid;
@@ -375,7 +375,7 @@ export interface Job {
 /**
  * Other types of Job Outputs exist in Foundry. Currently, only Dataset and Media Set are supported by the API.
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export type JobOutput =
   | ({ type: "datasetJobOutput" } & DatasetJobOutput)
@@ -532,7 +532,7 @@ export interface ReplaceScheduleRequestAndTrigger {
 /**
  * The targets of the build.
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export type ReplaceScheduleRequestBuildTarget =
   | ({ type: "upstream" } & ReplaceScheduleRequestUpstreamTarget)
@@ -624,7 +624,7 @@ export interface ReplaceScheduleRequestScheduleSucceededTrigger {
 /**
  * The boundaries for the schedule build.
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export type ReplaceScheduleRequestScopeMode =
   | ({ type: "project" } & ReplaceScheduleRequestProjectScope)
@@ -807,7 +807,7 @@ export type ScheduleVersionRid = LooselyBrandedString<"ScheduleVersionRid">;
 /**
  * The boundaries for the schedule build.
  *
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export type ScopeMode =
   | ({ type: "project" } & ProjectScope)

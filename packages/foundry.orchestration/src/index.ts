@@ -149,6 +149,7 @@ export type {
   PauseSchedulePermissionDenied,
   ReplaceSchedulePermissionDenied,
   RunSchedulePermissionDenied,
+  ScheduleAlreadyRunning,
   ScheduleNotFound,
   ScheduleTriggerResourcesNotFound,
   ScheduleTriggerResourcesPermissionDenied,

@@ -33,7 +33,7 @@ export type AgentRid = LooselyBrandedString<"AgentRid">;
    * The API key used to authenticate to the external system.
 This can be configured as a header or query parameter.
    *
-   * Log Safety: UNSAFE
+   * Log Safety: DO_NOT_LOG
    */
 export interface ApiKeyAuthentication {
   location: RestRequestApiKeyLocation;
@@ -61,7 +61,7 @@ Access keys consist of two parts: an access key ID (for example, AKIAIOSFODNN7EX
 key (for example, wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY). You must use both the access key ID and
 secret access key together to authenticate your requests.
    *
-   * Log Safety: UNSAFE
+   * Log Safety: DO_NOT_LOG
    */
 export interface AwsAccessKey {
   accessKeyId: string;
@@ -81,7 +81,7 @@ export interface AwsOidcAuthentication {
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export interface BasicCredentials {
   username: string;
@@ -91,7 +91,7 @@ export interface BasicCredentials {
 /**
  * The bearer token used to authenticate to the external system.
  *
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export interface BearerToken {
   bearerToken: EncryptedProperty;
@@ -115,7 +115,7 @@ export interface CloudIdentity {
 export type CloudIdentityRid = LooselyBrandedString<"CloudIdentityRid">;
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export interface Connection {
   rid: ConnectionRid;
@@ -125,7 +125,7 @@ export interface Connection {
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export type ConnectionConfiguration =
   | ({ type: "s3" } & S3ConnectionConfiguration)
@@ -150,7 +150,7 @@ export type ConnectionDisplayName = LooselyBrandedString<
 export type ConnectionRid = LooselyBrandedString<"ConnectionRid">;
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export interface CreateConnectionRequest {
   parentFolderRid: _Filesystem.FolderRid;
@@ -173,7 +173,7 @@ export interface CreateConnectionRequestAsSecretName {
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export interface CreateConnectionRequestAwsAccessKey {
   accessKeyId: string;
@@ -188,7 +188,7 @@ export interface CreateConnectionRequestAwsOidcAuthentication {
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export interface CreateConnectionRequestBasicCredentials {
   password: CreateConnectionRequestEncryptedProperty;
@@ -203,7 +203,7 @@ export interface CreateConnectionRequestCloudIdentity {
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export type CreateConnectionRequestConnectionConfiguration =
   | ({ type: "s3" } & CreateConnectionRequestS3ConnectionConfiguration)
@@ -229,14 +229,14 @@ If a plaintext value is passed as an input, the plaintext value will be encrypte
 If a secret name is passed as an input, the secret name must match the existing secret name of the property
 and the property will retain its previously encrypted value.
    *
-   * Log Safety: UNSAFE
+   * Log Safety: DO_NOT_LOG
    */
 export type CreateConnectionRequestEncryptedProperty =
   | ({ type: "asSecretName" } & CreateConnectionRequestAsSecretName)
   | ({ type: "asPlaintextValue" } & CreateConnectionRequestAsPlaintextValue);
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export interface CreateConnectionRequestJdbcConnectionConfiguration {
   credentials?: BasicCredentials;
@@ -249,7 +249,7 @@ export interface CreateConnectionRequestJdbcConnectionConfiguration {
    * When creating or updating additional secrets, use SecretsWithPlaintextValues.
 When fetching the RestConnectionConfiguration, SecretsNames will be provided.
    *
-   * Log Safety: UNSAFE
+   * Log Safety: DO_NOT_LOG
    */
 export type CreateConnectionRequestRestConnectionAdditionalSecrets =
   | ({
@@ -258,7 +258,7 @@ export type CreateConnectionRequestRestConnectionAdditionalSecrets =
   | ({ type: "asSecretsNames" } & CreateConnectionRequestSecretsNames);
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export interface CreateConnectionRequestRestConnectionConfiguration {
   additionalSecrets?: RestConnectionAdditionalSecrets;
@@ -267,7 +267,7 @@ export interface CreateConnectionRequestRestConnectionConfiguration {
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export type CreateConnectionRequestS3AuthenticationMode =
   | ({ type: "awsAccessKey" } & CreateConnectionRequestAwsAccessKey)
@@ -275,7 +275,7 @@ export type CreateConnectionRequestS3AuthenticationMode =
   | ({ type: "oidc" } & CreateConnectionRequestAwsOidcAuthentication);
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export interface CreateConnectionRequestS3ConnectionConfiguration {
   connectionTimeoutMillis?: string;
@@ -303,7 +303,7 @@ export interface CreateConnectionRequestS3KmsConfiguration {
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export interface CreateConnectionRequestS3ProxyConfiguration {
   nonProxyHosts?: Array<string>;
@@ -326,7 +326,7 @@ export interface CreateConnectionRequestSecretsWithPlaintextValues {
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export type CreateConnectionRequestSnowflakeAuthenticationMode =
   | ({ type: "externalOauth" } & CreateConnectionRequestSnowflakeExternalOauth)
@@ -336,7 +336,7 @@ export type CreateConnectionRequestSnowflakeAuthenticationMode =
   | ({ type: "basic" } & CreateConnectionRequestBasicCredentials);
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export interface CreateConnectionRequestSnowflakeConnectionConfiguration {
   schema?: string;
@@ -354,7 +354,7 @@ export interface CreateConnectionRequestSnowflakeConnectionConfiguration {
 export interface CreateConnectionRequestSnowflakeExternalOauth {}
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export interface CreateConnectionRequestSnowflakeKeyPairAuthentication {
   privateKey: CreateConnectionRequestEncryptedProperty;
@@ -570,7 +570,7 @@ export interface DecimalColumnInitialIncrementalState {
 /**
  * The domain that the connection is allowed to access.
  *
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export interface Domain {
   scheme?: UriScheme;
@@ -587,7 +587,7 @@ If a plaintext value is passed as an input, the plaintext value will be encrypte
 If a secret name is passed as an input, the secret name must match the existing secret name of the property
 and the property will retain its previously encrypted value.
    *
-   * Log Safety: UNSAFE
+   * Log Safety: DO_NOT_LOG
    */
 export type EncryptedProperty =
   | ({ type: "asSecretName" } & AsSecretName)
@@ -763,7 +763,7 @@ export interface FileSizeFilter {
 }
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface HeaderApiKey {
   headerName: string;
@@ -782,7 +782,7 @@ export interface IntegerColumnInitialIncrementalState {
 /**
  * The configuration needed to connect to an external system using the JDBC protocol.
  *
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export interface JdbcConnectionConfiguration {
   url: string;
@@ -889,7 +889,7 @@ export interface PostgreSqlTableImportConfig {
 export type Protocol = "HTTP" | "HTTPS";
 
 /**
- * Log Safety: SAFE
+ * Log Safety: UNSAFE
  */
 export interface QueryParameterApiKey {
   queryParameterName: string;
@@ -1076,7 +1076,7 @@ export interface ReplaceTableImportRequestTimestampColumnInitialIncrementalState
 /**
  * The method of authentication for connecting to an external REST system.
  *
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export type RestAuthenticationMode =
   | ({ type: "bearerToken" } & BearerToken)
@@ -1088,7 +1088,7 @@ export type RestAuthenticationMode =
    * When creating or updating additional secrets, use SecretsWithPlaintextValues.
 When fetching the RestConnectionConfiguration, SecretsNames will be provided.
    *
-   * Log Safety: UNSAFE
+   * Log Safety: DO_NOT_LOG
    */
 export type RestConnectionAdditionalSecrets =
   | ({ type: "asSecretsWithPlaintextValues" } & SecretsWithPlaintextValues)
@@ -1097,7 +1097,7 @@ export type RestConnectionAdditionalSecrets =
 /**
  * The configuration needed to connect to a REST external system.
  *
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export interface RestConnectionConfiguration {
   domains: Array<Domain>;
@@ -1123,7 +1123,7 @@ export type RestRequestApiKeyLocation =
   | ({ type: "queryParameter" } & QueryParameterApiKey);
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export type S3AuthenticationMode =
   | ({ type: "awsAccessKey" } & AwsAccessKey)
@@ -1134,7 +1134,7 @@ export type S3AuthenticationMode =
    * The configuration needed to connect to an AWS S3 external system (or any other S3-like external systems that
 implement the s3a protocol).
    *
-   * Log Safety: UNSAFE
+   * Log Safety: DO_NOT_LOG
    */
 export interface S3ConnectionConfiguration {
   bucketUrl: string;
@@ -1162,7 +1162,7 @@ export interface S3KmsConfiguration {
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export interface S3ProxyConfiguration {
   host: string;
@@ -1198,7 +1198,7 @@ export interface SecretsWithPlaintextValues {
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export type SnowflakeAuthenticationMode =
   | ({ type: "externalOauth" } & SnowflakeExternalOauth)
@@ -1208,7 +1208,7 @@ export type SnowflakeAuthenticationMode =
 /**
  * The configuration needed to connect to a Snowflake database.
  *
- * Log Safety: UNSAFE
+ * Log Safety: DO_NOT_LOG
  */
 export interface SnowflakeConnectionConfiguration {
   accountIdentifier: string;
@@ -1236,7 +1236,7 @@ export interface SnowflakeExternalOauth {
    * Use a key-pair to connect and authenticate to Snowflake.
 See https://docs.snowflake.com/en/user-guide/key-pair-auth
    *
-   * Log Safety: UNSAFE
+   * Log Safety: DO_NOT_LOG
    */
 export interface SnowflakeKeyPairAuthentication {
   user: string;

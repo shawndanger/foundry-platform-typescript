@@ -46,7 +46,7 @@ export interface AddOrganizationsRequest {
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface AddResourceRolesRequest {
   roles: Array<ResourceRole>;
@@ -286,7 +286,7 @@ export interface RemoveOrganizationsRequest {
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface RemoveResourceRolesRequest {
   roles: Array<ResourceRole>;
@@ -334,7 +334,7 @@ export type ResourcePath = LooselyBrandedString<"ResourcePath">;
 export type ResourceRid = LooselyBrandedString<"ResourceRid">;
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export interface ResourceRole {
   resourceRolePrincipal: ResourceRolePrincipal;
@@ -342,7 +342,7 @@ export interface ResourceRole {
 }
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export type ResourceRolePrincipal =
   | ({ type: "principalWithId" } & PrincipalWithId)

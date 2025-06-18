@@ -830,6 +830,7 @@ export interface LinkTypeNotFound {
   parameters: {
     objectType: unknown;
     linkType: unknown;
+    linkTypeId: unknown;
   };
 }
 
@@ -983,6 +984,7 @@ export interface MarketplaceSdkObjectMappingNotFound {
   errorName: "MarketplaceSdkObjectMappingNotFound";
   errorInstanceId: string;
   parameters: {
+    localObjectType: unknown;
     objectType: unknown;
     sdkPackageRid: unknown;
     sdkVersion: unknown;

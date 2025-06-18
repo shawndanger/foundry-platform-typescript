@@ -35,8 +35,8 @@ const _getLatestValue: $FoundryPlatformMethod<
     primaryKey: _Ontologies.PropertyValueEscapedString,
     propertyName: _Ontologies.PropertyApiName,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
   ) => Promise<_Ontologies.TimeseriesEntry | undefined>
 > = [0, "/v2/ontologies/{0}/objects/{1}/{2}/timeseries/{3}/latestValue", 2];
@@ -61,8 +61,8 @@ export function getLatestValue(
     propertyName: _Ontologies.PropertyApiName,
 
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
   ]
 ): Promise<_Ontologies.TimeseriesEntry | undefined> {
@@ -77,8 +77,8 @@ const _streamValues: $FoundryPlatformMethod<
     property: _Ontologies.PropertyApiName,
     $body: _Ontologies.StreamTimeSeriesValuesRequest,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
   ) => Promise<Response>
 > = [
@@ -109,8 +109,8 @@ export function streamValues(
     property: _Ontologies.PropertyApiName,
     $body: _Ontologies.StreamTimeSeriesValuesRequest,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
   ]
 ): Promise<Response> {

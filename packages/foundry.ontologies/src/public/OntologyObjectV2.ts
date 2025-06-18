@@ -41,6 +41,7 @@ const _list: $FoundryPlatformMethod<
       artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
       packageName?: _Ontologies.SdkPackageName | undefined;
       excludeRid?: boolean | undefined;
+      snapshot?: boolean | undefined;
     },
   ) => Promise<_Ontologies.ListObjectsResponseV2>
 > = [0, "/v2/ontologies/{0}/objects/{1}", 2];
@@ -81,6 +82,7 @@ export function list(
       artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
       packageName?: _Ontologies.SdkPackageName | undefined;
       excludeRid?: boolean | undefined;
+      snapshot?: boolean | undefined;
     },
   ]
 ): Promise<_Ontologies.ListObjectsResponseV2> {

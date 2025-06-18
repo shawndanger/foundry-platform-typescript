@@ -19,6 +19,21 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+   * A check of the given type for the given subject(s) already exists. The conflicting check will be returned
+if the provided token has permission to view it.
+   *
+   * Log Safety: UNSAFE
+   */
+export interface CheckAlreadyExists {
+  errorCode: "CONFLICT";
+  errorName: "CheckAlreadyExists";
+  errorInstanceId: string;
+  parameters: {
+    conflictingCheck: unknown;
+  };
+}
+
+/**
  * The given Check could not be found.
  *
  * Log Safety: SAFE
@@ -26,6 +41,32 @@ export type LooselyBrandedString<T extends string> = string & {
 export interface CheckNotFound {
   errorCode: "NOT_FOUND";
   errorName: "CheckNotFound";
+  errorInstanceId: string;
+  parameters: {
+    checkRid: unknown;
+  };
+}
+
+/**
+ * Could not create the Check.
+ *
+ * Log Safety: SAFE
+ */
+export interface CreateCheckPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "CreateCheckPermissionDenied";
+  errorInstanceId: string;
+  parameters: {};
+}
+
+/**
+ * Could not delete the Check.
+ *
+ * Log Safety: SAFE
+ */
+export interface DeleteCheckPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "DeleteCheckPermissionDenied";
   errorInstanceId: string;
   parameters: {
     checkRid: unknown;

@@ -35,8 +35,8 @@ const _getFirstPoint: $FoundryPlatformMethod<
     primaryKey: _Ontologies.PropertyValueEscapedString,
     property: _Ontologies.PropertyApiName,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
   ) => Promise<_Ontologies.TimeSeriesPoint | undefined>
 > = [0, "/v2/ontologies/{0}/objects/{1}/{2}/timeseries/{3}/firstPoint", 2];
@@ -61,8 +61,8 @@ export function getFirstPoint(
     property: _Ontologies.PropertyApiName,
 
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
   ]
 ): Promise<_Ontologies.TimeSeriesPoint | undefined> {
@@ -76,8 +76,8 @@ const _getLastPoint: $FoundryPlatformMethod<
     primaryKey: _Ontologies.PropertyValueEscapedString,
     property: _Ontologies.PropertyApiName,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
   ) => Promise<_Ontologies.TimeSeriesPoint | undefined>
 > = [0, "/v2/ontologies/{0}/objects/{1}/{2}/timeseries/{3}/lastPoint", 2];
@@ -102,8 +102,8 @@ export function getLastPoint(
     property: _Ontologies.PropertyApiName,
 
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
   ]
 ): Promise<_Ontologies.TimeSeriesPoint | undefined> {
@@ -118,8 +118,8 @@ const _streamPoints: $FoundryPlatformMethod<
     property: _Ontologies.PropertyApiName,
     $body: _Ontologies.StreamTimeSeriesPointsRequest,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       format?: _Ontologies.StreamingOutputFormat | undefined;
     },
   ) => Promise<Response>
@@ -151,8 +151,8 @@ export function streamPoints(
     property: _Ontologies.PropertyApiName,
     $body: _Ontologies.StreamTimeSeriesPointsRequest,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       format?: _Ontologies.StreamingOutputFormat | undefined;
     },
   ]
