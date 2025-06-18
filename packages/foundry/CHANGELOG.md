@@ -1,5 +1,32 @@
 # @osdk/foundry
 
+## 2.23.0
+
+### Minor Changes
+
+- da76626: Adding new platform sdks.
+
+### Patch Changes
+
+- Updated dependencies [da76626]
+  - @osdk/foundry.thirdpartyapplications@2.23.0
+  - @osdk/foundry.orchestration@2.23.0
+  - @osdk/foundry.connectivity@2.23.0
+  - @osdk/foundry.datahealth@2.23.0
+  - @osdk/foundry.filesystem@2.23.0
+  - @osdk/foundry.ontologies@2.23.0
+  - @osdk/foundry.publicapis@2.23.0
+  - @osdk/foundry.sqlqueries@2.23.0
+  - @osdk/foundry.aipagents@2.23.0
+  - @osdk/foundry.functions@2.23.0
+  - @osdk/foundry.mediasets@2.23.0
+  - @osdk/foundry.datasets@2.23.0
+  - @osdk/foundry.streams@2.23.0
+  - @osdk/foundry.widgets@2.23.0
+  - @osdk/foundry.admin@2.23.0
+  - @osdk/foundry.core@2.23.0
+  - @osdk/foundry.geo@2.23.0
+
 ## 2.22.0
 
 ### Minor Changes

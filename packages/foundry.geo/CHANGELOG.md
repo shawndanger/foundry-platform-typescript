@@ -1,5 +1,11 @@
 # @osdk/foundry.geo
 
+## 2.23.0
+
+### Minor Changes
+
+- da76626: Adding new platform sdks.
+
 ## 2.22.0
 
 ### Minor Changes
