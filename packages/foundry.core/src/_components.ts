@@ -462,7 +462,7 @@ export interface FilterRidType {}
 export interface FilterStringType {}
 
 /**
- * Log Safety: UNSAFE
+ * Log Safety: SAFE
  */
 export type FilterType =
   | ({ type: "dateTime" } & FilterDateTimeType)

@@ -23,6 +23,13 @@ export type LooselyBrandedString<T extends string> = string & {
 };
 
 /**
+ * The name of a Branch.
+ *
+ * Log Safety: UNSAFE
+ */
+export type BranchName = LooselyBrandedString<"BranchName">;
+
+/**
  * Checks the status of the most recent build of the dataset.
  *
  * Log Safety: UNSAFE
@@ -80,6 +87,14 @@ export type CheckRid = LooselyBrandedString<"CheckRid">;
 export type ColumnName = LooselyBrandedString<"ColumnName">;
 
 /**
+ * Log Safety: UNSAFE
+ */
+export interface CreateCheckRequest {
+  config: CheckConfig;
+  intent?: CheckIntent;
+}
+
+/**
  * A data connection agent resource type.
  *
  * Log Safety: UNSAFE
@@ -89,6 +104,13 @@ export interface DataConnectionAgentSubject {
 }
 
 /**
+ * The Resource Identifier (RID) of a Dataset.
+ *
+ * Log Safety: SAFE
+ */
+export type DatasetRid = LooselyBrandedString<"DatasetRid">;
+
+/**
  * A dataset resource type.
  *
  * Log Safety: UNSAFE
@@ -96,7 +118,6 @@ export interface DataConnectionAgentSubject {
 export interface DatasetSubject {
   datasetRid: _Datasets.DatasetRid;
   branchId: _Datasets.BranchName;
-  columnNames: Array<string>;
 }
 
 /**

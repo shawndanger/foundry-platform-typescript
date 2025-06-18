@@ -89,8 +89,8 @@ const _load: $FoundryPlatformMethod<
     ontology: _Ontologies.OntologyIdentifier,
     $body: _Ontologies.LoadObjectSetRequestV2,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
   ) => Promise<_Ontologies.LoadObjectSetResponseV2>
 > = [1, "/v2/ontologies/{0}/objectSets/loadObjects", 3];
@@ -118,8 +118,8 @@ export function load(
     ontology: _Ontologies.OntologyIdentifier,
     $body: _Ontologies.LoadObjectSetRequestV2,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
   ]
 ): Promise<_Ontologies.LoadObjectSetResponseV2> {
@@ -131,8 +131,8 @@ const _loadMultipleObjectTypes: $FoundryPlatformMethod<
     ontology: _Ontologies.OntologyIdentifier,
     $body: _Ontologies.LoadObjectSetV2MultipleObjectTypesRequest,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Ontologies.LoadObjectSetV2MultipleObjectTypesResponse>
@@ -166,8 +166,8 @@ export function loadMultipleObjectTypes(
     ontology: _Ontologies.OntologyIdentifier,
     $body: _Ontologies.LoadObjectSetV2MultipleObjectTypesRequest,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ]
@@ -180,8 +180,8 @@ const _loadObjectsOrInterfaces: $FoundryPlatformMethod<
     ontology: _Ontologies.OntologyIdentifier,
     $body: _Ontologies.LoadObjectSetV2ObjectsOrInterfacesRequest,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Ontologies.LoadObjectSetV2ObjectsOrInterfacesResponse>
@@ -217,8 +217,8 @@ export function loadObjectsOrInterfaces(
     ontology: _Ontologies.OntologyIdentifier,
     $body: _Ontologies.LoadObjectSetV2ObjectsOrInterfacesRequest,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ]
@@ -231,8 +231,8 @@ const _aggregate: $FoundryPlatformMethod<
     ontology: _Ontologies.OntologyIdentifier,
     $body: _Ontologies.AggregateObjectSetRequestV2,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
   ) => Promise<_Ontologies.AggregateObjectsResponseV2>
 > = [1, "/v2/ontologies/{0}/objectSets/aggregate", 3];
@@ -253,8 +253,8 @@ export function aggregate(
     ontology: _Ontologies.OntologyIdentifier,
     $body: _Ontologies.AggregateObjectSetRequestV2,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
     },
   ]
 ): Promise<_Ontologies.AggregateObjectsResponseV2> {

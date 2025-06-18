@@ -348,6 +348,20 @@ export interface RunSchedulePermissionDenied {
 }
 
 /**
+ * The target schedule is currently running.
+ *
+ * Log Safety: SAFE
+ */
+export interface ScheduleAlreadyRunning {
+  errorCode: "CONFLICT";
+  errorName: "ScheduleAlreadyRunning";
+  errorInstanceId: string;
+  parameters: {
+    scheduleRid: unknown;
+  };
+}
+
+/**
  * The given Schedule could not be found.
  *
  * Log Safety: SAFE

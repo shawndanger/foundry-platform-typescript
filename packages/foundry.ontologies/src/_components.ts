@@ -607,6 +607,24 @@ export interface Arg {
 }
 
 /**
+ * Evaluated constraints for entries of array parameters for which per-entry evaluation is supported.
+ *
+ * Log Safety: UNSAFE
+ */
+export type ArrayEntryEvaluatedConstraint = {
+  type: "struct";
+} & StructEvaluatedConstraint;
+
+/**
+ * Evaluated constraints of array parameters that support per-entry constraint evaluations.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface ArrayEvaluatedConstraint {
+  entries: Array<ArrayEntryEvaluatedConstraint>;
+}
+
+/**
  * The parameter expects an array of values and the size of the array must fall within the defined range.
  *
  * Log Safety: UNSAFE
@@ -1485,10 +1503,11 @@ export interface InterfaceLinkType {
 }
 
 /**
- * A string indicating the API name to use for the interface link.
- *
- * Log Safety: UNSAFE
- */
+   * The name of the interface link type in the API. To find the API name for your Interface Link Type, check the
+Ontology Manager.
+   *
+   * Log Safety: UNSAFE
+   */
 export type InterfaceLinkTypeApiName = LooselyBrandedString<
   "InterfaceLinkTypeApiName"
 >;
@@ -1681,6 +1700,13 @@ application.
 export type LinkTypeApiName = LooselyBrandedString<"LinkTypeApiName">;
 
 /**
+ * The unique ID of a link type. To find the ID for your link type, check the Ontology Manager application.
+ *
+ * Log Safety: UNSAFE
+ */
+export type LinkTypeId = LooselyBrandedString<"LinkTypeId">;
+
+/**
  * Log Safety: SAFE
  */
 export type LinkTypeRid = LooselyBrandedString<"LinkTypeRid">;
@@ -1855,6 +1881,7 @@ export interface LoadObjectSetRequestV2 {
   pageToken?: _Core.PageToken;
   pageSize?: _Core.PageSize;
   excludeRid?: boolean;
+  snapshot?: boolean;
 }
 
 /**
@@ -1880,6 +1907,7 @@ export interface LoadObjectSetV2MultipleObjectTypesRequest {
   pageToken?: _Core.PageToken;
   pageSize?: _Core.PageSize;
   excludeRid?: boolean;
+  snapshot?: boolean;
 }
 
 /**
@@ -1915,6 +1943,7 @@ export interface LoadObjectSetV2ObjectsOrInterfacesRequest {
   pageToken?: _Core.PageToken;
   pageSize?: _Core.PageSize;
   excludeRid?: boolean;
+  snapshot?: boolean;
 }
 
 /**
@@ -2234,6 +2263,9 @@ export type ObjectSet =
   | ({ type: "static" } & ObjectSetStaticType)
   | ({ type: "intersect" } & ObjectSetIntersectionType)
   | ({ type: "withProperties" } & ObjectSetWithPropertiesType)
+  | ({
+    type: "interfaceLinkSearchAround";
+  } & ObjectSetInterfaceLinkSearchAroundType)
   | ({ type: "subtract" } & ObjectSetSubtractType)
   | ({ type: "nearestNeighbors" } & ObjectSetNearestNeighborsType)
   | ({ type: "union" } & ObjectSetUnionType)
@@ -2289,6 +2321,14 @@ export interface ObjectSetFilterType {
 export interface ObjectSetInterfaceBaseType {
   interfaceType: string;
   includeAllBaseObjectProperties?: boolean;
+}
+
+/**
+ * Log Safety: UNSAFE
+ */
+export interface ObjectSetInterfaceLinkSearchAroundType {
+  objectSet: ObjectSet;
+  interfaceLink: InterfaceLinkTypeApiName;
 }
 
 /**
@@ -2806,7 +2846,9 @@ The type of the constraint.
    * Log Safety: UNSAFE
    */
 export type ParameterEvaluatedConstraint =
+  | ({ type: "struct" } & StructEvaluatedConstraint)
   | ({ type: "oneOf" } & OneOfConstraint)
+  | ({ type: "array" } & ArrayEvaluatedConstraint)
   | ({ type: "groupMember" } & GroupMemberConstraint)
   | ({ type: "objectPropertyValue" } & ObjectPropertyValueConstraint)
   | ({ type: "range" } & RangeConstraint)
@@ -3504,6 +3546,7 @@ export interface SearchObjectsRequestV2 {
   pageToken?: _Core.PageToken;
   select: Array<PropertyApiName>;
   excludeRid?: boolean;
+  snapshot?: boolean;
 }
 
 /**
@@ -3842,11 +3885,53 @@ export interface StringRegexMatchConstraint {
 }
 
 /**
+ * Represents the validity of a singleton struct parameter.
+ *
+ * Log Safety: UNSAFE
+ */
+export type StructEvaluatedConstraint = Record<
+  StructParameterFieldApiName,
+  StructFieldEvaluationResult
+>;
+
+/**
  * The name of a struct field in the Ontology.
  *
  * Log Safety: UNSAFE
  */
 export type StructFieldApiName = LooselyBrandedString<"StructFieldApiName">;
+
+/**
+   * A constraint that an action struct parameter field value must satisfy in order to be considered valid.
+Constraints can be configured on fields of struct parameters in the Ontology Manager.
+Applicable constraints are determined dynamically based on parameter inputs.
+Parameter values are evaluated against the final set of constraints.
+The type of the constraint.
+| Type                  | Description                                                                                                                                                                                                                     |
+|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| oneOf               | The struct parameter field has a manually predefined set of options.                                                                                                                                                            |
+| range               | The struct parameter field value must be within the defined range.                                                                                                                                                              |
+| stringLength        | The struct parameter field value must have a length within the defined range.                                                                                                                                                   |
+| stringRegexMatch    | The struct parameter field value must match a predefined regular expression.                                                                                                                                                    |
+   *
+   * Log Safety: UNSAFE
+   */
+export type StructFieldEvaluatedConstraint =
+  | ({ type: "oneOf" } & OneOfConstraint)
+  | ({ type: "range" } & RangeConstraint)
+  | ({ type: "stringLength" } & StringLengthConstraint)
+  | ({ type: "stringRegexMatch" } & StringRegexMatchConstraint);
+
+/**
+ * Represents the validity of a struct parameter's fields against the configured constraints.
+ *
+ * Log Safety: UNSAFE
+ */
+export interface StructFieldEvaluationResult {
+  result: ValidationResult;
+  evaluatedConstraints: Array<StructFieldEvaluatedConstraint>;
+  required: boolean;
+}
 
 /**
    * A combination of a property API name and a struct field API name used to select struct fields. Note that you can
@@ -3876,6 +3961,15 @@ export interface StructFieldType {
  * Log Safety: SAFE
  */
 export type StructFieldTypeRid = LooselyBrandedString<"StructFieldTypeRid">;
+
+/**
+ * The unique identifier of the struct parameter field.
+ *
+ * Log Safety: UNSAFE
+ */
+export type StructParameterFieldApiName = LooselyBrandedString<
+  "StructParameterFieldApiName"
+>;
 
 /**
  * Log Safety: UNSAFE

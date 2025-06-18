@@ -15,6 +15,7 @@
  */
 
 export type {
+  BranchName,
   BuildStatusCheckConfig,
   Check,
   CheckConfig,
@@ -22,7 +23,9 @@ export type {
   CheckIntent,
   CheckRid,
   ColumnName,
+  CreateCheckRequest,
   DataConnectionAgentSubject,
+  DatasetRid,
   DatasetSubject,
   EscalationConfig,
   JobStatusCheckConfig,
@@ -30,5 +33,10 @@ export type {
   SeverityLevel,
   StatusCheckConfig,
 } from "./_components.js";
-export type { CheckNotFound } from "./_errors.js";
+export type {
+  CheckAlreadyExists,
+  CheckNotFound,
+  CreateCheckPermissionDenied,
+  DeleteCheckPermissionDenied,
+} from "./_errors.js";
 export * as Checks from "./public/Check.js";

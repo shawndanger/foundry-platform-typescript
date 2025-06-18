@@ -31,6 +31,20 @@ export interface ConflictingMediaSetIdentifiers {
 }
 
 /**
+ * The token does not have permission to view paths in this media set.
+ *
+ * Log Safety: SAFE
+ */
+export interface GetMediaItemRidByPathPermissionDenied {
+  errorCode: "PERMISSION_DENIED";
+  errorName: "GetMediaItemRidByPathPermissionDenied";
+  errorInstanceId: string;
+  parameters: {
+    mediaSetRid: unknown;
+  };
+}
+
+/**
  * The requested media item could not be found, or the client token does not have access to it.
  *
  * Log Safety: SAFE
@@ -42,5 +56,19 @@ export interface MediaItemNotFound {
   parameters: {
     mediaSetRid: unknown;
     mediaItemRid: unknown;
+  };
+}
+
+/**
+ * The requested media set could not be found, or the client token does not have access to it.
+ *
+ * Log Safety: SAFE
+ */
+export interface MediaSetNotFound {
+  errorCode: "NOT_FOUND";
+  errorName: "MediaSetNotFound";
+  errorInstanceId: string;
+  parameters: {
+    mediaSetRid: unknown;
   };
 }

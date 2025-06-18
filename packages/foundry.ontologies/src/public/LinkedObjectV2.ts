@@ -40,9 +40,10 @@ const _listLinkedObjects: $FoundryPlatformMethod<
       pageToken?: _Core.PageToken | undefined;
       select: Array<_Ontologies.SelectedPropertyApiName>;
       orderBy?: _Ontologies.OrderBy | undefined;
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       excludeRid?: boolean | undefined;
+      snapshot?: boolean | undefined;
     },
   ) => Promise<_Ontologies.ListLinkedObjectsResponseV2>
 > = [0, "/v2/ontologies/{0}/objects/{1}/{2}/links/{3}", 2];
@@ -82,9 +83,10 @@ export function listLinkedObjects(
       pageToken?: _Core.PageToken | undefined;
       select: Array<_Ontologies.SelectedPropertyApiName>;
       orderBy?: _Ontologies.OrderBy | undefined;
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       excludeRid?: boolean | undefined;
+      snapshot?: boolean | undefined;
     },
   ]
 ): Promise<_Ontologies.ListLinkedObjectsResponseV2> {
@@ -100,8 +102,8 @@ const _getLinkedObject: $FoundryPlatformMethod<
     linkedObjectPrimaryKey: _Ontologies.PropertyValueEscapedString,
     $queryParams: {
       select: Array<_Ontologies.SelectedPropertyApiName>;
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       excludeRid?: boolean | undefined;
     },
   ) => Promise<_Ontologies.OntologyObjectV2>
@@ -130,8 +132,8 @@ export function getLinkedObject(
 
     $queryParams: {
       select: Array<_Ontologies.SelectedPropertyApiName>;
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       excludeRid?: boolean | undefined;
     },
   ]

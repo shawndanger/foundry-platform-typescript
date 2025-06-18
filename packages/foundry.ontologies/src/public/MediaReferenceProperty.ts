@@ -36,8 +36,8 @@ const _getMediaContent: $FoundryPlatformMethod<
     primaryKey: _Ontologies.PropertyValueEscapedString,
     property: _Ontologies.PropertyApiName,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<Response>
@@ -62,8 +62,8 @@ export function getMediaContent(
     property: _Ontologies.PropertyApiName,
 
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ]
@@ -78,8 +78,8 @@ const _getMediaMetadata: $FoundryPlatformMethod<
     primaryKey: _Ontologies.PropertyValueEscapedString,
     property: _Ontologies.PropertyApiName,
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ) => Promise<_Ontologies.MediaMetadata>
@@ -104,8 +104,8 @@ export function getMediaMetadata(
     property: _Ontologies.PropertyApiName,
 
     $queryParams?: {
-      artifactRepository?: _Ontologies.ArtifactRepositoryRid | undefined;
-      packageName?: _Ontologies.SdkPackageName | undefined;
+      sdkPackageRid?: _Ontologies.SdkPackageRid | undefined;
+      sdkVersion?: _Ontologies.SdkVersion | undefined;
       preview?: _Core.PreviewMode | undefined;
     },
   ]

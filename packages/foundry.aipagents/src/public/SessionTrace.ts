@@ -43,7 +43,7 @@ const _get: $FoundryPlatformMethod<
  * an answer. For example, a trace may include steps such as context retrieval and tool calls. Clients should
  * poll this endpoint to check the realtime progress of a response until the trace is completed.
  *
- * @alpha
+ * @beta
  *
  * Required Scopes: [api:aip-agents-read]
  * URL: /v2/aipAgents/agents/{agentRid}/sessions/{sessionRid}/sessionTraces/{sessionTraceId}

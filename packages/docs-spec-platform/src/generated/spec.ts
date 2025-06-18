@@ -421,6 +421,12 @@ export const PLATFORM_API_DOCS_SPEC = {
     "v2.getJobsBatch": {
       "variables": {},
     },
+    "v2.createCheck": {
+      "variables": {},
+    },
+    "v2.deleteCheck": {
+      "variables": {},
+    },
     "v2.getCheck": {
       "variables": {},
     },
@@ -461,6 +467,9 @@ export const PLATFORM_API_DOCS_SPEC = {
       "variables": {},
     },
     "v2.getMediaItemReference": {
+      "variables": {},
+    },
+    "v2.getMediaItemRidByPath": {
       "variables": {},
     },
     "v2.putMediaItem": {

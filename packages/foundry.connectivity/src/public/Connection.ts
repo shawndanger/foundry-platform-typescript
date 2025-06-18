@@ -92,9 +92,8 @@ const _updateSecrets: $FoundryPlatformMethod<
   (
     connectionRid: _Connectivity.ConnectionRid,
     $body: _Connectivity.UpdateSecretsForConnectionRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ) => Promise<void>
-> = [1, "/v2/connectivity/connections/{0}/updateSecrets", 3];
+> = [1, "/v2/connectivity/connections/{0}/updateSecrets", 1];
 
 /**
  * Updates the secrets on the connection to the specified secret values.
@@ -109,7 +108,7 @@ const _updateSecrets: $FoundryPlatformMethod<
  * in-memory handling of secrets. If you do not want your secrets to be temporarily decrypted, you should
  * use the Foundry UI instead.
  *
- * @beta
+ * @public
  *
  * Required Scopes: [api:connectivity-connection-write]
  * URL: /v2/connectivity/connections/{connectionRid}/updateSecrets
@@ -119,7 +118,6 @@ export function updateSecrets(
   ...args: [
     connectionRid: _Connectivity.ConnectionRid,
     $body: _Connectivity.UpdateSecretsForConnectionRequest,
-    $queryParams?: { preview?: _Core.PreviewMode | undefined },
   ]
 ): Promise<void> {
   return $foundryPlatformFetch($ctx, _updateSecrets, ...args);

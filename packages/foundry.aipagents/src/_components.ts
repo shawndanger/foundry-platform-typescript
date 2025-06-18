@@ -492,15 +492,6 @@ export type ToolCallOutput =
   | ({ type: "failure" } & FailureToolCallOutput);
 
 /**
- * A message explaining why a tool call failed.
- *
- * Log Safety: UNSAFE
- */
-export type ToolCorrectionMessage = LooselyBrandedString<
-  "ToolCorrectionMessage"
->;
-
-/**
  * The name of a tool input parameter.
  *
  * Log Safety: UNSAFE
@@ -525,13 +516,6 @@ export interface ToolMetadata {
   name: string;
   type: ToolType;
 }
-
-/**
- * The name of a tool.
- *
- * Log Safety: UNSAFE
- */
-export type ToolName = LooselyBrandedString<"ToolName">;
 
 /**
  * A tool output value, which can be either a string or a Resource Identifier (RID).

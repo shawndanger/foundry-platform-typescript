@@ -18,6 +18,7 @@ export type {
   BranchName,
   BranchRid,
   GetMediaItemInfoResponse,
+  GetMediaItemRidByPathResponse,
   LogicalTimestamp,
   MediaAttribution,
   MediaSet,
@@ -27,6 +28,8 @@ export type {
 } from "./_components.js";
 export type {
   ConflictingMediaSetIdentifiers,
+  GetMediaItemRidByPathPermissionDenied,
   MediaItemNotFound,
+  MediaSetNotFound,
 } from "./_errors.js";
 export * as MediaSets from "./public/MediaSet.js";

@@ -29,6 +29,57 @@ import type * as _DataHealth from "../_components.js";
 
 //
 
+const _create: $FoundryPlatformMethod<
+  (
+    $body: _DataHealth.CreateCheckRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<_DataHealth.Check>
+> = [1, "/v2/dataHealth/checks", 3];
+
+/**
+ * Creates a new Check.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:data-health-write]
+ * URL: /v2/dataHealth/checks
+ */
+export function create(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    $body: _DataHealth.CreateCheckRequest,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<_DataHealth.Check> {
+  return $foundryPlatformFetch($ctx, _create, ...args);
+}
+
+const _deleteCheck: $FoundryPlatformMethod<
+  (
+    checkRid: _DataHealth.CheckRid,
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ) => Promise<void>
+> = [3, "/v2/dataHealth/checks/{0}", 2];
+
+/**
+ * Delete the Check with the specified rid.
+ *
+ * @beta
+ *
+ * Required Scopes: [api:data-health-write]
+ * URL: /v2/dataHealth/checks/{checkRid}
+ */
+export function deleteCheck(
+  $ctx: $Client | $ClientContext | $OldClient | $OldClientContext,
+  ...args: [
+    checkRid: _DataHealth.CheckRid,
+
+    $queryParams?: { preview?: _Core.PreviewMode | undefined },
+  ]
+): Promise<void> {
+  return $foundryPlatformFetch($ctx, _deleteCheck, ...args);
+}
+
 const _get: $FoundryPlatformMethod<
   (
     checkRid: _DataHealth.CheckRid,
